@@ -1,0 +1,7 @@
+{
+	"singleQuote": true,
+	"useTabs": true,
+	"semi": true,
+	"bracketSameLine": true,
+	"endOfLine": "lf"
+}

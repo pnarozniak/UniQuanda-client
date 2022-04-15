@@ -1,0 +1,115 @@
+{
+	"root": true,
+	"ignorePatterns": [
+		"projects/**/*"
+	],
+	"overrides": [
+		{
+			"files": [
+				"*.ts"
+			],
+			"parserOptions": {
+				"project": [
+					"tsconfig.json"
+				],
+				"createDefaultProgram": true
+			},
+			"extends": [
+				"plugin:@angular-eslint/recommended",
+				"plugin:@angular-eslint/template/process-inline-templates",
+				"plugin:@typescript-eslint/recommended",
+				"plugin:prettier/recommended"
+			],
+			"rules": {
+				"@angular-eslint/directive-selector": [
+					"error",
+					{
+						"type": "attribute",
+						"prefix": "app",
+						"style": "camelCase"
+					}
+				],
+				"@angular-eslint/component-selector": [
+					"error",
+					{
+						"type": "element",
+						"prefix": "app",
+						"style": "kebab-case"
+					}
+				],
+				"camelcase": 2,
+				"dot-location": [
+					"error",
+					"property"
+				],
+				"eqeqeq":"error",
+				"linebreak-style": [
+					"error",
+					"unix"
+				],
+				"arrow-spacing": [
+					"warn",
+					{
+						"before": true,
+						"after": true
+					}
+				],
+				"function-call-argument-newline": [
+					"error",
+					"never"
+				],
+				"indent": [
+					"error", "tab"
+				],
+				"multiline-ternary": [
+					"error",
+					"always-multiline"
+				],
+				"newline-per-chained-call": [
+					"error",
+					{
+						"ignoreChainWithDepth": 2
+					}
+				],
+				"no-whitespace-before-property": [
+					"error"
+				],
+				"quotes": [
+					"error",
+					"single"
+				],
+				"semi": [
+					"error",
+					"always"
+				],
+				"keyword-spacing": [
+					"error",
+					{
+						"before": true,
+						"after": true
+					}
+				]
+			}
+		},
+		{
+			"files": [
+				"*.html"
+			],
+			"extends": [
+				"plugin:@angular-eslint/template/recommended",
+				"plugin:prettier/recommended"
+			],
+			"rules": {}
+		},
+		{
+			"files": [
+				"*.scss"
+			],
+			"extends": [
+				"plugin:@angular-eslint/template/recommended",
+				"plugin:prettier/recommended"
+			],
+			"rules": {}
+		}
+	]
+}

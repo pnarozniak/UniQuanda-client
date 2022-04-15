@@ -1,0 +1,23 @@
+{
+    "files.exclude": {
+        "node_modules/**": true,
+    },
+    "editor.insertSpaces": false,
+    "editor.detectIndentation": true,
+    "editor.tabSize": 2,
+    "eslint.codeAction.disableRuleComment": {},
+    "eslint.probe": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "html",
+        "vue",
+        "markdown",
+        "angular"
+    ],
+    "prettier.tslintIntegration": true,
+    "eslint.rules.customizations": [
+    
+    ],
+}
