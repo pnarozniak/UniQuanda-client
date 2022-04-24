@@ -65,12 +65,6 @@
 					"error",
 					"always-multiline"
 				],
-				"newline-per-chained-call": [
-					"error",
-					{
-						"ignoreChainWithDepth": 2
-					}
-				],
 				"no-whitespace-before-property": [
 					"error"
 				],
@@ -88,7 +82,21 @@
 						"before": true,
 						"after": true
 					}
-				]
+				],
+				"default-case": 2,
+				"no-template-curly-in-string": 1,
+				"default-case-last": 2,
+				"default-param-last": 1,
+				"no-confusing-arrow": 1,
+				"no-else-return": 1,
+				"no-magic-numbers": 1,
+				"no-useless-constructor": 2,
+				"require-await": 2,
+				"prefer-template": 2,
+				"no-useless-catch": 2,
+				"no-useless-concat": 2,
+				"no-var": 2,
+				"spaced-comment": 1
 			}
 		},
 		{
