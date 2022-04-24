@@ -1,7 +1,8 @@
 {
 	"root": true,
 	"ignorePatterns": [
-		"projects/**/*"
+		"projects/**/*",
+		"*.scss"
 	],
 	"overrides": [
 		{
@@ -54,10 +55,6 @@
 						"after": true
 					}
 				],
-				"function-call-argument-newline": [
-					"error",
-					"never"
-				],
 				"indent": [
 					"error", "tab"
 				],
@@ -108,16 +105,6 @@
 				"plugin:prettier/recommended"
 			],
 			"rules": {}
-		},
-		{
-			"files": [
-				"*.scss"
-			],
-			"extends": [
-				"plugin:@angular-eslint/template/recommended",
-				"plugin:prettier/recommended"
-			],
-			"rules": {}
-		}
+		} 
 	]
 }
