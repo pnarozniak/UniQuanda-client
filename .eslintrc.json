@@ -38,12 +38,76 @@
 						"style": "kebab-case"
 					}
 				],
-				"camelcase": 2,
+				"@typescript-eslint/naming-convention": [
+					"error",
+					{
+						"selector": "variableLike",
+						"format": [
+							"PascalCase"
+						],
+						"leadingUnderscore": "forbid",
+						"trailingUnderscore": "forbid"
+					},
+					{
+						"selector": "method",
+						"format": [
+							"camelCase"
+						]
+					},
+					{
+						"selector": "interface",
+						"format": [
+							"PascalCase"
+						],
+						"prefix": [
+							"I"
+						]
+					},
+					{
+						"selector": "property",
+						"modifiers": [
+							"readonly"
+						],
+						"format": [
+							"camelCase"
+						],
+						"leadingUnderscore": "require"
+					},
+					{
+						"selector": "property",
+						"format": [
+							"camelCase"
+						],
+						"leadingUnderscore": "forbid",
+						"trailingUnderscore": "forbid"
+					},
+					{
+						"selector": [
+							"class",
+							"enum",
+							"typeAlias",
+							"property"
+						],
+						"format": [
+							"PascalCase"
+						],
+						"leadingUnderscore": "forbid",
+						"trailingUnderscore": "forbid"
+					},
+					{
+						"selector": "parameter",
+						"format": [
+							"camelCase"
+						],
+						"leadingUnderscore": "forbid",
+						"trailingUnderscore": "forbid"
+					}
+				],
 				"dot-location": [
 					"error",
 					"property"
 				],
-				"eqeqeq":"error",
+				"eqeqeq": "error",
 				"linebreak-style": [
 					"error",
 					"unix"
@@ -56,7 +120,8 @@
 					}
 				],
 				"indent": [
-					"error", "tab"
+					"error",
+					"tab"
 				],
 				"multiline-ternary": [
 					"error",
@@ -86,7 +151,6 @@
 				"default-param-last": 1,
 				"no-confusing-arrow": 1,
 				"no-else-return": 1,
-				"no-magic-numbers": 1,
 				"no-useless-constructor": 2,
 				"require-await": 2,
 				"prefer-template": 2,
@@ -105,6 +169,6 @@
 				"plugin:prettier/recommended"
 			],
 			"rules": {}
-		} 
+		}
 	]
 }
