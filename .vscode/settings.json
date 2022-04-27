@@ -1,0 +1,9 @@
+{
+		"files.exclude": {
+			"node_modules/**": true,
+		},
+		"editor.insertSpaces": false,
+		"editor.detectIndentation": true,
+		"editor.tabSize": 2,
+		"files.eol": "\n"
+}

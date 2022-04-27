@@ -1,0 +1,21 @@
+{
+	"singleQuote": true,
+	"useTabs": true,
+	"semi": true,
+	"bracketSameLine": true,
+	"endOfLine": "lf",
+	"overrides": [
+		{
+			"files": "*.html",
+			"options": {
+				"parser": "html"
+			}
+		},
+		{
+			"files": "*.component.html",
+			"options": {
+				"parser": "angular"
+			}
+		}
+	]
+}
