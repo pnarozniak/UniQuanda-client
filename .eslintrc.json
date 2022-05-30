@@ -121,7 +121,10 @@
 				],
 				"indent": [
 					"error",
-					"tab"
+					"tab",
+					{
+						"SwitchCase": 1
+					}
 				],
 				"multiline-ternary": [
 					"error",
@@ -151,7 +154,6 @@
 				"default-param-last": 1,
 				"no-confusing-arrow": 1,
 				"no-else-return": 1,
-				"no-useless-constructor": 2,
 				"require-await": 2,
 				"prefer-template": 2,
 				"no-useless-catch": 2,
