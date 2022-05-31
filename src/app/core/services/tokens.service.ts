@@ -14,20 +14,20 @@ export class TokensService {
 		return localStorage.getItem(this._refreshTokenKey);
 	}
 
-	setAccessToken(accessToken: string | null): void {
-		if (accessToken) {
-			localStorage.setItem(this._accessTokenKey, accessToken);
-		} else {
-			localStorage.removeItem(this._accessTokenKey);
-		}
+	saveAccessToken(accessToken: string): void {
+		localStorage.setItem(this._accessTokenKey, accessToken);
 	}
 
-	setRefreshToken(refreshToken: string | null): void {
-		if (refreshToken) {
-			localStorage.setItem(this._refreshTokenKey, refreshToken);
-		} else {
-			localStorage.removeItem(this._refreshTokenKey);
-		}
+	saveRefreshToken(refreshToken: string): void {
+		localStorage.setItem(this._refreshTokenKey, refreshToken);
+	}
+
+	removeAccessToken(): void {
+		localStorage.removeItem(this._accessTokenKey);
+	}
+
+	removeRefreshToken(): void {
+		localStorage.removeItem(this._refreshTokenKey);
 	}
 
 	getClaimsFromJWT(jwt: string): UserClaims | null {
