@@ -3,6 +3,8 @@
 | ---------- | ------------- |
 | class / interface / type / enum / decorator / type parameters | PascalCase |
 | private / public / static fields | camelCase |
+| let / const variables | camelCase |
+| observable type variables / methods | camelCase$ |
 | readonly fields | \_camelCase |
 | enum values | PascalCase |
 | Method name | camelCase |
@@ -14,6 +16,7 @@
 | -------- | ------------- | ------------ |
 | component | PascalCase + Component | kebab-case.component.spec\|ts\|html\|scss
 | service | PascalCase + Service | kebab-case.service.ts
+| model | PascalCase | kebab-case.model.ts
 | module | PascalCase + Module | kebab-case.module.ts
 | pipe | PascalCase + Pipe | kebab-case.pipe.ts
 | directive | PascalCase + Directive | kebab-case.directive.ts
