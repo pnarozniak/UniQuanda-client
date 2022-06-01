@@ -43,7 +43,7 @@
 					{
 						"selector": "variableLike",
 						"format": [
-							"PascalCase"
+							"camelCase"
 						],
 						"leadingUnderscore": "forbid",
 						"trailingUnderscore": "forbid"
