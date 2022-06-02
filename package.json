@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint --fix && npx stylelint '**/*.scss' --fix",
+    "lint": "ng lint --fix && npx stylelint \"*/*.scss\" --fix",
     "prepare": "husky install",
     "pre-commit": "npm run lint"
   },
@@ -55,7 +55,7 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "prettier": "^2.6.2",
-    "stylelint": "^14.7.1",
+    "stylelint": "^14.8.5",
     "stylelint-config-standard-scss": "^3.0.0",
     "stylelint-scss": "^4.2.0",
     "typescript": "~4.4.3"
