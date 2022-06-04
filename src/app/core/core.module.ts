@@ -7,8 +7,8 @@ import { UserDataService } from './services/user-data.service';
 
 @NgModule({
 	providers: [
-    TokensService,
-    UserDataService,
+		TokensService,
+		UserDataService,
 		HandleErrorService,
 		{
 			provide: HTTP_INTERCEPTORS,

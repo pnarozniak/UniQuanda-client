@@ -7,6 +7,7 @@ import { SharedModule } from './shared/shared.module';
 
 // Activates angular material animations
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppTitleService } from './app-title.service';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -17,7 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 		CoreModule,
 		SharedModule,
 	],
-	providers: [],
+	providers: [AppTitleService],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
