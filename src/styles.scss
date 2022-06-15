@@ -38,10 +38,21 @@ $a-theme: mat.define-light-theme(
 // that you are using.
 @include mat.all-component-themes($a-theme);
 
+:root {
+  --light-purple: #9194da;
+  --academic-blue: #262b90;
+  --crystal-white: #fff;
+  --elegant-gray: #e5e5e5;
+  --blue-laguna: #1aa39d;
+  --dark-yellow: #ffc70f;
+  --pink: #f99bcc;
+  --light-red: #fe4d11;
+}
+
 html,
 body { height: 100%; }
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Ubuntu, "Helvetica Neue", sans-serif;
 }

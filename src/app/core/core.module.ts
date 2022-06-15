@@ -4,6 +4,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { TokensService } from './services/tokens.service';
 import { UserDataService } from './services/user-data.service';
+import { HeaderComponent } from './components/header/header.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
 	providers: [
@@ -16,5 +18,8 @@ import { UserDataService } from './services/user-data.service';
 			multi: true,
 		},
 	],
+	declarations: [HeaderComponent],
+	imports: [RouterModule],
+	exports: [HeaderComponent],
 })
 export class CoreModule {}
