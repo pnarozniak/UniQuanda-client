@@ -5,6 +5,10 @@
 	height: 45px;
 }
 
+.header-height {
+	height: 75px;	
+}
+
 .a-btn{
 	font-size: 17px;
 	font-weight: 500;
@@ -15,8 +19,9 @@
 }
 
 .search-bar{
-	height: 43px;
+	height: 40px;
 	background-color: $elegant-gray;
+	outline: 0;
 }
 
 .btn-search{
@@ -54,6 +59,11 @@
 
 .footer-cell-lightRed{
 	background-color: $light-red;
+}
+@media all and (max-width: 768px) {
+	.search-bar {
+		background-color: $crystal-white;
+	}
 }
 
 @media all and (max-width: 575px) {

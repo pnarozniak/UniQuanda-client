@@ -1,19 +1,26 @@
 <header>
-	<div
-		class="d-flex flex-row align-items-end justify-content-between gap-1 px-2 py-3 gap-sm-2 ps-sm-3 pe-sm-5">
+	<div class="d-flex flex-row header-height">
 		<img
 			src="assets/images/common/logo/logo_blue.svg"
-			class="img-logo me-md-3"
+			class="img-logo my-auto ms-2"
 			alt="UniQuanda-Logo" />
-		<input
-			placeholder="Szukaj"
-			class="search-bar d-md-flex d-none flex-row w-100 border-0 ps-4" />
-		<button
-			class="uniquanda-icon icon-search btn-search d-md-none bg-transparent border-0 me-0 m-auto"></button>
-		<a routerLink="/register" class="a-btn a-register btn">Zarejestruj się</a>
-		<a routerLink="/login" class="a-btn a-login btn">Zaloguj się</a>
+		<div class="d-flex flex-row mx-2 w-100">
+			<label class="d-flex ms-auto">
+				<button
+					class="search-bar uniquanda-icon icon-search btn-search border-0 my-auto ps-md-3 ps-2"></button>
+			</label>
+			<input
+				placeholder="Szukaj"
+				class="search-bar d-md-flex d-none my-auto w-100 border-0 px-1" />
+		</div>
+		<a routerLink="/register" class="a-btn a-register btn my-auto me-2"
+			>Zarejestruj się</a
+		>
+		<a routerLink="/login" class="a-btn a-login btn my-auto me-2"
+			>Zaloguj się</a
+		>
 	</div>
-	<div class="footer-container d-flex flex-row">
+	<div class="footer-container d-flex">
 		<div class="footer-cell-academicBlue w-100"></div>
 		<div class="footer-cell-blueLaguna w-100"></div>
 		<div class="footer-cell-darkYellow w-100"></div>
