@@ -1,92 +1,73 @@
-header{
-	height: 75px;
-}
-
-.main-container{
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	padding: 10px 60px 15px 20px;
-}
+@import './../../../../assets/icons/style.css';
+@import './../../../../assets/scss/colors.scss';
 
 .img-logo{
 	height: 45px;
-	width: 200px;
-	margin-right: 20px;
-}
-
-.left-container{
-	display: flex;
-	flex-direction: row;
-	align-items: flex-end;
-	margin-right: 10px;
-	width: 100%;
-}
-
-.btn-container{
-	display: flex;
-	flex-direction: row;
-	gap: 10px;
 }
 
 .a-btn{
 	font-size: 17px;
 	font-weight: 500;
-	padding: 8px 36px 8px 36px;
-	text-decoration: none;
-  cursor: pointer;
-	color: var(--crystal-white);
+	padding: 8px 27px 8px 27px;
+	color: $crystal-white;
 	border-radius: 7px;
 	white-space: nowrap;
 }
 
 .search-bar{
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	padding-left: 20px;
-	padding-right: 20px;
-	width: 75%;
-	max-width: 1080px;
-	height: 40px;
-	background-color: var(--elegant-gray);
+	height: 43px;
+	background-color: $elegant-gray;
+}
+
+.btn-search{
+	color: $light-gray;
+	font-size: 25px;
 }
 
 .a-register{
-	background-color: var(--light-purple);
+	background-color: $light-purple;
 }
 
 .a-login{
-	background-color: var(--academic-blue);
+	background-color: $academic-blue;
 }
 
 .footer-container{
-	display: flex;
-	flex-direction: row;
 	height: 5px;
 }
 
 .footer-cell-academicBlue{
-	width: 100%;
-	background-color: var(--academic-blue);
+	background-color: $academic-blue;
 }
 
 .footer-cell-blueLaguna{
-	width: 100%;
-	background-color: var(--blue-laguna);
+	background-color: $blue-laguna;
 }
 
 .footer-cell-darkYellow{
-	width: 100%;
-	background-color: var(--dark-yellow);
+	background-color: $dark-yellow;
 }
 
 .footer-cell-pink{
-	width: 100%;
-	background-color: var(--pink);
+	background-color: $pink;
 }
 
 .footer-cell-lightRed{
-	width: 100%;
-	background-color: var(--light-red);
+	background-color: $light-red;
+}
+
+@media all and (max-width: 575px) {
+	.img-logo{
+		height: 25px;
+	}
+
+	.a-btn{
+		font-size: 11px;
+		padding-left: 9px;
+		padding-right: 9px;
+	}
+
+	.btn-search{
+		font-size: 15px;
+	}
 }
