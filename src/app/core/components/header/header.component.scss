@@ -1,0 +1,83 @@
+@import './../../../../assets/icons/style.css';
+@import './../../../../assets/scss/colors.scss';
+
+.img-logo{
+	height: 45px;
+}
+
+.header-height {
+	height: 75px;	
+}
+
+.a-btn{
+	font-size: 17px;
+	font-weight: 500;
+	padding: 8px 27px 8px 27px;
+	color: $crystal-white;
+	border-radius: 7px;
+	white-space: nowrap;
+}
+
+.search-bar{
+	height: 40px;
+	background-color: $elegant-gray;
+	outline: 0;
+}
+
+.btn-search{
+	color: $light-gray;
+	font-size: 25px;
+}
+
+.a-register{
+	background-color: $light-purple;
+}
+
+.a-login{
+	background-color: $academic-blue;
+}
+
+.footer-container{
+	height: 5px;
+}
+
+.footer-cell-academicBlue{
+	background-color: $academic-blue;
+}
+
+.footer-cell-blueLaguna{
+	background-color: $blue-laguna;
+}
+
+.footer-cell-darkYellow{
+	background-color: $dark-yellow;
+}
+
+.footer-cell-pink{
+	background-color: $pink;
+}
+
+.footer-cell-lightRed{
+	background-color: $light-red;
+}
+@media all and (max-width: 768px) {
+	.search-bar {
+		background-color: $crystal-white;
+	}
+}
+
+@media all and (max-width: 575px) {
+	.img-logo{
+		height: 25px;
+	}
+
+	.a-btn{
+		font-size: 11px;
+		padding-left: 9px;
+		padding-right: 9px;
+	}
+
+	.btn-search{
+		font-size: 15px;
+	}
+}
