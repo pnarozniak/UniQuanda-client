@@ -6,6 +6,7 @@ import { TokensService } from './services/tokens.service';
 import { UserDataService } from './services/user-data.service';
 import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
 	providers: [
@@ -19,7 +20,7 @@ import { RouterModule } from '@angular/router';
 		},
 	],
 	declarations: [HeaderComponent],
-	imports: [RouterModule],
+	imports: [RouterModule, ToastrModule.forRoot()],
 	exports: [HeaderComponent],
 })
 export class CoreModule {}

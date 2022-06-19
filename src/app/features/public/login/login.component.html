@@ -1,0 +1,100 @@
+<div class="w-100 d-flex flex-column height-header">
+	<div class="mx-auto my-auto">
+		<div class="googlebox px-2 px-md-0 d-flex flex-row mt-3 mt-sm-0">
+			<div class="google-logo my-auto ms-auto"></div>
+			<div class="google-text my-auto me-auto">Zaloguj się przez Google</div>
+		</div>
+		<form
+			[formGroup]="form"
+			(ngSubmit)="handleLogin()"
+			class="bordered d-flex flex-column p-sm-5 p-3 mt-2">
+			<hr class="d-sm-none d-flex grey-line" />
+			<h1 class="mx-auto font-weight-bold">Zaloguj się</h1>
+			<div
+				class="d-flex flex-column login-input mt-5 mb-3"
+				[ngClass]="{
+					'border-validation':
+						!this.form.get('email')?.valid && this.form.get('email')?.touched,
+					'mb-3': this.form.get('email')?.valid === true
+				}">
+				<input
+					type="email"
+					class="email-input border-0"
+					formControlName="email" />
+				<label
+					class="login-label position-absolute"
+					[ngClass]="{
+						'element-has-text': this.form.get('email')?.value !== ''
+					}"
+					>E-mail</label
+				>
+			</div>
+			<div
+				class="validation-text"
+				*ngIf="
+					this.form.get('email')?.hasError('pattern') &&
+					this.form.get('email')?.touched
+				">
+				Nie poprawny adres e-mail
+			</div>
+			<div
+				class="validation-text"
+				*ngIf="
+					this.form.get('email')?.hasError('required') &&
+					this.form.get('email')?.touched
+				">
+				Adres e-mail jest wymagany
+			</div>
+			<div
+				class="d-flex flex-column login-input mt-5"
+				[ngClass]="{
+					'border-validation':
+						!this.form.get('password')?.valid &&
+						this.form.get('password')?.touched
+				}">
+				<div class="d-flex flex-row password-input">
+					<input
+						formControlName="password"
+						type="{{ isPasswordShown ? 'text' : 'password' }}"
+						class="email-input border-0" />
+					<button
+						type="button"
+						class="quanda-icons icon-{{
+							isPasswordShown ? 'show' : 'hide'
+						}} border-0 show-password"
+						(click)="isPasswordShown = !isPasswordShown"></button>
+				</div>
+				<label
+					class="login-label position-absolute"
+					[ngClass]="{
+						'element-has-text': this.form.get('password')?.value !== ''
+					}"
+					>Hasło</label
+				>
+			</div>
+			<div
+				class="validation-text"
+				*ngIf="
+					this.form.get('password')?.hasError('required') &&
+					this.form.get('password')?.touched
+				">
+				Hasło jest wymagane
+			</div>
+			<a
+				routerLink="/public/recover-password"
+				class="ms-auto me-0 mt-2 forgot-password"
+				>Nie pamiętasz hasła?</a
+			>
+			<button type="submit" class="submit-button border-0 mt-5 p-3">
+				Zaloguj się
+			</button>
+			<div class="mt-3 mx-auto register-box">
+				<span class="me-1">Nie masz konta?</span>
+				<a routerLink="/public/register" class="register-text"
+					>Zarejestruj się!</a
+				>
+			</div>
+		</form>
+	</div>
+	<div class="footer-decoration"></div>
+</div>

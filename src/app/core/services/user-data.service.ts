@@ -24,9 +24,8 @@ export class UserDataService {
 	}
 
 	private setInitialUserData() {
-		const accessToken = this._tokensService.getAccessToken();
-		if (!accessToken) return;
-		const claims = this._tokensService.getClaimsFromJWT(accessToken);
+		const claims = this._tokensService.generateClaims();
+		if (!claims) return;
 		this.setUserData(claims);
 	}
 }

@@ -1,0 +1,102 @@
+@import './../../../../assets/icons/style.css';
+@import './../../../../assets/scss/colors.scss';
+.bordered {
+	border: 1px solid $bordered-gray;
+}
+.googlebox {
+	cursor: pointer;
+	border: 1px solid $bordered-gray;
+	font-family: Roboto, sans-serif;
+	font-size: 14px;
+	color: rgba($color: #000000, $alpha: 0.54);
+	height: 40px;
+	padding-left: 8px !important;
+	padding-right: 8px !important;
+	&:active {
+		background-color: #f0ecec;
+	}
+	.google-text {
+		margin-left: 12px;
+		font-weight: 500;
+	}
+	.google-logo {
+		background-image: url('/assets/public/login/btn_google_light_normal_ios.svg');
+		background-size: cover;
+		width: 40px;
+		height: 40px;
+		&:active {
+			background-image: url('/assets/public/login/btn_google_light_pressed_ios.svg');
+		}
+	}
+}
+.login-input {
+	outline: none !important;
+	border-bottom: 2px solid $bordered-gray;
+	font-size: 20px;
+	.show-password {
+		font-size: small;
+		background-color: $crystal-white !important;
+	}
+	.email-input {
+		outline: none !important;
+		min-width: 420px;
+		&:focus-within + .login-label {
+			transform: translateY(-30px);
+			font-weight: bold;
+		}
+	}
+	.login-label {
+		transition: all 0.3s ease-in-out;
+	}
+	.password-input {
+		outline: none !important;
+		min-width: 420px;
+		&:focus-within + .login-label {
+			transform: translateY(-30px);
+			font-weight: bold;
+		}
+	}
+	.element-has-text {
+		transform: translateY(-30px);
+		font-weight: bold;
+	}
+}
+.border-validation {
+	border-bottom: 2px solid $validation-red !important;
+}
+.validation-text {
+	color: $validation-red;
+}
+.forgot-password {
+	color: $academic-blue;
+	font-size: 15px;
+}
+.submit-button {
+	background-color: $academic-blue;
+	color: $crystal-white;
+	border-radius: 7px;
+	font-weight: 500;
+	font-size: 18px;
+}
+.register-box {
+	font-size: 18px;
+	.register-text {
+		color: $light-red;
+	}
+}
+.grey-line {
+	border-color: $bordered-gray;
+}
+@media all and (max-width: 575px) {
+	.login-input {
+		.email-input {
+			min-width: 250px;
+		}
+		.password-input {
+			min-width: 250px;
+		}
+	}
+	.bordered {
+		border: none;
+	}
+}
