@@ -9,6 +9,12 @@ import { LoginRequestDTO, LoginResponseDTO } from './models/loginDTO';
 export class LoginService {
 	constructor(private readonly _apiService: ApiService) {}
 
+	/**
+	 * Connecting api to perform login
+	 * @param username
+	 * @param password
+	 * @returns Login status response
+	 */
 	public login(
 		username: string,
 		password: string
