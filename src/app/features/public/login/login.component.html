@@ -9,13 +9,17 @@
 			(ngSubmit)="handleLogin()"
 			class="bordered d-flex flex-column p-sm-5 p-3 mt-2">
 			<hr class="d-sm-none d-flex grey-line" />
-			<h1 class="mx-auto font-weight-bold">Zaloguj się</h1>
+			<h1 class="mx-auto">Zaloguj się</h1>
 			<div
 				class="d-flex flex-column login-input mt-5 mb-3"
 				[ngClass]="{
 					'border-validation':
-						!this.form.get('email')?.valid && this.form.get('email')?.touched,
-					'mb-3': this.form.get('email')?.valid === true
+						this.form.get('email')?.hasError('pattern') ||
+						(this.form.get('email')?.hasError('required') &&
+							this.form.get('email')?.touched),
+					'mb-3':
+						!this.form.get('email')?.hasError('pattern') &&
+						!this.form.get('email')?.hasError('required')
 				}">
 				<input
 					type="email"
@@ -49,7 +53,7 @@
 				class="d-flex flex-column login-input mt-5"
 				[ngClass]="{
 					'border-validation':
-						!this.form.get('password')?.valid &&
+						this.form.get('password')?.hasError('required') &&
 						this.form.get('password')?.touched
 				}">
 				<div class="d-flex flex-row password-input">

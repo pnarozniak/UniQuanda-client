@@ -27,8 +27,14 @@ export class LoginComponent {
 			email: new FormControl('', [
 				Validators.required,
 				Validators.pattern('^.+@.+\\..+$'),
+				Validators.maxLength(320),
 			]),
-			password: new FormControl('', [Validators.required]),
+			password: new FormControl('', [
+				Validators.required,
+				Validators.minLength(8),
+				Validators.maxLength(30),
+				Validators.pattern('^.*[A-Z]+[a-z]+[0-9]+.*'),
+			]),
 		});
 	}
 
@@ -65,6 +71,16 @@ export class LoginComponent {
 					}
 				},
 			});
+		}
+		if (
+			!this.form.get('email')?.hasError('required') &&
+			!this.form.get('email')?.hasError('pattern') &&
+			!this.form.get('password')?.hasError('required')
+		) {
+			this._toastrService.error(
+				'Nie znaleziono użytkownika o podanych danych',
+				'Błąd'
+			);
 		}
 	}
 }
