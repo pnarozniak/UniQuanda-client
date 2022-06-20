@@ -24,9 +24,11 @@
 				<input
 					type="email"
 					class="email-input border-0"
-					formControlName="email" />
+					formControlName="email"
+					[id]="'email'" />
 				<label
 					class="login-label position-absolute"
+					[for]="'email'"
 					[ngClass]="{
 						'element-has-text': this.form.get('email')?.value !== ''
 					}"
@@ -60,7 +62,8 @@
 					<input
 						formControlName="password"
 						type="{{ isPasswordShown ? 'text' : 'password' }}"
-						class="email-input border-0" />
+						class="email-input border-0"
+						[id]="'password'" />
 					<button
 						type="button"
 						class="quanda-icons icon-{{
@@ -70,6 +73,7 @@
 				</div>
 				<label
 					class="login-label position-absolute"
+					[for]="'password'"
 					[ngClass]="{
 						'element-has-text': this.form.get('password')?.value !== ''
 					}"

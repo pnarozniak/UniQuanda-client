@@ -39,6 +39,7 @@ export class LoginComponent {
 	}
 
 	handleLogin() {
+		this.form.markAllAsTouched();
 		if (this.form.valid) {
 			const formValue = this.form.value;
 			this._loginService.login(formValue.email, formValue.password).subscribe({
