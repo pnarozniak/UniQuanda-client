@@ -60,7 +60,7 @@ export class LoginComponent {
 							'Konto posiada nie potwierdzony adres E-mail. Sprawdź swoją skrzynkę pocztową',
 							'Błąd'
 						);
-						this._router.navigate(['/public/confirm-email']);
+						this._router.navigate(['/public/confirm-registration']);
 					}
 				},
 				error: (err) => {
