@@ -1,0 +1,182 @@
+<div class="w-100 d-flex flex-column height-header">
+	<form
+		[formGroup]="form"
+		(ngSubmit)="handleRegister()"
+		class="bordered d-flex flex-column p-sm-5 p-3 my-auto mx-auto">
+		<h1 class="mx-auto font-weight-bold">Informacje dodatkowe*</h1>
+		<span class="info-text text-center text-sm-left mx-auto mx-sm-0"
+			>*Wszystkie poniższe informacje są niewymagane. Jeśli nie chcesz ich
+			wypełniać, kliknij przycisk “Zarejestruj”</span
+		>
+		<div
+			class="d-flex flex-column register-input mt-5 mb-3"
+			[ngClass]="{
+				'border-validation':
+					!this.form.get('firstName')?.valid &&
+					this.form.get('firstName')?.touched,
+				'mb-3': this.form.get('firstName')?.valid === true
+			}">
+			<input
+				type="text"
+				class="standard-input border-0"
+				[id]="'firstName'"
+				formControlName="firstName" />
+			<label
+				class="register-label position-absolute"
+				[for]="'firstName'"
+				[ngClass]="{
+					'element-has-text': this.form.get('firstName')?.value !== ''
+				}"
+				>Imie</label
+			>
+		</div>
+		<div
+			class="validation-text"
+			*ngIf="
+				this.form.get('firstName')?.hasError('maxlength') &&
+				this.form.get('firstName')?.touched
+			">
+			Sprawdzaliśmy w bazie imion polskich i nie znaleźliśmy dłuższych niż 35
+			znaków. Jeśli jednak masz dłuższe imie - daj nam o tym znać :)
+		</div>
+		<div
+			class="d-flex flex-column register-input mt-5 mb-3"
+			[ngClass]="{
+				'border-validation':
+					!this.form.get('lastName')?.valid &&
+					this.form.get('lastName')?.touched,
+				'mb-3': this.form.get('lastName')?.valid === true
+			}">
+			<input
+				type="text"
+				class="standard-input border-0"
+				[id]="'lastName'"
+				formControlName="lastName" />
+			<label
+				class="register-label position-absolute"
+				[for]="'lastName'"
+				[ngClass]="{
+					'element-has-text': this.form.get('lastName')?.value !== ''
+				}"
+				>Nazwisko</label
+			>
+		</div>
+		<div
+			class="validation-text"
+			*ngIf="
+				this.form.get('lastName')?.hasError('maxlength') &&
+				this.form.get('lastName')?.touched
+			">
+			Sprawdzaliśmy w bazie nazwisk polskich i nie znaleźliśmy dłuższych niż 51
+			znaków. Jeśli jednak masz dłuższe nazwisko - daj nam o tym znać :)
+		</div>
+		<div
+			class="d-flex flex-column register-input mt-5"
+			[ngClass]="{
+				'border-validation':
+					!this.form.get('birthdate')?.valid &&
+					this.form.get('birthdate')?.touched
+			}">
+			<div class="d-flex flex-row birthdate-input">
+				<input
+					formControlName="birthdate"
+					type="text"
+					class="birthdate-input border-0"
+					bsDatepicker
+					#dp="bsDatepicker"
+					[bsConfig]="{
+						isAnimated: true,
+						adaptivePosition: true,
+						containerClass: 'theme-dark-blue',
+						customTodayClass: 'today-class'
+					}"
+					[id]="'birthdate'" />
+				<div
+					type="button"
+					class="quanda-icons icon-calendar border-0 ms-auto ms-sm-0"
+					(click)="dp.show()"></div>
+			</div>
+			<label
+				class="register-label position-absolute"
+				[for]="'birthdate'"
+				[ngClass]="{
+					'element-has-text': this.form.get('birthdate')?.value !== ''
+				}"
+				>Data urodzenia</label
+			>
+		</div>
+		<div
+			class="validation-text"
+			*ngIf="
+				!this.form.get('birthdate')?.valid &&
+				this.form.get('birthdate')?.touched
+			">
+			Nie możliwe byś urodził się w przyszłości.
+		</div>
+		<div
+			class="d-flex flex-column register-input mt-5 mb-3"
+			[ngClass]="{
+				'border-validation':
+					!this.form.get('phoneNumber')?.valid &&
+					this.form.get('phoneNumber')?.touched,
+				'mb-3': this.form.get('phoneNumber')?.valid === true
+			}">
+			<input
+				type="text"
+				class="standard-input border-0"
+				[id]="'phoneNumber'"
+				formControlName="phoneNumber" />
+			<label
+				class="register-label position-absolute"
+				[for]="'phoneNumber'"
+				[ngClass]="{
+					'element-has-text': this.form.get('phoneNumber')?.value !== ''
+				}"
+				>Numer telefonu</label
+			>
+		</div>
+		<div
+			class="validation-text"
+			*ngIf="
+				this.form.get('phoneNumber')?.hasError('maxlength') &&
+				this.form.get('phoneNumber')?.touched
+			">
+			Maksymalna długość numeru telefonu 22 znaki.
+		</div>
+		<div
+			class="d-flex flex-column register-input mt-5 mb-3"
+			[ngClass]="{
+				'border-validation':
+					!this.form.get('city')?.valid && this.form.get('city')?.touched,
+				'mb-3': this.form.get('city')?.valid === true
+			}">
+			<input
+				type="text"
+				class="standard-input border-0"
+				[id]="'city'"
+				formControlName="city" />
+			<label
+				class="register-label position-absolute"
+				[for]="'city'"
+				[ngClass]="{
+					'element-has-text': this.form.get('city')?.value !== ''
+				}"
+				>Miasto</label
+			>
+		</div>
+		<div
+			class="validation-text"
+			*ngIf="
+				this.form.get('city')?.hasError('maxlength') &&
+				this.form.get('city')?.touched
+			">
+			Za długa nazwa miasta. Najdłuższa miejscowość jaką znamy to
+			Taumatawhakatangihangakoauauotamateapokaiwhenuakitanatahu w Nowej Zelandii
+			(57 znaków).
+		</div>
+		<button type="submit" class="submit-button border-0 mt-5 p-3">
+			Zarejestruj
+		</button>
+	</form>
+	<div class="footer-decoration"></div>
+</div>

@@ -56,4 +56,19 @@ export class RegisterValidationService {
 		}
 		return of(null);
 	};
+
+	/**
+	 * Checks if birthdate is before now
+	 * @param group formularz
+	 * @returns ValidationErrors | null
+	 */
+	checkIfDateBeforeNow: ValidatorFn = (
+		group: AbstractControl
+	): ValidationErrors | null => {
+		const birthdate = group.get('birthdate')?.value;
+		if (birthdate === '' || birthdate === undefined) return null;
+		console.log(birthdate);
+		const birthdateAsDate = new Date(group.get('birthdate')?.value);
+		return birthdateAsDate >= new Date() ? null : { before: false };
+	};
 }

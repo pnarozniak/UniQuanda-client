@@ -1,0 +1,71 @@
+@import './../../../../../assets/icons/style.css';
+@import './../../../../../assets/scss/colors.scss';
+.bordered {
+	border: 1px solid $bordered-gray;
+}
+.register-input {
+	outline: none !important;
+	border-bottom: 2px solid $bordered-gray;
+	font-size: 20px;
+	.standard-input {
+		outline: none !important;
+		min-width: 420px;
+		&:focus-within + .register-label {
+			transform: translateY(-30px);
+			font-weight: bold;
+		}
+	}
+	.register-label {
+		transition: all 0.3s ease-in-out;
+		cursor: text;
+	}
+	.birthdate-input {
+		outline: none !important;
+		min-width: 420px;
+		&:focus-within + .register-label {
+			transform: translateY(-30px);
+			font-weight: bold;
+		}
+	}
+	.element-has-text {
+		transform: translateY(-30px);
+		font-weight: bold;
+	}
+}
+.border-validation {
+	border-bottom: 2px solid $validation-red !important;
+}
+.validation-text {
+	word-break: break-all; 
+	max-width: 420px;
+	color: $validation-red;
+}
+.submit-button {
+	background-color: $academic-blue;
+	color: $crystal-white;
+	border-radius: 7px;
+	font-weight: 500;
+	font-size: 18px;
+}
+.info-text {
+	max-width: 400px;
+}
+@media all and (max-width: 575px) {
+	.register-input {
+		.standard-input {
+			min-width: 250px;
+		}
+		.password-input {
+			min-width: 250px;
+		}
+	}
+	.bordered {
+		border: none;
+	}
+	.validation-text {
+		max-width: 250px;
+	}
+	.info-text {
+		max-width: 250px;
+	}
+}

@@ -44,7 +44,7 @@ export class RegisterService {
 			city
 		);
 		return this._apiService.post<RegisterResponseDTO, RegisterRequestDTO>(
-			'Accounts/register',
+			'Auth/register',
 			body
 		);
 	}
@@ -62,12 +62,6 @@ export class RegisterService {
 		const params = new HttpParams()
 			.set('nickname', nickname)
 			.set('email', email);
-		return of(
-			new CheckNicknameAndEmailResponseDTO({
-				isEmailAvailable: true,
-				isNicknameAvailable: true,
-			})
-		);
 		return this._apiService.get<CheckNicknameAndEmailResponseDTO>(
 			'Auth/validate-register',
 			params

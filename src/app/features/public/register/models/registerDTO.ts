@@ -27,4 +27,16 @@ export class RegisterRequestDTO {
 		this.city = city;
 	}
 }
-export class RegisterResponseDTO {}
+export class RegisterResponseDTO {
+	public status: RegisterResponseStatus;
+	public email: string | null;
+	constructor(data: RegisterResponseDTO) {
+		this.status = data.status;
+		this.email = data.email;
+	}
+}
+export enum RegisterResponseStatus {
+	Success = 0,
+	NicknameAlreadyExists = 1,
+	EmailAlreadyExists = 2,
+}
