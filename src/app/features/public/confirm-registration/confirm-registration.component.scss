@@ -1,0 +1,48 @@
+@import './../../../../assets/scss/colors.scss';
+.bordered {
+	border: 1px solid $bordered-gray;
+}
+.info-text {
+	max-width: 465px;
+}
+.code-input {
+	outline: none !important;
+	font-size: 20px;
+	border-radius: 7px;
+	background-color: $elegant-gray;
+	width: 64px;
+	display: unset;
+	&:focus-within {
+		background-color: $crystal-white;
+		border: 1px solid $academic-blue !important;
+	}
+}
+.submit-button {
+	background-color: $academic-blue;
+	color: $crystal-white;
+	border-radius: 7px;
+	font-weight: 500;
+	font-size: 18px;
+}
+.resend-mail {
+	color: $academic-blue;
+	font-size: 15px;
+	cursor: pointer;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none !important;
+	margin: 0;
+}
+@media all and (max-width: 575px) {
+	.bordered {
+		border: none;
+	}
+	.info-text {
+		max-width: unset;
+	}
+	.code-input {
+		width: 48px;
+		height: 48px;
+	}
+}

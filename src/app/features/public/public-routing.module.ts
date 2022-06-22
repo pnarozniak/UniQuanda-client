@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ConfirmRegistrationComponent } from './confirm-registration/confirm-registration.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterDataComponent } from './register/components/register-data.component';
@@ -17,6 +18,11 @@ const routes: Routes = [
 		path: 'register-data',
 		component: RegisterDataComponent,
 		data: { title: 'Rejestracja, opcjonalne dane' },
+	},
+	{
+		path: 'confirm-registration',
+		component: ConfirmRegistrationComponent,
+		data: { title: 'Potwierdź konto' },
 	},
 ];
 @NgModule({
