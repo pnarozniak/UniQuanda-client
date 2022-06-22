@@ -27,6 +27,20 @@
 .btn-search{
 	color: $light-gray;
 	font-size: 25px;
+	font-weight: 500;
+}
+
+::-webkit-input-placeholder {
+  font-weight: 500;
+}
+::-moz-placeholder {
+  font-weight: 500;
+}
+:-ms-input-placeholder {
+  font-weight: 500;
+}
+:-moz-placeholder {
+  font-weight: 500;
 }
 
 .a-register{
@@ -60,7 +74,7 @@
 .footer-cell-lightRed{
 	background-color: $light-red;
 }
-@media all and (max-width: 768px) {
+@media all and (max-width: 767px) {
 	.search-bar {
 		background-color: $crystal-white;
 	}
