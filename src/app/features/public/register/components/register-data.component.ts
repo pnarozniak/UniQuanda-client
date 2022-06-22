@@ -7,10 +7,6 @@ import { plLocale } from 'ngx-bootstrap/locale';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { RegisterValidationService } from '../services/register-validation.service';
 import { ToastrService } from 'ngx-toastr';
-import {
-	RegisterResponseDTO,
-	RegisterResponseStatus,
-} from '../models/registerDTO';
 defineLocale('pl', plLocale);
 
 @Component({
@@ -59,7 +55,6 @@ export class RegisterDataComponent implements OnInit {
 
 	handleRegister() {
 		this.form.markAllAsTouched();
-		console.log(this.form);
 		if (this.form.valid) {
 			this._registerService
 				.register(
@@ -72,31 +67,18 @@ export class RegisterDataComponent implements OnInit {
 					this.form.value.phoneNumber,
 					this.form.value.city
 				)
-				.subscribe({
-					next: (data: RegisterResponseDTO) => {
-						if (data.status === RegisterResponseStatus.Success) {
-							this._router.navigate([
-								'/public/confirm-registration',
-								{ email: this.email },
-							]);
-						} else {
-							if (
-								data.status === RegisterResponseStatus.NicknameAlreadyExists
-							) {
-								this._toastrService.error(
-									'Ktoś właśnie zarejestrował taki nick, spróbuj ponownie',
-									'Błąd'
-								);
-							} else if (
-								data.status === RegisterResponseStatus.EmailAlreadyExists
-							) {
-								this._toastrService.error(
-									'Ktoś właśnie zarejestrował taki email, spróbuj ponownie',
-									'Błąd'
-								);
-							}
-						}
-					},
+				.subscribe((response) => {
+					if (response.status === 201) {
+						this._router.navigate([
+							'/public/confirm-registration',
+							{ email: this.email },
+						]);
+					} else if (response.status === 409) {
+						this._toastrService.error(
+							'Ktoś właśnie zarejestrował taki nick, spróbuj ponownie',
+							'Błąd'
+						);
+					}
 				});
 		}
 	}

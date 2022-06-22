@@ -16,9 +16,10 @@
 	font-size: 16px;
 	font-weight: bold;
 	line-height: 20px;
-	margin: 0 150px 0 15px;;
+	margin: 0 150px 0 15px;
 	border-bottom: 2px solid $bordered-gray;
-	padding: 15px;
+	padding: 15px 0;
+	padding-left: 5px;
 }
 .toast-message {
 	margin: 15px;

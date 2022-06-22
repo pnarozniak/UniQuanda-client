@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -13,32 +13,37 @@ export default class ApiService {
 	public get<T>(
 		url: string,
 		httpParams: HttpParams = new HttpParams()
-	): Observable<T> {
-		return this.http.get<T>(`${this.server}/${url}`, {
+	): Observable<HttpResponse<T>> {
+		return this.http.get<T>(`${this.server}/${url}/`, {
 			params: httpParams,
+			observe: 'response',
 		});
 	}
 
-	public post<T, B>(url: string, body: B): Observable<T> {
-		return this.http.post<T>(`${this.server}/${url}`, body);
+	public post<T, B>(url: string, body: B): Observable<HttpResponse<T>> {
+		return this.http.post<T>(`${this.server}/${url}/`, body, {
+			observe: 'response',
+		});
 	}
 
 	public put<T, B>(
 		url: string,
 		body: B,
 		httpParams: HttpParams = new HttpParams()
-	): Observable<T> {
-		return this.http.put<T>(`${this.server}/${url}`, body, {
+	): Observable<HttpResponse<T>> {
+		return this.http.put<T>(`${this.server}/${url}/`, body, {
 			params: httpParams,
+			observe: 'response',
 		});
 	}
 
 	public delete<T>(
 		url: string,
 		httpParams: HttpParams = new HttpParams()
-	): Observable<T> {
-		return this.http.delete<T>(`${this.server}/${url}`, {
+	): Observable<HttpResponse<T>> {
+		return this.http.delete<T>(`${this.server}/${url}/`, {
 			params: httpParams,
+			observe: 'response',
 		});
 	}
 }

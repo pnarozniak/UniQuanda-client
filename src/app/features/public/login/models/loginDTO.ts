@@ -23,5 +23,5 @@ export class LoginResponseDTO {
 }
 export enum LoginResponseStatus {
 	Success = 0,
-	EmailNotConfirmed = 1,
+	EmailNotConfirmed = 2,
 }

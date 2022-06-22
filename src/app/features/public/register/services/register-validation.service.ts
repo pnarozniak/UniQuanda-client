@@ -1,4 +1,3 @@
-import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
 	AbstractControl,
@@ -41,8 +40,9 @@ export class RegisterValidationService {
 			return this._registerService
 				.validateNicknameAndEmail(nickname, email)
 				.pipe(
-					map((data) => {
-						if (!data.isNicknameAvailable && !data.isEmailAvailable) {
+					map((response) => {
+						const data = response.body;
+						if (!data?.isNicknameAvailable && !data?.isEmailAvailable) {
 							return { nicknameExists: true, emailExists: true };
 						} else if (!data.isNicknameAvailable) {
 							return { nicknameExists: true };

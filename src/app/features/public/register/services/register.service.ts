@@ -1,9 +1,9 @@
-import { HttpParams } from '@angular/common/http';
+import { HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import ApiService from 'src/app/core/services/api.service';
 import { CheckNicknameAndEmailResponseDTO } from '../models/check-nickname-and-emailDTO';
-import { RegisterRequestDTO, RegisterResponseDTO } from '../models/registerDTO';
+import { RegisterRequestDTO } from '../models/registerDTO';
 
 @Injectable({
 	providedIn: 'root',
@@ -32,7 +32,7 @@ export class RegisterService {
 		birthdate: Date | null,
 		phoneNumber: string | null,
 		city: string | null
-	): Observable<RegisterResponseDTO> {
+	): Observable<HttpResponse<null>> {
 		const body = new RegisterRequestDTO(
 			nickname,
 			password,
@@ -43,7 +43,7 @@ export class RegisterService {
 			phoneNumber,
 			city
 		);
-		return this._apiService.post<RegisterResponseDTO, RegisterRequestDTO>(
+		return this._apiService.post<null, RegisterRequestDTO>(
 			'Auth/register',
 			body
 		);
@@ -58,12 +58,12 @@ export class RegisterService {
 	public validateNicknameAndEmail(
 		nickname: string,
 		email: string
-	): Observable<CheckNicknameAndEmailResponseDTO> {
+	): Observable<HttpResponse<CheckNicknameAndEmailResponseDTO>> {
 		const params = new HttpParams()
 			.set('nickname', nickname)
 			.set('email', email);
 		return this._apiService.get<CheckNicknameAndEmailResponseDTO>(
-			'Auth/validate-register',
+			'Auth/is-email-and-nickname-available',
 			params
 		);
 	}

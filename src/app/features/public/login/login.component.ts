@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { TokensService } from 'src/app/core/services/tokens.service';
 import { UserDataService } from 'src/app/core/services/user-data.service';
 import { LoginService } from './login.service';
-import { LoginResponseDTO, LoginResponseStatus } from './models/loginDTO';
+import { LoginResponseStatus } from './models/loginDTO';
 
 @Component({
 	selector: 'app-login',
@@ -42,41 +42,45 @@ export class LoginComponent {
 		this.form.markAllAsTouched();
 		if (this.form.valid) {
 			const formValue = this.form.value;
-			this._loginService.login(formValue.email, formValue.password).subscribe({
-				next: (data: LoginResponseDTO) => {
-					if (data.status === LoginResponseStatus.Success) {
-						this._tokenService.saveUserData(
-							data.accessToken ?? '',
-							data.refreshToken ?? '',
-							data.nickname ?? '',
-							data.avatar ?? ''
-						);
-						this._userDataService.setUserData(
-							this._tokenService.generateClaims()
-						);
-						this._router.navigate(['/public/login']);
-					} else {
-						this._toastrService.error(
-							'Konto posiada nie potwierdzony adres E-mail. Sprawdź swoją skrzynkę pocztową',
-							'Błąd'
-						);
-						this._router.navigate(['/public/confirm-registration']);
-					}
-				},
-				error: (err) => {
-					if (err.status === 404) {
+			this._loginService
+				.login(formValue.email, formValue.password)
+				.subscribe((response) => {
+					console.log(response);
+					if (response.status === 404) {
 						this._toastrService.error(
 							'Nie znaleziono użytkownika o podanych danych',
 							'Błąd'
 						);
+					} else if (
+						response.body?.status === LoginResponseStatus.EmailNotConfirmed
+					) {
+						this._toastrService.error(
+							'Konto posiada nie potwierdzony adres E-mail. Sprawdź swoją skrzynkę pocztową',
+							'Błąd'
+						);
+						this._router.navigate([
+							'/public/confirm-registration',
+							{ email: this.form.value.email },
+						]);
+					} else {
+						this._tokenService.saveUserData(
+							response.body?.accessToken ?? '',
+							response.body?.refreshToken ?? '',
+							response.body?.nickname ?? '',
+							response.body?.avatar ?? ''
+						);
+						this._userDataService.setUserData(
+							this._tokenService.generateClaims()
+						);
+						this._router.navigate(['/public/home']);
 					}
-				},
-			});
+				});
 		}
 		if (
 			!this.form.get('email')?.hasError('required') &&
 			!this.form.get('email')?.hasError('pattern') &&
-			!this.form.get('password')?.hasError('required')
+			!this.form.get('password')?.hasError('required') &&
+			!this.form.valid
 		) {
 			this._toastrService.error(
 				'Nie znaleziono użytkownika o podanych danych',
