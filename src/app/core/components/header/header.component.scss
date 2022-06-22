@@ -1,18 +1,18 @@
 @import './../../../../assets/icons/style.css';
 @import './../../../../assets/scss/colors.scss';
 
-.img-logo{
-	height: 45px;
-}
-
 .header-height {
 	height: 75px;	
+}
+
+.img-logo{
+	height: 45px;
 }
 
 .a-btn{
 	font-size: 17px;
 	font-weight: 500;
-	padding: 8px 27px 8px 27px;
+	padding: 5px 36px 5px 36px;
 	color: $crystal-white;
 	border-radius: 7px;
 	white-space: nowrap;
@@ -78,9 +78,17 @@
 	.search-bar {
 		background-color: $crystal-white;
 	}
+	.a-btn{
+		padding-left: 27px;
+		padding-right: 27px;
+	}
 }
 
 @media all and (max-width: 575px) {
+	.header-height {
+		height: 55px;	
+	}
+	
 	.img-logo{
 		height: 25px;
 	}
