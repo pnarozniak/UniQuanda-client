@@ -6,27 +6,9 @@
 .googlebox {
 	cursor: pointer;
 	border: 1px solid $bordered-gray;
-	font-family: Roboto, sans-serif;
-	font-size: 14px;
-	color: rgba($color: #000000, $alpha: 0.54);
-	height: 40px;
-	padding-left: 8px !important;
-	padding-right: 8px !important;
-	&:active {
-		background-color: #f0ecec;
-	}
-	.google-text {
-		margin-left: 12px;
-		font-weight: 500;
-	}
+	height: 65px;
 	.google-logo {
-		background-image: url('/assets/public/login/btn_google_light_normal_ios.svg');
-		background-size: cover;
-		width: 40px;
-		height: 40px;
-		&:active {
-			background-image: url('/assets/public/login/btn_google_light_pressed_ios.svg');
-		}
+		height: 60px
 	}
 }
 .login-input {
@@ -99,5 +81,11 @@
 	}
 	.bordered {
 		border: none;
+	}
+	.googlebox {
+		height: 55px;
+		.google-logo {
+			height: 50px
+		}
 	}
 }
