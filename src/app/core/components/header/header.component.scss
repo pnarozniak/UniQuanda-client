@@ -1,18 +1,18 @@
 @import './../../../../assets/icons/style.css';
 @import './../../../../assets/scss/colors.scss';
 
-.img-logo{
-	height: 45px;
-}
-
 .header-height {
 	height: 75px;	
+}
+
+.img-logo{
+	height: 45px;
 }
 
 .a-btn{
 	font-size: 17px;
 	font-weight: 500;
-	padding: 8px 27px 8px 27px;
+	padding: 5px 36px 5px 36px;
 	color: $crystal-white;
 	border-radius: 7px;
 	white-space: nowrap;
@@ -27,6 +27,20 @@
 .btn-search{
 	color: $light-gray;
 	font-size: 25px;
+	font-weight: 500;
+}
+
+::-webkit-input-placeholder {
+  font-weight: 500;
+}
+::-moz-placeholder {
+  font-weight: 500;
+}
+:-ms-input-placeholder {
+  font-weight: 500;
+}
+:-moz-placeholder {
+  font-weight: 500;
 }
 
 .a-register{
@@ -60,13 +74,29 @@
 .footer-cell-lightRed{
 	background-color: $light-red;
 }
-@media all and (max-width: 768px) {
+
+@media all and (max-width: 991px) {
 	.search-bar {
 		background-color: $crystal-white;
+		margin-right: 0.5rem;
+	}
+}
+
+@media all and (max-width: 767px) {
+	.a-btn{
+		padding-left: 27px;
+		padding-right: 27px;
 	}
 }
 
 @media all and (max-width: 575px) {
+	.search-bar {
+		margin-right: 0.25rem;
+	}
+	.header-height {
+		height: 55px;	
+	}
+	
 	.img-logo{
 		height: 25px;
 	}

@@ -6,6 +6,7 @@
 
 @import "assets/scss/toastr.scss"; /* stylelint-disable-line */
 @import "assets/scss/datepicker.scss"; /* stylelint-disable-line */ 
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
 
 html,
 body {
@@ -32,4 +33,10 @@ a {
   height: 145px;
   margin-bottom: 0;
   overflow-x: hidden;
+}
+
+@media all and (max-width: 575px) {
+  .height-header {
+    min-height: calc(100vh - 60px);
+  }
 }
