@@ -65,10 +65,9 @@ export class RegisterValidationService {
 	checkIfDateBeforeNow: ValidatorFn = (
 		group: AbstractControl
 	): ValidationErrors | null => {
-		const birthdate = group.get('birthdate')?.value;
+		const birthdate = group.value;
 		if (birthdate === '' || birthdate === undefined) return null;
-		console.log(birthdate);
-		const birthdateAsDate = new Date(group.get('birthdate')?.value);
-		return birthdateAsDate >= new Date() ? null : { before: false };
+		const birthdateAsDate = new Date(group.value);
+		return birthdateAsDate <= new Date() ? null : { before: false };
 	};
 }

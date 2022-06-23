@@ -2,7 +2,7 @@
 	<form
 		[formGroup]="form"
 		(ngSubmit)="handleRegister()"
-		class="bordered d-flex flex-column p-sm-5 p-3 my-auto mx-auto">
+		class="bordered d-flex flex-column p-sm-5 p-3 mt-4 mx-auto">
 		<h1 class="mx-auto font-weight-bold mt-4 mt-sm-0">Informacje dodatkowe*</h1>
 		<span class="info-text text-center text-sm-left mx-auto mx-sm-0"
 			>*Wszystkie poniższe informacje są niewymagane. Jeśli nie chcesz ich
@@ -27,7 +27,7 @@
 				[ngClass]="{
 					'element-has-text': this.form.get('firstName')?.value !== ''
 				}"
-				>Imie</label
+				>Imię</label
 			>
 		</div>
 		<div
@@ -87,8 +87,7 @@
 					[bsConfig]="{
 						isAnimated: true,
 						adaptivePosition: true,
-						containerClass: 'theme-dark-blue',
-						customTodayClass: 'today-class'
+						containerClass: 'theme-dark-blue'
 					}"
 					[id]="'birthdate'" />
 				<div

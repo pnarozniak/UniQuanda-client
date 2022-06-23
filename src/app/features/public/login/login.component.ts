@@ -45,7 +45,6 @@ export class LoginComponent {
 			this._loginService
 				.login(formValue.email, formValue.password)
 				.subscribe((response) => {
-					console.log(response);
 					if (response.status === 404) {
 						this._toastrService.error(
 							'Nie znaleziono użytkownika o podanych danych',
