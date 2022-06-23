@@ -74,10 +74,15 @@
 .footer-cell-lightRed{
 	background-color: $light-red;
 }
-@media all and (max-width: 767px) {
+
+@media all and (max-width: 991px) {
 	.search-bar {
 		background-color: $crystal-white;
+		margin-right: 0.5rem;
 	}
+}
+
+@media all and (max-width: 767px) {
 	.a-btn{
 		padding-left: 27px;
 		padding-right: 27px;
@@ -85,6 +90,9 @@
 }
 
 @media all and (max-width: 575px) {
+	.search-bar {
+		margin-right: 0.25rem;
+	}
 	.header-height {
 		height: 55px;	
 	}
