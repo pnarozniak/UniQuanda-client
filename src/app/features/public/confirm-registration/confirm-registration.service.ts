@@ -21,7 +21,6 @@ export class ConfirmRegistrationService {
 		email: string
 	): Observable<HttpResponse<null>> {
 		const request = new ConfirmRegistrationRequestDTO(email, code);
-		console.log(request);
 		return this._apiService.post<null, ConfirmRegistrationRequestDTO>(
 			'Auth/confirm-register',
 			request
