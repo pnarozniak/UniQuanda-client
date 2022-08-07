@@ -2,8 +2,8 @@ import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import ApiService from 'src/app/core/services/api.service';
-import { ConfirmRegistrationRequestDTO } from './models/confirm-registrationDTO';
-import { ResendConfirmationCodeRequestDTO } from './models/resend-confirmation-codeDTO';
+import { ConfirmRegistrationRequestDTO } from '../models/confirm-registration.dto';
+import { ResendConfirmationCodeRequestDTO } from '../models/resend-confirmation-code.dto';
 @Injectable({
 	providedIn: 'root',
 })
@@ -12,9 +12,11 @@ export class ConfirmRegistrationService {
 
 	/**
 	 * Sends request to api to confirm registration
-	 * @param code
-	 * @param email
-	 * @returns
+	 * @param code confirmation code
+	 * @param email user email
+	 * @returns Observable<HttpResponse<null>> object with status code of request
+	 *
+	 * TODO: dodać zliczanie prób weryfikacji
 	 */
 	public validateRegistrationCode(
 		code: string,
@@ -29,8 +31,8 @@ export class ConfirmRegistrationService {
 
 	/**
 	 * Sends request to api to resend confirmation code
-	 * @param email
-	 * @returns
+	 * @param email email of user
+	 * @returns Observable<HttpResponse<null>> object with status code of request
 	 */
 	public resendRegistrationCode(email: string): Observable<HttpResponse<null>> {
 		const request = new ResendConfirmationCodeRequestDTO(email);

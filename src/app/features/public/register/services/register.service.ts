@@ -2,8 +2,8 @@ import { HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import ApiService from 'src/app/core/services/api.service';
-import { CheckNicknameAndEmailResponseDTO } from '../models/check-nickname-and-emailDTO';
-import { RegisterRequestDTO } from '../models/registerDTO';
+import { CheckNicknameAndEmailAvailabilityResponseDTO } from '../models/check-nickname-and-email-availability.dto';
+import { RegisterRequestDTO } from '../models/register.dto';
 
 @Injectable({
 	providedIn: 'root',
@@ -51,18 +51,19 @@ export class RegisterService {
 
 	/**
 	 * Checks agains api if nickname and email are available
-	 * @param nickname
-	 * @param email
-	 * @returns avilability status
+	 * @param nickname nickname of user
+	 * @param email email of user
+	 * @returns Observable<HttpResponse<CheckNicknameAndEmailAvailabilityResponseDTO>> object with status code of request
+	 * and information if Nickname and Email provided are unique
 	 */
 	public validateNicknameAndEmail(
 		nickname: string,
 		email: string
-	): Observable<HttpResponse<CheckNicknameAndEmailResponseDTO>> {
+	): Observable<HttpResponse<CheckNicknameAndEmailAvailabilityResponseDTO>> {
 		const params = new HttpParams()
 			.set('nickname', nickname)
 			.set('email', email);
-		return this._apiService.get<CheckNicknameAndEmailResponseDTO>(
+		return this._apiService.get<CheckNicknameAndEmailAvailabilityResponseDTO>(
 			'Auth/is-email-and-nickname-available',
 			params
 		);

@@ -57,7 +57,7 @@
 				class="d-flex flex-column login-input mt-5"
 				[ngClass]="{
 					'border-validation':
-						this.form.get('password')?.hasError('required') &&
+						!this.form.get('password')?.valid &&
 						this.form.get('password')?.touched
 				}">
 				<div class="d-flex flex-row password-input">
@@ -89,6 +89,14 @@
 					this.form.get('password')?.touched
 				">
 				Hasło jest wymagane
+			</div>
+			<div
+				class="validation-text"
+				*ngIf="
+					this.form.get('password')?.hasError('pattern') &&
+					this.form.get('password')?.touched
+				">
+				Siła hasła nie spełnia polityki serwisu.
 			</div>
 			<a
 				routerLink="/public/recover-password"

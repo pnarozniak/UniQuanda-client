@@ -32,12 +32,12 @@ export class RegisterComponent {
 					Validators.required,
 					Validators.minLength(8),
 					Validators.maxLength(30),
-					Validators.pattern('^.*[A-Z]+[a-z]+[0-9]+.*'),
+					Validators.pattern('^(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[0-9]+).*$'),
 				]),
 				repeatPassword: new FormControl('', [Validators.required]),
 			},
 			_registerValidationService.checkIfPasswordsMatch,
-			_registerValidationService.checkIfUsernameAndEmailExistsAsync
+			_registerValidationService.checkNicknameAndEmailAvailability
 		);
 	}
 
@@ -46,11 +46,11 @@ export class RegisterComponent {
 		if (this.form.valid) {
 			this._router.navigate(
 				[
-					'/public/register-data',
+					'/public/register-second-step',
 					{
 						nickname: this.form.value.nickname,
-						password: this.form.value.password,
-						email: this.form.value.email,
+						email: this.form.value.password,
+						password: this.form.value.email,
 					},
 				],
 				{

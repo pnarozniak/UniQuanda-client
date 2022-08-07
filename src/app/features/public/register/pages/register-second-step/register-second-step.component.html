@@ -84,6 +84,7 @@
 					class="birthdate-input border-0"
 					bsDatepicker
 					#dp="bsDatepicker"
+					(bsValueChange)="hadneleDateChange($event)"
 					[bsConfig]="{
 						isAnimated: true,
 						adaptivePosition: true,
@@ -107,7 +108,16 @@
 		<div
 			class="validation-text"
 			*ngIf="
-				!this.form.get('birthdate')?.valid &&
+				this.form.get('birthdate')?.hasError('bsDate') &&
+				this.form.get('birthdate')?.touched
+			">
+			Nie poprawny format daty
+		</div>
+		<div
+			class="validation-text"
+			*ngIf="
+				this.form.get('birthdate')?.hasError('before') &&
+				!this.form.get('birthdate')?.hasError('bsDate') &&
 				this.form.get('birthdate')?.touched
 			">
 			Nie możliwe byś urodził się w przyszłości.

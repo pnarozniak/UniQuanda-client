@@ -15,8 +15,9 @@ export class RegisterValidationService {
 	constructor(private readonly _registerService: RegisterService) {}
 	/**
 	 * Checks if two passwords are equal
-	 * @param group formularz
-	 * @returns ValidationErrors | null
+	 * @param group form to validate
+	 * @returns ValidationErrors | null `notSame: true` if passwords are not equal or
+	 * null if passwords are equal
 	 */
 	checkIfPasswordsMatch: ValidatorFn = (
 		group: AbstractControl
@@ -27,11 +28,14 @@ export class RegisterValidationService {
 	};
 
 	/**
-	 * Checks if username is unique
-	 * @param group formularz
-	 * @returns ValidationErrors | null
+	 * Checks if username and email are unique
+	 * @param group form to validate
+	 * @returns ValidationErrors | null `isNicknameAvailable: true` if nickname is not unique,
+	 * `emailExists: true` if email is not unique or
+	 * `isNicknameAvailable: true, emailExists: true` if both email and nickname is not unique or
+	 * null if both email and nickname are unique
 	 */
-	checkIfUsernameAndEmailExistsAsync: AsyncValidatorFn = (
+	checkNicknameAndEmailAvailability: AsyncValidatorFn = (
 		group: AbstractControl
 	): Observable<ValidationErrors | null> => {
 		const nickname = group.get('nickname')?.value;
@@ -59,8 +63,9 @@ export class RegisterValidationService {
 
 	/**
 	 * Checks if birthdate is before now
-	 * @param group formularz
-	 * @returns ValidationErrors | null
+	 * @param group form to validate
+	 * @returns ValidationErrors | null `before: true` if birthdate is before now or
+	 * null if birthdate is after now
 	 */
 	checkIfDateBeforeNow: ValidatorFn = (
 		group: AbstractControl
@@ -68,6 +73,6 @@ export class RegisterValidationService {
 		const birthdate = group.value;
 		if (birthdate === '' || birthdate === undefined) return null;
 		const birthdateAsDate = new Date(group.value);
-		return birthdateAsDate <= new Date() ? null : { before: false };
+		return birthdateAsDate <= new Date() ? null : { before: true };
 	};
 }

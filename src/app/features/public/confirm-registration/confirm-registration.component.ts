@@ -8,7 +8,7 @@ import {
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ConfirmRegistrationService } from './confirm-registration.service';
+import { ConfirmRegistrationService } from './services/confirm-registration.service';
 
 @Component({
 	selector: 'app-confirm-registration',
@@ -39,10 +39,11 @@ export class ConfirmRegistrationComponent implements OnInit {
 			);
 		}
 	}
+
 	ngOnInit(): void {
-		const params = this._route.snapshot.paramMap;
-		if (params.get('email') !== null) {
-			this.email = params.get('email') ?? '';
+		const email = this._route.snapshot.paramMap.get('email');
+		if (email !== null) {
+			this.email = email;
 		} else {
 			this._router.navigate(['/public/home']);
 		}
@@ -81,7 +82,7 @@ export class ConfirmRegistrationComponent implements OnInit {
 			.resendRegistrationCode(this.email)
 			.subscribe(() => {
 				this._toastrService.success(
-					'Sprawdź swoją skrzynkę odbiorcząF',
+					'Sprawdź swoją skrzynkę odbiorczą',
 					'Sukces:'
 				);
 			});

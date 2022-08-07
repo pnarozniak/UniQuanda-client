@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RegisterComponent } from './register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { RegisterDataComponent } from './components/register-data.component';
+import { RegisterSecondStepComponent } from './pages/register-second-step/register-second-step.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -16,6 +16,6 @@ import { ToastrModule } from 'ngx-toastr';
 		BsDatepickerModule.forRoot(),
 		ToastrModule.forRoot(),
 	],
-	declarations: [RegisterComponent, RegisterDataComponent],
+	declarations: [RegisterComponent, RegisterSecondStepComponent],
 })
 export class RegisterModule {}

@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { TokensService } from 'src/app/core/services/tokens.service';
+import { StorageService } from 'src/app/core/services/storage.service';
 import { UserDataService } from 'src/app/core/services/user-data.service';
-import { LoginService } from './login.service';
-import { LoginResponseStatus } from './models/loginDTO';
+import { LoginService } from './services/login.service';
+import { LoginResponseStatus } from './models/login.dto';
 
 @Component({
 	selector: 'app-login',
@@ -17,7 +17,7 @@ export class LoginComponent {
 	public form: FormGroup;
 	constructor(
 		private readonly _loginService: LoginService,
-		private readonly _tokenService: TokensService,
+		private readonly _storageService: StorageService,
 		private readonly _userDataService: UserDataService,
 		private readonly _toastrService: ToastrService,
 		private readonly _router: Router
@@ -33,7 +33,7 @@ export class LoginComponent {
 				Validators.required,
 				Validators.minLength(8),
 				Validators.maxLength(30),
-				Validators.pattern('^.*[A-Z]+[a-z]+[0-9]+.*'),
+				Validators.pattern('^(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[0-9]+).*$'),
 			]),
 		});
 	}
@@ -42,9 +42,8 @@ export class LoginComponent {
 		this.form.markAllAsTouched();
 		if (this.form.valid) {
 			const formValue = this.form.value;
-			this._loginService
-				.login(formValue.email, formValue.password)
-				.subscribe((response) => {
+			this._loginService.login(formValue.email, formValue.password).subscribe({
+				next: (response) => {
 					if (response.status === 404) {
 						this._toastrService.error(
 							'Nie znaleziono użytkownika o podanych danych',
@@ -62,29 +61,25 @@ export class LoginComponent {
 							{ email: this.form.value.email },
 						]);
 					} else {
-						this._tokenService.saveUserData(
+						this._storageService.saveUserData(
 							response.body?.accessToken ?? '',
 							response.body?.refreshToken ?? '',
 							response.body?.nickname ?? '',
 							response.body?.avatar ?? ''
 						);
 						this._userDataService.setUserData(
-							this._tokenService.generateClaims()
+							this._storageService.getUserClaims()
 						);
 						this._router.navigate(['/public/home']);
 					}
-				});
-		}
-		if (
-			!this.form.get('email')?.hasError('required') &&
-			!this.form.get('email')?.hasError('pattern') &&
-			!this.form.get('password')?.hasError('required') &&
-			!this.form.valid
-		) {
-			this._toastrService.error(
-				'Nie znaleziono użytkownika o podanych danych',
-				'Błąd'
-			);
+				},
+				error: () => {
+					this._toastrService.error(
+						'Nie znaleziono użytkownika o podanych danych',
+						'Błąd'
+					);
+				},
+			});
 		}
 	}
 }

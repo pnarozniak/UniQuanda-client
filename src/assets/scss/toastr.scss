@@ -1,9 +1,10 @@
 @import './colors.scss';
+$toastrWidth: 390px;
 .toast-container .ngx-toastr {
 	position: fixed !important;
 	overflow: hidden !important;
 	bottom: 95px !important;
-	width: 390px !important;
+	width: $toastrWidth !important;
 	height: 110px !important;
 	top: auto !important;
 	right: 120px !important;
@@ -49,5 +50,13 @@
 			padding: 7px 5px;
 			content: "\e906";
 		}
+	}
+}
+@media all and (max-width: 576px) {
+	.toast-container .ngx-toastr {
+		right: unset !important;
+		left: unset !important;
+		right: calc(50% - $toastrWidth/2) !important;
+    left: calc(50% - $toastrWidth/2) !important;
 	}
 }

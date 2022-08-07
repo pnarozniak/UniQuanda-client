@@ -1,7 +1,7 @@
-export class CheckNicknameAndEmailResponseDTO {
+export class CheckNicknameAndEmailAvailabilityResponseDTO {
 	public isEmailAvailable: boolean;
 	public isNicknameAvailable: boolean;
-	constructor(data: CheckNicknameAndEmailResponseDTO) {
+	constructor(data: CheckNicknameAndEmailAvailabilityResponseDTO) {
 		this.isEmailAvailable = data.isEmailAvailable;
 		this.isNicknameAvailable = data.isNicknameAvailable;
 	}

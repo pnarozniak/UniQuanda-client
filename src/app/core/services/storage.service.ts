@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { UserClaims } from '../models/user-claims.model';
 
 @Injectable()
-export class TokensService {
+export class StorageService {
 	private readonly _accessTokenKey = 'access_token';
 	private readonly _refreshTokenKey = 'refresh_token';
 	private readonly _avatarKey = 'avatar';
@@ -48,7 +48,7 @@ export class TokensService {
 		localStorage.removeItem(this._refreshTokenKey);
 	}
 
-	generateClaims(): UserClaims | null {
+	getUserClaims(): UserClaims | null {
 		try {
 			const jwt = this.getAccessToken();
 			const nickname = this.getNickname();

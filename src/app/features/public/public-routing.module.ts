@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ConfirmRegistrationComponent } from './confirm-registration/confirm-registration.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { RegisterDataComponent } from './register/components/register-data.component';
+import { RegisterSecondStepComponent } from './register/pages//register-second-step/register-second-step.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
@@ -15,8 +15,8 @@ const routes: Routes = [
 		data: { title: 'Zarejestruj się' },
 	},
 	{
-		path: 'register-data',
-		component: RegisterDataComponent,
+		path: 'register-second-step',
+		component: RegisterSecondStepComponent,
 		data: { title: 'Rejestracja, opcjonalne dane' },
 	},
 	{
