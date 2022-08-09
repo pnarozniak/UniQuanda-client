@@ -11,13 +11,13 @@
 		<span class="mt-3 my-2 ms-3 ms-sm-0">Kod weryfikacyjny</span>
 		<div class="d-flex flex-row mt-3">
 			<input
-				*ngFor="let temp of [].constructor(codeLenght); let inputId = index"
+				*ngFor="let temp of [].constructor(codeLength); let inputId = index"
 				type="number"
 				formControlName="{{ 'codeInput' + inputId }}"
 				class="code-input border-0 p-3 text-center mx-1"
 				[ngClass]="{
 					'ms-auto': inputId === 0,
-					'me-auto': inputId === codeLenght - 1
+					'me-auto': inputId === codeLength - 1
 				}"
 				(ngModelChange)="handleInputChange(inputId)"
 				[autofocus]="inputId === 0"

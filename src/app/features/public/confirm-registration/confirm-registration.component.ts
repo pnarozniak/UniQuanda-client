@@ -16,7 +16,7 @@ import { ConfirmRegistrationService } from './services/confirm-registration.serv
 	styleUrls: ['./confirm-registration.component.scss'],
 })
 export class ConfirmRegistrationComponent implements OnInit {
-	public codeLenght = 6;
+	public codeLength = 6;
 	@ViewChildren('codeInput') codeInputs!: QueryList<ElementRef>;
 	public email = '';
 	public form: FormGroup;
@@ -28,7 +28,7 @@ export class ConfirmRegistrationComponent implements OnInit {
 		private readonly _toastrService: ToastrService
 	) {
 		this.form = new FormGroup({});
-		for (let i = 0; i < this.codeLenght; i++) {
+		for (let i = 0; i < this.codeLength; i++) {
 			this.form.addControl(
 				`codeInput${i}`,
 				new FormControl(null, [
@@ -52,18 +52,16 @@ export class ConfirmRegistrationComponent implements OnInit {
 	handleInputChange(inputId: number) {
 		const inputValue = this.form.get(`codeInput${inputId}`)?.value;
 		const inputValueAsString = String(inputValue);
-		if (inputValue === null) {
-			if (inputId !== 0) {
-				this.codeInputs.get(inputId - 1)?.nativeElement.focus();
-			}
+		if (inputValue === null && inputId !== 0) {
+			this.codeInputs.get(inputId - 1)?.nativeElement.focus();
 		} else {
-			if (inputValueAsString.length === this.codeLenght) {
-				for (let i = 0; i < this.codeLenght; i++) {
+			if (inputValueAsString.length === this.codeLength) {
+				for (let i = 0; i < this.codeLength; i++) {
 					this.form
 						.get(`codeInput${i}`)
 						?.setValue(Number(inputValueAsString.charAt(i)));
 				}
-				this.codeInputs.get(this.codeLenght - 1)?.nativeElement.focus();
+				this.codeInputs.get(this.codeLength - 1)?.nativeElement.focus();
 			} else if (inputValueAsString.length !== 1) {
 				this.form
 					.get(`codeInput${inputId}`)
@@ -71,7 +69,7 @@ export class ConfirmRegistrationComponent implements OnInit {
 						Number(inputValueAsString.slice(inputValueAsString.length - 1))
 					);
 			}
-			if (inputId !== this.codeLenght - 1 && inputValueAsString.length !== 6) {
+			if (inputId !== this.codeLength - 1 && inputValueAsString.length !== 6) {
 				this.codeInputs.get(inputId + 1)?.nativeElement.focus();
 			}
 		}
@@ -91,7 +89,7 @@ export class ConfirmRegistrationComponent implements OnInit {
 	handleSubmit() {
 		if (this.form.valid) {
 			let result = '';
-			for (let i = 0; i < this.codeLenght; i++) {
+			for (let i = 0; i < this.codeLength; i++) {
 				result += this.form.get(`codeInput${i}`)?.value;
 			}
 			this._confirmRegistrationService

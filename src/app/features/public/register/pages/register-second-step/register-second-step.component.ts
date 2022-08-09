@@ -60,8 +60,6 @@ export class RegisterSecondStepComponent implements OnInit {
 
 	handleRegister() {
 		this.form.markAllAsTouched();
-		console.log(this.nickname, this.password, this.email);
-		return;
 		if (this.form.valid) {
 			this._registerService
 				.register(
