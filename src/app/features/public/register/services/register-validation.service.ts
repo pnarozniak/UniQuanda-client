@@ -6,13 +6,13 @@ import {
 	ValidatorFn,
 } from '@angular/forms';
 import { first, map, Observable, of } from 'rxjs';
-import { RegisterService } from './register.service';
+import { RegisterApiService } from './register.api.service';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class RegisterValidationService {
-	constructor(private readonly _registerService: RegisterService) {}
+	constructor(private readonly _registerApiService: RegisterApiService) {}
 	/**
 	 * Checks if two passwords are equal
 	 * @param group form to validate
@@ -41,8 +41,8 @@ export class RegisterValidationService {
 		const nickname = group.get('nickname')?.value;
 		const email = group.get('email')?.value;
 		if (nickname && email) {
-			return this._registerService
-				.validateNicknameAndEmail(nickname, email)
+			return this._registerApiService
+				.confirmRegistration(nickname, email)
 				.pipe(
 					map((response) => {
 						const data = response.body;

@@ -7,24 +7,21 @@ import { LoginRequestDTO, LoginResponseDTO } from '../models/login.dto';
 @Injectable({
 	providedIn: 'root',
 })
-export class LoginService {
+export class LoginApiService {
 	constructor(private readonly _apiService: ApiService) {}
 
 	/**
 	 * Connecting api to perform login
-	 * @param username username of user
-	 * @param password password of user
+	 * @param request DTO with email and password
 	 * @returns Observable<HttpResponse<LoginResponseDTO>> object with status code of request
 	 * and data needed for authentication against server in further requests
 	 */
 	public login(
-		username: string,
-		password: string
+		request: LoginRequestDTO
 	): Observable<HttpResponse<LoginResponseDTO>> {
-		const body = new LoginRequestDTO(username, password);
 		return this._apiService.post<LoginResponseDTO, LoginRequestDTO>(
 			'Auth/login',
-			body
+			request
 		);
 	}
 }

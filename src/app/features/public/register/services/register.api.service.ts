@@ -8,44 +8,18 @@ import { RegisterRequestDTO } from '../models/register.dto';
 @Injectable({
 	providedIn: 'root',
 })
-export class RegisterService {
+export class RegisterApiService {
 	constructor(private readonly _apiService: ApiService) {}
 
 	/**
 	 * Sends request to api to register new user
-	 * @param nickname
-	 * @param password
-	 * @param email
-	 * @param firstName
-	 * @param lastName
-	 * @param birthdate
-	 * @param phoneNumber
-	 * @param city
+	 * @param request DTO with personal data provided by user
 	 * @returns registration status
 	 */
-	public register(
-		nickname: string,
-		password: string,
-		email: string,
-		firstName: string | null,
-		lastName: string | null,
-		birthdate: Date | null,
-		phoneNumber: string | null,
-		city: string | null
-	): Observable<HttpResponse<null>> {
-		const body = new RegisterRequestDTO(
-			nickname,
-			password,
-			email,
-			firstName,
-			lastName,
-			birthdate,
-			phoneNumber,
-			city
-		);
+	public register(request: RegisterRequestDTO): Observable<HttpResponse<null>> {
 		return this._apiService.post<null, RegisterRequestDTO>(
 			'Auth/register',
-			body
+			request
 		);
 	}
 
@@ -56,7 +30,7 @@ export class RegisterService {
 	 * @returns Observable<HttpResponse<CheckNicknameAndEmailAvailabilityResponseDTO>> object with status code of request
 	 * and information if Nickname and Email provided are unique
 	 */
-	public validateNicknameAndEmail(
+	public confirmRegistration(
 		nickname: string,
 		email: string
 	): Observable<HttpResponse<CheckNicknameAndEmailAvailabilityResponseDTO>> {

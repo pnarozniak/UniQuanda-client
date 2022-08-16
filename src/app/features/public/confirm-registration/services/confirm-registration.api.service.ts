@@ -7,22 +7,19 @@ import { ResendConfirmationCodeRequestDTO } from '../models/resend-confirmation-
 @Injectable({
 	providedIn: 'root',
 })
-export class ConfirmRegistrationService {
+export class ConfirmRegistrationApiService {
 	constructor(private readonly _apiService: ApiService) {}
 
 	/**
 	 * Sends request to api to confirm registration
-	 * @param code confirmation code
-	 * @param email user email
+	 * @param request DTO with email and confirmation code
 	 * @returns Observable<HttpResponse<null>> object with status code of request
 	 *
 	 * TODO: dodać zliczanie prób weryfikacji
 	 */
 	public validateRegistrationCode(
-		code: string,
-		email: string
+		request: ConfirmRegistrationRequestDTO
 	): Observable<HttpResponse<null>> {
-		const request = new ConfirmRegistrationRequestDTO(email, code);
 		return this._apiService.post<null, ConfirmRegistrationRequestDTO>(
 			'Auth/confirm-register',
 			request

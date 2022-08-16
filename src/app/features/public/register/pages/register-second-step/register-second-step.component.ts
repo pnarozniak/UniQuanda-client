@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RegisterService } from '../../services/register.service';
+import { RegisterApiService } from '../../services/register.api.service';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { plLocale } from 'ngx-bootstrap/locale';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { RegisterValidationService } from '../../services/register-validation.service';
 import { ToastrService } from 'ngx-toastr';
+import { RegisterRequestDTO } from '../../models/register.dto';
 defineLocale('pl', plLocale);
 
 @Component({
@@ -22,7 +23,7 @@ export class RegisterSecondStepComponent implements OnInit {
 	constructor(
 		private readonly _route: ActivatedRoute,
 		private readonly _router: Router,
-		private readonly _registerService: RegisterService,
+		private readonly _registerApiService: RegisterApiService,
 		private readonly _localeService: BsLocaleService,
 		private readonly _registerValidationService: RegisterValidationService,
 		private readonly _toastrService: ToastrService
@@ -60,11 +61,11 @@ export class RegisterSecondStepComponent implements OnInit {
 
 	handleRegister() {
 		this.form.markAllAsTouched();
-		console.log(this.nickname, this.password, this.email);
-		return;
-		if (this.form.valid) {
-			this._registerService
-				.register(
+		if (this.form.invalid) return;
+
+		this._registerApiService
+			.register(
+				new RegisterRequestDTO(
 					this.nickname,
 					this.password,
 					this.email,
@@ -74,19 +75,19 @@ export class RegisterSecondStepComponent implements OnInit {
 					this.form.value.phoneNumber,
 					this.form.value.city
 				)
-				.subscribe((response) => {
-					if (response.status === 201) {
-						this._router.navigate([
-							'/public/confirm-registration',
-							{ email: this.email },
-						]);
-					} else if (response.status === 409) {
-						this._toastrService.error(
-							'Ktoś właśnie zarejestrował taki nick, spróbuj ponownie',
-							'Błąd'
-						);
-					}
-				});
-		}
+			)
+			.subscribe((response) => {
+				if (response.status === 201) {
+					this._router.navigate([
+						'/public/confirm-registration',
+						{ email: this.email },
+					]);
+				} else if (response.status === 409) {
+					this._toastrService.error(
+						'Ktoś właśnie zarejestrował taki nick, spróbuj ponownie',
+						'Błąd'
+					);
+				}
+			});
 	}
 }

@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { StorageService } from 'src/app/core/services/storage.service';
 import { UserDataService } from 'src/app/core/services/user-data.service';
-import { LoginService } from './services/login.service';
-import { LoginResponseStatus } from './models/login.dto';
+import { LoginApiService } from './services/login.api.service';
+import { LoginRequestDTO, LoginResponseStatus } from './models/login.dto';
 
 @Component({
 	selector: 'app-login',
@@ -16,7 +16,7 @@ export class LoginComponent {
 	public isPasswordShown: boolean;
 	public form: FormGroup;
 	constructor(
-		private readonly _loginService: LoginService,
+		private readonly _loginApiService: LoginApiService,
 		private readonly _storageService: StorageService,
 		private readonly _userDataService: UserDataService,
 		private readonly _toastrService: ToastrService,
@@ -40,9 +40,12 @@ export class LoginComponent {
 
 	handleLogin() {
 		this.form.markAllAsTouched();
-		if (this.form.valid) {
-			const formValue = this.form.value;
-			this._loginService.login(formValue.email, formValue.password).subscribe({
+		if (this.form.invalid) return;
+
+		const formValue = this.form.value;
+		this._loginApiService
+			.login(new LoginRequestDTO(formValue.email, formValue.password))
+			.subscribe({
 				next: (response) => {
 					if (response.status === 404) {
 						this._toastrService.error(
@@ -80,6 +83,5 @@ export class LoginComponent {
 					);
 				},
 			});
-		}
 	}
 }

@@ -43,20 +43,20 @@ export class RegisterComponent {
 
 	handleRegister() {
 		this.form.markAllAsTouched();
-		if (this.form.valid) {
-			this._router.navigate(
-				[
-					'/public/register-second-step',
-					{
-						nickname: this.form.value.nickname,
-						email: this.form.value.password,
-						password: this.form.value.email,
-					},
-				],
+		if (this.form.invalid) return;
+
+		this._router.navigate(
+			[
+				'/public/register-second-step',
 				{
-					skipLocationChange: true,
-				}
-			);
-		}
+					nickname: this.form.value.nickname,
+					email: this.form.value.password,
+					password: this.form.value.email,
+				},
+			],
+			{
+				skipLocationChange: true,
+			}
+		);
 	}
 }
