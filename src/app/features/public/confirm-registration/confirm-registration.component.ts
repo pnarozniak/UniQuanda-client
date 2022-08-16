@@ -17,7 +17,7 @@ import { ConfirmRegistrationApiService } from './services/confirm-registration.a
 	styleUrls: ['./confirm-registration.component.scss'],
 })
 export class ConfirmRegistrationComponent implements OnInit {
-	public codeLenght = 6;
+	public codeLength = 6;
 	@ViewChildren('codeInput') codeInputs!: QueryList<ElementRef>;
 	public email = '';
 	public form: FormGroup;
@@ -29,7 +29,7 @@ export class ConfirmRegistrationComponent implements OnInit {
 		private readonly _toastrService: ToastrService
 	) {
 		this.form = new FormGroup({});
-		for (let i = 0; i < this.codeLenght; i++) {
+		for (let i = 0; i < this.codeLength; i++) {
 			this.form.addControl(
 				`codeInput${i}`,
 				new FormControl(null, [
@@ -56,13 +56,13 @@ export class ConfirmRegistrationComponent implements OnInit {
 		if (inputValue === null && inputId !== 0) {
 			return this.codeInputs.get(inputId - 1)?.nativeElement.focus();
 		}
-		if (inputValueAsString.length === this.codeLenght) {
-			for (let i = 0; i < this.codeLenght; i++) {
+		if (inputValueAsString.length === this.codeLength) {
+			for (let i = 0; i < this.codeLength; i++) {
 				this.form
 					.get(`codeInput${i}`)
 					?.setValue(Number(inputValueAsString.charAt(i)));
 			}
-			this.codeInputs.get(this.codeLenght - 1)?.nativeElement.focus();
+			this.codeInputs.get(this.codeLength - 1)?.nativeElement.focus();
 		} else if (inputValueAsString.length !== 1) {
 			this.form
 				.get(`codeInput${inputId}`)
@@ -71,8 +71,8 @@ export class ConfirmRegistrationComponent implements OnInit {
 				);
 		}
 		if (
-			inputId !== this.codeLenght - 1 &&
-			inputValueAsString.length !== this.codeLenght
+			inputId !== this.codeLength - 1 &&
+			inputValueAsString.length !== this.codeLength
 		) {
 			this.codeInputs.get(inputId + 1)?.nativeElement.focus();
 		}
@@ -93,7 +93,7 @@ export class ConfirmRegistrationComponent implements OnInit {
 		if (this.form.invalid) return;
 
 		let result = '';
-		for (let i = 0; i < this.codeLenght; i++) {
+		for (let i = 0; i < this.codeLength; i++) {
 			result += this.form.get(`codeInput${i}`)?.value;
 		}
 		this._confirmRegistrationApiService
