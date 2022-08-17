@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { StorageService } from 'src/app/core/services/storage.service';
 import { UserDataService } from 'src/app/core/services/user-data.service';
-import { LoginApiService } from './services/login.api.service';
+import { LoginApiService } from './services/login-api.service';
 import { LoginRequestDTO, LoginResponseStatus } from './models/login.dto';
 
 @Component({

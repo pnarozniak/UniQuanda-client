@@ -6,7 +6,7 @@ import {
 	ValidatorFn,
 } from '@angular/forms';
 import { first, map, Observable, of } from 'rxjs';
-import { RegisterApiService } from './register.api.service';
+import { RegisterApiService } from './register-api.service';
 
 @Injectable({
 	providedIn: 'root',

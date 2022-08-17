@@ -9,7 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmRegistrationRequestDTO } from './models/confirm-registration.dto';
-import { ConfirmRegistrationApiService } from './services/confirm-registration.api.service';
+import { ConfirmRegistrationApiService } from './services/confirm-registration-api.service';
 
 @Component({
 	selector: 'app-confirm-registration',
