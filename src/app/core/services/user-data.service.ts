@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { UserClaims } from '../models/user-claims.model';
-import { TokensService } from './tokens.service';
+import { StorageService } from './storage.service';
 
 @Injectable()
 export class UserDataService {
 	private readonly _user$ = new BehaviorSubject<UserClaims | null>(null);
 
-	constructor(private readonly _tokensService: TokensService) {
+	constructor(private readonly _storageService: StorageService) {
 		this.setInitialUserData();
 	}
 
@@ -24,9 +24,8 @@ export class UserDataService {
 	}
 
 	private setInitialUserData() {
-		const accessToken = this._tokensService.getAccessToken();
-		if (!accessToken) return;
-		const claims = this._tokensService.getClaimsFromJWT(accessToken);
+		const claims = this._storageService.getUserClaims();
+		if (!claims) return;
 		this.setUserData(claims);
 	}
 }

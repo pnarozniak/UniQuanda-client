@@ -1,0 +1,62 @@
+@import './colors.scss';
+$toastrWidth: 390px;
+.toast-container .ngx-toastr {
+	position: fixed !important;
+	overflow: hidden !important;
+	bottom: 95px !important;
+	width: $toastrWidth !important;
+	height: 110px !important;
+	top: auto !important;
+	right: 120px !important;
+	left: auto !important;
+	color: $light-gray;
+	background-color: $crystal-white;
+	border: 1px solid $bordered-gray;
+}
+.toast-title {
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 20px;
+	margin: 0 150px 0 15px;
+	border-bottom: 2px solid $bordered-gray;
+	padding: 15px 0;
+	padding-left: 5px;
+}
+.toast-message {
+	margin: 15px;
+
+}
+.toast-error {
+	.toast-title {
+		&:before {
+			font-family: 'Uniquanda';
+			color: $crystal-white;
+			background-color: $light-red;
+			border-radius: 100%;
+			padding: 7px;
+			margin-right: 10px;
+			content: "\e907";
+		}
+	}
+}
+.toast-success {
+	.toast-title {
+		&:before {
+			font-family: 'Uniquanda';
+			color: $crystal-white;
+			background-color: $blue-laguna;
+			border-radius: 100%;
+			margin-right: 10px;
+			padding: 7px 5px;
+			content: "\e906";
+		}
+	}
+}
+@media all and (max-width: 576px) {
+	.toast-container .ngx-toastr {
+		right: unset !important;
+		left: unset !important;
+		right: calc(50% - $toastrWidth/2) !important;
+    left: calc(50% - $toastrWidth/2) !important;
+	}
+}

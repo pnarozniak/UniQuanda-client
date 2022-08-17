@@ -1,15 +1,16 @@
 import { HandleErrorService } from './services/handle-error.service';
 import { HandleErrorInterceptorService } from './interceptors/handle-error-interceptor.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { TokensService } from './services/tokens.service';
+import { StorageService } from './services/storage.service';
 import { UserDataService } from './services/user-data.service';
 import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
 	providers: [
-		TokensService,
+		StorageService,
 		UserDataService,
 		HandleErrorService,
 		{
@@ -19,7 +20,7 @@ import { RouterModule } from '@angular/router';
 		},
 	],
 	declarations: [HeaderComponent],
-	imports: [RouterModule],
+	imports: [RouterModule, ToastrModule.forRoot(), HttpClientModule],
 	exports: [HeaderComponent],
 })
 export class CoreModule {}

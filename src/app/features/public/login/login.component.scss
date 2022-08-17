@@ -1,0 +1,92 @@
+@import './../../../../assets/icons/style.css';
+@import './../../../../assets/scss/colors.scss';
+.bordered {
+	border: 1px solid $bordered-gray;
+}
+.googlebox {
+	cursor: pointer;
+	border: 1px solid $bordered-gray;
+	height: 65px;
+	.google-logo {
+		height: 60px
+	}
+}
+.login-input {
+	outline: none !important;
+	border-bottom: 2px solid $bordered-gray;
+	font-size: 20px;
+	.show-password {
+		font-size: small;
+		background-color: $crystal-white !important;
+		max-width: 32px;
+	}
+	.email-input {
+		outline: none !important;
+		min-width: 420px;
+		&:focus-within + .login-label {
+			transform: translateY(-30px);
+			font-weight: bold;
+		}
+	}
+	.login-label {
+		transition: all 0.3s ease-in-out;
+		cursor: text;
+	}
+	.password-input {
+		outline: none !important;
+		min-width: 420px;
+		&:focus-within + .login-label {
+			transform: translateY(-30px);
+			font-weight: bold;
+		}
+	}
+	.element-has-text {
+		transform: translateY(-30px);
+		font-weight: bold;
+	}
+}
+.border-validation {
+	border-bottom: 2px solid $validation-red !important;
+}
+.validation-text {
+	color: $validation-red;
+}
+.forgot-password {
+	color: $academic-blue;
+	font-size: 15px;
+}
+.submit-button {
+	background-color: $academic-blue;
+	color: $crystal-white;
+	border-radius: 7px;
+	font-weight: 500;
+	font-size: 18px;
+}
+.register-box {
+	font-size: 18px;
+	.register-text {
+		color: $light-red;
+	}
+}
+.grey-line {
+	border-color: $bordered-gray;
+}
+@media all and (max-width: 575px) {
+	.login-input {
+		.email-input {
+			min-width: 250px;
+		}
+		.password-input {
+			min-width: 250px;
+		}
+	}
+	.bordered {
+		border: none;
+	}
+	.googlebox {
+		height: 55px;
+		.google-logo {
+			height: 50px
+		}
+	}
+}

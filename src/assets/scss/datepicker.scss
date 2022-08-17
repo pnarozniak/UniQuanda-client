@@ -1,0 +1,26 @@
+@import './colors.scss';
+.theme-dark-blue .bs-datepicker-head {
+	background-color: $academic-blue;
+}
+.theme-dark-blue .bs-datepicker-body table td.week span {
+	color: $light-purple;
+}
+.bs-datepicker-body table td {
+	color: $bordered-gray;
+}
+.bs-datepicker-body table td.is-highlighted:not(.disabled):not(.selected) span, .bs-datepicker-body table td span.is-highlighted:not(.disabled):not(.selected) {
+	background-color: $elegant-gray;
+}
+.bs-datepicker-body table th {
+	color: $light-purple;
+}
+.bs-datepicker-head button:hover {
+	background-color: rgba(0, 0, 0, 0.4);
+}
+.theme-dark-blue .bs-datepicker-body table td span.selected, .theme-dark-blue .bs-datepicker-body table td.selected span, .theme-dark-blue .bs-datepicker-body table td span[class*=select-]:after, .theme-dark-blue .bs-datepicker-body table td[class*=select-] span:after {
+	background-color: $blue-laguna;
+}
+.today-class {
+	background-color: $tag-blue;
+	color: $academic-blue;
+}
