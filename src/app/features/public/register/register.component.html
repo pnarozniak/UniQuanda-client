@@ -16,15 +16,15 @@
 			<input
 				type="text"
 				class="standard-input border-0"
-				[id]="'login'"
+				[id]="'nickname'"
 				formControlName="nickname" />
 			<label
 				class="register-label position-absolute"
-				[for]="'login'"
+				[for]="'nickname'"
 				[ngClass]="{
 					'element-has-text': this.form.get('nickname')?.value !== ''
 				}"
-				>Login</label
+				>Nazwa użytkownika</label
 			>
 		</div>
 		<div
@@ -33,7 +33,7 @@
 				this.form.get('nickname')?.hasError('required') &&
 				this.form.get('nickname')?.touched
 			">
-			Login jest wymagany
+			Nazwa użytkownika jest wymagana
 		</div>
 		<div
 			class="validation-text"
