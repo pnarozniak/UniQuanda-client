@@ -7,6 +7,9 @@ import { UserDataService } from './services/user-data.service';
 import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
 	providers: [
@@ -19,8 +22,14 @@ import { ToastrModule } from 'ngx-toastr';
 			multi: true,
 		},
 	],
-	declarations: [HeaderComponent],
-	imports: [RouterModule, ToastrModule.forRoot(), HttpClientModule],
-	exports: [HeaderComponent],
+	declarations: [HeaderComponent, NavBarComponent],
+	imports: [
+		RouterModule,
+		ToastrModule.forRoot(),
+		HttpClientModule,
+		CommonModule,
+		BrowserModule,
+	],
+	exports: [HeaderComponent, NavBarComponent],
 })
 export class CoreModule {}

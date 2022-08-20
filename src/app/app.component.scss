@@ -1,0 +1,23 @@
+@import './../assets/scss/dimensions.scss';
+
+.main-content{
+	margin-top: $header-sm-height;
+	max-height: calc(100% - $header-sm-height);
+}
+
+.nav-bar-margin{
+	margin-left: $nav-bar-sm-width;
+}
+
+@media all and (max-width: 575px) {
+	.main-content{
+		margin-top: $header-height;
+		max-width: 100%;
+		
+		margin-bottom: $nav-bar-height;
+	}
+
+	.nav-bar-margin{
+		margin-left: 0;
+	}
+}

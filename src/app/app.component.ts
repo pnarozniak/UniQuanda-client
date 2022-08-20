@@ -10,4 +10,6 @@ export class AppComponent {
 	constructor(private readonly _appTitleService: AppTitleService) {
 		this._appTitleService.manageTitleChange();
 	}
+
+	isNavBar : boolean = true;
 }

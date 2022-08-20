@@ -1,2 +1,5 @@
 <app-header></app-header>
-<router-outlet></router-outlet>
+<app-nav-bar *ngIf="isNavBar"></app-nav-bar>
+<div class="main-content" [ngClass]="{ 'nav-bar-margin': isNavBar }">
+	<router-outlet></router-outlet>
+</div>

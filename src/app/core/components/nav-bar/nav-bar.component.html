@@ -1,0 +1,45 @@
+<nav>
+	<ul class="d-flex flex-sm-column flex-row">
+		<a
+			routerLink="/public/home"
+			class="d-flex justify-content-center align-items-center home-icon icon-container">
+			<li class="uniquanda-icon icon-home">
+				<span class="tiptext"> Strona Główna </span>
+			</li>
+		</a>
+		<a
+			routerLink="/public/tags"
+			class="d-flex justify-content-center align-items-center tag-icon icon-container">
+			<li class="uniquanda-icon icon-tag">
+				<span class="tiptext"> Tagi </span>
+			</li>
+		</a>
+		<a
+			routerLink="/public/tests"
+			class="d-flex justify-content-center align-items-center test-icon icon-container">
+			<li class="uniquanda-icon icon-test">
+				<span class="tiptext"> Testy </span>
+			</li>
+		</a>
+		<a
+			routerLink="/public/ranking"
+			class="d-flex justify-content-center align-items-center ranking-icon icon-container">
+			<li class="uniquanda-icon icon-ranking">
+				<span class="tiptext"> Ranking </span>
+			</li>
+		</a>
+		<a
+			*ngIf="_userDataService.isUserLoggedIn()"
+			routerLink="/logout"
+			class="d-flex justify-content-center align-items-center logout-icon icon-container">
+			<li class="uniquanda-icon icon-logout">
+				<span class="tiptext"> Wyloguj się </span>
+			</li>
+		</a>
+		<a
+			routerLink="/public/questions/add"
+			class="d-flex plus-icon mx-auto rounded-circle">
+			<li class="uniquanda-icon icon-plus my-auto mx-auto fs-6"></li>
+		</a>
+	</ul>
+</nav>
