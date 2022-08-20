@@ -8,44 +8,52 @@ nav {
 	width: $nav-bar-sm-width;
 	position: fixed;
 	z-index: 2136;
+
+	ul {
+		padding-left: 0;
+		list-style-type: none;
+
+		li {
+			height: 85px;
+		}
+	}
 }
 
-nav ul {
-	padding-left: 0;
-	list-style-type: none; 
-}
-
-nav ul li {
-	font-size: 30px;
-	color: $crystal-white;
-}
-
-span{
+span {
 	font-family: Ubuntu !important;
 	font-weight: 500;
 }
 
-.icon-container  {
-	height: 85px;
+.icon-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
 }
 
-.home-icon:hover {
+.uniquanda-icon {
+	font-size: 30px;
+	color: $crystal-white;
+}
+
+.home:hover {
 	background-color: $blue-laguna;
 }
 
-.tag-icon:hover {
+.tag:hover {
 	background-color: $dark-yellow;
 }
 
-.test-icon:hover {
+.test:hover {
 	background-color: $pink;
 }
 
-.ranking-icon:hover {
+.ranking:hover {
 	background-color: $light-red;
 }
 
-.logout-icon:hover {
+.logout:hover {
 	background-color: $light-purple;
 }
 
@@ -78,7 +86,7 @@ a:hover .tiptext {
   border-color: transparent $academic-blue transparent transparent;
 }
 
-.plus-icon{
+.plus{
 	visibility: hidden;
 }
 
@@ -87,38 +95,36 @@ a:hover .tiptext {
 		height: $nav-bar-height;
 		width: 100%;
 		bottom: 0;
+
+		ul {
+			li {
+				height: $nav-bar-height;
+				width: 25%;
+			}
+		}
 	}
 
-	nav ul li {
+	.uniquanda-icon {
 		font-size: 20px;
 	}
 
-	.icon-container {
-		height: $nav-bar-height;
-		width: 25%;
-	}
-
-	.home-icon {
+	.home {
 		background-color: $blue-laguna;
 	}
 	
-	.tag-icon {
+	.tag {
 		background-color: $dark-yellow;
 	}
 	
-	.test-icon {
+	.test {
 		background-color: $pink;
 	}
 	
-	.ranking-icon {
+	.ranking {
 		background-color: $light-red;
 	}
 
 	a:hover .tiptext {
-		visibility: hidden;
-	}
-	
-	.tiptext::after {
 		visibility: hidden;
 	}
 
@@ -126,7 +132,7 @@ a:hover .tiptext {
 		visibility: hidden;
 	}
 
-	.plus-icon {
+	.plus {
 		background-color: $academic-blue;
 		color: $crystal-white;
 		visibility: visible;
