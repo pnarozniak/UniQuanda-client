@@ -1,15 +1,26 @@
 @import './../../../../assets/icons/style.css';
 @import './../../../../assets/scss/colors.scss';
+@import './../../../../assets/scss/dimensions.scss';
 
-.header-height {
-	height: 75px;	
+$header-footer-height: 5px;
+
+header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background-color: $crystal-white;
+	z-index: 2137;
 }
 
-.img-logo{
+.header-height {
+	height: calc($header-sm-height - $header-footer-height);
+}
+
+.img-logo {
 	height: 45px;
 }
 
-.a-btn{
+.a-btn {
 	font-size: 17px;
 	font-weight: 500;
 	padding: 5px 36px 5px 36px;
@@ -18,13 +29,13 @@
 	white-space: nowrap;
 }
 
-.search-bar{
+.search-bar {
 	height: 40px;
 	background-color: $elegant-gray;
 	outline: 0;
 }
 
-.btn-search{
+.btn-search {
 	color: $light-gray;
 	font-size: 25px;
 	font-weight: 500;
@@ -43,35 +54,35 @@
   font-weight: 500;
 }
 
-.a-register{
+.a-register {
 	background-color: $light-purple;
 }
 
-.a-login{
+.a-login {
 	background-color: $academic-blue;
 }
 
-.footer-container{
-	height: 5px;
+.footer-container {
+	height: $header-footer-height;
 }
 
-.footer-cell-academicBlue{
+.footer-cell-academicBlue {
 	background-color: $academic-blue;
 }
 
-.footer-cell-blueLaguna{
+.footer-cell-blueLaguna {
 	background-color: $blue-laguna;
 }
 
-.footer-cell-darkYellow{
+.footer-cell-darkYellow {
 	background-color: $dark-yellow;
 }
 
-.footer-cell-pink{
+.footer-cell-pink {
 	background-color: $pink;
 }
 
-.footer-cell-lightRed{
+.footer-cell-lightRed {
 	background-color: $light-red;
 }
 
@@ -94,20 +105,20 @@
 		margin-right: 0.25rem;
 	}
 	.header-height {
-		height: 55px;	
+		height: calc($header-height - $header-footer-height);	
 	}
 	
-	.img-logo{
+	.img-logo {
 		height: 25px;
 	}
 
-	.a-btn{
+	.a-btn {
 		font-size: 11px;
 		padding-left: 9px;
 		padding-right: 9px;
 	}
 
-	.btn-search{
+	.btn-search {
 		font-size: 15px;
 	}
 }

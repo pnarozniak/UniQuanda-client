@@ -11,5 +11,5 @@ export class AppComponent {
 		this._appTitleService.manageTitleChange();
 	}
 
-	isNavBar : boolean = true;
+	isNavBar = true;
 }
