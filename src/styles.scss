@@ -32,8 +32,40 @@ a {
   width: 100%;
 }
 
+.tooltip-inner {
+  background-color: $academic-blue;
+  color: $crystal-white;
+  white-space: nowrap;
+  font-family: Ubuntu, sans-serif !important;
+  font-weight: 500;
+}
+
+.tooltip {
+  opacity: 1 !important;
+}
+
+.tooltip.bs-tooltip-top .tooltip-arrow::before {
+  border-top-color: $academic-blue;
+}
+
+.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+  border-bottom-color: $academic-blue;
+}
+
+.tooltip.bs-tooltip-start .tooltip-arrow::before {
+  border-left-color: $academic-blue;
+}
+
+.tooltip.bs-tooltip-end .tooltip-arrow::before {
+  border-right-color: $academic-blue;
+}
+
 @media all and (max-width: 575px) {
   .height-header {
     min-height: calc(100vh - $header-height);
+  }
+
+  .tooltip {
+    visibility: hidden;
   }
 }

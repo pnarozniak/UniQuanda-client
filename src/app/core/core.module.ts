@@ -10,6 +10,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @NgModule({
 	providers: [
@@ -29,6 +30,7 @@ import { BrowserModule } from '@angular/platform-browser';
 		HttpClientModule,
 		CommonModule,
 		BrowserModule,
+		TooltipModule.forRoot(),
 	],
 	exports: [HeaderComponent, NavBarComponent],
 })

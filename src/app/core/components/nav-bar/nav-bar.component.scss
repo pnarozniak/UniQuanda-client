@@ -2,26 +2,21 @@
 @import './../../../../assets/scss/colors.scss';
 @import './../../../../assets/scss/dimensions.scss';
 
-nav {
+nav ul {
+	padding-left: 0;
+	list-style-type: none;
+}
+
+.nav-container {
 	background-color: $academic-blue;
 	height: 100%;
 	width: $nav-bar-sm-width;
 	position: fixed;
-	z-index: 2136;
-
-	ul {
-		padding-left: 0;
-		list-style-type: none;
-
-		li {
-			height: 85px;
-		}
-	}
+	z-index: 1;
 }
 
-span {
-	font-family: Ubuntu !important;
-	font-weight: 500;
+.li-container {
+	height: 85px;
 }
 
 .icon-container {
@@ -57,51 +52,20 @@ span {
 	background-color: $light-purple;
 }
 
-.tiptext {
-	background-color: $academic-blue;
-  color: $crystal-white;
-  visibility: hidden;
-	font-size: 15px;
-  text-align: center;
-  border-radius: 7px;
-  padding: 7px 12px 7px 12px;
-	white-space: nowrap;
-	margin-left: 20px;
-  position: absolute;
-  z-index: 1;
-}
-
-a:hover .tiptext {
-  visibility: visible;
-}
-
-.tiptext::after {
-  content: " ";
-  position: absolute;
-  top: 50%;
-  right: 100%;
-  margin-top: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: transparent $academic-blue transparent transparent;
-}
-
 .plus{
 	visibility: hidden;
 }
 
 @media all and (max-width: 575px) {
-	nav {
+	.nav-container {
 		height: $nav-bar-height;
 		width: 100%;
 		bottom: 0;
+	}
 
-		ul {
-			li {
-				height: $nav-bar-height;
-				width: 25%;
-			}
-		}
+	.li-container  {
+		height: $nav-bar-height;
+		width: 25%;
 	}
 
 	.uniquanda-icon {
@@ -122,10 +86,6 @@ a:hover .tiptext {
 	
 	.ranking {
 		background-color: $light-red;
-	}
-
-	a:hover .tiptext {
-		visibility: hidden;
 	}
 
 	.logout-icon {

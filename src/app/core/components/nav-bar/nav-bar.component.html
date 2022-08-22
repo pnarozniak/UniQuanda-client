@@ -1,38 +1,48 @@
-<nav>
+<nav class="nav-container">
 	<ul class="d-flex flex-sm-column flex-row">
-		<li class="home">
-			<a routerLink="/public/home" class="icon-container">
-				<i class="uniquanda-icon icon-home">
-					<span class="tiptext"> Strona Główna </span>
-				</i>
+		<li class="home li-container">
+			<a
+				routerLink="/public/home"
+				class="icon-container"
+				tooltip="Strona Główna"
+				placement="right">
+				<i class="uniquanda-icon icon-home"> </i>
 			</a>
 		</li>
-		<li class="tag">
-			<a routerLink="/public/tags" class="icon-container">
-				<i class="uniquanda-icon icon-tag">
-					<span class="tiptext"> Tagi </span>
-				</i>
+		<li class="tag li-container">
+			<a
+				routerLink="/public/tags"
+				class="icon-container"
+				tooltip="Tagi"
+				placement="right">
+				<i class="uniquanda-icon icon-tag"> </i>
 			</a>
 		</li>
-		<li class="test">
-			<a routerLink="/public/tests" class="icon-container">
-				<i class="uniquanda-icon icon-test">
-					<span class="tiptext"> Testy </span>
-				</i>
+		<li class="test li-container">
+			<a
+				routerLink="/public/tests"
+				class="icon-container"
+				tooltip="Testy"
+				placement="right">
+				<i class="uniquanda-icon icon-test"> </i>
 			</a>
 		</li>
-		<li class="ranking">
-			<a routerLink="/public/ranking" class="icon-container">
-				<i class="uniquanda-icon icon-ranking">
-					<span class="tiptext"> Ranking </span>
-				</i>
+		<li class="ranking li-container">
+			<a
+				routerLink="/public/ranking"
+				class="icon-container"
+				tooltip="Ranking"
+				placement="right">
+				<i class="uniquanda-icon icon-ranking"> </i>
 			</a>
 		</li>
-		<li *ngIf="_userDataService.isUserLoggedIn()" class="logout">
+		<li
+			*ngIf="_userDataService.isUserLoggedIn()"
+			class="logout li-container"
+			tooltip="Strona Główna"
+			placement="right">
 			<a routerLink="/logout" class="icon-container">
-				<i class="uniquanda-icon icon-logout">
-					<span class="tiptext"> Wyloguj się </span>
-				</i>
+				<i class="uniquanda-icon icon-logout"> </i>
 			</a>
 		</li>
 		<a
