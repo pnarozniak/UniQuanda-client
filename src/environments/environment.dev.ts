@@ -1,4 +1,4 @@
 export const environment = {
 	productionMode: true,
-	backend: 'https://uniquanda.pl:2001',
+	backend: 'https://dev.uniquanda.pl:2001',
 };
