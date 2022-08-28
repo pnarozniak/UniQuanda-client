@@ -23,6 +23,10 @@ export class UserDataService {
 		return this._user$.getValue();
 	}
 
+	isUserLoggedIn(): boolean {
+		return this._user$.getValue() !== null ? true : false;
+	}
+
 	private setInitialUserData() {
 		const claims = this._storageService.getUserClaims();
 		if (!claims) return;

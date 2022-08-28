@@ -1,0 +1,106 @@
+@import './../../../../assets/icons/style.css';
+@import './../../../../assets/scss/colors.scss';
+@import './../../../../assets/scss/dimensions.scss';
+
+nav ul {
+	padding-left: 0;
+	list-style-type: none;
+}
+
+.nav-container {
+	background-color: $academic-blue;
+	height: 100%;
+	width: $nav-bar-sm-width;
+	position: fixed;
+	z-index: 1;
+}
+
+.li-container {
+	height: 85px;
+}
+
+.icon-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+}
+
+.uniquanda-icon {
+	font-size: 30px;
+	color: $crystal-white;
+}
+
+.home:hover {
+	background-color: $blue-laguna;
+}
+
+.tag:hover {
+	background-color: $dark-yellow;
+}
+
+.test:hover {
+	background-color: $pink;
+}
+
+.ranking:hover {
+	background-color: $light-red;
+}
+
+.logout:hover {
+	background-color: $light-purple;
+}
+
+.plus{
+	visibility: hidden;
+}
+
+@media all and (max-width: 575px) {
+	.nav-container {
+		height: $nav-bar-height;
+		width: 100%;
+		bottom: 0;
+	}
+
+	.li-container  {
+		height: $nav-bar-height;
+		width: 25%;
+	}
+
+	.uniquanda-icon {
+		font-size: 20px;
+	}
+
+	.home {
+		background-color: $blue-laguna;
+	}
+	
+	.tag {
+		background-color: $dark-yellow;
+	}
+	
+	.test {
+		background-color: $pink;
+	}
+	
+	.ranking {
+		background-color: $light-red;
+	}
+
+	.logout-icon {
+		visibility: hidden;
+	}
+
+	.plus {
+		background-color: $academic-blue;
+		color: $crystal-white;
+		visibility: visible;
+		position: absolute;
+		left: 0; 
+		right: 0; 
+		height: 40px;
+		width: 40px;
+		bottom: calc($nav-bar-height/2);
+	}
+}

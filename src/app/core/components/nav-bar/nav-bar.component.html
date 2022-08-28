@@ -1,0 +1,54 @@
+<nav class="nav-container">
+	<ul class="d-flex flex-sm-column flex-row">
+		<li class="home li-container">
+			<a
+				routerLink="/public/home"
+				class="icon-container"
+				tooltip="Strona Główna"
+				placement="right">
+				<i class="uniquanda-icon icon-home"> </i>
+			</a>
+		</li>
+		<li class="tag li-container">
+			<a
+				routerLink="/public/tags"
+				class="icon-container"
+				tooltip="Tagi"
+				placement="right">
+				<i class="uniquanda-icon icon-tag"> </i>
+			</a>
+		</li>
+		<li class="test li-container">
+			<a
+				routerLink="/public/tests"
+				class="icon-container"
+				tooltip="Testy"
+				placement="right">
+				<i class="uniquanda-icon icon-test"> </i>
+			</a>
+		</li>
+		<li class="ranking li-container">
+			<a
+				routerLink="/public/ranking"
+				class="icon-container"
+				tooltip="Ranking"
+				placement="right">
+				<i class="uniquanda-icon icon-ranking"> </i>
+			</a>
+		</li>
+		<li
+			*ngIf="_userDataService.isUserLoggedIn()"
+			class="logout li-container"
+			tooltip="Strona Główna"
+			placement="right">
+			<a routerLink="/logout" class="icon-container">
+				<i class="uniquanda-icon icon-logout"> </i>
+			</a>
+		</li>
+		<a
+			routerLink="/public/questions/add"
+			class="icon-container plus mx-auto rounded-circle">
+			<i class="uniquanda-icon icon-plus fs-6"></i>
+		</a>
+	</ul>
+</nav>
