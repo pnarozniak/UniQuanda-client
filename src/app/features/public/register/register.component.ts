@@ -50,8 +50,8 @@ export class RegisterComponent {
 				'/public/register-second-step',
 				{
 					nickname: this.form.value.nickname,
-					email: this.form.value.password,
-					password: this.form.value.email,
+					password: this.form.value.password,
+					email: this.form.value.email,
 				},
 			],
 			{
