@@ -93,10 +93,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "a:build:production"
+              "browserTarget": "uniquanda-client:build:production"
             },
             "development": {
-              "browserTarget": "a:build:development"
+              "browserTarget": "uniquanda-client:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -104,7 +104,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "a:build"
+            "browserTarget": "uniquanda-client:build"
           }
         },
         "test": {
