@@ -1,0 +1,7 @@
+<div>Elo</div>
+<div *ngIf="user !== null; else elseblock">
+	{{ user.userData.nickname }}
+</div>
+<ng-template #elseblock>
+	<div>Brak danych</div>
+</ng-template>
