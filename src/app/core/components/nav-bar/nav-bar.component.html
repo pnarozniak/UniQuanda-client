@@ -37,9 +37,9 @@
 			</a>
 		</li>
 		<li
-			*ngIf="_userDataService.isUserLoggedIn()"
+			*ngIf="user$ | async"
 			class="logout li-container"
-			tooltip="Strona Główna"
+			tooltip="Wyloguj"
 			placement="right">
 			<a routerLink="/logout" class="icon-container">
 				<i class="uniquanda-icon icon-logout"> </i>

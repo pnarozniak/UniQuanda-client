@@ -1,35 +1,59 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { UserClaims } from '../models/user-claims.model';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Role } from '../enums/role.enum';
+import { IUserClaims } from '../models/user-claims.model';
 import { StorageService } from './storage.service';
 
 @Injectable()
 export class UserDataService {
-	private readonly _user$ = new BehaviorSubject<UserClaims | null>(null);
+	private readonly _userStorageKey = 'user';
+	private readonly _user$ = new BehaviorSubject<IUserClaims | null>(null);
 
 	constructor(private readonly _storageService: StorageService) {
-		this.setInitialUserData();
+		this.loadInitialState();
 	}
 
-	setUserData(user: UserClaims | null): void {
-		this._user$.next(user);
+	setUserData(
+		nickname: string,
+		avatar: string,
+		accessToken: string,
+		refreshToken: string
+	): void {
+		const decoded = this.decodeAccessToken(accessToken);
+		this._user$.next({
+			id: decoded.id,
+			roles: decoded.roles,
+			nickname,
+			avatar,
+			accessToken,
+			refreshToken,
+		});
+		this._storageService.save(this._userStorageKey, decoded);
 	}
 
-	getUserData$(): BehaviorSubject<UserClaims | null> {
-		return this._user$;
+	clearUserData(): void {
+		this._user$.next(null);
+		this._storageService.delete(this._userStorageKey);
 	}
 
-	getUserData(): UserClaims | null {
+	getUserData(): IUserClaims | null {
 		return this._user$.getValue();
 	}
 
-	isUserLoggedIn(): boolean {
-		return this._user$.getValue() !== null ? true : false;
+	getUserData$(): Observable<IUserClaims | null> {
+		return this._user$.asObservable();
 	}
 
-	private setInitialUserData() {
-		const claims = this._storageService.getUserClaims();
-		if (!claims) return;
-		this.setUserData(claims);
+	private decodeAccessToken(token: string): { id: number; roles: Role[] } {
+		const decoded = JSON.parse(window.atob(token.split('.')[1]));
+		return {
+			id: decoded.id,
+			roles: decoded.roles,
+		};
+	}
+
+	private loadInitialState() {
+		const user = this._storageService.get<IUserClaims>(this._userStorageKey);
+		if (user) this._user$.next(user);
 	}
 }
