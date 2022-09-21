@@ -1,5 +1,7 @@
-<app-header></app-header>
-<app-nav-bar *ngIf="isNavBar"></app-nav-bar>
-<div class="main-content" [ngClass]="{ 'nav-bar-margin': isNavBar }">
-	<router-outlet></router-outlet>
+<div appTheme>
+	<app-header></app-header>
+	<app-nav-bar *ngIf="isNavBar"></app-nav-bar>
+	<div class="main-content" [ngClass]="{ 'nav-bar-margin': isNavBar }">
+		<router-outlet></router-outlet>
+	</div>
 </div>
