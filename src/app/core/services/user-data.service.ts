@@ -13,6 +13,13 @@ export class UserDataService {
 		this.loadInitialState();
 	}
 
+	/**
+	 * Sets user data, including accessToken claims
+	 * @param nickname user nickname
+	 * @param avatar user avatar
+	 * @param accessToken user accessToken
+	 * @param refreshToken user refreshToken
+	 */
 	setUserData(
 		nickname: string,
 		avatar: string,
@@ -31,15 +38,26 @@ export class UserDataService {
 		this._storageService.save(this._userStorageKey, decoded);
 	}
 
+	/**
+	 * Removes all user data
+	 */
 	clearUserData(): void {
 		this._user$.next(null);
 		this._storageService.delete(this._userStorageKey);
 	}
 
+	/**
+	 * Gets current user data
+	 * @returns Current user claims or null
+	 */
 	getUserData(): IUserClaims | null {
 		return this._user$.getValue();
 	}
 
+	/**
+	 * Creates observable instace for user data
+	 * @returns Observable with value: user claims or null
+	 */
 	getUserData$(): Observable<IUserClaims | null> {
 		return this._user$.asObservable();
 	}
