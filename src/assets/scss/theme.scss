@@ -3,15 +3,17 @@
 /* LIGHT MODE */
 :root {
 	--bg-default: #{colors.$crystal-white};
-	--bg-hover: #{colors.$elegant-gray};
+	--bg-accent: #{colors.$elegant-gray};
 
 	--text-default: #{colors.$crystal-black};
+	--text-accent: #{colors.$light-gray};
 }
 
 /* DARK MODE */
 :root .dark {
 	--bg-default: #{colors.$dark-gray};
-	--bg-hover: #{colors.$light-gray};
+	--bg-accent: #{colors.$light-gray};
 
 	--text-default: #{colors.$crystal-white};
+	--text-accent: #{colors.$light-gray};
 }

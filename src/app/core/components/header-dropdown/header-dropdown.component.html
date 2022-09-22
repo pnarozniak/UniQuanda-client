@@ -1,0 +1,43 @@
+<ng-container *ngIf="user$ | async as user">
+	<div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
+		<div class="dropdown-content d-flex flex-column p-2">
+			<h5 class="px-1 mb-3">{{ user.nickname }}</h5>
+			<a class="dropdown-item" [routerLink]="['/user/profile']">
+				<i class="icon-profile"></i>
+				<span class="ms-2">Przejdź do profilu</span>
+			</a>
+			<a class="dropdown-item" [routerLink]="['/user/profile/settings']">
+				<i class="icon-settings"></i>
+				<span class="ms-2">Ustawienia konta</span>
+			</a>
+			<div class="divider dropdown-divider my-1"></div>
+			<div
+				class="d-flex align-items-center px-2"
+				(click)="$event.stopImmediatePropagation()">
+				Motyw:
+				<label class="theme-switch ms-1">
+					<input
+						*ngIf="{ isDark: isDarkTheme$ | async } as theme"
+						type="checkbox"
+						[checked]="theme.isDark"
+						(change)="handleThemeChange()" />
+					<span class="slider"></span>
+				</label>
+			</div>
+			<div class="divider dropdown-divider my-1"></div>
+			<a
+				class="dropdown-item px-2 d-flex align-items-center"
+				[routerLink]="['/public/help']">
+				<i class="icon-help"></i>
+				<span class="ms-2">Pomoc</span>
+			</a>
+			<div class="divider dropdown-divider my-1"></div>
+			<a
+				class="dropdown-item px-2 d-flex align-items-center"
+				routerLink="/logout">
+				<i class="icon-logout"></i>
+				<span class="ms-2">Wyloguj się</span>
+			</a>
+		</div>
+	</div>
+</ng-container>
