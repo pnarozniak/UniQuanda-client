@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { StorageService } from './storage.service';
+import { UserDataService } from './user-data.service';
 
 @Injectable({
 	providedIn: 'root',
@@ -9,9 +10,11 @@ export class ThemeService {
 	private readonly _isDarkStorageKey = 'is_dark_theme';
 	private readonly _isDark$ = new BehaviorSubject<boolean>(false);
 
-	constructor(private readonly _storageService: StorageService) {
-		const isThemeDark = _storageService.get<boolean>(this._isDarkStorageKey);
-		this._isDark$.next(isThemeDark ?? false);
+	constructor(
+		private readonly _userDataService: UserDataService,
+		private readonly _storageService: StorageService
+	) {
+		this.loadInitialState();
 	}
 
 	/**
@@ -37,5 +40,14 @@ export class ThemeService {
 	 */
 	isDark$(): Observable<boolean> {
 		return this._isDark$.asObservable();
+	}
+
+	private loadInitialState() {
+		this._userDataService.getUserData$().subscribe((user) => {
+			const isThemeDark = this._storageService.get<boolean>(
+				this._isDarkStorageKey
+			);
+			this._isDark$.next(user ? isThemeDark ?? false : false);
+		});
 	}
 }
