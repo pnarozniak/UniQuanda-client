@@ -2,11 +2,6 @@
 @import './../../../../assets/scss/colors.scss';
 @import './../../../../assets/scss/dimensions.scss';
 
-nav ul {
-	padding-left: 0;
-	list-style-type: none;
-}
-
 .nav-container {
 	background-color: $academic-blue;
 	height: 100%;
@@ -15,16 +10,11 @@ nav ul {
 	z-index: 1;
 }
 
-.li-container {
+.item {
 	height: 85px;
-}
-
-.icon-container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 100%;
-	width: 100%;
 }
 
 .uniquanda-icon {
@@ -32,19 +22,23 @@ nav ul {
 	color: $crystal-white;
 }
 
-.home:hover {
+.home:hover,
+.home.active {
 	background-color: $blue-laguna;
 }
 
-.tag:hover {
+.tag:hover,
+.tag.active {
 	background-color: $dark-yellow;
 }
 
-.test:hover {
+.test:hover,
+.text.active {
 	background-color: $pink;
 }
 
-.ranking:hover {
+.ranking:hover,
+.ranking.active {
 	background-color: $light-red;
 }
 
@@ -63,7 +57,7 @@ nav ul {
 		bottom: 0;
 	}
 
-	.li-container  {
+	.item {
 		height: $nav-bar-height;
 		width: 25%;
 	}
@@ -86,10 +80,6 @@ nav ul {
 	
 	.ranking {
 		background-color: $light-red;
-	}
-
-	.logout-icon {
-		visibility: hidden;
 	}
 
 	.plus {
