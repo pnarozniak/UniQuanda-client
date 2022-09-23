@@ -1,17 +1,17 @@
-@import './../../../../assets/icons/style.css';
-@import './../../../../assets/scss/colors.scss';
-@import './../../../../assets/scss/dimensions.scss';
+@use './../../../../assets/icons/style.css';
+@use './../../../../assets/scss/colors.scss' as colors;
+@use './../../../../assets/scss/dimensions.scss' as dim;
 
 .nav-container {
-	background-color: $academic-blue;
+	background-color: colors.$academic-blue;
 	height: 100%;
-	width: $nav-bar-sm-width;
+	width: dim.$nav-bar-width-sm;
 	position: fixed;
 	z-index: 1;
 }
 
 .item {
-	height: 85px;
+	height: 70px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -19,31 +19,31 @@
 
 .uniquanda-icon {
 	font-size: 30px;
-	color: $crystal-white;
+	color: colors.$crystal-white;
 }
 
 .home:hover,
 .home.active {
-	background-color: $blue-laguna;
+	background-color: colors.$blue-laguna;
 }
 
 .tag:hover,
 .tag.active {
-	background-color: $dark-yellow;
+	background-color: colors.$dark-yellow;
 }
 
 .test:hover,
 .text.active {
-	background-color: $pink;
+	background-color: colors.$pink;
 }
 
 .ranking:hover,
 .ranking.active {
-	background-color: $light-red;
+	background-color: colors.$light-red;
 }
 
 .logout:hover {
-	background-color: $light-purple;
+	background-color: colors.$light-purple;
 }
 
 .plus{
@@ -52,13 +52,13 @@
 
 @media all and (max-width: 575px) {
 	.nav-container {
-		height: $nav-bar-height;
+		height: dim.$nav-bar-height;
 		width: 100%;
 		bottom: 0;
 	}
 
 	.item {
-		height: $nav-bar-height;
+		height: dim.$nav-bar-height;
 		width: 25%;
 	}
 
@@ -67,30 +67,30 @@
 	}
 
 	.home {
-		background-color: $blue-laguna;
+		background-color: colors.$blue-laguna;
 	}
 	
 	.tag {
-		background-color: $dark-yellow;
+		background-color: colors.$dark-yellow;
 	}
 	
 	.test {
-		background-color: $pink;
+		background-color: colors.$pink;
 	}
 	
 	.ranking {
-		background-color: $light-red;
+		background-color: colors.$light-red;
 	}
 
 	.plus {
-		background-color: $academic-blue;
-		color: $crystal-white;
+		background-color: colors.$academic-blue;
+		color: colors.$crystal-white;
 		visibility: visible;
 		position: absolute;
 		left: 0; 
 		right: 0; 
 		height: 40px;
 		width: 40px;
-		bottom: calc($nav-bar-height/2);
+		bottom: calc(dim.$nav-bar-height/2);
 	}
 }
