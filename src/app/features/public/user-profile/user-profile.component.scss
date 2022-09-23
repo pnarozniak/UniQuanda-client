@@ -1,0 +1,13 @@
+@import './../../../../assets/scss/colors.scss';
+@import './../../../../assets/scss/dimensions.scss';
+.profile-rectangle {
+	border: 1px solid $bordered-gray;
+	width: calc(1400px - $nav-bar-sm-width);
+}
+
+@media all and (max-width: 1400px) {
+	.profile-rectangle {
+		width: 100%;
+		border: none;
+	}
+}

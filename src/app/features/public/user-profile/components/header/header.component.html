@@ -1,7 +1,54 @@
-<div>Elo</div>
-<div *ngIf="user !== null; else elseblock">
-	{{ user.userData.nickname }}
+<div class="w-100 banner">
+	<img
+		[src]="
+			user?.userData?.banner !== null
+				? user?.userData?.banner
+				: 'assets/public/profile/default_users_background.jpg'
+		"
+		class="w-100 banner-image"
+		alt="banner" />
 </div>
-<ng-template #elseblock>
-	<div>Brak danych</div>
-</ng-template>
+<div class="w-100 d-flex flex-column">
+	<img
+		[src]="
+			user?.userData?.avatar !== null
+				? user?.userData?.avatar
+				: 'assets/public/profile/default_users_background.jpg'
+		"
+		alt="profile-picture"
+		style="background-color: orange"
+		class="profile-picture"
+		[ngClass]="{ loading: user === null }" />
+	<div class="header-content d-flex">
+		<div class="d-flex flex-column">
+			<div class="badges d-flex mt-sm-3 mt-2">
+				<span class="loading-badge loading me-1" *ngIf="user === null"></span>
+				<span class="loading-badge loading" *ngIf="user === null"></span>
+				<div *ngFor="let title of user?.academicTitles" class="me-1">
+					<b
+						class="p-2 title-badge"
+						[ngStyle]="{
+							'background-color': getAcademicTitleTypeColor(
+								title.academicTitleType
+							)
+						}">
+						{{ title.name }}</b
+					>
+				</div>
+			</div>
+			<b class="nickname mt-2 mt-sm-0">{{ user?.userData?.nickname }}</b>
+		</div>
+	</div>
+	<div class="d-flex flex-column universities">
+		<div *ngFor="let university of user?.universities" class="d-flex flex-row">
+			<a class="university" href="#">
+				<img
+					[src]="university.logo"
+					alt="Logo placówki edukacyjnjej"
+					class="university-logo" />
+				{{ university.name }}
+			</a>
+		</div>
+	</div>
+	<hr class="mx-4 hrline" />
+</div>

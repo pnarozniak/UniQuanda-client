@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import AcademicTitle from '../../models/acedemic-title';
+import AcademicTitle, { AcademicTitleType } from '../../models/acedemic-title';
 import { UserProfileResponseDTO } from '../../models/user-profile.dto';
 
 @Component({
@@ -20,14 +20,20 @@ export class HeaderComponent implements OnInit {
 	ngOnInit(): void {
 		this.$user.subscribe((user) => {
 			this.user = user;
-			console.log(user);
-			if (user !== null) {
-				console.log(
-					AcademicTitle.getAcademicTitleTypeColor(
-						user?.academicTitles[1].academicTitleType
-					)
-				);
-			}
+			this.user?.academicTitles.sort((a, b) => a.order - b.order);
 		});
+	}
+
+	getAcademicTitleTypeColor(type: AcademicTitleType) {
+		switch (type) {
+			case AcademicTitleType.Engineer:
+				return '#1AA39D';
+			case AcademicTitleType.Bachelor:
+				return '#262B90';
+			case AcademicTitleType.Academic:
+				return '#FE4D10';
+			default:
+				return '#000000';
+		}
 	}
 }
