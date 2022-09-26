@@ -1,0 +1,9 @@
+@use './../../../../../../../assets/scss/colors.scss' as colors;
+b {
+	font-size: 25px;
+	line-height: 20px;
+}
+.stats-divider {
+	width: 1px;
+	background-color: colors.$light-gray;
+}

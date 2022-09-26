@@ -1,12 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 import { BehaviorSubject } from 'rxjs';
-import AcademicTitle, { AcademicTitleType } from '../../models/acedemic-title';
+import { AcademicTitleType } from '../../models/acedemic-title';
 import { UserProfileResponseDTO } from '../../models/user-profile.dto';
 
 @Component({
 	selector: 'app-user-profile-header',
 	templateUrl: './header.component.html',
 	styleUrls: ['./header.component.scss'],
+	providers: [
+		{
+			provide: BsDropdownConfig,
+			useValue: { autoClose: true },
+		},
+	],
 })
 export class HeaderComponent implements OnInit {
 	@Input()

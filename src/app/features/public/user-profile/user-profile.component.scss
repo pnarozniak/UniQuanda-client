@@ -1,13 +1,23 @@
-@import './../../../../assets/scss/colors.scss';
-@import './../../../../assets/scss/dimensions.scss';
+@use './../../../../assets/scss/colors.scss' as colors;
+@use './../../../../assets/scss/dimensions.scss' as dim;
 .profile-rectangle {
-	border: 1px solid $bordered-gray;
-	width: calc(1400px - $nav-bar-sm-width);
+	border: 1px solid colors.$bordered-gray;
+	width: calc(1400px - dim.$nav-bar-sm-width);
+	// margin-top: calc( dim.$header-height + 3rem);
 }
 
-@media all and (max-width: 1400px) {
+.source-material {
+	border-left: 1px solid colors.$bordered-gray;
+}
+
+@media all and (max-width: 1399px) {
 	.profile-rectangle {
 		width: 100%;
 		border: none;
 	}
+}
+
+.question {
+	border: 1px solid colors.$bordered-gray;
+	max-width: 100%;
 }

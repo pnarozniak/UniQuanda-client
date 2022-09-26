@@ -1,23 +1,10 @@
-@import './../../../../../../assets/scss/colors.scss';
+@use './../../../../../../assets/scss/colors.scss' as colors;
+@use './../../../../../../assets/icons/style.css';
 .banner {
 	height: 200px;
 	overflow: hidden;
 }
-.header-content {
-	margin-left: 250px;
-}
-.loading {
-	background: linear-gradient(-45deg, $bordered-gray, $elegant-gray, $bordered-gray);
-	background-size: 400% 400%;
-	animation: gradient 3s ease infinite;
-}
-.title-badge {
-	color: $crystal-white;
-}
-.loading-badge {
-	height: 38px;
-	width: 50px;
-}
+
 .profile-picture {
 	position: absolute;
 	width: 200px;
@@ -25,26 +12,109 @@
 	margin-left: 38px;
 	transform: translateY(-100px);
 }
-.nickname {
-	font-size: 35px;
-	color: $black;
-}
-.hrline {
-	border: 1px solid $bordered-gray;
-	opacity: 1; 
-}
-.universities {
+
+.header-content {
 	margin-left: 250px;
+
+	& .title-badge {
+		color: colors.$crystal-white;
+	}
+
+	& .loading-badge {
+		height: 38px;
+		width: 50px;
+	}
+
+	& .nickname {
+		font-size: 35px;
+		color: colors.$crystal-black;
+	}
+
+	& .mobile-profile-icon {
+		background-color: colors.$elegant-gray;
+		color: colors.$crystal-black;
+		cursor: pointer;
+	}
 }
-.university-logo {
-	width: 25px;
-	height: 25px;
-	border-radius: 100%;
+
+.universities {
+	margin-left: 38px;
+	& .university {
+		color: colors.$crystal-black;
+		font-size: 18px;
+
+		&:hover {
+			color: colors.$light-purple !important;
+		}
+
+		& .university-logo {
+			width: 25px;
+			height: 25px;
+			border-radius: 100%;
+		}
+
+		& .icon-linkv2 {
+			color: colors.$light-gray;
+			font-size: 14px;
+		}
+	}
 }
-@media all and (max-width: 1400px) {
+
+.dropdown-content {
+	right: -38px !important;
+	border-radius: 0;
+	top: 11px;
+	position: absolute;
+	border: 1px solid colors.$bordered-gray;
+	background-color: colors.$crystal-white;
+	width: 223px;
+
+	&:before {
+		content: '';
+		display: block;
+		position: absolute;
+		border-style: solid;
+		border-color: colors.$bordered-gray;
+		border-width: 1px 1px 0 0;
+		width: 15px;
+		height: 15px;
+		top: -8.3px;
+		right: 15px;
+		background: inherit;
+		transform: rotate(-45deg);
+	}
+
+	a {
+		color: colors.$crystal-black;
+	}
+}
+
+.hrline {
+	border: 1px solid colors.$bordered-gray;
+	opacity: 1;
+}
+
+.sendMessage {
+	background-color: colors.$elegant-gray;
+
+	&:hover {
+		background-color: colors.$light-purple !important;
+		color: colors.$crystal-white !important;
+	}
+}
+.link-header {
+	color: colors.$crystal-black;
+
+	&:hover {
+		background-color: colors.$elegant-gray;
+	}
+}
+
+@media all and (max-width: 1399px) {
 	.banner {
 		height: 14.285714285714285vw;
 	}
+
 	.profile-picture {
 		position: absolute;
 		width: 14.285714285714285vw;
@@ -52,62 +122,54 @@
 		margin-left: 2.7142857142857144vw;
 		transform: translateY(-7.1428571428571425vw);
 	}
+
 	.header-content {
 		margin-left: 17.857142857142858vw;
-	}
-	.nickname {
-		font-size: 28px;
-	}
-	.title-badge {
-		font-size: 14px;
+
+		& .nickname {
+			font-size: 28px;
+		}
+
+		& .title-badge {
+			font-size: 14px;
+			white-space: nowrap;
+		}
 	}
 	.universities {
-		margin-left: 17.857142857142858vw;
+		margin-left: 2.7142857142857144vw;
 	}
 }
-
-@media all and (max-width: 575px) {
+@media all and (max-width: 767px) {
+	.stats {
+		background-color: colors.$elegant-gray;
+	}
+}
+@media all and (max-width: 574px) {
 	.banner {
 		height: 82px !important;
-		max-width: 100%;
-	}
-	.banner-image {
-		width: 574px !important;
-		overflow-x: hidden;
+		max-width: 100vw;
+		& .banner-image {
+			width: 574px !important;
+			overflow-x: hidden;
+			position: relative;
+			left: calc(50% - 574px / 2);
+		}
 	}
 
 	.profile-picture {
-		width: 80px;
-		height: 80px;
-		margin-left: 38px;
-		transform: translateY(-30px);
+		width: 85px;
+		height: 85px;
+		transform: translateY(-21px);
 	}
 
 	.header-content {
-		margin-left: 130px
-	}
+		margin-left: calc(95px + 2.7142857143vw);
+		& .nickname {
+			font-size: 25px;
+		}
 
-	.nickname {
-		font-size: 25px;
-	}
-
-	.title-badge {
-		font-size: 12px !important;
-	}
-
-	.universities {
-		margin-left: 38px;
-	}
-}
-
-@keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
+		& .title-badge {
+			font-size: 12px !important;
+		}
 	}
 }
