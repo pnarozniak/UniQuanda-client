@@ -27,6 +27,7 @@
     "jquery": "^3.6.0",
     "moment": "^2.29.3",
     "ngx-bootstrap": "^8.0.0",
+    "ngx-dropzone": "^3.1.0",
     "ngx-toastr": "^14.3.0",
     "rxjs": "~7.4.0",
     "sax": "^1.2.4",

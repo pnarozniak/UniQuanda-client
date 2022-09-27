@@ -1,0 +1,22 @@
+<ngx-dropzone
+	class="custom-dropzone h-100"
+	[multiple]="false"
+	[accept]="'image/png,image/jpg,image/jpeg'"
+	[maxFileSize]="maxFileSizeMB"
+	(change)="onSelect($event)"
+	[ngStyle]="{ 'background-image': 'url(' + backgroundImage + ')' }">
+	<ngx-dropzone-label>
+		<div
+			class="icon-camera-container rounded-circle d-flex flex-column justify-content-center">
+			<i class="uniquanda-icon icon-camera"></i>
+		</div>
+	</ngx-dropzone-label>
+	<app-custom-dropzone-preview
+		ngProjectAs="ngx-dropzone-preview"
+		class="w-100"
+		*ngFor="let f of files"
+		[file]="f"
+		[removable]="true"
+		(removed)="onRemove(f)">
+	</app-custom-dropzone-preview>
+</ngx-dropzone>

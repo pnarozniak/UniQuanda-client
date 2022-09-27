@@ -16,17 +16,18 @@ export class HandleErrorService {
 
 	public handleServerSideError(err: HttpErrorResponse) {
 		if (err.status === 401) {
-			this.handle401Error(err);
+			this.handle401Error();
 		} else if (err.status === 403) {
 			this.handle403Error();
 		} else if (err.status === 500) {
 			this.handle500Error();
 		}
+		return false;
 	}
 
-	handle401Error(err: HttpErrorResponse): void {
-		this._router.navigate(['/login']);
-		this.displayErrorMessage('', err.error ?? 'Nieupoważniony dostęp');
+	handle401Error(): void {
+		this._router.navigate(['/public/login']);
+		this.displayErrorMessage('Nieautoryzowany dostęp', 'Musisz się zalogować!');
 	}
 
 	handle403Error(): void {
@@ -38,6 +39,6 @@ export class HandleErrorService {
 	}
 
 	displayErrorMessage(title: string, message: string): void {
-		this._toastrService.error(title, message);
+		this._toastrService.error(message, title);
 	}
 }

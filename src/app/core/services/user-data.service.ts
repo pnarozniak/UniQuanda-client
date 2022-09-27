@@ -27,6 +27,11 @@ export class UserDataService {
 		return this._user$.getValue() !== null ? true : false;
 	}
 
+	setAvatar(avatarUrl: string): void {
+		this._storageService.setAvatar(avatarUrl);
+		this.setInitialUserData();
+	}
+
 	private setInitialUserData() {
 		const claims = this._storageService.getUserClaims();
 		if (!claims) return;

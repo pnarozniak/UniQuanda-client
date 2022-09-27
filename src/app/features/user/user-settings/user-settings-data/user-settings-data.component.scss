@@ -1,0 +1,130 @@
+@use './../../../../../assets/icons/style.css';
+@use './../../../../../assets/scss/colors.scss' as colors;
+
+.banner-container {
+	position: relative;
+	height: min(200px, 14.285714285714285vw);
+}
+
+.avatar-container {
+	position: absolute;
+	left: 38px;
+	top: min(100px, 7vw);
+	height: min(200px, 18vw);
+	width: min(200px, 18vw);;
+}
+
+.form-container {
+	padding-top: min(190px, 17vw);
+}
+
+.row-content {
+	width: 85%;
+	column-gap: 64px;
+	margin-bottom: 48px;
+}
+
+.bordered {
+	border: 1px solid colors.$bordered-gray;
+}
+
+.register-input {
+	outline: none !important;
+	border-bottom: 1px solid colors.$bordered-gray;
+	font-size: 18px;
+	
+	.standard-input {
+		outline: none !important;
+		width: 100%;
+		&:focus-within + .register-label {
+			transform: translateY(-30px);
+			font-weight: bold;
+		}
+	}
+
+	.register-label {
+		transition: all 0.3s ease-in-out;
+		cursor: text;
+	}
+
+	.birthdate-input {
+		outline: none !important;
+		&:focus-within + .register-label {
+			transform: translateY(-30px);
+			font-weight: bold;
+		}
+	}
+
+	.element-has-text {
+		transform: translateY(-30px);
+		font-weight: bold;
+	}
+}
+
+.border-validation {
+	border-bottom: 1px solid colors.$validation-red !important;
+}
+
+.validation-text {
+	word-break: break-word; 
+	color: colors.$validation-red;
+}
+
+.submit-button {
+	background-color: colors.$academic-blue;
+	color: colors.$crystal-white;
+	border-radius: 7px;
+	font-weight: 500;
+	font-size: 15px;
+}
+
+.textarea-input {
+	min-height: 170px; 
+	resize: none;
+	border: 1px solid colors.$bordered-gray;
+}
+
+.textarea-container {
+	border-bottom: 0;
+}
+
+@media all and (max-width: 991px) {
+	.row-content{
+		row-gap: 45px;
+	}
+}
+
+@media all and (max-width: 575px) {
+	.banner-container {
+		height: 82px;
+		max-width: 100vw;
+	}
+
+	.avatar-container {
+		left: 23px;
+		top: 48px;
+		width: 80px;
+		height: 80px;
+	}
+
+	.form-container{
+		padding-top: 110px;
+	}
+
+	.bordered {
+		border: none;
+	}
+
+	.register-input {
+		font-size: 15px;
+	}
+
+	.submit-button {
+		font-size: 11px;
+	}
+
+	.textarea-input {
+		min-height: 220px; 
+		resize: none;
+	}
+}

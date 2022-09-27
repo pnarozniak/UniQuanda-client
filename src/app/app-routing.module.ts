@@ -23,7 +23,7 @@ const routes: Routes = [
 			import('./features/user/user.module').then((m) => m.UserModule),
 		canActivate: [AuthGuardService],
 		data: {
-			expectedRole: 'User',
+			expectedRole: 'user',
 		},
 	},
 	{

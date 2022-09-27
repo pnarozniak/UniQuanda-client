@@ -11,6 +11,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { JwtTokenInterceptor } from './interceptors/jwt-token-interceptor.service';
 
 @NgModule({
 	providers: [
@@ -20,6 +21,11 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 		{
 			provide: HTTP_INTERCEPTORS,
 			useClass: HandleErrorInterceptorService,
+			multi: true,
+		},
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: JwtTokenInterceptor,
 			multi: true,
 		},
 	],

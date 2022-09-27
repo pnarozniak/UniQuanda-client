@@ -1,0 +1,45 @@
+@use './../../../../../assets/icons/style.css';
+@use './../../../../../assets/scss/colors.scss' as colors;
+
+.nav-container {
+	row-gap: 6px;
+	column-gap: 10px;
+	font-weight: 500;
+}
+
+.uniquanda-icon {
+	font-size: 18px;
+	margin-right: 6px;
+}
+
+.item {
+	padding: 10px 13px 10px 13px;
+	background-color: colors.$gray;
+	color: colors.$crystal-black;
+}
+
+.item-text {
+	white-space: nowrap;
+	font-size: 18px;
+}
+
+.active {
+	background-color: colors.$academic-blue;
+	color: colors.$crystal-white;
+}
+
+@media all and (max-width: 575px) {
+	.item-text {
+		font-size: 13px;
+	}
+
+	.item {
+		padding: 6px 13px 6px 13px;
+	}
+
+	.uniquanda-icon {
+		font-size: 15px;
+		margin-right: 9px;
+	}
+	
+}

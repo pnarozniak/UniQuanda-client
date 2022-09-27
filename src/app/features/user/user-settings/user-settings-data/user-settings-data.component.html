@@ -1,0 +1,284 @@
+<div class="d-flex flex-column">
+	<form [formGroup]="form" class="bordered" (ngSubmit)="updateUser()">
+		<div class="banner-container w-100">
+			<app-drag-and-drop-image-input
+				(image)="updateBanner($event)"
+				[backgroundImage]="backgroundBanner"
+				[initImageSrc]="user?.banner"></app-drag-and-drop-image-input>
+			<div class="avatar-container">
+				<app-drag-and-drop-image-input
+					(image)="updateAvatar($event)"
+					[backgroundImage]="backgroundAvatar"
+					[initImageSrc]="user?.avatar"></app-drag-and-drop-image-input>
+			</div>
+		</div>
+		<div
+			class="form-container d-flex flex-column align-items-center w-100 h-100">
+			<div
+				class="d-flex flex-lg-row flex-column justify-content-center row-content mb-5">
+				<div class="d-flex flex-column w-100">
+					<div
+						class="d-flex register-input"
+						[ngClass]="{
+							'border-validation':
+								!this.form.get('firstName')?.valid &&
+								this.form.get('firstName')?.touched
+						}">
+						<input
+							type="text"
+							class="standard-input border-0"
+							[id]="'firstName'"
+							formControlName="firstName" />
+						<label
+							class="register-label position-absolute"
+							[for]="'firstName'"
+							[ngClass]="{
+								'element-has-text':
+									this.form.get('firstName')?.value !== '' &&
+									this.form.get('firstName')?.value !== null
+							}"
+							>Imię</label
+						>
+					</div>
+					<div
+						class="validation-text"
+						*ngIf="
+							this.form.get('firstName')?.hasError('maxlength') &&
+							this.form.get('firstName')?.touched
+						">
+						Sprawdzaliśmy w bazie imion polskich i nie znaleźliśmy dłuższych niż
+						35 znaków. Jeśli jednak masz dłuższe imie - daj nam o tym znać :)
+					</div>
+				</div>
+				<div class="d-flex flex-column w-100">
+					<div
+						class="d-flex register-input"
+						[ngClass]="{
+							'border-validation':
+								!this.form.get('lastName')?.valid &&
+								this.form.get('lastName')?.touched
+						}">
+						<input
+							type="text"
+							class="standard-input border-0"
+							[id]="'lastName'"
+							formControlName="lastName" />
+						<label
+							class="register-label position-absolute"
+							[for]="'lastName'"
+							[ngClass]="{
+								'element-has-text':
+									this.form.get('lastName')?.value !== '' &&
+									this.form.get('lastName')?.value !== null
+							}"
+							>Nazwisko</label
+						>
+					</div>
+					<div
+						class="validation-text"
+						*ngIf="
+							this.form.get('lastName')?.hasError('maxlength') &&
+							this.form.get('lastName')?.touched
+						">
+						Sprawdzaliśmy w bazie nazwisk polskich i nie znaleźliśmy dłuższych
+						niż 51 znaków. Jeśli jednak masz dłuższe nazwisko - daj nam o tym
+						znać :)
+					</div>
+				</div>
+			</div>
+			<div
+				class="d-flex flex-lg-row flex-column justify-content-center row-content mb-5">
+				<div class="d-flex flex-column w-100">
+					<div
+						class="d-flex register-input"
+						[ngClass]="{
+							'border-validation':
+								!this.form.get('city')?.valid && this.form.get('city')?.touched
+						}">
+						<input
+							type="text"
+							class="standard-input border-0"
+							[id]="'city'"
+							formControlName="city" />
+						<label
+							class="register-label position-absolute"
+							[for]="'city'"
+							[ngClass]="{
+								'element-has-text':
+									this.form.get('city')?.value !== '' &&
+									this.form.get('city')?.value !== null
+							}"
+							>Miasto</label
+						>
+					</div>
+					<div
+						class="validation-text"
+						*ngIf="
+							this.form.get('city')?.hasError('maxlength') &&
+							this.form.get('city')?.touched
+						">
+						Za długa nazwa miasta. Najdłuższa miejscowość jaką znamy to
+						Taumatawhakatangihangakoauauotamateapokaiwhenuakitanatahu w Nowej
+						Zelandii (57 znaków).
+					</div>
+				</div>
+				<div class="d-flex flex-column w-100">
+					<div
+						class="d-flex register-input"
+						[ngClass]="{
+							'border-validation':
+								!this.form.get('phoneNumber')?.valid &&
+								this.form.get('phoneNumber')?.touched
+						}">
+						<input
+							type="text"
+							class="standard-input border-0"
+							[id]="'phoneNumber'"
+							formControlName="phoneNumber" />
+						<label
+							class="register-label position-absolute"
+							[for]="'phoneNumber'"
+							[ngClass]="{
+								'element-has-text':
+									this.form.get('phoneNumber')?.value !== '' &&
+									this.form.get('phoneNumber')?.value !== null
+							}"
+							>Numer telefonu</label
+						>
+					</div>
+					<div
+						class="validation-text"
+						*ngIf="
+							this.form.get('phoneNumber')?.hasError('maxlength') &&
+							this.form.get('phoneNumber')?.touched
+						">
+						Maksymalna długość numeru telefonu 22 znaki.
+					</div>
+				</div>
+			</div>
+			<div
+				class="d-flex flex-lg-row flex-column justify-content-center row-content mb-5">
+				<div class="d-flex flex-column justify-content-center w-100">
+					<div
+						class="d-flex flex-column register-input"
+						[ngClass]="{
+							'border-validation':
+								!this.form.get('birthdate')?.valid &&
+								this.form.get('birthdate')?.touched
+						}">
+						<div class="d-flex flex-row align-items-center birthdate-input">
+							<input
+								formControlName="birthdate"
+								type="text"
+								class="birthdate-input border-0 w-100"
+								bsDatepicker
+								#dp="bsDatepicker"
+								(bsValueChange)="handleDateChange($event)"
+								[bsConfig]="{
+									isAnimated: true,
+									adaptivePosition: true,
+									containerClass: 'theme-dark-blue'
+								}"
+								[id]="'birthdate'" />
+							<div
+								type="button"
+								class="quanda-icons icon-calendar border-0 ms-auto"
+								(click)="dp.show()"></div>
+						</div>
+						<label
+							class="register-label position-absolute"
+							[for]="'birthdate'"
+							[ngClass]="{
+								'element-has-text':
+									this.form.get('birthdate')?.value !== undefined &&
+									this.form.get('birthdate')?.value !== null
+							}"
+							>Data urodzenia</label
+						>
+					</div>
+					<div
+						class="validation-text"
+						*ngIf="
+							this.form.get('birthdate')?.hasError('bsDate') &&
+							this.form.get('birthdate')?.touched
+						">
+						Nie poprawny format daty
+					</div>
+					<div
+						class="validation-text"
+						*ngIf="
+							this.form.get('birthdate')?.hasError('before') &&
+							!this.form.get('birthdate')?.hasError('bsDate') &&
+							this.form.get('birthdate')?.touched
+						">
+						Nie możliwe byś urodził się w przyszłości.
+					</div>
+				</div>
+				<div class="d-flex flex-column w-100">
+					<div
+						class="d-flex register-input"
+						[ngClass]="{
+							'border-validation':
+								!this.form.get('semanticScholarProfile')?.valid &&
+								this.form.get('semanticScholarProfile')?.touched
+						}">
+						<input
+							type="text"
+							class="standard-input border-0"
+							[id]="'semanticScholarProfile'"
+							formControlName="semanticScholarProfile" />
+						<label
+							class="register-label position-absolute"
+							[for]="'semanticScholarProfile'"
+							[ngClass]="{
+								'element-has-text':
+									this.form.get('semanticScholarProfile')?.value !== '' &&
+									this.form.get('semanticScholarProfile')?.value !== null
+							}"
+							>Link do profilu Sematic Schoolar</label
+						>
+					</div>
+					<div
+						class="validation-text"
+						*ngIf="
+							this.form.get('semanticScholarProfile')?.hasError('pattern') &&
+							this.form.get('semanticScholarProfile')?.touched
+						">
+						Błędny format linku do profilu Sematic Schoolar
+					</div>
+				</div>
+			</div>
+			<div class="row-content mb-4">
+				<div
+					class="d-flex register-input textarea-container"
+					[ngClass]="{
+						'border-validation':
+							!this.form.get('aboutText')?.valid &&
+							this.form.get('aboutText')?.touched
+					}">
+					<textarea
+						type="text"
+						class="standard-input textarea-input px-3 py-2"
+						[id]="'aboutText'"
+						formControlName="aboutText"></textarea>
+					<label
+						class="register-label position-absolute"
+						[for]="'lastName'"
+						style="padding-left: 1px"
+						[ngClass]="{
+							'element-has-text':
+								this.form.get('aboutText')?.value !== '' &&
+								this.form.get('aboutText')?.value !== null
+						}"
+						>O mnie...</label
+					>
+				</div>
+			</div>
+			<div class="row-content mb-sm-4 mb-3">
+				<button type="submit" class="submit-button border-0 px-4 py-2">
+					Zapisz zmiany
+				</button>
+			</div>
+		</div>
+	</form>
+</div>

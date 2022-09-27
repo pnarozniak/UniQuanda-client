@@ -1,0 +1,34 @@
+@use './../../../../assets/scss/colors.scss' as colors;
+
+.header {
+	max-width: 1430px;
+}
+
+.header-title {
+	font-size: 35px;
+}
+
+.data-container{
+	max-width: 1400px;
+}
+
+.hr-line {
+	display: none;
+}
+
+@media all and (max-width: 575px) {
+	.header {
+		padding-left: 16px;
+	}
+
+	.header-title {
+		font-size: 24px;
+	}
+
+	.hr-line {
+		display: block;
+		color: colors.$bordered-gray;
+		border: 1px;
+		opacity: 1;
+	}
+}

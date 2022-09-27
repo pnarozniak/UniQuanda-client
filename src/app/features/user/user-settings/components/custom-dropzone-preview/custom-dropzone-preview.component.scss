@@ -1,0 +1,22 @@
+@use './../../../../../../assets/scss/colors.scss' as colors;
+
+:host(app-custom-dropzone-preview){
+	min-width: unset !important;
+	max-width: unset !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	min-height: unset !important;
+	height: 100% !important;
+	width: 100% !important;
+	border-radius: 0 !important;
+	border: none !important;
+
+	ngx-dropzone-remove-badge {
+		opacity: 1;
+		background-color: colors.$crystal-black;
+	}
+}
+
+.img-prev {
+	object-fit: cover !important;
+}
