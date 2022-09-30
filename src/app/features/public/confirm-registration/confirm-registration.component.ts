@@ -98,7 +98,7 @@ export class ConfirmRegistrationComponent implements OnInit {
 		}
 		this._confirmRegistrationApiService
 			.validateRegistrationCode(
-				new ConfirmRegistrationRequestDTO(result, this.email)
+				new ConfirmRegistrationRequestDTO(this.email, result)
 			)
 			.subscribe((data) => {
 				if (data.status === 204) {
