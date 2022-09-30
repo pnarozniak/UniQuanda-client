@@ -28,6 +28,7 @@ export class HeaderComponent implements OnInit {
 		this.$user.subscribe((user) => {
 			this.user = user;
 			this.user?.academicTitles.sort((a, b) => a.order - b.order);
+			this.user?.universities.sort((a, b) => a.order - b.order);
 		});
 	}
 

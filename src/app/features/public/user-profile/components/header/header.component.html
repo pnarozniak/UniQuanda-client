@@ -34,7 +34,22 @@
 				</div>
 			</div>
 			<div class="d-flex flex-row w-100">
-				<b class="nickname mt-2 mt-sm-0">{{ user?.userData?.nickname }}</b>
+				<div
+					class="d-flex flex-xl-row flex-column"
+					*ngIf="
+						user?.userData?.firstName && user?.userData?.lastName;
+						else onlyNick
+					">
+					<b class="nickname mt-2 mt-sm-0"
+						>{{ user?.userData?.firstName }} {{ user?.userData?.lastName }}</b
+					>
+					<span class="mt-auto mb-2 ms-2"
+						>({{ user?.userData?.nickname }})</span
+					>
+				</div>
+				<ng-template #onlyNick>
+					<b class="nickname mt-2 mt-sm-0">{{ user?.userData?.nickname }}</b>
+				</ng-template>
 				<a
 					*ngIf="'myProfile' !== 'myProfile'; else otherProfileMobile"
 					class="icon-edit mobile-profile-icon p-2 ms-auto me-5 my-auto d-flex d-md-none"
@@ -56,8 +71,8 @@
 								*ngIf="'hasPremium' === 'hasPremium'"
 								class="mx-4 mt-1">
 								<i class="icon-mail"></i>
-								Wyślij wiadomość
-							</a>
+								Wyślij wiadomość </a
+							><!--TODO: dodać poprawny warunek sprawdzania premium-->
 							<hr class="mx-4 hrline my-2" />
 							<a href="/user/report/{{ user?.userData?.id }}" class="mx-4 me-1">
 								<i class="icon-report"></i>
@@ -74,7 +89,7 @@
 	</div>
 	<div class="d-flex flex-column universities mt-3 mt-xl-4">
 		<div *ngFor="let university of user?.universities" class="d-flex flex-row">
-			<a class="university" href="#">
+			<a class="university" href="/public/university/{{ university.id }}">
 				<img
 					[src]="university.logo"
 					alt="Logo placówki edukacyjnjej"
@@ -107,8 +122,8 @@
 				*ngIf="'hasPremium' === 'hasPremium'"
 				class="ms-3 sendMessage link-header p-2">
 				<i class="icon-mail"></i>
-				Wyślij wiadomość
-			</a>
+				Wyślij wiadomość </a
+			><!--TODO: dodać poprawny warunek sprawdzania premium-->
 		</div>
 	</ng-template>
 </div>
