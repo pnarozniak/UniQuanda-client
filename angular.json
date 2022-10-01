@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "a": {
+    "uniquanda-client": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/a",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -57,6 +57,27 @@
               ],
               "outputHashing": "all"
             },
+            "dev": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -72,10 +93,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "a:build:production"
+              "browserTarget": "uniquanda-client:build:production"
             },
             "development": {
-              "browserTarget": "a:build:development"
+              "browserTarget": "uniquanda-client:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +104,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "a:build"
+            "browserTarget": "uniquanda-client:build"
           }
         },
         "test": {
@@ -116,7 +137,7 @@
       }
     }
   },
-  "defaultProject": "a",
+  "defaultProject": "uniquanda-client",
   "cli": {
     "defaultCollection": "@angular-eslint/schematics"
   }

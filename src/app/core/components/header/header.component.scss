@@ -11,7 +11,7 @@ header {
 }
 
 .header-height {
-	height: calc(dim.$header-sm-height - dim.$header-footer-height);
+	height: calc(dim.$header-height-sm - dim.$header-footer-height);
 }
 
 .img-logo {
@@ -20,16 +20,21 @@ header {
 }
 
 .a-btn {
-	font-size: 17px;
+	font-size: 15px;
 	font-weight: 500;
-	padding: 5px 36px 5px 36px;
+	padding: 5px 31px 5px 31px;
 	color: colors.$crystal-white;
 	border-radius: 7px;
 	white-space: nowrap;
+	box-shadow: none;
+
+	&:hover {
+		opacity: .8;
+	}
 }
 
 .search-bar {
-	height: 40px;
+	height: 35px;
 	background-color: var(--bg-accent);
 	color: var(--text-accent);
 	outline: 0;
@@ -37,7 +42,7 @@ header {
 
 .btn-search {
 	color: var(--text-accent);
-	font-size: 25px;
+	font-size: 20px;
 	font-weight: 500;
 }
 

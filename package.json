@@ -1,10 +1,11 @@
 {
-  "name": "a",
-  "version": "0.0.0",
+  "name": "uniquanda-client",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --configuration production",
+    "developmentServer": "ng build --configuration dev",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint --fix && npx stylelint \"*/*.scss\" --fix",
