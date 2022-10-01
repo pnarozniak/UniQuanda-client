@@ -104,6 +104,10 @@ header {
 		background-color: var(--bg-accent);
 		margin-right: 0.5rem;
 	}
+
+	.btn-search {
+		background: none;
+	}
 }
 
 @media all and (max-width: 767px) {
