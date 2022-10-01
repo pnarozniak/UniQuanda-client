@@ -2,7 +2,9 @@
 
 .main-content{
 	margin-top: dim.$header-height-sm;
-	max-height: calc(100% - dim.$header-height-sm);
+	min-height: calc(100vh - dim.$header-height-sm);
+	background-color: var(--bg-default);
+	color: var(--text-default);
 }
 
 .nav-bar-margin{

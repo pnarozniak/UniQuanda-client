@@ -15,8 +15,8 @@ header {
 }
 
 .img-logo {
-	content: url('./../../../../assets/images/common/logo/logo_blue.svg');
-	height: 45px;
+	content: url('./../../../../assets/images/core/header/logo_blue.svg');
+	height: 40px;
 }
 
 .a-btn {
@@ -33,11 +33,27 @@ header {
 	}
 }
 
+
 .search-bar {
 	height: 35px;
 	background-color: var(--bg-accent);
 	color: var(--text-accent);
 	outline: 0;
+
+	@mixin placeholder {
+		font-weight: 500;
+		color: var(--text-accent);
+	}
+
+	&::placeholder {
+		@include placeholder;
+	}
+	&:-ms-input-placeholder {
+		@include placeholder;
+	}
+	&::-ms-input-placeholder {
+		@include placeholder;
+	}
 }
 
 .btn-search {
@@ -48,19 +64,7 @@ header {
 
 .btn-avatar {
 	cursor: pointer;
-}
-
-::-webkit-input-placeholder {
-  font-weight: 500;
-}
-::-moz-placeholder {
-  font-weight: 500;
-}
-:-ms-input-placeholder {
-  font-weight: 500;
-}
-:-moz-placeholder {
-  font-weight: 500;
+	border: 1px solid var(--bg-accent);
 }
 
 .a-register {
@@ -139,6 +143,6 @@ header {
 
 .dark {
 	.img-logo {
-		content: url('./../../../../assets/images/common/logo/logo_white.svg');
+		content: url('./../../../../assets/images/core/header/logo_white.svg');
 	}
 }

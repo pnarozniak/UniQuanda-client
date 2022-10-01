@@ -97,12 +97,12 @@
     }
 
     &:not(:checked)+.slider:before {
-      background: colors.$crystal-white url('/assets/images/common/theme/light-theme.svg');
+      background: colors.$crystal-white url('/assets/images/core/header-dropdown/light-theme.svg');
     }
 
     &:checked+.slider:before {
       transform: translateX(22px);
-      background: colors.$crystal-black url('/assets/images/common/theme/dark-theme.svg');
+      background: colors.$crystal-black url('/assets/images/core/header-dropdown/dark-theme.svg');
     }
   }
 }

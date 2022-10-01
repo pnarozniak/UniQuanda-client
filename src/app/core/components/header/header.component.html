@@ -13,7 +13,11 @@
 		<ng-container *ngIf="user$ | async as user; else GuestItems">
 			<img
 				dropdownToggle
-				src="{{ user.avatar }}"
+				src="{{
+					user.avatar
+						? user.avatar
+						: 'assets/images/core/header/default_avatar.svg'
+				}}"
 				width="35"
 				height="35"
 				class="btn-avatar" />
