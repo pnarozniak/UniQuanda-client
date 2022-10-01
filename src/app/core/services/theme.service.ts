@@ -27,14 +27,6 @@ export class ThemeService {
 	}
 
 	/**
-	 * Checks wheter current theme is dark
-	 * @returns True if theme is dark, otherwise False
-	 */
-	isDark(): boolean {
-		return this._isDark$.value;
-	}
-
-	/**
 	 * Creates observable instace for current theme
 	 * @returns Observable with value: True if theme is dark, otherwise False
 	 */
