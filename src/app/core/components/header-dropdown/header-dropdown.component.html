@@ -1,6 +1,7 @@
 <ng-container *ngIf="user$ | async as user">
 	<div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
-		<div class="dropdown-content d-flex flex-column p-2">
+		<div class="dropdown-content d-flex flex-column p-2 position-relative">
+			<i class="icon-close position-absolute top-0 end-0 btn d-sm-none"></i>
 			<h5 class="px-1 mb-3">{{ user.nickname }}</h5>
 			<a class="dropdown-item" [routerLink]="['/user/profile']">
 				<i class="icon-profile"></i>

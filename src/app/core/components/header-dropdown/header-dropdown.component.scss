@@ -14,6 +14,10 @@
 
   .dropdown-content {
     width: 75%;
+
+    .icon-close {
+      color: var(--text-default);
+    }
   }
 
 	&:after {
