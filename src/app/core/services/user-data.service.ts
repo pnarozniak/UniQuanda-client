@@ -27,15 +27,16 @@ export class UserDataService {
 		refreshToken: string
 	): void {
 		const decoded = this.decodeAccessToken(accessToken);
-		this._user$.next({
+		const userData = {
 			id: decoded.id,
 			roles: decoded.roles,
 			nickname,
 			avatar,
 			accessToken,
 			refreshToken,
-		});
-		this._storageService.save(this._userStorageKey, decoded);
+		};
+		this._user$.next(userData);
+		this._storageService.save(this._userStorageKey, userData);
 	}
 
 	/**
