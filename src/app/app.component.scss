@@ -1,8 +1,10 @@
 @use './../assets/scss/dimensions.scss' as dim;
 
 .main-content{
-	margin-top: dim.$heder-height-sm;
-	max-height: calc(100% - dim.$heder-height-sm);
+	margin-top: dim.$header-height-sm;
+	min-height: calc(100vh - dim.$header-height-sm);
+	background-color: var(--bg-default);
+	color: var(--text-default);
 }
 
 .nav-bar-margin{

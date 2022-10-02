@@ -1,9 +1,6 @@
-<header>
+<header dropdown appTheme>
 	<div class="d-flex flex-row header-height align-items-center px-sm-3 px-2">
-		<img
-			src="assets/images/common/logo/logo_blue.svg"
-			class="img-logo mb-sm-2"
-			alt="UniQuanda-Logo" />
+		<img class="img-logo mb-sm-2" alt="UniQuanda-Logo" />
 		<div class="d-flex flex-row mx-lg-5 w-100">
 			<label class="d-flex ms-auto">
 				<button
@@ -13,10 +10,23 @@
 				placeholder="Szukaj"
 				class="search-bar d-lg-flex d-none w-100 border-0 px-1" />
 		</div>
-		<a routerLink="/public/register" class="a-btn a-register btn me-sm-2 me-1"
-			>Zarejestruj się</a
-		>
-		<a routerLink="/public/login" class="a-btn a-login btn">Zaloguj się</a>
+		<ng-container *ngIf="user$ | async as user; else GuestItems">
+			<img
+				dropdownToggle
+				src="{{
+					user.avatar ? user.avatar : 'assets/images/common/default_avatar.svg'
+				}}"
+				width="35"
+				height="35"
+				class="btn-avatar" />
+			<app-header-dropdown></app-header-dropdown>
+		</ng-container>
+		<ng-template #GuestItems>
+			<a routerLink="/public/register" class="a-btn a-register btn me-sm-2 me-1"
+				>Zarejestruj się</a
+			>
+			<a routerLink="/public/login" class="a-btn a-login btn">Zaloguj się</a>
+		</ng-template>
 	</div>
 	<div class="footer-container d-flex">
 		<div class="footer-cell-academicBlue w-100"></div>
