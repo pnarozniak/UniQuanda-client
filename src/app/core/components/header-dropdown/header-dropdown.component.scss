@@ -5,10 +5,10 @@
 
 .dropdown-menu {
   font-size: 12px;
-	min-width: 250px;
-	border-radius: 0;
-	border: 1px solid colors.$bordered-gray;
-	background-color: var(--bg-default);
+  min-width: 250px;
+  border-radius: 0;
+  border: 1px solid colors.$bordered-gray;
+  background-color: var(--bg-default);
   color: var(--text-default);
   transform: translate(-10px, calc(dim.$header-footer-height * -1)) !important;
 
@@ -20,8 +20,8 @@
     }
   }
 
-	&:after {
-		content: "";
+  &:after {
+    content: "";
     display: block;
     position: absolute;
     border-style: solid;
@@ -33,7 +33,7 @@
     right: 15px;
     background: inherit;
     transform: rotate(-45deg);
-	}
+  }
 }
 .dropdown-item {
   color: var(--text-default);
