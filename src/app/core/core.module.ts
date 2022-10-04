@@ -11,7 +11,9 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { HeaderDropdownComponent } from './components/header-dropdown/header-dropdown.component';
+import { ThemeDirective } from './directives/theme.directive';
 @NgModule({
 	providers: [
 		StorageService,
@@ -23,7 +25,12 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 			multi: true,
 		},
 	],
-	declarations: [HeaderComponent, NavBarComponent],
+	declarations: [
+		HeaderComponent,
+		NavBarComponent,
+		HeaderDropdownComponent,
+		ThemeDirective,
+	],
 	imports: [
 		RouterModule,
 		ToastrModule.forRoot(),
@@ -31,7 +38,8 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 		CommonModule,
 		BrowserModule,
 		TooltipModule.forRoot(),
+		BsDropdownModule.forRoot(),
 	],
-	exports: [HeaderComponent, NavBarComponent],
+	exports: [HeaderComponent, NavBarComponent, ThemeDirective],
 })
 export class CoreModule {}

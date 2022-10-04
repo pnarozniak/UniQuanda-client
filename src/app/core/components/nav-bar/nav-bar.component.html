@@ -1,54 +1,49 @@
 <nav class="nav-container">
-	<ul class="d-flex flex-sm-column flex-row">
-		<li class="home li-container">
-			<a
-				routerLink="/public/home"
-				class="icon-container"
-				tooltip="Strona Główna"
-				placement="right">
-				<i class="uniquanda-icon icon-home"> </i>
-			</a>
-		</li>
-		<li class="tag li-container">
-			<a
-				routerLink="/public/tags"
-				class="icon-container"
-				tooltip="Tagi"
-				placement="right">
-				<i class="uniquanda-icon icon-tag"> </i>
-			</a>
-		</li>
-		<li class="test li-container">
-			<a
-				routerLink="/public/tests"
-				class="icon-container"
-				tooltip="Testy"
-				placement="right">
-				<i class="uniquanda-icon icon-test"> </i>
-			</a>
-		</li>
-		<li class="ranking li-container">
-			<a
-				routerLink="/public/ranking"
-				class="icon-container"
-				tooltip="Ranking"
-				placement="right">
-				<i class="uniquanda-icon icon-ranking"> </i>
-			</a>
-		</li>
-		<li
-			*ngIf="_userDataService.isUserLoggedIn()"
-			class="logout li-container"
+	<div class="d-flex flex-sm-column flex-row">
+		<a
+			class="home item"
+			routerLink="/public/home"
+			routerLinkActive="active"
 			tooltip="Strona Główna"
 			placement="right">
-			<a routerLink="/logout" class="icon-container">
-				<i class="uniquanda-icon icon-logout"> </i>
-			</a>
-		</li>
+			<i class="uniquanda-icon icon-home"> </i>
+		</a>
+		<a
+			routerLink="/public/tags"
+			routerLinkActive="active"
+			class="tag item"
+			tooltip="Tagi"
+			placement="right">
+			<i class="uniquanda-icon icon-tag"> </i>
+		</a>
+		<a
+			routerLink="/public/tests"
+			routerLinkActive="active"
+			class="test item"
+			tooltip="Testy"
+			placement="right">
+			<i class="uniquanda-icon icon-test"> </i>
+		</a>
+		<a
+			routerLink="/public/ranking"
+			routerLinkActive="active"
+			class="ranking item"
+			tooltip="Ranking"
+			placement="right">
+			<i class="uniquanda-icon icon-ranking"> </i>
+		</a>
+		<a
+			*ngIf="user$ | async"
+			class="logout item"
+			tooltip="Wyloguj"
+			placement="right"
+			routerLink="/logout">
+			<i class="uniquanda-icon icon-logout"> </i>
+		</a>
 		<a
 			routerLink="/public/questions/add"
-			class="icon-container plus mx-auto rounded-circle">
+			class="item plus mx-auto rounded-circle">
 			<i class="uniquanda-icon icon-plus fs-6"></i>
 		</a>
-	</ul>
+	</div>
 </nav>

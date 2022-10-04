@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { StorageService } from 'src/app/core/services/storage.service';
 import { UserDataService } from 'src/app/core/services/user-data.service';
 import { LoginApiService } from './services/login-api.service';
 import { LoginRequestDTO, LoginResponseStatus } from './models/login.dto';
@@ -17,7 +16,6 @@ export class LoginComponent {
 	public form: FormGroup;
 	constructor(
 		private readonly _loginApiService: LoginApiService,
-		private readonly _storageService: StorageService,
 		private readonly _userDataService: UserDataService,
 		private readonly _toastrService: ToastrService,
 		private readonly _router: Router
@@ -46,15 +44,8 @@ export class LoginComponent {
 		this._loginApiService
 			.login(new LoginRequestDTO(formValue.email, formValue.password))
 			.subscribe({
-				next: (response) => {
-					if (response.status === 404) {
-						this._toastrService.error(
-							'Nie znaleziono użytkownika o podanych danych',
-							'Błąd'
-						);
-					} else if (
-						response.body?.status === LoginResponseStatus.EmailNotConfirmed
-					) {
+				next: (res) => {
+					if (res.body?.status === LoginResponseStatus.EmailNotConfirmed) {
 						this._toastrService.error(
 							'Konto posiada nie potwierdzony adres E-mail. Sprawdź swoją skrzynkę pocztową',
 							'Błąd'
@@ -63,15 +54,12 @@ export class LoginComponent {
 							'/public/confirm-registration',
 							{ email: this.form.value.email },
 						]);
-					} else {
-						this._storageService.saveUserData(
-							response.body?.accessToken ?? '',
-							response.body?.refreshToken ?? '',
-							response.body?.nickname ?? '',
-							response.body?.avatar ?? ''
-						);
+					} else if (res.body?.status === LoginResponseStatus.Success) {
 						this._userDataService.setUserData(
-							this._storageService.getUserClaims()
+							res.body.nickname ?? '',
+							res.body.avatar ?? '',
+							res.body.accessToken ?? '',
+							res.body.refreshToken ?? ''
 						);
 						this._router.navigate(['/public/home']);
 					}

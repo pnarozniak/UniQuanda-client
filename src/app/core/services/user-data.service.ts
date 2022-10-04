@@ -1,35 +1,78 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { UserClaims } from '../models/user-claims.model';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Role } from '../enums/role.enum';
+import { IUserClaims } from '../models/user-claims.model';
 import { StorageService } from './storage.service';
 
 @Injectable()
 export class UserDataService {
-	private readonly _user$ = new BehaviorSubject<UserClaims | null>(null);
+	private readonly _userStorageKey = 'user';
+	private readonly _user$ = new BehaviorSubject<IUserClaims | null>(null);
 
 	constructor(private readonly _storageService: StorageService) {
-		this.setInitialUserData();
+		this.loadInitialState();
 	}
 
-	setUserData(user: UserClaims | null): void {
-		this._user$.next(user);
+	/**
+	 * Sets user data, including accessToken claims
+	 * @param nickname user nickname
+	 * @param avatar user avatar
+	 * @param accessToken user accessToken
+	 * @param refreshToken user refreshToken
+	 */
+	setUserData(
+		nickname: string,
+		avatar: string,
+		accessToken: string,
+		refreshToken: string
+	): void {
+		const decoded = this.decodeAccessToken(accessToken);
+		const userData = {
+			id: decoded.id,
+			roles: decoded.roles,
+			nickname,
+			avatar,
+			accessToken,
+			refreshToken,
+		};
+		this._user$.next(userData);
+		this._storageService.save(this._userStorageKey, userData);
 	}
 
-	getUserData$(): BehaviorSubject<UserClaims | null> {
-		return this._user$;
+	/**
+	 * Removes all user data
+	 */
+	clearUserData(): void {
+		this._user$.next(null);
+		this._storageService.delete(this._userStorageKey);
 	}
 
-	getUserData(): UserClaims | null {
+	/**
+	 * Gets current user data
+	 * @returns Current user claims or null
+	 */
+	getUserData(): IUserClaims | null {
 		return this._user$.getValue();
 	}
 
-	isUserLoggedIn(): boolean {
-		return this._user$.getValue() !== null ? true : false;
+	/**
+	 * Creates observable instace for user data
+	 * @returns Observable with value: user claims or null
+	 */
+	getUserData$(): Observable<IUserClaims | null> {
+		return this._user$.asObservable();
 	}
 
-	private setInitialUserData() {
-		const claims = this._storageService.getUserClaims();
-		if (!claims) return;
-		this.setUserData(claims);
+	private decodeAccessToken(token: string): { id: number; roles: Role[] } {
+		const decoded = JSON.parse(window.atob(token.split('.')[1]));
+		return {
+			id: decoded.id,
+			roles: decoded.roles,
+		};
+	}
+
+	private loadInitialState() {
+		const user = this._storageService.get<IUserClaims>(this._userStorageKey);
+		if (user) this._user$.next(user);
 	}
 }

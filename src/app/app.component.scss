@@ -1,20 +1,22 @@
-@import './../assets/scss/dimensions.scss';
+@use './../assets/scss/dimensions.scss' as dim;
 
 .main-content{
-	margin-top: $header-sm-height;
-	max-height: calc(100% - $header-sm-height);
+	margin-top: dim.$header-height-sm;
+	min-height: calc(100vh - dim.$header-height-sm);
+	background-color: var(--bg-default);
+	color: var(--text-default);
 }
 
 .nav-bar-margin{
-	margin-left: $nav-bar-sm-width;
+	margin-left: dim.$nav-bar-width-sm;
 }
 
 @media all and (max-width: 575px) {
 	.main-content{
-		margin-top: $header-height;
+		margin-top: dim.$header-height;
 		max-width: 100%;
 		
-		margin-bottom: $nav-bar-height;
+		margin-bottom: dim.$nav-bar-height;
 	}
 
 	.nav-bar-margin{
