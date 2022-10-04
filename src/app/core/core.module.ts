@@ -13,7 +13,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HeaderDropdownComponent } from './components/header-dropdown/header-dropdown.component';
-import { ThemeDirective } from './directives/theme.directive';
+import { SharedModule } from '../shared/shared.module';
 @NgModule({
 	providers: [
 		StorageService,
@@ -25,21 +25,17 @@ import { ThemeDirective } from './directives/theme.directive';
 			multi: true,
 		},
 	],
-	declarations: [
-		HeaderComponent,
-		NavBarComponent,
-		HeaderDropdownComponent,
-		ThemeDirective,
-	],
+	declarations: [HeaderComponent, NavBarComponent, HeaderDropdownComponent],
 	imports: [
 		RouterModule,
 		ToastrModule.forRoot(),
 		HttpClientModule,
 		CommonModule,
 		BrowserModule,
+		SharedModule,
 		TooltipModule.forRoot(),
 		BsDropdownModule.forRoot(),
 	],
-	exports: [HeaderComponent, NavBarComponent, ThemeDirective],
+	exports: [HeaderComponent, NavBarComponent],
 })
 export class CoreModule {}
