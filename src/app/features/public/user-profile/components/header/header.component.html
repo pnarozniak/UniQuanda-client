@@ -8,7 +8,7 @@
 			[src]="
 				user?.userData?.banner !== null
 					? user?.userData?.banner
-					: 'assets/public/profile/default_users_background.svg'
+					: 'assets/images/common/default_users_background.svg'
 			"
 			class="w-100 banner-image"
 			alt="banner" />
@@ -18,7 +18,7 @@
 			[src]="
 				user?.userData?.avatar !== null
 					? user?.userData?.avatar
-					: 'assets/public/profile/deafult_users_avatar.svg'
+					: 'assets/images/common/default_avatar.svg'
 			"
 			alt="profile-picture"
 			class="profile-picture"
@@ -56,19 +56,23 @@
 						<b class="nickname mt-2 mt-sm-0">{{ user?.userData?.nickname }}</b>
 					</ng-template>
 					<a
-						*ngIf="'myProfile' !== 'myProfile'; else otherProfileMobile"
-						class="icon-edit mobile-profile-icon p-2 ms-auto me-5 my-auto d-flex d-md-none"
+						*ngIf="
+							(userClaims$ | async)?.id === user?.userData?.id;
+							else otherProfileMobile
+						"
+						class="icon-edit mobile-profile-icon p-2 ms-auto me-4 my-auto d-flex d-md-none"
 						href="/user/profile/settings/edit"></a>
 					<ng-template #otherProfileMobile>
 						<div
 							dropdown
 							[insideClick]="true"
 							container="body"
-							class="ms-auto me-5 my-auto d-flex d-md-none">
+							class="ms-auto me-4 my-auto d-flex d-md-none">
 							<i class="icon-dots p-2 mobile-profile-icon" dropdownToggle></i>
 							<div
 								*dropdownMenu
-								class="dropdown-content d-flex flex-column p-2 d-md-none">
+								class="dropdown-content d-flex flex-column p-2 d-md-none"
+								appTheme>
 								<a
 									href="/premium/message/createNewMessage/{{
 										user?.userData?.id
@@ -111,17 +115,20 @@
 		<app-user-profile-header-stats
 			[headerStatistics]="user?.headerStatistics"
 			class="stats d-md-none d-flex flex-row p-2 mx-auto mt-3"></app-user-profile-header-stats>
-		<hr class="mx-4 hrline d-xl-block d-none" />
+		<hr class="mx-4 hrline d-md-block d-none" />
 		<div
-			class="d-md-flex d-none flex-row mx-auto me-5 mt-xl-0 mt-3"
-			*ngIf="'myProfile' !== 'myProfile'; else otherProfile">
+			class="d-md-flex d-none flex-row mx-auto me-5 mt-md-0 mt-3"
+			*ngIf="
+				(userClaims$ | async)?.id === user?.userData?.id;
+				else otherProfile
+			">
 			<a href="/user/profile/settings/edit" class="link-header p-2">
 				<i class="icon-edit me-1"></i>
 				Edytuj profil
 			</a>
 		</div>
 		<ng-template #otherProfile>
-			<div class="d-md-flex d-none flex-row mx-auto me-5 mt-xl-0 mt-3">
+			<div class="d-md-flex d-none flex-row mx-auto me-5 mt-md-0 mt-3">
 				<a href="/user/report/{{ user?.userData?.id }}" class="link-header p-2">
 					<i class="icon-report"></i>
 					Zgłoś użytkownika

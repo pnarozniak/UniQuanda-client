@@ -65,7 +65,7 @@
 	top: 11px;
 	position: absolute;
 	border: 1px solid colors.$bordered-gray;
-	background-color: colors.$crystal-white;
+	background-color: var(--bg-default);
 	width: 223px;
 
 	&:before {
@@ -84,7 +84,7 @@
 	}
 
 	a {
-		color: colors.$crystal-black;
+		color: var(--text-default);
 	}
 }
 
@@ -144,9 +144,9 @@
 			background-color: var(--bg-accent);
 		}
 	}
-	// .stats {
-	// 	background-color: colors.$elegant-gray;
-	// }
+	.stats {
+		background-color: colors.$elegant-gray;
+	}
 	
 }
 @media all and (max-width: 574px) {

@@ -7,3 +7,6 @@ b {
 	width: 1px;
 	background-color: colors.$light-gray;
 }
+.dark .stats-divider {
+	background-color: colors.$bordered-gray;
+}

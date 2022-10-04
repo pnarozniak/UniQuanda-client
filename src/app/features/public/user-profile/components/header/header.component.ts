@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IUserClaims } from 'src/app/core/models/user-claims.model';
