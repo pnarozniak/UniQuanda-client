@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { IUserClaims } from 'src/app/core/models/user-claims.model';
 import { AcademicTitleType } from '../../models/acedemic-title';
 import { UserProfileResponseDTO } from '../../models/user-profile.dto';
 
@@ -15,22 +16,11 @@ import { UserProfileResponseDTO } from '../../models/user-profile.dto';
 		},
 	],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 	@Input()
-	public $user!: BehaviorSubject<UserProfileResponseDTO | null>;
-	public user: UserProfileResponseDTO | null;
-
-	constructor() {
-		this.user = null;
-	}
-
-	ngOnInit(): void {
-		this.$user.subscribe((user) => {
-			this.user = user;
-			this.user?.academicTitles.sort((a, b) => a.order - b.order);
-			this.user?.universities.sort((a, b) => a.order - b.order);
-		});
-	}
+	public user$!: BehaviorSubject<UserProfileResponseDTO | null>;
+	@Input()
+	public userClaims$!: Observable<IUserClaims | null>;
 
 	getAcademicTitleTypeColor(type: AcademicTitleType) {
 		switch (type) {

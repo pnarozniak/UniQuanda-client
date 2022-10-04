@@ -5,7 +5,6 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterSecondStepComponent } from './register/pages//register-second-step/register-second-step.component';
 import { RegisterComponent } from './register/register.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
 	{ path: 'home', component: HomeComponent, data: { title: 'Strona główna' } },
@@ -26,8 +25,11 @@ const routes: Routes = [
 		data: { title: 'Potwierdź konto' },
 	},
 	{
-		path: 'profile/:id',
-		component: UserProfileComponent,
+		path: 'profile',
+		loadChildren: () =>
+			import('./user-profile/user-profile.module').then(
+				(m) => m.UserProfileModule
+			),
 		data: { title: 'Ładowanie profilu...' },
 	},
 ];

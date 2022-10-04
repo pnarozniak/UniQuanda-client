@@ -6,11 +6,13 @@ import { UserProfileComponent } from './user-profile.component';
 import { HeaderComponent } from './components/header/header.component';
 import { StatsComponent } from './components/header/stats/stats.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { UserProfileRoutingModule } from './user-profile-routing.module';
 
 @NgModule({
 	imports: [
 		CommonModule,
 		RouterModule,
+		UserProfileRoutingModule,
 		ToastrModule.forRoot(),
 		BsDropdownModule.forRoot(),
 	],

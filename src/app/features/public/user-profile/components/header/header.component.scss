@@ -27,20 +27,20 @@
 
 	& .nickname {
 		font-size: 35px;
-		color: colors.$crystal-black;
+		color: var(--text-default);
 	}
 
 	& .mobile-profile-icon {
-		background-color: colors.$elegant-gray;
-		color: colors.$crystal-black;
+		background-color: var(--bg-accent);
+		color: var(--text-default);
 		cursor: pointer;
 	}
 }
 
 .universities {
 	margin-left: 38px;
-	& .university {
-		color: colors.$crystal-black;
+	& .university a {
+		color: var(--text-default);
 		font-size: 18px;
 
 		&:hover {
@@ -54,7 +54,6 @@
 		}
 
 		& .icon-linkv2 {
-			color: colors.$light-gray;
 			font-size: 14px;
 		}
 	}
@@ -95,7 +94,7 @@
 }
 
 .sendMessage {
-	background-color: colors.$elegant-gray;
+	background-color: var(--bg-accent);
 
 	&:hover {
 		background-color: colors.$light-purple !important;
@@ -103,10 +102,10 @@
 	}
 }
 .link-header {
-	color: colors.$crystal-black;
+	color: var(--text-default);
 
 	&:hover {
-		background-color: colors.$elegant-gray;
+		background-color: var(--bg-accent);
 	}
 }
 
@@ -140,9 +139,15 @@
 	}
 }
 @media all and (max-width: 767px) {
-	.stats {
-		background-color: colors.$elegant-gray;
+	.dark {
+		.stats{
+			background-color: var(--bg-accent);
+		}
 	}
+	// .stats {
+	// 	background-color: colors.$elegant-gray;
+	// }
+	
 }
 @media all and (max-width: 574px) {
 	.banner {
