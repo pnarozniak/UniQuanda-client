@@ -1,5 +1,5 @@
 import { Directive, HostBinding } from '@angular/core';
-import { ThemeService } from '../services/theme.service';
+import { ThemeService } from 'src/app/core/services/theme.service';
 
 @Directive({
 	selector: '[appTheme]',
