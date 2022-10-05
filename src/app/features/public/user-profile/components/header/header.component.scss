@@ -25,8 +25,8 @@
 	}
 
 	& .loading-badge {
-		height: 38px;
-		width: 50px;
+		height: 35px;
+		width: 70px;
 	}
 
 	& .nickname {
@@ -38,6 +38,11 @@
 		background-color: var(--bg-accent);
 		color: var(--text-default);
 		cursor: pointer;
+	}
+
+	& .loading-nick {
+		height: 35px;
+		width: 200px;
 	}
 }
 
@@ -62,7 +67,17 @@
 		}
 	}
 }
-
+.icon-loading {
+	width: 32px;
+	height: 32px
+}
+.university-loading {
+	height: 25px;
+}
+.action-button-loading {
+	width: 200px;
+	height: 40px;
+}
 .dropdown-content {
 	right: -38px !important;
 	border-radius: 0;
@@ -137,6 +152,16 @@
 			font-size: 14px;
 			white-space: nowrap;
 		}
+
+		& .loading-badge {
+			height: 30px;
+			width: 60px;
+		}
+
+		& .loading-nick {
+			width: 165px;
+			height: 30px;
+		}
 	}
 	.universities {
 		margin-left: 2.7142857142857144vw;
@@ -144,14 +169,13 @@
 }
 @media all and (max-width: 767px) {
 	.dark {
-		.stats{
+		.stats {
 			background-color: var(--bg-accent);
 		}
 	}
 	.stats {
 		background-color: colors.$elegant-gray;
 	}
-	
 }
 @media all and (max-width: 574px) {
 	.banner {

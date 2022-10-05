@@ -27,6 +27,14 @@
 		<div class="header-content d-flex mt-sm-3 mt-2">
 			<div class="d-flex flex-column w-100">
 				<div class="badges d-flex">
+					<div
+						class="loading-badge me-1 mb-1"
+						[appLoading]="user === null"
+						*ngIf="user === null"></div>
+					<div
+						class="loading-badge mb-1"
+						[appLoading]="user === null"
+						*ngIf="user === null"></div>
 					<div *ngFor="let title of user?.academicTitles" class="me-1">
 						<b
 							class="p-2 title-badge"
@@ -40,6 +48,10 @@
 					</div>
 				</div>
 				<div class="d-flex flex-row w-100">
+					<div
+						class="loading-nick"
+						[appLoading]="user === null"
+						*ngIf="user === null"></div>
 					<div
 						class="d-flex flex-xl-row flex-column"
 						*ngIf="
@@ -58,13 +70,15 @@
 					</ng-template>
 					<a
 						*ngIf="
-							(userClaims$ | async)?.id === user?.userData?.id;
+							(userClaims$ | async)?.id === user?.userData?.id &&
+								user?.userData?.id !== null;
 							else otherProfileMobile
 						"
 						class="icon-edit mobile-profile-icon p-2 ms-auto me-4 my-auto d-flex d-md-none"
 						href="/user/profile/settings/edit"></a>
 					<ng-template #otherProfileMobile>
 						<div
+							*ngIf="user?.userData?.id"
 							dropdown
 							[insideClick]="true"
 							container="body"
@@ -92,12 +106,15 @@
 								</a>
 							</div>
 						</div>
+						<div
+							class="icon-loading ms-auto me-4 my-auto d-flex d-md-none"
+							[appLoading]="user === null"></div>
 					</ng-template>
 				</div>
 			</div>
 			<app-user-profile-header-stats
 				[headerStatistics]="user?.headerStatistics"
-				class="stats my-auto ms-auto me-3 d-md-flex d-none flex-row p-2"></app-user-profile-header-stats>
+				class="stats my-auto ms-auto me-3 d-md-flex d-none flex-row"></app-user-profile-header-stats>
 		</div>
 		<div class="d-flex flex-column universities mt-3 mt-xl-4">
 			<div
@@ -112,15 +129,24 @@
 					<i class="icon-linkv2 ms-1"> </i>
 				</a>
 			</div>
+			<div
+				class="university-loading w-75"
+				[appLoading]="user === null"
+				*ngIf="user === null"></div>
+			<div
+				class="university-loading w-75 mt-1"
+				[appLoading]="user === null"
+				*ngIf="user === null"></div>
 		</div>
 		<app-user-profile-header-stats
 			[headerStatistics]="user?.headerStatistics"
-			class="stats d-md-none d-flex flex-row p-2 mx-auto mt-3"></app-user-profile-header-stats>
+			class="stats d-md-none d-flex flex-row mx-auto mt-3"></app-user-profile-header-stats>
 		<hr class="mx-4 hrline d-md-block d-none" />
 		<div
 			class="d-md-flex d-none flex-row mx-auto me-5 mt-md-0 mt-3"
 			*ngIf="
-				(userClaims$ | async)?.id === user?.userData?.id;
+				(userClaims$ | async)?.id === user?.userData?.id &&
+					user?.userData?.id !== null;
 				else otherProfile
 			">
 			<a href="/user/profile/settings/edit" class="link-header p-2">
@@ -129,7 +155,9 @@
 			</a>
 		</div>
 		<ng-template #otherProfile>
-			<div class="d-md-flex d-none flex-row mx-auto me-5 mt-md-0 mt-3">
+			<div
+				class="d-md-flex d-none flex-row mx-auto me-5 mt-md-0 mt-3"
+				*ngIf="user?.userData?.id !== null">
 				<a href="/user/report/{{ user?.userData?.id }}" class="link-header p-2">
 					<i class="icon-report"></i>
 					Zgłoś użytkownika
@@ -142,6 +170,9 @@
 					Wyślij wiadomość </a
 				><!--TODO: dodać poprawny warunek sprawdzania premium-->
 			</div>
+			<div
+				class="action-button-loading d-md-flex d-none mx-auto me-5 mt-md-0 mt-3"
+				[appLoading]="user === null"></div>
 		</ng-template>
 	</div>
 </ng-template>
