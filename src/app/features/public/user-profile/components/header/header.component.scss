@@ -3,6 +3,10 @@
 .banner {
 	height: 200px;
 	overflow: hidden;
+	& .banner-image {
+		min-width: 100%;
+		min-height: 100%;
+	}
 }
 
 .profile-picture {
@@ -155,6 +159,7 @@
 		max-width: 100vw;
 		& .banner-image {
 			width: 574px !important;
+			min-width: 574px;
 			overflow-x: hidden;
 			position: relative;
 			left: calc(50% - 574px / 2);

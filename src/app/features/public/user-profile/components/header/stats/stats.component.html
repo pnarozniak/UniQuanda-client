@@ -1,4 +1,4 @@
-<div class="d-flex flex-row" appTheme>
+<div class="d-flex flex-row" appTheme [appLoading]="headerStatistics === null">
 	<div class="d-flex my-auto flex-column ms-2">
 		<b class="text-center">{{ headerStatistics?.points }}</b>
 		<span class="text-center">punktów</span>

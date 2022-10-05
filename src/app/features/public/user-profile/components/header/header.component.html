@@ -4,25 +4,26 @@
 	let-user
 	[ngTemplateOutletContext]="{ $implicit: user$ | async }">
 	<div class="w-100 banner">
-		<img
-			[src]="
-				user?.userData?.banner !== null
-					? user?.userData?.banner
-					: 'assets/images/common/default_users_background.svg'
-			"
-			class="w-100 banner-image"
-			alt="banner" />
+		<div [appLoading]="user === null" class="w-100 banner-image">
+			<img
+				[src]="
+					user?.userData?.banner
+						? user?.userData?.banner
+						: 'assets/images/common/default_users_background.svg'
+				"
+				alt="banner" />
+		</div>
 	</div>
 	<div class="w-100 d-flex flex-column" appTheme>
-		<img
-			[src]="
-				user?.userData?.avatar !== null
-					? user?.userData?.avatar
-					: 'assets/images/common/default_avatar.svg'
-			"
-			alt="profile-picture"
-			class="profile-picture"
-			[ngClass]="{ loading: user === null }" />
+		<div class="profile-picture" [appLoading]="user === null">
+			<img
+				[src]="
+					user?.userData?.avatar
+						? user?.userData?.avatar
+						: 'assets/images/common/default_avatar.svg'
+				"
+				alt="profile-picture" />
+		</div>
 		<div class="header-content d-flex mt-sm-3 mt-2">
 			<div class="d-flex flex-column w-100">
 				<div class="badges d-flex">
