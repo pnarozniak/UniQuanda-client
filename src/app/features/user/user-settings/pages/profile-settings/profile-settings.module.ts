@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserSettingsDataComponent } from './user-settings-data.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { RouterModule } from '@angular/router';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { CustomDropzonePreviewComponent } from '../components/custom-dropzone-preview/custom-dropzone-preview.component';
-import { DragAndDropImageInputComponent } from '../components/drag-and-drop-image-input/drag-and-drop-image-input.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { ProfileSettingsComponent } from './profile-settings.component';
+import { CustomDropzonePreviewComponent } from '../../components/custom-dropzone-preview/custom-dropzone-preview.component';
+import { DragAndDropImageInputComponent } from '../../components/drag-and-drop-image-input/drag-and-drop-image-input.component';
 
 @NgModule({
 	declarations: [
-		UserSettingsDataComponent,
+		ProfileSettingsComponent,
 		DragAndDropImageInputComponent,
 		CustomDropzonePreviewComponent,
 	],
@@ -24,4 +24,4 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 		NgxDropzoneModule,
 	],
 })
-export class UserSettingsDataModule {}
+export class ProfileSettingsModule {}

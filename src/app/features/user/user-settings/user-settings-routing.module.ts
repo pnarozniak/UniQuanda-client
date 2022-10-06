@@ -1,4 +1,4 @@
-import { UserSettingsDataComponent } from './user-settings-data/user-settings-data.component';
+import { ProfileSettingsComponent } from './pages/profile-settings/profile-settings.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserDataResolver } from './resolvers/user-data.resolver';
@@ -12,7 +12,7 @@ const routes: Routes = [
 		children: [
 			{
 				path: 'profile',
-				component: UserSettingsDataComponent,
+				component: ProfileSettingsComponent,
 				canActivate: [AuthGuardService],
 				data: { title: 'Edycja', expectedRole: 'user' },
 				resolve: { appUser: UserDataResolver },

@@ -1,25 +1,21 @@
-import { ToastrService } from 'ngx-toastr';
-import { UserProfileApiService } from '../services/user-profile-api.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Component, LOCALE_ID } from '@angular/core';
-import { BsLocaleService } from 'ngx-bootstrap/datepicker';
-import { plLocale } from 'ngx-bootstrap/locale';
-import { defineLocale } from 'ngx-bootstrap/chronos';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { UserSettingsDataResponseDTO } from '../models/user-settings-data.dto';
 import * as moment from 'moment';
+import { BsLocaleService } from 'ngx-bootstrap/datepicker';
+import { ToastrService } from 'ngx-toastr';
 import { UserDataService } from 'src/app/core/services/user-data.service';
 import { DateValidationService } from 'src/app/shared/services/date-validation.service';
-defineLocale('pl', plLocale);
+import { UserSettingsDataResponseDTO } from '../../models/user-settings-data.dto';
+import { UserProfileApiService } from '../../services/user-profile-api.service';
 
 @Component({
-	selector: 'app-user-settings-data',
-	templateUrl: './user-settings-data.component.html',
-	styleUrls: ['./user-settings-data.component.scss'],
-	providers: [{ provide: LOCALE_ID, useValue: 'pl' }],
+  selector: 'app-profile-settings',
+  templateUrl: './profile-settings.component.html',
+  styleUrls: ['./profile-settings.component.scss']
 })
-export class UserSettingsDataComponent {
-	public form: FormGroup;
+export class ProfileSettingsComponent {
+  public form: FormGroup;
 	public user: UserSettingsDataResponseDTO | undefined;
 
 	public backgroundAvatar = 'common/user-profile/deafult_user_avatar.svg';
