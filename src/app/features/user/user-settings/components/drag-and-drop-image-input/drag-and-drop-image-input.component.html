@@ -4,7 +4,9 @@
 	[accept]="'image/png,image/jpg,image/jpeg'"
 	[maxFileSize]="maxFileSizeMB"
 	(change)="onSelect($event)"
-	[ngStyle]="{ 'background-image': files.length > 0 ? '' : 'url(' + backgroundImage + ')'}">
+	[ngStyle]="{
+		'background-image': files.length > 0 ? '' : 'url(' + backgroundImage + ')'
+	}">
 	<ngx-dropzone-label>
 		<div
 			class="icon-camera-container rounded-circle d-flex flex-column justify-content-center">

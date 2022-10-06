@@ -16,9 +16,7 @@ defineLocale('pl', plLocale);
 	selector: 'app-user-settings-data',
 	templateUrl: './user-settings-data.component.html',
 	styleUrls: ['./user-settings-data.component.scss'],
-	providers: [
-    { provide: LOCALE_ID, useValue: 'pl' }
-  ]
+	providers: [{ provide: LOCALE_ID, useValue: 'pl' }],
 })
 export class UserSettingsDataComponent {
 	public form: FormGroup;
@@ -52,10 +50,9 @@ export class UserSettingsDataComponent {
 			lastName: new FormControl(this.user?.lastName, [
 				Validators.maxLength(51),
 			]),
-			birthdate: new FormControl(
-				this.setInitDate(this.user?.birthdate),
-				[this._dateValidationService.checkIfDateBeforeNow]
-			),
+			birthdate: new FormControl(this.setInitDate(this.user?.birthdate), [
+				this._dateValidationService.checkIfDateBeforeNow,
+			]),
 			phoneNumber: new FormControl(this.user?.phoneNumber, [
 				Validators.maxLength(22),
 			]),
@@ -84,11 +81,20 @@ export class UserSettingsDataComponent {
 		userFormData.append('FirstName', this.form.get('firstName')?.value ?? '');
 		userFormData.append('LastName', this.form.get('lastName')?.value ?? '');
 		if (this.form.get('birthdate')?.value)
-			userFormData.append('Birthdate',moment(this.form.get('birthdate')?.value ?? '').format());
+			userFormData.append(
+				'Birthdate',
+				moment(this.form.get('birthdate')?.value ?? '').format()
+			);
 		userFormData.append('Birthdate', this.form.get('birthdate')?.value ?? '');
-		userFormData.append('PhoneNumber', this.form.get('phoneNumber')?.value ?? '');
+		userFormData.append(
+			'PhoneNumber',
+			this.form.get('phoneNumber')?.value ?? ''
+		);
 		userFormData.append('City', this.form.get('city')?.value ?? '');
-		userFormData.append('SemanticScholarProfile', this.form.get('semanticScholarProfile')?.value ?? '');
+		userFormData.append(
+			'SemanticScholarProfile',
+			this.form.get('semanticScholarProfile')?.value ?? ''
+		);
 		userFormData.append('AboutText', this.form.get('aboutText')?.value ?? '');
 		if (this.userBanner) userFormData.append('Banner', this.userBanner);
 		if (this.userAvatar) userFormData.append('Avatar', this.userAvatar);
@@ -114,8 +120,7 @@ export class UserSettingsDataComponent {
 	}
 
 	setInitDate(birthdate: Date | null | undefined): Date | null {
-		if(!birthdate)
-			return null;
+		if (!birthdate) return null;
 		const splittedDate = birthdate?.toString().split('T');
 		return new Date(splittedDate[0]);
 	}

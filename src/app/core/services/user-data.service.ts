@@ -7,8 +7,10 @@ import { StorageService } from './storage.service';
 @Injectable()
 export class UserDataService {
 	private readonly _userStorageKey = 'user';
-	private readonly _idJwtKey = 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier';
-	private readonly _roleJwtKey = 'http://schemas.microsoft.com/ws/2008/06/identity/claims/role';
+	private readonly _idJwtKey =
+		'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier';
+	private readonly _roleJwtKey =
+		'http://schemas.microsoft.com/ws/2008/06/identity/claims/role';
 	private readonly _user$ = new BehaviorSubject<IUserClaims | null>(null);
 
 	constructor(private readonly _storageService: StorageService) {
@@ -74,7 +76,7 @@ export class UserDataService {
 		const decoded = JSON.parse(window.atob(token.split('.')[1]));
 		return {
 			id: decoded[this._idJwtKey],
-			roles: decoded[this._roleJwtKey]
+			roles: decoded[this._roleJwtKey],
 		};
 	}
 

@@ -17,12 +17,12 @@ export class JwtTokenInterceptor implements HttpInterceptor {
 		next: HttpHandler
 	): Observable<HttpEvent<any>> {
 		const user = this.userDataService.getUserData();
-		if(!user){
+		if (!user) {
 			return next.handle(req);
 		}
 
 		const token = user.accessToken;
-		if(!token) {
+		if (!token) {
 			return next.handle(req);
 		}
 

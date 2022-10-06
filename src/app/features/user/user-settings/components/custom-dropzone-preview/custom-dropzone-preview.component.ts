@@ -18,7 +18,7 @@ export class CustomDropzonePreviewComponent
 	implements OnInit
 {
 	@Input() minWidthImage: number | null = null;
-	
+
 	imageSrc: any;
 
 	constructor(sanitizer: DomSanitizer) {
