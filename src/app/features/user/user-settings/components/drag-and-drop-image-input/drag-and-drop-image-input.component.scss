@@ -1,28 +1,16 @@
 @use './../../../../../../assets/icons/style.css';
 @use './../../../../../../assets/scss/colors.scss' as colors;
 
-drag-and-drop{
-	height: 100% !important;
-}
-
 .custom-dropzone {
 	overflow: hidden;
 	border: none;
 	border-radius: 0;
-	//background-size: auto auto;
-	//height: min(200px, 16.285714285714285vw);
-	//background-size: 100%, min(200px, 14.285714285714285vw);
-	background-size: cover;;
+	background-size: cover;
 	background-color: var(--bg-default);
 }
 
 .custom-dropzone.ngx-dz-hovered {
 	border: none;
-}
-
-ngx-dropzone{
-	width: 100% !important;
-	height: 100% !important;
 }
 
 .icon-camera-container {
@@ -32,7 +20,7 @@ ngx-dropzone{
 }
 
 .icon-camera {
-	font-size: 25px;;
+	font-size: 25px;
 	color: colors.$crystal-white;
 }
 

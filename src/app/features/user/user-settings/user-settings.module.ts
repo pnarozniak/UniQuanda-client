@@ -12,7 +12,7 @@ import { RouterModule } from '@angular/router';
 		CommonModule,
 		UserSettingsRoutingModule,
 		RouterModule,
-		ProfileSettingsModule
+		ProfileSettingsModule,
 	],
 	declarations: [UserSettingsComponent, SettingsNavigationComponent],
 })

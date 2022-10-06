@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
 	Router,
-	Resolve,
-	RouterStateSnapshot,
-	ActivatedRouteSnapshot,
+	Resolve
 } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, catchError, map } from 'rxjs';
@@ -20,10 +18,7 @@ export class UserDataResolver implements Resolve<UserSettingsDataResponseDTO> {
 		private readonly _toastrService: ToastrService
 	) {}
 
-	resolve(
-		route: ActivatedRouteSnapshot,
-		state: RouterStateSnapshot
-	): Observable<UserSettingsDataResponseDTO> | any {
+	resolve(): Observable<UserSettingsDataResponseDTO> | any {
 		return this._userSettingsApiService
 			.getUserDataForEditProfileSettings()
 			.pipe(

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { plLocale } from 'ngx-bootstrap/locale';
+import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
@@ -8,14 +9,16 @@ import { UserDataService } from 'src/app/core/services/user-data.service';
 import { DateValidationService } from 'src/app/shared/services/date-validation.service';
 import { UserSettingsDataResponseDTO } from '../../models/user-settings-data.dto';
 import { UserProfileApiService } from '../../services/user-profile-api.service';
+import { defineLocale } from 'ngx-bootstrap/chronos';
+defineLocale('pl', plLocale);
 
 @Component({
-  selector: 'app-profile-settings',
-  templateUrl: './profile-settings.component.html',
-  styleUrls: ['./profile-settings.component.scss']
+	selector: 'app-profile-settings',
+	templateUrl: './profile-settings.component.html',
+	styleUrls: ['./profile-settings.component.scss'],
 })
 export class ProfileSettingsComponent {
-  public form: FormGroup;
+	public form: FormGroup;
 	public user: UserSettingsDataResponseDTO | undefined;
 
 	public backgroundAvatar = 'common/user-profile/deafult_user_avatar.svg';
