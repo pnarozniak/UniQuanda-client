@@ -14,8 +14,8 @@
 
 .item {
 	padding: 10px 13px 10px 13px;
-	background-color: colors.$gray;
-	color: colors.$crystal-black;
+	background-color: var(--bg-accent);
+	color: var(--text-default);
 }
 
 .item-text {

@@ -12,7 +12,9 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { JwtTokenInterceptor } from './interceptors/jwt-token-interceptor.service';
-
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { HeaderDropdownComponent } from './components/header-dropdown/header-dropdown.component';
+import { ThemeDirective } from './directives/theme.directive';
 @NgModule({
 	providers: [
 		StorageService,
@@ -29,7 +31,12 @@ import { JwtTokenInterceptor } from './interceptors/jwt-token-interceptor.servic
 			multi: true,
 		},
 	],
-	declarations: [HeaderComponent, NavBarComponent],
+	declarations: [
+		HeaderComponent,
+		NavBarComponent,
+		HeaderDropdownComponent,
+		ThemeDirective,
+	],
 	imports: [
 		RouterModule,
 		ToastrModule.forRoot(),
@@ -37,7 +44,8 @@ import { JwtTokenInterceptor } from './interceptors/jwt-token-interceptor.servic
 		CommonModule,
 		BrowserModule,
 		TooltipModule.forRoot(),
+		BsDropdownModule.forRoot(),
 	],
-	exports: [HeaderComponent, NavBarComponent],
+	exports: [HeaderComponent, NavBarComponent, ThemeDirective],
 })
 export class CoreModule {}

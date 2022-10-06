@@ -10,16 +10,19 @@ import { UserDataService } from '../services/user-data.service';
 
 @Injectable({ providedIn: 'root' })
 export class JwtTokenInterceptor implements HttpInterceptor {
-	private readonly _accessTokenKey = 'access_token';
-
 	constructor(private userDataService: UserDataService) {}
 
 	intercept(
 		req: HttpRequest<any>,
 		next: HttpHandler
 	): Observable<HttpEvent<any>> {
-		const token = localStorage.getItem(this._accessTokenKey);
-		if (!token || !this.userDataService.isUserLoggedIn()) {
+		const user = this.userDataService.getUserData();
+		if(!user){
+			return next.handle(req);
+		}
+
+		const token = user.accessToken;
+		if(!token) {
 			return next.handle(req);
 		}
 

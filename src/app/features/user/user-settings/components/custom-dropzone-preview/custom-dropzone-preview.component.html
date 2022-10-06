@@ -1,4 +1,5 @@
-<img [src]="imageSrc" class="h-100 w-100 img-prev" />
+<img [src]="imageSrc" class="h-100 w-100 img-prev" 
+[ngStyle]="{ 'min-width': minWidthImage + 'px' }"/>
 <ng-content select="ngx-dropzone-label"></ng-content>
 <ngx-dropzone-remove-badge *ngIf="removable" (click)="_remove($event)">
 </ngx-dropzone-remove-badge>

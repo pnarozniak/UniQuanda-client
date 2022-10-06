@@ -10,6 +10,7 @@ export class DragAndDropImageInputComponent implements OnInit {
 	@Input() backgroundImage: string | null = null;
 	@Input() maxFileSizeMB = 10;
 	@Input() initImageSrc: string | undefined | null = null;
+	@Input() minWidthImage: number | null = null;
 	@Output() image = new EventEmitter<File | null>();
 
 	files: File[] = [];

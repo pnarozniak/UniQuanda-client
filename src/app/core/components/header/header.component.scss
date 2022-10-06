@@ -1,22 +1,21 @@
 @use './../../../../assets/icons/style.css';
-@use './../../../../assets/scss/colors.scss' as colors;
 @use './../../../../assets/scss/dimensions.scss' as dim;
-
-$header-footer-height: 5px;
+@use './../../../../assets/scss/colors.scss' as colors;
 
 header {
 	position: fixed;
 	top: 0;
 	width: 100%;
-	background-color: colors.$crystal-white;
+	background-color: var(--bg-default);
 	z-index: 2137;
 }
 
 .header-height {
-	height: calc(dim.$heder-height-sm - $header-footer-height);
+	height: calc(dim.$header-height-sm - dim.$header-footer-height);
 }
 
 .img-logo {
+	content: url('./../../../../assets/images/core/header/logo_blue.svg');
 	height: 40px;
 }
 
@@ -34,29 +33,38 @@ header {
 	}
 }
 
+
 .search-bar {
 	height: 35px;
-	background-color: colors.$elegant-gray;
+	background-color: var(--bg-accent);
+	color: var(--text-accent);
 	outline: 0;
+
+	@mixin placeholder {
+		font-weight: 500;
+		color: var(--text-accent);
+	}
+
+	&::placeholder {
+		@include placeholder;
+	}
+	&:-ms-input-placeholder {
+		@include placeholder;
+	}
+	&::-ms-input-placeholder {
+		@include placeholder;
+	}
 }
 
 .btn-search {
-	color: colors.$light-gray;
+	color: var(--text-accent);
 	font-size: 20px;
 	font-weight: 500;
 }
 
-::-webkit-input-placeholder {
-  font-weight: 500;
-}
-::-moz-placeholder {
-  font-weight: 500;
-}
-:-ms-input-placeholder {
-  font-weight: 500;
-}
-:-moz-placeholder {
-  font-weight: 500;
+.btn-avatar {
+	cursor: pointer;
+	border: 1px solid var(--bg-accent);
 }
 
 .a-register {
@@ -68,7 +76,7 @@ header {
 }
 
 .footer-container {
-	height: $header-footer-height;
+	height: dim.$header-footer-height;
 }
 
 .footer-cell-academicBlue {
@@ -93,8 +101,12 @@ header {
 
 @media all and (max-width: 991px) {
 	.search-bar {
-		background-color: colors.$crystal-white;
+		background-color: var(--bg-accent);
 		margin-right: 0.5rem;
+	}
+
+	.btn-search {
+		background: none;
 	}
 }
 
@@ -110,7 +122,7 @@ header {
 		margin-right: 0.25rem;
 	}
 	.header-height {
-		height: calc(dim.$header-height - $header-footer-height);	
+		height: calc(dim.$header-height - dim.$header-footer-height);	
 	}
 	
 	.img-logo {
@@ -125,5 +137,16 @@ header {
 
 	.btn-search {
 		font-size: 15px;
+	}
+
+	.btn-avatar {
+		width: 25px;
+		height: 25px;
+	}
+}
+
+.dark {
+	.img-logo {
+		content: url('./../../../../assets/images/core/header/logo_white.svg');
 	}
 }

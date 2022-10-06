@@ -1,0 +1,19 @@
+@use '/src/assets/scss/colors.scss' as colors;
+
+/* LIGHT MODE */
+:root {
+	--bg-default: #{colors.$crystal-white};
+	--bg-accent: #{colors.$elegant-gray};
+
+	--text-default: #{colors.$crystal-black};
+	--text-accent: #{colors.$light-gray};
+}
+
+/* DARK MODE */
+:root .dark {
+	--bg-default: #{colors.$dark-gray};
+	--bg-accent: #{colors.$light-gray};
+
+	--text-default: #{colors.$crystal-white};
+	--text-accent: #{colors.$crystal-white};
+}

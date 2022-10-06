@@ -33,7 +33,7 @@
 			<i class="uniquanda-icon icon-ranking"> </i>
 		</a>
 		<a
-			*ngIf="_userDataService.isUserLoggedIn()"
+			*ngIf="user$ | async"
 			class="logout item"
 			tooltip="Wyloguj"
 			placement="right"

@@ -5,9 +5,9 @@ import { RegisterApiService } from '../../services/register-api.service';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { plLocale } from 'ngx-bootstrap/locale';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
-import { RegisterValidationService } from '../../services/register-validation.service';
 import { ToastrService } from 'ngx-toastr';
 import { RegisterRequestDTO } from '../../models/register.dto';
+import { DateValidationService } from 'src/app/shared/services/date-validation.service';
 defineLocale('pl', plLocale);
 
 @Component({
@@ -25,15 +25,15 @@ export class RegisterSecondStepComponent implements OnInit {
 		private readonly _router: Router,
 		private readonly _registerApiService: RegisterApiService,
 		private readonly _localeService: BsLocaleService,
-		private readonly _registerValidationService: RegisterValidationService,
-		private readonly _toastrService: ToastrService
+		private readonly _toastrService: ToastrService,
+		private readonly _dateValidationService: DateValidationService
 	) {
 		this._localeService.use('pl');
 		this.form = new FormGroup({
 			firstName: new FormControl('', [Validators.maxLength(35)]),
 			lastName: new FormControl('', [Validators.maxLength(51)]),
 			birthdate: new FormControl('', [
-				this._registerValidationService.checkIfDateBeforeNow,
+				this._dateValidationService.checkIfDateBeforeNow,
 			]),
 			phoneNumber: new FormControl('', [Validators.maxLength(22)]),
 			city: new FormControl('', [Validators.maxLength(57)]),

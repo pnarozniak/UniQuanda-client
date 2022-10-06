@@ -1,9 +1,7 @@
-import { StorageService } from 'src/app/core/services/storage.service';
 import { ToastrService } from 'ngx-toastr';
 import { UserProfileApiService } from '../services/user-profile-api.service';
-import { RegisterValidationService } from './../../../public/register/services/register-validation.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, LOCALE_ID } from '@angular/core';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { plLocale } from 'ngx-bootstrap/locale';
 import { defineLocale } from 'ngx-bootstrap/chronos';
@@ -11,12 +9,16 @@ import { ActivatedRoute } from '@angular/router';
 import { UserSettingsDataResponseDTO } from '../models/user-settings-data.dto';
 import * as moment from 'moment';
 import { UserDataService } from 'src/app/core/services/user-data.service';
+import { DateValidationService } from 'src/app/shared/services/date-validation.service';
 defineLocale('pl', plLocale);
 
 @Component({
 	selector: 'app-user-settings-data',
 	templateUrl: './user-settings-data.component.html',
 	styleUrls: ['./user-settings-data.component.scss'],
+	providers: [
+    { provide: LOCALE_ID, useValue: 'pl' }
+  ]
 })
 export class UserSettingsDataComponent {
 	public form: FormGroup;
@@ -29,13 +31,12 @@ export class UserSettingsDataComponent {
 	private userBanner: File | null;
 
 	constructor(
-		private readonly _registerValidationService: RegisterValidationService,
-		private readonly _bsLocaleService: BsLocaleService,
-		private readonly _route: ActivatedRoute,
 		private readonly _userSettingsApiService: UserProfileApiService,
+		private readonly _dateValidationService: DateValidationService,
+		private readonly _bsLocaleService: BsLocaleService,
+		private readonly _userdataService: UserDataService,
 		private readonly _toastrService: ToastrService,
-		private readonly _storageService: StorageService,
-		private readonly _userdataService: UserDataService
+		private readonly _route: ActivatedRoute
 	) {
 		this._bsLocaleService.use('pl');
 		this._route.data.subscribe((data: any) => {
@@ -52,10 +53,8 @@ export class UserSettingsDataComponent {
 				Validators.maxLength(51),
 			]),
 			birthdate: new FormControl(
-				this.user?.birthdate !== null
-					? moment(this.user?.birthdate).format('DD/MM/yyyy')
-					: null,
-				[this._registerValidationService.checkIfDateBeforeNow]
+				this.setInitDate(this.user?.birthdate),
+				[this._dateValidationService.checkIfDateBeforeNow]
 			),
 			phoneNumber: new FormControl(this.user?.phoneNumber, [
 				Validators.maxLength(22),
@@ -85,19 +84,11 @@ export class UserSettingsDataComponent {
 		userFormData.append('FirstName', this.form.get('firstName')?.value ?? '');
 		userFormData.append('LastName', this.form.get('lastName')?.value ?? '');
 		if (this.form.get('birthdate')?.value)
-			userFormData.append(
-				'Birthdate',
-				moment(this.form.get('birthdate')?.value ?? '').format()
-			);
-		userFormData.append(
-			'PhoneNumber',
-			this.form.get('phoneNumber')?.value ?? ''
-		);
+			userFormData.append('Birthdate',moment(this.form.get('birthdate')?.value ?? '').format());
+		userFormData.append('Birthdate', this.form.get('birthdate')?.value ?? '');
+		userFormData.append('PhoneNumber', this.form.get('phoneNumber')?.value ?? '');
 		userFormData.append('City', this.form.get('city')?.value ?? '');
-		userFormData.append(
-			'SemanticScholarProfile',
-			this.form.get('semanticScholarProfile')?.value ?? ''
-		);
+		userFormData.append('SemanticScholarProfile', this.form.get('semanticScholarProfile')?.value ?? '');
 		userFormData.append('AboutText', this.form.get('aboutText')?.value ?? '');
 		if (this.userBanner) userFormData.append('Banner', this.userBanner);
 		if (this.userAvatar) userFormData.append('Avatar', this.userAvatar);
@@ -120,5 +111,12 @@ export class UserSettingsDataComponent {
 
 	updateBanner(file: File | null) {
 		this.userBanner = file;
+	}
+
+	setInitDate(birthdate: Date | null | undefined): Date | null {
+		if(!birthdate)
+			return null;
+		const splittedDate = birthdate?.toString().split('T');
+		return new Date(splittedDate[0]);
 	}
 }

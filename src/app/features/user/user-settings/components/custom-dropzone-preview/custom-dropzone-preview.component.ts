@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgxDropzonePreviewComponent } from 'ngx-dropzone';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -17,6 +17,8 @@ export class CustomDropzonePreviewComponent
 	extends NgxDropzonePreviewComponent
 	implements OnInit
 {
+	@Input() minWidthImage: number | null = null;
+	
 	imageSrc: any;
 
 	constructor(sanitizer: DomSanitizer) {

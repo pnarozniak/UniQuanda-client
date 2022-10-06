@@ -1,3 +1,5 @@
+@use "/src/assets/scss/theme.scss";
+
 /* Importing Bootstrap SCSS file. */
 @import "~bootstrap/scss/bootstrap";
 
@@ -15,7 +17,7 @@ body {
 }
 
 .height-header {
-  min-height: calc(100vh - $heder-height-sm);
+  min-height: calc(100vh - $header-height-sm);
 }
 
 a {
@@ -23,7 +25,7 @@ a {
 }
 
 .footer-decoration {
-  background-image: url("assets/images/common/footer/decoration.svg");
+  background-image: url("assets/images/core/footer/decoration.svg");
   background-repeat: repeat-x;
   margin-top: auto;
   height: 145px;

@@ -11,7 +11,7 @@ const routes: Routes = [
 		component: UserSettingsComponent,
 		children: [
 			{
-				path: 'edit',
+				path: 'profile',
 				component: UserSettingsDataComponent,
 				canActivate: [AuthGuardService],
 				data: { title: 'Edycja', expectedRole: 'user' },

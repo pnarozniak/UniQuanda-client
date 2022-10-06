@@ -3,7 +3,7 @@
 
 .banner-container {
 	position: relative;
-	height: min(200px, 14.285714285714285vw);
+	height: 200px;
 }
 
 .avatar-container {
@@ -32,8 +32,10 @@
 	outline: none !important;
 	border-bottom: 1px solid colors.$bordered-gray;
 	font-size: 18px;
-	
+
 	.standard-input {
+		background-color: var(--bg-default);
+		color: var(--text-default);
 		outline: none !important;
 		width: 100%;
 		&:focus-within + .register-label {
@@ -48,6 +50,8 @@
 	}
 
 	.birthdate-input {
+		background-color: var(--bg-default);
+		color: var(--text-default);
 		outline: none !important;
 		&:focus-within + .register-label {
 			transform: translateY(-30px);
@@ -86,6 +90,12 @@
 
 .textarea-container {
 	border-bottom: 0;
+}
+
+@media all and (max-width: 1399px) {
+	.banner-container {
+		height: 14.285714285714285vw;
+	}
 }
 
 @media all and (max-width: 991px) {
