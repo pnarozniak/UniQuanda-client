@@ -6,6 +6,10 @@
 	& .banner-image {
 		min-width: 100%;
 		min-height: 100%;
+		& img {
+			width: 100%;
+			height: 100%;
+		}
 	}
 }
 
@@ -15,6 +19,10 @@
 	height: 200px;
 	margin-left: 38px;
 	transform: translateY(-100px);
+	& img {
+		width: 100%;
+		height: 100%;
+	}
 }
 
 .header-content {
@@ -165,16 +173,6 @@
 	}
 	.universities {
 		margin-left: 2.7142857142857144vw;
-	}
-}
-@media all and (max-width: 767px) {
-	.dark {
-		.stats {
-			background-color: var(--bg-accent);
-		}
-	}
-	.stats {
-		background-color: colors.$elegant-gray;
 	}
 }
 @media all and (max-width: 574px) {

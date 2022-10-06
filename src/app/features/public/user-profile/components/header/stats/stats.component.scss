@@ -1,16 +1,29 @@
 @use './../../../../../../../assets/scss/colors.scss' as colors;
-b {
-	font-size: 25px;
-	line-height: 20px;
+
+.stats {
+	b {
+		font-size: 25px;
+		line-height: 20px;
+	}
+	.stats-divider {
+		width: 1px;
+		background-color: colors.$light-gray;
+	}
+	.dark .stats-divider {
+		background-color: colors.$bordered-gray;
+	}
+	.loading .stats-divider {
+		height: 30px;
+		opacity: 0;
+	}
 }
-.stats-divider {
-	width: 1px;
-	background-color: colors.$light-gray;
-}
-.dark .stats-divider {
-	background-color: colors.$bordered-gray;
-}
-.loading .stats-divider {
-	height: 30px;
-	opacity: 0;
+@media all and (max-width: 767px) {
+	.dark {
+		.stats {
+			background-color: var(--bg-accent);
+		}
+	}
+	.stats {
+		background-color: colors.$elegant-gray;
+	}
 }

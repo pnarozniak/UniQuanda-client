@@ -108,13 +108,14 @@
 						</div>
 						<div
 							class="icon-loading ms-auto me-4 my-auto d-flex d-md-none"
-							[appLoading]="user === null"></div>
+							[appLoading]="user === null"
+							*ngIf="user === null"></div>
 					</ng-template>
 				</div>
 			</div>
 			<app-user-profile-header-stats
 				[headerStatistics]="user?.headerStatistics"
-				class="stats my-auto ms-auto me-3 d-md-flex d-none flex-row"></app-user-profile-header-stats>
+				class="my-auto ms-auto me-3 d-md-flex d-none flex-row"></app-user-profile-header-stats>
 		</div>
 		<div class="d-flex flex-column universities mt-3 mt-xl-4">
 			<div
@@ -140,7 +141,7 @@
 		</div>
 		<app-user-profile-header-stats
 			[headerStatistics]="user?.headerStatistics"
-			class="stats d-md-none d-flex flex-row mx-auto mt-3"></app-user-profile-header-stats>
+			class="d-md-none d-flex flex-row mx-auto mt-3"></app-user-profile-header-stats>
 		<hr class="mx-4 hrline d-md-block d-none" />
 		<div
 			class="d-md-flex d-none flex-row mx-auto me-5 mt-md-0 mt-3"
