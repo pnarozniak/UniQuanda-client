@@ -14,6 +14,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HeaderDropdownComponent } from './components/header-dropdown/header-dropdown.component';
 import { SharedModule } from '../shared/shared.module';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 @NgModule({
 	providers: [
 		StorageService,
@@ -25,7 +26,12 @@ import { SharedModule } from '../shared/shared.module';
 			multi: true,
 		},
 	],
-	declarations: [HeaderComponent, NavBarComponent, HeaderDropdownComponent],
+	declarations: [
+		HeaderComponent,
+		NavBarComponent,
+		HeaderDropdownComponent,
+		NotFoundComponent,
+	],
 	imports: [
 		RouterModule,
 		ToastrModule.forRoot(),

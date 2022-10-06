@@ -25,7 +25,7 @@ const routes: Routes = [
 		data: { title: 'Potwierdź konto' },
 	},
 	{
-		path: 'profile',
+		path: 'profile/:id',
 		loadChildren: () =>
 			import('./user-profile/user-profile.module').then(
 				(m) => m.UserProfileModule

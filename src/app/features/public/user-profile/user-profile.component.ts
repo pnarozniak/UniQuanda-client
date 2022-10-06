@@ -35,9 +35,8 @@ export class UserProfileComponent implements OnInit {
 			this._toastrService.error('Nieprawidłowy profil', 'Błąd!');
 			this._router.navigate(['/public/home']);
 		} else {
-			this._userProfileApiService
-				.getProfile(Number(profileId))
-				.subscribe((response) => {
+			this._userProfileApiService.getProfile(Number(profileId)).subscribe({
+				next: (response) => {
 					if (response.status === 200 && response.body) {
 						const user = new UserProfileResponseDTO(response.body);
 						user.academicTitles.sort((a, b) => a.order - b.order);
@@ -50,7 +49,12 @@ export class UserProfileComponent implements OnInit {
 						this._toastrService.error('Nieprawidłowy profil', 'Błąd!');
 						this._router.navigate(['/public/home']);
 					}
-				});
+				},
+				error: (error) => {
+					this._toastrService.error('Nieprawidłowy profil', 'Błąd!');
+					this._router.navigate(['/public/home']);
+				},
+			});
 		}
 	}
 }
