@@ -20,6 +20,6 @@ export class ThemeDirective {
 }
 
 enum Theme {
-	LIGHT = 'dark',
+	LIGHT = 'light',
 	DARK = 'dark',
 }
