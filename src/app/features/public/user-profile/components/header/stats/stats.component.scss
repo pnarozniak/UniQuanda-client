@@ -19,9 +19,7 @@
 }
 @media all and (max-width: 767px) {
 	.dark {
-		.stats {
-			background-color: var(--bg-accent);
-		}
+		background-color: var(--bg-accent) !important;
 	}
 	.stats {
 		background-color: colors.$elegant-gray;
