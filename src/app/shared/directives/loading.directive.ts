@@ -27,7 +27,7 @@ export class LoadingDirective implements OnChanges {
 
 	ngAfterViewInit() {
 		this.imageRef = this._el.nativeElement.querySelector('img');
-		if (this.imageRef !== null) {
+		if (this.imageRef !== undefined && this.imageRef !== null) {
 			if (this.appLoading) {
 				this._renderer.addClass(this.imageRef, 'd-none');
 			} else {
@@ -38,7 +38,7 @@ export class LoadingDirective implements OnChanges {
 
 	ngOnChanges(changes: SimpleChanges): void {
 		this.loadingClass = this.appLoading ? this._loadingClassName : '';
-		if (this.imageRef !== undefined) {
+		if (this.imageRef !== undefined && this.imageRef !== null) {
 			if (this.appLoading) {
 				this._renderer.addClass(this.imageRef, 'd-none');
 			} else {
