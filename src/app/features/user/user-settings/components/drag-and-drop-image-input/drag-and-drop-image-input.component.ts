@@ -8,16 +8,15 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class DragAndDropImageInputComponent implements OnInit {
 	@Input() backgroundImage: string | null = null;
-	@Input() maxFileSizeMB = 10;
 	@Input() initImageSrc: string | undefined | null = null;
-	@Input() minWidthImage: number | null = null;
+	@Input() isBanner = false;
 	@Output() image = new EventEmitter<File | null>();
 
 	files: File[] = [];
+	maxFileSizeMB: number = 10 * 1024 * 1024;
+	allowedImageType = 'image/png,image/jpg,image/jpeg,image/svg,image/svg+xml';
 
-	constructor(private readonly _toastrService: ToastrService) {
-		this.maxFileSizeMB = this.maxFileSizeMB * 1024 * 1024;
-	}
+	constructor(private readonly _toastrService: ToastrService) {}
 
 	ngOnInit(): void {
 		if (this.backgroundImage) {
@@ -35,7 +34,13 @@ export class DragAndDropImageInputComponent implements OnInit {
 							type: fileData.type,
 						});
 						this.files.push(imageFile);
-					} catch {}
+					} catch {
+						const errorMsg = this.isBanner ? 'tła profilu' : 'avatara';
+						this._toastrService.error(
+							`Błąd podczas ładowania ${errorMsg}`,
+							'Błąd'
+						);
+					}
 				}
 			});
 	}

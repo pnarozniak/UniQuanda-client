@@ -15,26 +15,13 @@
 
 .icon-camera-container {
 	background: colors.$crystal-black;
-	height: 60px;
-	width: 60px;
+	height: min(60px, 5vw);
+	width: min(60px, 5vw);
 }
 
 .icon-camera {
-	font-size: 25px;
+	font-size: min(30px, 2.5vw);
 	color: colors.$crystal-white;
-}
-
-@media all and (max-width: 991px) {
-	.icon-camera-container {
-		max-height: 60px;
-		max-width: 60px;
-		height: 6vw;
-		width: 6vw;
-	}
-
-	.icon-camera {
-		font-size: 2.5vw;
-	}
 }
 
 @media all and (max-width: 575px) {

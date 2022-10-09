@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-	Router,
-	Resolve
-} from '@angular/router';
+import { Router, Resolve } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, catchError, map } from 'rxjs';
 import { UserSettingsDataResponseDTO } from '../models/user-settings-data.dto';

@@ -10,6 +10,7 @@
 	width: 100% !important;
 	border-radius: 0 !important;
 	border: none !important;
+	display: block !important;;
 
 	ngx-dropzone-remove-badge {
 		opacity: 1;
@@ -19,4 +20,14 @@
 
 .img-prev {
 	object-fit: cover !important;
+}
+
+.avatar-img {
+	height: 100% !important;
+}
+
+@media all and (max-width: 575px) {
+	.banner-img {
+		min-width: 574px;
+	}
 }

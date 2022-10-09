@@ -17,7 +17,7 @@ export class CustomDropzonePreviewComponent
 	extends NgxDropzonePreviewComponent
 	implements OnInit
 {
-	@Input() minWidthImage: number | null = null;
+	@Input() isBanner = false;
 
 	imageSrc: any;
 
@@ -33,7 +33,9 @@ export class CustomDropzonePreviewComponent
 		const reader = new FileReader();
 
 		reader.onload = (event: any) => {
-			this.imageSrc = event.target.result;
+			this.imageSrc = this.sanitizer.bypassSecurityTrustResourceUrl(
+				event.target.result
+			);
 		};
 
 		reader.onerror = (event: any) => {

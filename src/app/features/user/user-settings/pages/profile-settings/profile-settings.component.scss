@@ -8,10 +8,10 @@
 
 .avatar-container {
 	position: absolute;
-	left: 38px;
-	top: min(100px, 7vw);
-	height: min(200px, 18vw);
-	width: min(200px, 18vw);;
+	margin-left: 38px;
+	transform: translateY(-100px);
+	height: 200px;
+	width: 200px;
 }
 
 .form-container {
@@ -96,6 +96,13 @@
 	.banner-container {
 		height: 14.285714285714285vw;
 	}
+
+	.avatar-container {
+		width: 14.285714285714285vw;
+		height: 14.285714285714285vw;
+		margin-left: 2.7142857142857144vw;
+		transform: translateY(-7.1428571428571425vw);
+	}
 }
 
 @media all and (max-width: 991px) {
@@ -106,15 +113,15 @@
 
 @media all and (max-width: 575px) {
 	.banner-container {
-		height: 82px;
+		height: 82px !important;
 		max-width: 100vw;
 	}
 
 	.avatar-container {
-		left: 23px;
-		top: 48px;
 		width: 80px;
 		height: 80px;
+		transform: translateY(-31px);
+		margin-left: 23px !important;
 	}
 
 	.form-container{

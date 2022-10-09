@@ -1,7 +1,7 @@
 <ngx-dropzone
 	class="custom-dropzone h-100 w-100"
 	[multiple]="false"
-	[accept]="'image/png,image/jpg,image/jpeg'"
+	[accept]="allowedImageType"
 	[maxFileSize]="maxFileSizeMB"
 	(change)="onSelect($event)"
 	[ngStyle]="{
@@ -16,7 +16,7 @@
 	<app-custom-dropzone-preview
 		ngProjectAs="ngx-dropzone-preview"
 		class="w-100"
-		[minWidthImage]="minWidthImage"
+		[isBanner]="isBanner"
 		*ngFor="let f of files"
 		[file]="f"
 		[removable]="true"
