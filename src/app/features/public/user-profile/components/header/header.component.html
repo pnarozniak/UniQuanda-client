@@ -86,7 +86,7 @@
 							<i class="icon-dots p-2 mobile-profile-icon" dropdownToggle></i>
 							<div
 								*dropdownMenu
-								class="dropdown-content d-flex flex-column p-2 d-md-none"
+								class="dropdown-content d-flex flex-column py-2 d-md-none"
 								appTheme>
 								<a
 									href="/premium/message/createNewMessage/{{
@@ -166,7 +166,7 @@
 				<a
 					href="/premium/message/createNewMessage/{{ user?.userData?.id }}"
 					*ngIf="'hasPremium' === 'hasPremium'"
-					class="ms-3 sendMessage link-header p-2">
+					class="ms-2 sendMessage link-header p-2">
 					<i class="icon-mail"></i>
 					Wyślij wiadomość </a
 				><!--TODO: dodać poprawny warunek sprawdzania premium-->
