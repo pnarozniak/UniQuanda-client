@@ -82,11 +82,11 @@
 							dropdown
 							[insideClick]="true"
 							container="body"
-							class="ms-auto me-4 my-auto d-flex d-md-none">
+							class="ms-auto me-4 my-auto d-flex d-lg-none">
 							<i class="icon-dots p-2 mobile-profile-icon" dropdownToggle></i>
 							<div
 								*dropdownMenu
-								class="dropdown-content d-flex flex-column py-2 d-md-none"
+								class="dropdown-content d-flex flex-column py-2 d-lg-none"
 								appTheme>
 								<a
 									href="/premium/message/createNewMessage/{{
@@ -107,7 +107,7 @@
 							</div>
 						</div>
 						<div
-							class="icon-loading ms-auto me-4 my-auto d-flex d-md-none"
+							class="icon-loading ms-auto me-4 my-auto d-flex d-lg-none"
 							[appLoading]="user === null"
 							*ngIf="user === null"></div>
 					</ng-template>
@@ -115,7 +115,7 @@
 			</div>
 			<app-user-profile-header-stats
 				[headerStatistics]="user?.headerStatistics"
-				class="my-auto ms-auto me-3 d-md-flex d-none flex-row"></app-user-profile-header-stats>
+				class="my-auto ms-auto me-3 d-lg-flex d-none flex-row"></app-user-profile-header-stats>
 		</div>
 		<div class="d-flex flex-column universities mt-3 mt-xl-4">
 			<div
@@ -141,10 +141,10 @@
 		</div>
 		<app-user-profile-header-stats
 			[headerStatistics]="user?.headerStatistics"
-			class="d-md-none d-flex flex-row mx-auto mt-3"></app-user-profile-header-stats>
+			class="d-lg-none d-flex flex-row mx-auto mt-3"></app-user-profile-header-stats>
 		<hr class="mx-4 hrline d-md-block d-none" />
 		<div
-			class="d-md-flex d-none flex-row mx-auto me-5 mt-md-0 mt-3"
+			class="d-lg-flex d-none flex-row mx-auto me-5 mt-lg-0 mt-3"
 			*ngIf="
 				(userClaims$ | async)?.id === user?.userData?.id &&
 					user?.userData?.id !== null;
@@ -157,7 +157,7 @@
 		</div>
 		<ng-template #otherProfile>
 			<div
-				class="d-md-flex d-none flex-row mx-auto me-5 mt-md-0 mt-3"
+				class="d-lg-flex d-none flex-row mx-auto me-5 mt-lg-0 mt-3"
 				*ngIf="user?.userData?.id !== null">
 				<a href="/user/report/{{ user?.userData?.id }}" class="link-header p-2">
 					<i class="icon-report"></i>
@@ -172,7 +172,7 @@
 				><!--TODO: dodać poprawny warunek sprawdzania premium-->
 			</div>
 			<div
-				class="action-button-loading d-md-flex d-none mx-auto me-5 mt-md-0 mt-3"
+				class="action-button-loading d-lg-flex d-none mx-auto me-5 mt-lg-0 mt-3"
 				[appLoading]="user === null"></div>
 		</ng-template>
 	</div>
