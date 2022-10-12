@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IUserClaims } from 'src/app/core/models/user-claims.model';
 import { UserDataService } from 'src/app/core/services/user-data.service';
-import { UserProfileResponseDTO } from './models/user-profile.dto';
+import { IUserProfileResponseDTO } from './models/user-profile.dto';
 import { UserProfileApiService } from './services/user-profile-api.service';
 
 @Component({
@@ -14,7 +14,7 @@ import { UserProfileApiService } from './services/user-profile-api.service';
 	styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent implements OnInit {
-	public user$: BehaviorSubject<UserProfileResponseDTO | null>;
+	public user$: BehaviorSubject<IUserProfileResponseDTO | null>;
 	public userClaims$: Observable<IUserClaims | null>;
 
 	constructor(
@@ -25,7 +25,7 @@ export class UserProfileComponent implements OnInit {
 		private readonly _titleService: Title,
 		private readonly _userDataService: UserDataService
 	) {
-		this.user$ = new BehaviorSubject<UserProfileResponseDTO | null>(null);
+		this.user$ = new BehaviorSubject<IUserProfileResponseDTO | null>(null);
 		this.userClaims$ = this._userDataService.getUserData$();
 	}
 
@@ -38,7 +38,7 @@ export class UserProfileComponent implements OnInit {
 			this._userProfileApiService.getProfile(Number(profileId)).subscribe({
 				next: (response) => {
 					if (response.status === 200 && response.body) {
-						const user = new UserProfileResponseDTO(response.body);
+						const user = response.body as IUserProfileResponseDTO;
 						user.academicTitles.sort((a, b) => a.order - b.order);
 						user.universities.sort((a, b) => a.order - b.order);
 						this.user$.next(user);
@@ -50,7 +50,7 @@ export class UserProfileComponent implements OnInit {
 						this._router.navigate(['/public/home']);
 					}
 				},
-				error: (error) => {
+				error: () => {
 					this._toastrService.error('Nieprawidłowy profil', 'Błąd!');
 					this._router.navigate(['/public/home']);
 				},

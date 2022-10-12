@@ -3,7 +3,7 @@ import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IUserClaims } from 'src/app/core/models/user-claims.model';
 import { AcademicTitleType } from '../../models/acedemic-title';
-import { UserProfileResponseDTO } from '../../models/user-profile.dto';
+import { IUserProfileResponseDTO } from '../../models/user-profile.dto';
 
 @Component({
 	selector: 'app-user-profile-header',
@@ -18,7 +18,7 @@ import { UserProfileResponseDTO } from '../../models/user-profile.dto';
 })
 export class HeaderComponent {
 	@Input()
-	public user$!: BehaviorSubject<UserProfileResponseDTO | null>;
+	public user$!: BehaviorSubject<IUserProfileResponseDTO | null>;
 	@Input()
 	public userClaims$!: Observable<IUserClaims | null>;
 
