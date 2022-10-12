@@ -1,0 +1,68 @@
+<div appTheme class="w-100 d-flex align-items-center" *ngIf="totalPages > 1">
+	<div class="page page__arrow" (click)="handlePageChange(currentPage - 1)">
+		<<
+	</div>
+	<div
+		class="page"
+		*ngIf="pageExists(1) && currentPage - 1 > 1"
+		(click)="handlePageChange(1)">
+		1
+	</div>
+	<div
+		class="page page__more-pages"
+		*ngIf="currentPage > 3"
+		(click)="handlePageChange(currentPage - 2)">
+		...
+	</div>
+	<div
+		class="page"
+		*ngIf="pageExists(currentPage - 2) && currentPage === totalPages"
+		(click)="handlePageChange(currentPage - 2)">
+		{{ currentPage - 2 }}
+	</div>
+	<div
+		class="page"
+		*ngIf="pageExists(currentPage - 1)"
+		(click)="handlePageChange(currentPage - 1)">
+		{{ currentPage - 1 }}
+	</div>
+	<div class="page page__current">
+		{{ currentPage }}
+	</div>
+	<div
+		class="page"
+		*ngIf="pageExists(currentPage + 1)"
+		(click)="handlePageChange(currentPage + 1)">
+		{{ currentPage + 1 }}
+	</div>
+	<div
+		class="page"
+		*ngIf="pageExists(currentPage + 2) && currentPage === 1"
+		(click)="handlePageChange(currentPage + 2)">
+		{{ currentPage + 2 }}
+	</div>
+	<div
+		class="page page__more-pages"
+		*ngIf="currentPage < totalPages - 2"
+		(click)="handlePageChange(currentPage + 2)">
+		...
+	</div>
+	<div
+		class="page"
+		*ngIf="pageExists(totalPages) && currentPage + 1 < totalPages"
+		(click)="handlePageChange(totalPages)">
+		{{ totalPages }}
+	</div>
+	<div class="page page__arrow" (click)="handlePageChange(currentPage + 1)">
+		>>
+	</div>
+	<div class="input-wrapper d-flex align-items-center" *ngIf="showInput">
+		<div class="v-divider ms-1 me-2"></div>
+		<span class="d-block">Strona:</span>
+		<input
+			class="ms-1"
+			placeholder="1-{{ totalPages }}"
+			[(ngModel)]="inputValue"
+			(keyup.enter)="handleInputEnter()" />
+	</div>
+</div>
