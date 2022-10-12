@@ -1,4 +1,11 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import {
+	Component,
+	EventEmitter,
+	Input,
+	OnChanges,
+	OnInit,
+	Output,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -9,8 +16,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class PaginatorComponent implements OnChanges, OnInit {
 	@Input() totalSize!: number;
 	@Input() pageSize!: number;
-	@Input() pageChange?: (pageNumber: number) => void;
 	@Input() showInput = true;
+	@Output() pageChange = new EventEmitter<number>();
 
 	totalPages!: number;
 	currentPage = 1;
@@ -47,7 +54,7 @@ export class PaginatorComponent implements OnChanges, OnInit {
 		if (isNaN(pageNumber) || !this.pageExists(pageNumber)) return;
 
 		this.currentPage = pageNumber;
-		this.pageChange?.(this.currentPage);
+		this.pageChange.emit(this.currentPage);
 		this.buildQueryParams();
 	}
 
