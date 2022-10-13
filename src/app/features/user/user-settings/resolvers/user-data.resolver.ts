@@ -22,12 +22,9 @@ export class UserDataResolver implements Resolve<UserSettingsDataResponseDTO> {
 				map((res) => {
 					return res.body;
 				}),
-				catchError((error) => {
-					if (error.status === 404 || error.status === 500) {
-						this._toastrService.error('Błąd ładowania strony', 'Błąd');
-						return this._router.navigate(['..']);
-					}
-					return this._router.navigate(['..']);
+				catchError(() => {
+					this._toastrService.error('Błąd ładowania strony', 'Błąd');
+					return this._router.navigate([this._router.url]);
 				})
 			);
 	}
