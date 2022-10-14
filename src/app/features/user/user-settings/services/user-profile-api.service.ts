@@ -17,7 +17,8 @@ export class UserProfileApiService {
 	 */
 	public getUserDataForEditProfileSettings(): Observable<
 		HttpResponse<UserSettingsDataResponseDTO>
-		> {
+		// eslint-disable-next-line indent
+	> {
 		return this._apiService.get<UserSettingsDataResponseDTO>(
 			'appUserProfile/settings'
 		);
