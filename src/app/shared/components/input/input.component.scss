@@ -1,0 +1,24 @@
+@use '../../../../assets/scss/colors.scss' as colors;
+
+:host {
+	width: 100%;
+	
+	::ng-deep mat-form-field {
+		width: 100%;
+		font-family: Ubuntu, sans-serif !important;
+
+		.mat-form-field-flex {
+			background-color: transparent !important;
+		}
+
+		.mat-form-field-underline::before {
+			background-color: colors.$bordered-gray;
+		}
+	}
+
+	.suffix {
+		color: colors.$light-gray;
+		font-size: small;
+		cursor: pointer;
+	}
+}

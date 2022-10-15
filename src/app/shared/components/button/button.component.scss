@@ -1,0 +1,26 @@
+@use '../../../../assets/scss/colors.scss' as colors;
+
+button {
+	width: 100%;
+	background-color: colors.$academic-blue;
+	color: colors.$crystal-white;
+	border-radius: 7px;
+	transition-property: 'opacity';
+	transition-duration: 300ms;
+
+	&:hover {
+		opacity: .8;
+	}
+
+	&:not(.link) {
+		font-weight: 500;
+		font-size: 18px;
+	}
+	
+	&.link {
+		padding: 0 !important;
+		width: auto !important;
+		background-color: transparent !important;
+		color: inherit;
+	}
+}
