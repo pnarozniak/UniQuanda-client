@@ -4,6 +4,7 @@ import { LoginComponent } from './login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
 	imports: [
@@ -12,6 +13,7 @@ import { ToastrModule } from 'ngx-toastr';
 		ReactiveFormsModule,
 		RouterModule,
 		ToastrModule.forRoot(),
+		SharedModule,
 	],
 	declarations: [LoginComponent],
 })

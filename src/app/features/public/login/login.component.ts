@@ -12,29 +12,26 @@ import { LoginRequestDTO, LoginResponseStatus } from './models/login.dto';
 	styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-	public isPasswordShown: boolean;
-	public form: FormGroup;
+	public form: FormGroup = new FormGroup({
+		email: new FormControl('', [
+			Validators.required,
+			Validators.pattern('^.+@.+\\..+$'),
+			Validators.maxLength(320),
+		]),
+		password: new FormControl('', [
+			Validators.required,
+			Validators.minLength(8),
+			Validators.maxLength(30),
+			Validators.pattern('^(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[0-9]+).*$'),
+		]),
+	});
+
 	constructor(
 		private readonly _loginApiService: LoginApiService,
 		private readonly _userDataService: UserDataService,
 		private readonly _toastrService: ToastrService,
 		private readonly _router: Router
-	) {
-		this.isPasswordShown = false;
-		this.form = new FormGroup({
-			email: new FormControl('', [
-				Validators.required,
-				Validators.pattern('^.+@.+\\..+$'),
-				Validators.maxLength(320),
-			]),
-			password: new FormControl('', [
-				Validators.required,
-				Validators.minLength(8),
-				Validators.maxLength(30),
-				Validators.pattern('^(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[0-9]+).*$'),
-			]),
-		});
-	}
+	) {}
 
 	handleLogin() {
 		this.form.markAllAsTouched();
