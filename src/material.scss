@@ -1,0 +1,17 @@
+@use "@angular/material" as mat;
+@include mat.core;
+
+$uniquanda-client-primary: mat.define-palette(mat.$indigo-palette);
+$uniquanda-client-accent: mat.define-palette(mat.$pink-palette);
+$uniquanda-client-warn: mat.define-palette(mat.$red-palette);
+$uniquanda-client-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $uniquanda-client-primary,
+      accent: $uniquanda-client-accent,
+      warn: $uniquanda-client-warn,
+    )
+  )
+);
+
+@include mat.all-component-themes($uniquanda-client-theme);
