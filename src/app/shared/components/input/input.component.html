@@ -1,5 +1,7 @@
 <mat-form-field appearance="fill" [hideRequiredMarker]="!showRequiredMarker">
 	<mat-label>{{ label }}</mat-label>
+	<mat-hint>{{ hint }}</mat-hint>
+
 	<input
 		matInput
 		[formControl]="formControl"
@@ -12,7 +14,7 @@
 		*ngIf="type === 'password'"
 		class="suffix"
 		(click)="togglePassword(); $event.stopImmediatePropagation()"></app-icon>
-	<mat-hint>{{ hint }}</mat-hint>
+
 	<mat-error *ngFor="let error of errors">
 		<ng-container *ngIf="error.name">
 			{{ formControl.hasError(error.name) ? error.message : '' }}
