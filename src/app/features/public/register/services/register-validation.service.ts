@@ -50,12 +50,14 @@ export class RegisterValidationService {
 				)
 				.subscribe((response) => {
 					const data = response.body;
-					email.setErrors(
-						data?.isEmailAvailable ? null : { emailExists: true }
-					);
-					nickname.setErrors(
-						data?.isNicknameAvailable ? null : { nicknameExists: true }
-					);
+					group
+						.get('email')
+						?.setErrors(data?.isEmailAvailable ? null : { emailExists: true });
+					group
+						.get('nickname')
+						?.setErrors(
+							data?.isNicknameAvailable ? null : { nicknameExists: true }
+						);
 				});
 		}
 		return of({ pending: true });
