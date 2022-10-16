@@ -93,15 +93,15 @@
 										user?.userData?.id
 									}}"
 									*ngIf="'hasPremium' === 'hasPremium'"
-									class="mx-4 mt-1">
-									<i class="icon-mail"></i>
+									class="mx-4 mt-1 d-flex justify-content-center">
+									<i class="icon-mail me-1 my-auto"></i>
 									Wyślij wiadomość </a
 								><!--TODO: dodać poprawny warunek sprawdzania premium-->
 								<hr class="mx-4 hrline my-2" />
 								<a
 									href="/user/report/{{ user?.userData?.id }}"
-									class="mx-4 me-1">
-									<i class="icon-report"></i>
+									class="mx-4 d-flex justify-content-center">
+									<i class="icon-report me-1 my-auto"></i>
 									Zgłoś użytkownika
 								</a>
 							</div>

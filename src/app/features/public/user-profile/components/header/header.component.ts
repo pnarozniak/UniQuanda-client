@@ -18,7 +18,7 @@ import { IUserProfileResponseDTO } from '../../models/user-profile.dto';
 })
 export class HeaderComponent {
 	@Input()
-	public user$!: BehaviorSubject<IUserProfileResponseDTO | null>;
+	public user$!: Observable<IUserProfileResponseDTO | null>;
 	@Input()
 	public userClaims$!: Observable<IUserClaims | null>;
 

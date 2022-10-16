@@ -95,6 +95,7 @@
 	border: 1px solid colors.$bordered-gray;
 	background-color: var(--bg-default);
 	width: 210px;
+	font-size: 14px;
 
 	&:before {
 		content: '';
@@ -113,6 +114,9 @@
 
 	a {
 		color: var(--text-default);
+		&:hover {
+			background-color: var(--bg-accent);
+		}
 	}
 }
 
