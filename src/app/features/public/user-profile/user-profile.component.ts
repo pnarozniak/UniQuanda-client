@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import {
-	ActivatedRoute,
-	NavigationEnd,
-	Router,
-	RouterEvent,
-} from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, filter, Observable } from 'rxjs';
 import { IUserClaims } from 'src/app/core/models/user-claims.model';
@@ -42,7 +37,13 @@ export class UserProfileComponent implements OnInit {
 		} else {
 			this.getProfile(Number(profileId));
 			this._router.events
-				.pipe(filter((event: any) => event instanceof NavigationEnd))
+				.pipe(
+					filter(
+						(event: any) =>
+							event instanceof NavigationEnd &&
+							event.url.includes('/public/profile')
+					)
+				)
 				.subscribe(() => {
 					const profileId = this._route.snapshot.paramMap.get('id');
 					if (profileId) {
@@ -57,21 +58,13 @@ export class UserProfileComponent implements OnInit {
 
 	private getProfile(profileId: number) {
 		this._userProfileApiService.getProfile(profileId).subscribe({
-			next: (response) => {
-				if (response.status === 200 && response.body) {
-					const user = response.body as IUserProfileResponseDTO;
-					user.academicTitles.sort((a, b) => a.order - b.order);
-					user.universities.sort((a, b) => a.order - b.order);
-					this.user$.next(user);
-					this._titleService.setTitle(
-						`UniQuanda - Profil użytkownika ${response.body?.userData.nickname}`
-					);
-				} else {
-					this._toastrService.error('Nieprawidłowy profil', 'Błąd!');
-					this._router.navigate(['/pageNotFound']);
-				}
+			next: (user: IUserProfileResponseDTO) => {
+				this.user$.next(user);
+				this._titleService.setTitle(
+					`UniQuanda - Profil użytkownika ${user.userData.nickname}`
+				);
 			},
-			error: () => {
+			error: (err: any) => {
 				this._toastrService.error('Nieprawidłowy profil', 'Błąd!');
 				this._router.navigate(['/pageNotFound']);
 			},
