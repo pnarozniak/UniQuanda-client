@@ -1,4 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { PaginatorComponent } from './components/paginator/paginator.component';
 import { ThemeDirective } from './directives/theme.directive';
 import { InputComponent } from './components/input/input.component';
 import { MatInputModule } from '@angular/material/input';
@@ -17,6 +20,7 @@ const sharedComponents = [
 	ButtonComponent,
 	IconComponent,
 	DatePickerComponent,
+  PaginatorComponent,
 ];
 
 const sharedModules = [CommonModule];
@@ -27,6 +31,7 @@ const sharedDirectives = [ThemeDirective];
 	imports: [
 		sharedModules,
 		MatInputModule,
+    FormsModule,
 		ReactiveFormsModule,
 		MatDatepickerModule,
 		MatNativeDateModule,
