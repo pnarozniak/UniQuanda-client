@@ -6,16 +6,42 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from './components/button/button.component';
 import { IconComponent } from './components/icon/icon.component';
+import { DatePickerComponent } from './components/date-picker/date-picker.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { DateAdapter, MatNativeDateModule } from '@angular/material/core';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { PLDatePickerAdapter } from './components/date-picker/pl-date-picker-adapter';
 
-const sharedComponents = [InputComponent, ButtonComponent, IconComponent];
+const sharedComponents = [
+	InputComponent,
+	ButtonComponent,
+	IconComponent,
+	DatePickerComponent,
+];
 
 const sharedModules = [CommonModule];
 
 const sharedDirectives = [ThemeDirective];
 
 @NgModule({
-	imports: [sharedModules, MatInputModule, ReactiveFormsModule],
+	imports: [
+		sharedModules,
+		MatInputModule,
+		ReactiveFormsModule,
+		MatDatepickerModule,
+		MatNativeDateModule,
+	],
 	declarations: [sharedDirectives, sharedComponents],
 	exports: [sharedDirectives, sharedModules, sharedComponents],
+	providers: [
+		{
+			provide: DateAdapter,
+			useClass: PLDatePickerAdapter,
+		},
+		{
+			provide: MAT_DATE_LOCALE,
+			useValue: 'pl-PL',
+		},
+	],
 })
 export class SharedModule {}

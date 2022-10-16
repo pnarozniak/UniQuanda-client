@@ -1,0 +1,25 @@
+<mat-form-field appearance="fill" [hideRequiredMarker]="!showRequiredMarker">
+	<mat-label>{{ label }}</mat-label>
+	<mat-hint>{{ hint }}</mat-hint>
+
+	<input
+		matInput
+		[matDatepicker]="picker"
+		[formControl]="formControl"
+		[max]="disableFutureDates ? currentDate : null" />
+	<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+	<mat-datepicker #picker></mat-datepicker>
+
+	<mat-error *ngIf="formControl.hasError('matDatepickerParse')"
+		>Błędny format. Poprawny format to: MM-DD-RRRR</mat-error
+	>
+
+	<mat-error *ngFor="let error of errors">
+		<ng-container *ngIf="error.name">
+			{{ formControl.hasError(error.name) ? error.message : '' }}
+		</ng-container>
+		<ng-container *ngIf="!error.name">
+			{{ formControl.invalid ? error.message : '' }}
+		</ng-container>
+	</mat-error>
+</mat-form-field>
