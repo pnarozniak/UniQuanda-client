@@ -8,9 +8,12 @@
 		border: 1px solid colors.$bordered-gray;
 	}
 
-	.login-text {
+	.login-box {
 		font-size: 18px;
-		color: colors.$light-red;
+
+		.login-text {
+			color: colors.$light-red;
+		}
 	}
 }
 
