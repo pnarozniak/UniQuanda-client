@@ -1,0 +1,71 @@
+@use '../../../../assets/scss/colors' as colors;
+@use '../../../../assets/icons/style.css';
+
+:host {
+	user-select: none;
+}
+
+.page {
+	width: 28px;
+	height: 28px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--bg-default);
+	color: var(--text-default);
+	cursor: pointer;
+
+	&:hover {
+		opacity: .5;
+	}
+
+	&__current {
+		background-color: colors.$academic-blue;
+		color: colors.$crystal-white;
+		cursor: default;
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+
+	&__more-pages {
+		letter-spacing: 3px;
+	}
+
+	&__arrow {
+		letter-spacing: 1px;
+	}
+
+	&__hidden {
+		visibility: hidden;
+	}
+}
+
+.input-wrapper {
+	height: 28px;
+
+	.v-divider {
+		background-color: var(--text-default);
+		width: 1px;
+		height: 90%;
+	}
+
+	input  {
+		background-color: var(--bg-accent);
+		color: var(--text-accent);
+		text-align: center;
+		outline: none;
+		width: 50px;
+		border: none;
+	}
+}
+
+
+.dark {
+	.page {
+		&__current {
+			background-color: colors.$dark-yellow;
+		}
+	}
+}
