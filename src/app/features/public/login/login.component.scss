@@ -8,7 +8,6 @@
 	.google-box {
 		cursor: pointer;
 		border: 1px solid colors.$bordered-gray;
-		border-radius: 7px;
 		height: 65px;
 
 		.google-logo {
@@ -30,7 +29,7 @@
 	}
 
 	.register-box {
-		font-size: 18px;
+		font-size: 15px;
 
 		.register-text {
 			color: colors.$light-red;

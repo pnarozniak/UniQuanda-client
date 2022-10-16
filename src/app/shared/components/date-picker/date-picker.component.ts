@@ -25,7 +25,7 @@ export class DatePickerComponent implements OnInit, OnDestroy {
 	}
 
 	subscribeToValueChange = () =>
-		this.control.valueChanges.subscribe((value) => {
+		this.control.valueChanges.subscribe(() => {
 			const raw = this.control.errors?.['matDatepickerParse'];
 			if (raw?.text === '' && !this.control.hasValidator(Validators.required)) {
 				this.control.setErrors(null);
