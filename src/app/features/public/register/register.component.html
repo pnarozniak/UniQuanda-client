@@ -1,196 +1,83 @@
-<div class="w-100 d-flex flex-column height-header">
-	<form
-		[formGroup]="form"
-		(ngSubmit)="handleRegister()"
-		class="bordered d-flex flex-column p-sm-5 p-3 mx-auto mt-4">
-		<h1 class="mx-auto font-weight-bold mt-4 mt-sm-0">Zarejestruj się</h1>
-		<div
-			class="d-flex flex-column register-input mt-5 mb-3"
-			[ngClass]="{
-				'border-validation':
-					(!this.form.get('nickname')?.valid ||
-						this.form.hasError('nicknameExists')) &&
-					this.form.get('nickname')?.touched,
-				'mb-3': this.form.get('nickname')?.valid === true
-			}">
-			<input
-				type="text"
-				class="standard-input border-0"
-				[id]="'nickname'"
-				formControlName="nickname" />
-			<label
-				class="register-label position-absolute"
-				[for]="'nickname'"
-				[ngClass]="{
-					'element-has-text': this.form.get('nickname')?.value !== ''
-				}"
-				>Nazwa użytkownika</label
-			>
-		</div>
-		<div
-			class="validation-text"
-			*ngIf="
-				this.form.get('nickname')?.hasError('required') &&
-				this.form.get('nickname')?.touched
-			">
-			Nazwa użytkownika jest wymagana
-		</div>
-		<div
-			class="validation-text"
-			*ngIf="
-				(this.form.get('nickname')?.hasError('minlength') ||
-					this.form.get('nickname')?.hasError('maxlength')) &&
-				this.form.get('nickname')?.touched
-			">
-			Długość loginu to min. 3 znaki a max. 30
-		</div>
-		<div
-			class="validation-text"
-			*ngIf="
-				this.form.hasError('nicknameExists') &&
-				this.form.get('nickname')?.touched
-			">
-			Podany login jest już zajęty
-		</div>
-		<div
-			class="d-flex flex-column register-input mt-5 mb-3"
-			[ngClass]="{
-				'border-validation':
-					(!this.form.get('email')?.valid ||
-						this.form.hasError('emailExists')) &&
-					this.form.get('email')?.touched,
-				'mb-3': this.form.get('email')?.valid === true
-			}">
-			<input
-				type="email"
-				class="standard-input border-0"
-				formControlName="email"
-				[id]="'email'" />
-			<label
-				class="register-label position-absolute"
-				[for]="'email'"
-				[ngClass]="{
-					'element-has-text': this.form.get('email')?.value !== ''
-				}"
-				>E-mail</label
-			>
-		</div>
-		<div
-			class="validation-text"
-			*ngIf="
-				this.form.get('email')?.hasError('required') &&
-				this.form.get('email')?.touched
-			">
-			Adres e-mail jest wymagany
-		</div>
-		<div
-			class="validation-text"
-			*ngIf="
-				this.form.get('email')?.hasError('pattern') &&
-				this.form.get('email')?.touched
-			">
-			Nie poprawny format adresu e-mail
-		</div>
-		<div
-			class="validation-text"
-			*ngIf="
-				this.form.get('email')?.hasError('maxlength') &&
-				this.form.get('email')?.touched
-			">
-			Nie! Nie przyjmujemy maili dłuższych niż 320 znaków
-		</div>
-		<div
-			class="validation-text"
-			*ngIf="
-				this.form.hasError('emailExists') && this.form.get('email')?.touched
-			">
-			Wybrany adres e-mail jest już zajęty
-		</div>
-		<div
-			class="d-flex flex-column register-input mt-5"
-			[ngClass]="{
-				'border-validation':
-					!this.form.get('password')?.valid &&
-					this.form.get('password')?.touched
-			}">
-			<div class="d-flex flex-row password-input">
-				<input
-					formControlName="password"
-					type="{{ isPasswordShown ? 'text' : 'password' }}"
-					class="password-input border-0"
-					[id]="'password'" />
-				<button
-					type="button"
-					class="quanda-icons icon-{{
-						isPasswordShown ? 'show' : 'hide'
-					}} border-0 show-password ms-auto ms-sm-0"
-					(click)="isPasswordShown = !isPasswordShown"></button>
-			</div>
-			<label
-				class="register-label position-absolute"
-				[for]="'password'"
-				[ngClass]="{
-					'element-has-text': this.form.get('password')?.value !== ''
-				}"
-				>Hasło</label
-			>
-		</div>
-		<span
-			class="mt-2"
-			[ngClass]="{
-				'validation-text':
-					!this.form.get('password')?.valid &&
-					this.form.get('password')?.touched
-			}"
-			>Min. 8 znaków, jedna wielka litera, jedna mała litera, jedna cyfra</span
-		>
-		<div
-			class="d-flex flex-column register-input mt-5 mb-3"
-			[ngClass]="{
-				'border-validation':
-					(!this.form.get('repeatPassword')?.valid ||
-						this.form.hasError('notSame')) &&
-					this.form.get('repeatPassword')?.touched,
-				'mb-3': this.form.get('repeatPassword')?.valid === true
-			}">
-			<input
+<div class="w-100 h-100 d-flex flex-column align-items-center">
+	<div class="register-card my-auto py-3 py-sm-5 px-4 px-sm-0">
+		<form
+			[formGroup]="form"
+			(ngSubmit)="handleRegister()"
+			class="register-form d-flex flex-column p-sm-5">
+			<h1 class="mx-auto mt-4 mt-sm-0 mb-4 mb-sm-5">Zarejestruj się</h1>
+			<app-input
+				label="Nazwa użytkownika"
+				[control]="this.form.controls['nickname']"
+				[errors]="[
+					{ name: 'required', message: 'Nazwa użytkownika jest wymagana.' },
+					{
+						name: 'minlength',
+						message: 'Nazwa użytkownika musi mieć min. 3 znaki.'
+					},
+					{
+						name: 'maxlength',
+						message: 'Nazwa użytkownika może mieć max. 30 znaków.'
+					},
+					{
+						name: 'nicknameExists',
+						message: 'Nazwa użytkownika jest już zajęta.'
+					}
+				]">
+			</app-input>
+			<app-input
+				label="E-mail"
+				[control]="this.form.controls['email']"
+				[errors]="[
+					{
+						name: 'required',
+						message: 'Adres e-mail jest wymagany.'
+					},
+					{
+						name: 'pattern',
+						message: 'Niepoprawny format adresu e-mail.'
+					},
+					{
+						name: 'maxlength',
+						message: 'Nie! Nie przyjmujemy maili dłuższych niż 320 znaków.'
+					},
+					{
+						name: 'emailExists',
+						message: 'Wybrany adres e-mail jest już zajęty.'
+					}
+				]">
+			</app-input>
+			<app-input
+				label="Hasło"
+				hint="Min. 8 znaków, jedna wielka litera, jedna mała litera, jedna cyfra."
+				[control]="this.form.controls['password']"
 				type="password"
-				class="standard-input border-0"
-				formControlName="repeatPassword"
-				[id]="'repeatPassword'" />
-			<label
-				class="register-label position-absolute"
-				[for]="'repeatPassword'"
-				[ngClass]="{
-					'element-has-text': this.form.get('repeatPassword')?.value !== ''
-				}"
-				>Powtórz hasło</label
-			>
-		</div>
-		<div
-			class="validation-text"
-			*ngIf="
-				this.form.get('repeatPassword')?.hasError('required') &&
-				this.form.get('repeatPassword')?.touched
-			">
-			Wymagane jest powtórzenie hasła
-		</div>
-		<div
-			class="validation-text"
-			*ngIf="
-				this.form.hasError('notSame') &&
-				this.form.get('repeatPassword')?.touched &&
-				!this.form.get('repeatPassword')?.hasError('required')
-			">
-			Hasła nie są takie same
-		</div>
-		<button type="submit" class="submit-button border-0 mt-5 p-3">
-			Kontynuuj
-		</button>
-		<div class="mt-3 mx-auto login-box">
-			<span class="me-1">Masz już konto?</span>
-			<a routerLink="/public/login" class="login-text">Zaloguj się!</a>
-		</div>
-	</form>
+				[errors]="[
+					{
+						name: null,
+						message:
+							'Min. 8 znaków, jedna wielka litera, jedna mała litera, jedna cyfra.'
+					}
+				]">
+			</app-input>
+			<app-input
+				label="Powtórz hasło"
+				[control]="this.form.controls['repeatPassword']"
+				type="password"
+				[errors]="[
+					{
+						name: null,
+						message: 'Hasła nie są identyczne.'
+					}
+				]">
+			</app-input>
+			<app-button class="mt-5">Kontynuuj</app-button>
+			<div class="mt-3 mx-auto login-box">
+				<span class="me-1">Masz już konto?</span>
+				<app-button type="link" routerLink="/public/login" class="login-text"
+					>Zaloguj się!</app-button
+				>
+			</div>
+		</form>
+	</div>
 	<div class="footer-decoration"></div>
 </div>

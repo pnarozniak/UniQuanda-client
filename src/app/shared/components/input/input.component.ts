@@ -8,10 +8,11 @@ import { AbstractControl, FormControl } from '@angular/forms';
 })
 export class InputComponent {
 	@Input() label = '';
+	@Input() hint = '';
 	@Input() control!: AbstractControl;
 	@Input() type: 'text' | 'password' = 'text';
-	@Input() hideRequiredMarker = false;
-	@Input() errors: { name: string; message: string }[] = [];
+	@Input() showRequiredMarker = false;
+	@Input() errors: { name: string | null; message: string }[] = [];
 	isPasswordHidden = true;
 
 	get formControl() {

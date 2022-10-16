@@ -1,4 +1,4 @@
-<mat-form-field appearance="fill" [hideRequiredMarker]="hideRequiredMarker">
+<mat-form-field appearance="fill" [hideRequiredMarker]="!showRequiredMarker">
 	<mat-label>{{ label }}</mat-label>
 	<input
 		matInput
@@ -12,7 +12,13 @@
 		*ngIf="type === 'password'"
 		class="suffix"
 		(click)="togglePassword(); $event.stopImmediatePropagation()"></app-icon>
-	<mat-error *ngFor="let error of errors">{{
-		formControl.hasError(error.name) ? error.message : ''
-	}}</mat-error>
+	<mat-hint>{{ hint }}</mat-hint>
+	<mat-error *ngFor="let error of errors">
+		<ng-container *ngIf="error.name">
+			{{ formControl.hasError(error.name) ? error.message : '' }}
+		</ng-container>
+		<ng-container *ngIf="!error.name">
+			{{ formControl.invalid ? error.message : '' }}
+		</ng-container>
+	</mat-error>
 </mat-form-field>

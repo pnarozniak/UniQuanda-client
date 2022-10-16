@@ -5,7 +5,7 @@ import {
 	ValidationErrors,
 	ValidatorFn,
 } from '@angular/forms';
-import { first, map, Observable, of } from 'rxjs';
+import { finalize, Observable, of } from 'rxjs';
 import { RegisterApiService } from './register-api.service';
 
 @Injectable({
@@ -14,26 +14,26 @@ import { RegisterApiService } from './register-api.service';
 export class RegisterValidationService {
 	constructor(private readonly _registerApiService: RegisterApiService) {}
 	/**
-	 * Checks if two passwords are equal
+	 * Checks if two passwords are equal.
+	 * Sets repeatPassword error `notSame: true` if passwords are not equal, otherwise clears error
 	 * @param group form to validate
-	 * @returns ValidationErrors | null `notSame: true` if passwords are not equal or
-	 * null if passwords are equal
+	 * @returns null
 	 */
-	checkIfPasswordsMatch: ValidatorFn = (
-		group: AbstractControl
-	): ValidationErrors | null => {
+	checkIfPasswordsMatch: ValidatorFn = (group: AbstractControl): null => {
 		const pass = group.get('password')?.value;
 		const confirmPass = group.get('repeatPassword')?.value;
-		return pass === confirmPass ? null : { notSame: true };
+		group
+			.get('repeatPassword')
+			?.setErrors(pass === confirmPass ? null : { notSame: true });
+		return null;
 	};
 
 	/**
-	 * Checks if username and email are unique
+	 * Checks if username and email are unique.
+	 * Sets email error `emailExists: true` if email is not available, otherwise clears error
+	 * Sets nickname error `nicknameExists: true` if nickname is not available, otherwise clears error
 	 * @param group form to validate
-	 * @returns ValidationErrors | null `isNicknameAvailable: true` if nickname is not unique,
-	 * `emailExists: true` if email is not unique or
-	 * `isNicknameAvailable: true, emailExists: true` if both email and nickname is not unique or
-	 * null if both email and nickname are unique
+	 * @returns Observable of({pending: true})
 	 */
 	checkNicknameAndEmailAvailability: AsyncValidatorFn = (
 		group: AbstractControl
@@ -41,24 +41,24 @@ export class RegisterValidationService {
 		const nickname = group.get('nickname')?.value;
 		const email = group.get('email')?.value;
 		if (nickname && email) {
-			return this._registerApiService
+			this._registerApiService
 				.confirmRegistration(nickname, email)
 				.pipe(
-					map((response) => {
-						const data = response.body;
-						if (!data?.isNicknameAvailable && !data?.isEmailAvailable) {
-							return { nicknameExists: true, emailExists: true };
-						} else if (!data.isNicknameAvailable) {
-							return { nicknameExists: true };
-						} else if (!data.isEmailAvailable) {
-							return { emailExists: true };
-						}
-						return null;
+					finalize(() => {
+						group.setErrors(null);
 					})
 				)
-				.pipe(first());
+				.subscribe((response) => {
+					const data = response.body;
+					email.setErrors(
+						data?.isEmailAvailable ? null : { emailExists: true }
+					);
+					nickname.setErrors(
+						data?.isNicknameAvailable ? null : { nicknameExists: true }
+					);
+				});
 		}
-		return of(null);
+		return of({ pending: true });
 	};
 
 	/**

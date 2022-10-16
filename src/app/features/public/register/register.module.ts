@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { RegisterSecondStepComponent } from './pages/register-second-step/register-second-step.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ToastrModule } from 'ngx-toastr';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
 	imports: [
@@ -15,6 +16,7 @@ import { ToastrModule } from 'ngx-toastr';
 		RouterModule,
 		BsDatepickerModule.forRoot(),
 		ToastrModule.forRoot(),
+		SharedModule,
 	],
 	declarations: [RegisterComponent, RegisterSecondStepComponent],
 })
