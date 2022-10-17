@@ -1,8 +1,4 @@
-<ng-template
-	#page
-	[ngTemplateOutlet]="page"
-	let-user
-	[ngTemplateOutletContext]="{ $implicit: user$ | async }">
+<div *appContext="let user of user$ | async">
 	<div class="w-100 banner">
 		<div [appLoading]="user === null" class="w-100 banner-image">
 			<img
@@ -176,4 +172,4 @@
 				[appLoading]="user === null"></div>
 		</ng-template>
 	</div>
-</ng-template>
+</div>
