@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { BehaviorSubject, filter, Observable, tap } from 'rxjs';
+import { BehaviorSubject, catchError, filter, Observable, of, tap } from 'rxjs';
 import { IUserClaims } from 'src/app/core/models/user-claims.model';
 import { UserDataService } from 'src/app/core/services/user-data.service';
 import { IUserProfileResponseDTO } from './models/user-profile.dto';
@@ -62,6 +62,11 @@ export class UserProfileComponent implements OnInit {
 				this._titleService.setTitle(
 					`UniQuanda - Profil użytkownika ${user.userData.nickname}`
 				);
+			}),
+			catchError(() => {
+				this._toastrService.error('Nieprawidłowy profil', 'Błąd');
+				this._router.navigate(['/pageNotFound']);
+				return of();
 			})
 		);
 	}
