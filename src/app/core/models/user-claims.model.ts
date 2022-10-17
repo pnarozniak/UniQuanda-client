@@ -4,7 +4,7 @@ export interface IUserClaims {
 	id: number;
 	roles: Role[];
 	nickname: string;
-	avatar: string;
+	avatar?: string;
 	accessToken: string;
 	refreshToken: string;
 }

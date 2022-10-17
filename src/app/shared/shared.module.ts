@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PaginatorComponent } from './components/paginator/paginator.component';
+import { ContextDirective } from './directives/context.directive';
+import { LoadingDirective } from './directives/loading.directive';
 import { ThemeDirective } from './directives/theme.directive';
 import { InputComponent } from './components/input/input.component';
 import { MatInputModule } from '@angular/material/input';
@@ -24,7 +26,7 @@ const sharedComponents = [
 
 const sharedModules = [CommonModule];
 
-const sharedDirectives = [ThemeDirective];
+const sharedDirectives = [ThemeDirective, LoadingDirective, ContextDirective];
 
 @NgModule({
 	imports: [

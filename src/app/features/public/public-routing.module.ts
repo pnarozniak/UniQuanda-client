@@ -24,6 +24,14 @@ const routes: Routes = [
 		component: ConfirmRegistrationComponent,
 		data: { title: 'Potwierdź konto' },
 	},
+	{
+		path: 'profile/:id',
+		loadChildren: () =>
+			import('./user-profile/user-profile.module').then(
+				(m) => m.UserProfileModule
+			),
+		data: { title: 'Ładowanie profilu...' },
+	},
 ];
 @NgModule({
 	imports: [RouterModule.forChild(routes)],

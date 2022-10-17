@@ -3,7 +3,7 @@
 		<div class="dropdown-content d-flex flex-column p-2 position-relative">
 			<i class="icon-close position-absolute top-0 end-0 btn d-sm-none"></i>
 			<h5 class="px-1 mb-3">{{ user.nickname }}</h5>
-			<a class="dropdown-item" [routerLink]="['/user/profile']">
+			<a class="dropdown-item" [routerLink]="['/public/profile/' + user?.id]">
 				<i class="icon-profile"></i>
 				<span class="ms-2">Przejdź do profilu</span>
 			</a>
