@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { BehaviorSubject, filter, Observable } from 'rxjs';
+import { BehaviorSubject, filter, Observable, tap } from 'rxjs';
 import { IUserClaims } from 'src/app/core/models/user-claims.model';
 import { UserDataService } from 'src/app/core/services/user-data.service';
 import { IUserProfileResponseDTO } from './models/user-profile.dto';
@@ -14,7 +14,7 @@ import { UserProfileApiService } from './services/user-profile-api.service';
 	styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent implements OnInit {
-	public user$: BehaviorSubject<IUserProfileResponseDTO | null>;
+	public profile$: Observable<IUserProfileResponseDTO | null>;
 	public userClaims$: Observable<IUserClaims | null>;
 
 	constructor(
@@ -25,7 +25,7 @@ export class UserProfileComponent implements OnInit {
 		private readonly _titleService: Title,
 		private readonly _userDataService: UserDataService
 	) {
-		this.user$ = new BehaviorSubject<IUserProfileResponseDTO | null>(null);
+		this.profile$ = new BehaviorSubject<IUserProfileResponseDTO | null>(null);
 		this.userClaims$ = this._userDataService.getUserData$();
 	}
 
@@ -57,17 +57,12 @@ export class UserProfileComponent implements OnInit {
 	}
 
 	private getProfile(profileId: number) {
-		this._userProfileApiService.getProfile(profileId).subscribe({
-			next: (user: IUserProfileResponseDTO) => {
-				this.user$.next(user);
+		this.profile$ = this._userProfileApiService.getProfile(profileId).pipe(
+			tap((user: IUserProfileResponseDTO) => {
 				this._titleService.setTitle(
 					`UniQuanda - Profil użytkownika ${user.userData.nickname}`
 				);
-			},
-			error: (err: any) => {
-				this._toastrService.error('Nieprawidłowy profil', 'Błąd!');
-				this._router.navigate(['/pageNotFound']);
-			},
-		});
+			})
+		);
 	}
 }

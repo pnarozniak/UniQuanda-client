@@ -1,4 +1,4 @@
-<div *appContext="let user of user$ | async">
+<div *appContext="let user of profile$ | async">
 	<div class="w-100 banner">
 		<div [appLoading]="user === null" class="w-100 banner-image">
 			<img
@@ -10,7 +10,7 @@
 				alt="banner" />
 		</div>
 	</div>
-	<div class="w-100 d-flex flex-column" appTheme>
+	<div class="w-100 d-flex flex-column">
 		<div class="profile-picture" [appLoading]="user === null">
 			<img
 				[src]="
