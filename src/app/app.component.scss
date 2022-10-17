@@ -15,7 +15,7 @@
 	.main-content{
 		margin-top: dim.$header-height;
 		max-width: 100%;
-		
+		min-height: calc(100vh - (dim.$header-height + dim.$nav-bar-height));
 		margin-bottom: dim.$nav-bar-height;
 	}
 

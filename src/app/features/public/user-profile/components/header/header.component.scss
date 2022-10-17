@@ -1,0 +1,211 @@
+@use './../../../../../../assets/scss/colors.scss' as colors;
+@use './../../../../../../assets/icons/style.css';
+@use './../../../../../../assets/scss/breakpoints.scss' as breakpoint;
+.banner {
+	height: 200px;
+	overflow: hidden;
+	& .banner-image {
+		min-width: 100%;
+		min-height: 100%;
+		& img {
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
+
+.profile-picture {
+	position: absolute;
+	width: 200px;
+	height: 200px;
+	margin-left: 38px;
+	transform: translateY(-100px);
+	& img {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.header-content {
+	margin-left: 250px;
+
+	& .title-badge {
+		color: colors.$crystal-white;
+	}
+
+	& .loading-badge {
+		height: 35px;
+		width: 70px;
+	}
+
+	& .nickname {
+		font-size: 35px;
+		color: var(--text-default);
+	}
+
+	& .mobile-profile-icon {
+		background-color: var(--bg-accent);
+		color: var(--text-default);
+		cursor: pointer;
+	}
+
+	& .loading-nick {
+		height: 35px;
+		width: 200px;
+	}
+}
+
+.universities {
+	margin-left: 38px;
+	& .university a {
+		color: var(--text-default);
+		font-size: 15px;
+
+		&:hover {
+			color: colors.$light-purple !important;
+		}
+
+		& .university-logo {
+			width: 20px;
+			height: 20px;
+			border-radius: 100%;
+		}
+
+		& .icon-linkv2 {
+			font-size: 13px;
+		}
+	}
+}
+.icon-loading {
+	width: 32px;
+	height: 32px
+}
+.university-loading {
+	height: 25px;
+}
+.action-button-loading {
+	width: 200px;
+	height: 40px;
+}
+.dropdown-content {
+	right: -38px !important;
+	border-radius: 0;
+	top: 11px;
+	position: absolute;
+	border: 1px solid colors.$bordered-gray;
+	background-color: var(--bg-default);
+	width: 210px;
+	font-size: 14px;
+
+	&:before {
+		content: '';
+		display: block;
+		position: absolute;
+		border-style: solid;
+		border-color: colors.$bordered-gray;
+		border-width: 1px 1px 0 0;
+		width: 15px;
+		height: 15px;
+		top: -8.3px;
+		right: 15px;
+		background: inherit;
+		transform: rotate(-45deg);
+	}
+
+	a {
+		color: var(--text-default);
+		&:hover {
+			background-color: var(--bg-accent);
+		}
+	}
+}
+
+.hrline {
+	border: 0.5px solid colors.$bordered-gray;
+	opacity: 1;
+}
+
+.sendMessage {
+	background-color: var(--bg-accent);
+
+	&:hover {
+		background-color: colors.$light-purple !important;
+		color: colors.$crystal-white !important;
+	}
+}
+.link-header {
+	color: var(--text-default);
+
+	&:hover {
+		background-color: var(--bg-accent);
+	}
+}
+
+@media all and (max-width: breakpoint.$xxl) {
+	.banner {
+		height: 14.285714285714285vw;
+	}
+
+	.profile-picture {
+		width: 14.285714285714285vw;
+		height: 14.285714285714285vw;
+		margin-left: 2.7142857142857144vw;
+		transform: translateY(-7.1428571428571425vw);
+	}
+
+	.header-content {
+		margin-left: 17.857142857142858vw;
+
+		& .nickname {
+			font-size: 28px;
+		}
+
+		& .title-badge {
+			font-size: 14px;
+			white-space: nowrap;
+		}
+
+		& .loading-badge {
+			height: 30px;
+			width: 60px;
+		}
+
+		& .loading-nick {
+			width: 165px;
+			height: 30px;
+		}
+	}
+	.universities {
+		margin-left: 2.7142857142857144vw;
+	}
+}
+@media all and (max-width: breakpoint.$sm) {
+	.banner {
+		height: 82px !important;
+		max-width: 100vw;
+		& .banner-image {
+			width: breakpoint.$sm !important;
+			min-width: breakpoint.$sm;
+			overflow-x: hidden;
+			position: relative;
+			left: calc(50% - breakpoint.$sm / 2);
+		}
+	}
+
+	.profile-picture {
+		width: 85px;
+		height: 85px;
+		transform: translateY(-21px);
+	}
+
+	.header-content {
+		margin-left: calc(95px + 2.7142857143vw);
+		& .nickname {
+			font-size: 25px;
+		}
+
+		& .title-badge {
+			font-size: 12px !important;
+		}
+	}
+}
