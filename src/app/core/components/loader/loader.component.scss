@@ -1,0 +1,58 @@
+@use '../../../../assets/scss/colors.scss' as colors;
+@use '../../../../assets/scss/breakpoints.scss' as breakpoints;
+@use '../../../../assets/scss/dimensions.scss' as dimensions;
+
+$items-colors:  
+	colors.$academic-blue, 
+	colors.$blue-laguna, 
+	colors.$dark-yellow, 
+	colors.$pink, 
+	colors.$light-red;
+
+.loader-wrapper {
+	background-color: rgba(5, 15, 42, 0.6);
+	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(4px);
+	user-select: none;
+	-webkit-user-select: none;
+
+	.loader {
+		margin-left: dimensions.$nav-bar-width-sm;
+		margin-bottom: dimensions.$header-height-sm;
+
+		&__item {
+			width: 20px;
+			height: 20px;
+			margin: 10px;
+			transition: 0.5s all ease;
+		}
+	}
+}
+
+@media screen and (max-width: breakpoints.$sm) {
+	.loader {
+		margin-left: 0 !important;
+		margin-bottom: dimensions.$nav-bar-height !important;
+	}
+}
+
+@mixin bounce-animation($i) {
+  $y: ($i + 8) * 2;
+  @keyframes right-#{$i} {
+    0% {
+      transform: translateY(#{-$y}px);
+    }
+    100% {
+      transform: translateY(#{$y}px);
+    }
+  }
+}
+
+@for $i from 1 through 5 {
+  .loader__item:nth-child(#{$i}) {
+    @include bounce-animation($i);
+    animation: right-#{$i} 1s infinite alternate;
+    background-color: nth($items-colors, $i);
+    animation-delay: 100ms * $i;
+  }
+}

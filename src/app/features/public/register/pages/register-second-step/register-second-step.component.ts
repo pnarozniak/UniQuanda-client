@@ -5,6 +5,8 @@ import { RegisterApiService } from '../../services/register-api.service';
 import { RegisterValidationService } from '../../services/register-validation.service';
 import { ToastrService } from 'ngx-toastr';
 import { RegisterRequestDTO } from '../../models/register.dto';
+import { LoaderService } from 'src/app/core/services/loader.service';
+import { finalize } from 'rxjs';
 
 @Component({
 	selector: 'app-register-second-step',
@@ -30,7 +32,8 @@ export class RegisterSecondStepComponent implements OnInit {
 		private readonly _router: Router,
 		private readonly _registerApiService: RegisterApiService,
 		private readonly _registerValidationService: RegisterValidationService,
-		private readonly _toastrService: ToastrService
+		private readonly _toastrService: ToastrService,
+		private readonly _loader: LoaderService
 	) {}
 
 	ngOnInit(): void {
@@ -51,6 +54,7 @@ export class RegisterSecondStepComponent implements OnInit {
 		this.form.markAllAsTouched();
 		if (this.form.invalid) return;
 
+		this._loader.show();
 		this._registerApiService
 			.register(
 				new RegisterRequestDTO(
@@ -64,6 +68,7 @@ export class RegisterSecondStepComponent implements OnInit {
 					this.form.value.city
 				)
 			)
+			.pipe(finalize(() => this._loader.hide()))
 			.subscribe((response) => {
 				if (response.status === 201) {
 					this._router.navigate([
