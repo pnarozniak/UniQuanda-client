@@ -1,18 +1,18 @@
 @use "/src/assets/scss/theme.scss";
+@use "/src/material.scss";
+@use "/src/assets/icons/style";
 @use "/src/assets/scss/loading-animations.scss";
 
 /* Importing Bootstrap SCSS file. */
 @import "~bootstrap/scss/bootstrap";
 
-/* Importing Datepicker SCSS file. */
-@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
-
 @import "assets/scss/toastr.scss"; /* stylelint-disable-line */
-@import "assets/scss/datepicker.scss"; /* stylelint-disable-line */ 
 @import "assets/scss/dimensions.scss"; /* stylelint-disable-line */
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
 
+html,
 body {
+  height: 100%;
   margin: 0;
   font-family: Ubuntu, sans-serif !important;
 }

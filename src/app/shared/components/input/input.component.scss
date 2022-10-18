@@ -1,0 +1,47 @@
+@use '../../../../assets/scss/colors.scss' as colors;
+
+:host {
+	width: 100%;
+	
+	::ng-deep mat-form-field {
+		width: 100%;
+		font-family: Ubuntu, sans-serif !important;
+
+		.mat-form-field-flex {
+			background-color: transparent !important;
+			padding-left: 0;
+			padding-top: 0;
+		}
+
+		.mat-form-field-subscript-wrapper {
+			padding-left: 0;
+			padding-right: 0;
+			margin-top: 4px;
+		}
+
+		.mat-form-field-underline::before {
+			background-color: colors.$bordered-gray;
+		}
+
+		.mat-form-field-infix {
+			padding-top: 12px;
+			padding-bottom: 5px;
+		}
+
+		.mat-form-field-label-wrapper {
+			top: 0;
+		}
+
+		&.mat-form-field-should-float {
+			.mat-form-field-label-wrapper {
+				transform: translateY(-4px);
+			}
+		}
+	}
+
+	.suffix {
+		color: colors.$light-gray;
+		font-size: small;
+		cursor: pointer;
+	}
+}

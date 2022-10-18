@@ -1,34 +1,35 @@
-<div class="w-100 d-flex flex-column height-header">
-	<form
-		[formGroup]="form"
-		class="bordered d-flex flex-column p-sm-5 p-3 my-auto mx-auto"
-		(ngSubmit)="handleSubmit()">
-		<h1 class="mx-auto font-weight-bold mt-4 mt-sm-0">Kod weryfikacyjny</h1>
-		<span class="info-text text-start mx-sm-0 mx-3"
-			>Gdyby link wysłany na podany przy rejestracji adres e-mail nie działał,
-			wpisz poniżej kod otrzymany w tym mailu.</span
-		>
-		<span class="mt-3 my-2 ms-3 ms-sm-0">Kod weryfikacyjny</span>
-		<div class="d-flex flex-row mt-3">
-			<input
-				*ngFor="let temp of [].constructor(codeLength); let inputId = index"
-				type="number"
-				formControlName="{{ 'codeInput' + inputId }}"
-				class="code-input border-0 p-3 text-center mx-1"
-				[ngClass]="{
-					'ms-auto': inputId === 0,
-					'me-auto': inputId === codeLength - 1
-				}"
-				(ngModelChange)="handleInputChange(inputId)"
-				[autofocus]="inputId === 0"
-				#codeInput />
-		</div>
-		<div class="ms-auto me-2 mt-2 resend-mail" (click)="handleResendEmail()">
-			Wyślij ponownie kod
-		</div>
-		<button type="submit" class="submit-button border-0 mt-5 p-3">
-			Zweryfikuj
-		</button>
-	</form>
+<div class="w-100 h-100 d-flex flex-column align-items-center">
+	<div class="confirm-registration-card my-sm-auto py-3 py-sm-5 px-4 px-sm-0">
+		<form
+			[formGroup]="form"
+			class="confirm-registration-form d-flex flex-column p-sm-5"
+			(ngSubmit)="handleSubmit()">
+			<h1 class="header mx-auto mt-4 mt-sm-0 mb-2 mb-sm-3">
+				Kod weryfikacyjny
+			</h1>
+			<span class="text-justify mx-auto mx-sm-0 mb-2 mb-sm-3"
+				>Gdyby link wysłany na podany przy rejestracji adres e-mail nie działał,
+				wpisz poniżej kod otrzymany w tym mailu.
+			</span>
+			<span class="mt-3 mb-2">Kod weryfikacyjny</span>
+			<div class="d-flex flex-row gap-2 justify-content-center">
+				<input
+					*ngFor="let temp of [].constructor(codeLength); let inputId = index"
+					type="number"
+					formControlName="{{ 'codeInput' + inputId }}"
+					class="code-input text-center"
+					(ngModelChange)="handleInputChange(inputId)"
+					[autofocus]="inputId === 0"
+					#codeInput />
+			</div>
+			<app-button
+				type="link"
+				class="ms-auto mt-2 resend-mail"
+				(click)="handleResendEmail()"
+				>Wyślij ponownie kod</app-button
+			>
+			<app-button class="mt-4 mt-sm-5">Zweryfikuj</app-button>
+		</form>
+	</div>
 	<div class="footer-decoration"></div>
 </div>
