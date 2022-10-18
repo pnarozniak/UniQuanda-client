@@ -9,37 +9,34 @@ import { RegisterValidationService } from './services/register-validation.servic
 	styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-	public isPasswordShown: boolean;
-	public form: FormGroup;
+	public form: FormGroup = new FormGroup(
+		{
+			nickname: new FormControl('', [
+				Validators.required,
+				Validators.minLength(3),
+				Validators.maxLength(30),
+			]),
+			email: new FormControl('', [
+				Validators.required,
+				Validators.pattern('^.+@.+\\..+$'),
+				Validators.maxLength(320),
+			]),
+			password: new FormControl('', [
+				Validators.required,
+				Validators.minLength(8),
+				Validators.maxLength(30),
+				Validators.pattern('^(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[0-9]+).*$'),
+			]),
+			repeatPassword: new FormControl('', [Validators.required]),
+		},
+		this._registerValidationService.checkIfPasswordsMatch,
+		this._registerValidationService.checkNicknameAndEmailAvailability
+	);
+
 	constructor(
 		private readonly _router: Router,
 		private readonly _registerValidationService: RegisterValidationService
-	) {
-		this.isPasswordShown = false;
-		this.form = new FormGroup(
-			{
-				nickname: new FormControl('', [
-					Validators.required,
-					Validators.minLength(3),
-					Validators.maxLength(30),
-				]),
-				email: new FormControl('', [
-					Validators.required,
-					Validators.pattern('^.+@.+\\..+$'),
-					Validators.maxLength(320),
-				]),
-				password: new FormControl('', [
-					Validators.required,
-					Validators.minLength(8),
-					Validators.maxLength(30),
-					Validators.pattern('^(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[0-9]+).*$'),
-				]),
-				repeatPassword: new FormControl('', [Validators.required]),
-			},
-			_registerValidationService.checkIfPasswordsMatch,
-			_registerValidationService.checkNicknameAndEmailAvailability
-		);
-	}
+	) {}
 
 	handleRegister() {
 		this.form.markAllAsTouched();

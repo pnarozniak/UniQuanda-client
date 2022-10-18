@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import AuthGuardService from './core/guards/auth-guard.service';
+import { NotFoundComponent } from './core/pages/not-found/not-found.component';
 
 const routes: Routes = [
 	{
@@ -34,6 +35,11 @@ const routes: Routes = [
 		data: {
 			expectedRole: 'Premium',
 		},
+	},
+	{
+		path: '**',
+		component: NotFoundComponent,
+		data: { title: 'Nie znaleziono danej strony' },
 	},
 	{ path: '', redirectTo: 'public/home', pathMatch: 'full' },
 ];

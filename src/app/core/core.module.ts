@@ -11,10 +11,12 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { JwtTokenInterceptor } from './interceptors/jwt-token-interceptor.service';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HeaderDropdownComponent } from './components/header-dropdown/header-dropdown.component';
-import { ThemeDirective } from './directives/theme.directive';
+import { SharedModule } from '../shared/shared.module';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { OverlayModule } from '@angular/cdk/overlay';
 @NgModule({
 	providers: [
 		StorageService,
@@ -35,7 +37,8 @@ import { ThemeDirective } from './directives/theme.directive';
 		HeaderComponent,
 		NavBarComponent,
 		HeaderDropdownComponent,
-		ThemeDirective,
+		NotFoundComponent,
+		LoaderComponent,
 	],
 	imports: [
 		RouterModule,
@@ -43,8 +46,10 @@ import { ThemeDirective } from './directives/theme.directive';
 		HttpClientModule,
 		CommonModule,
 		BrowserModule,
+		SharedModule,
 		TooltipModule.forRoot(),
 		BsDropdownModule.forRoot(),
+		OverlayModule,
 	],
 	exports: [HeaderComponent, NavBarComponent, ThemeDirective],
 })

@@ -1,0 +1,175 @@
+<div *appContext="let user of profile$ | async">
+	<div class="w-100 banner">
+		<div [appLoading]="user === null" class="w-100 banner-image">
+			<img
+				[src]="
+					user?.userData?.banner
+						? user?.userData?.banner
+						: 'assets/images/common/default_users_background.svg'
+				"
+				alt="banner" />
+		</div>
+	</div>
+	<div class="w-100 d-flex flex-column">
+		<div class="profile-picture" [appLoading]="user === null">
+			<img
+				[src]="
+					user?.userData?.avatar
+						? user?.userData?.avatar
+						: 'assets/images/common/default_avatar.svg'
+				"
+				alt="profile-picture" />
+		</div>
+		<div class="header-content d-flex mt-sm-3 mt-2">
+			<div class="d-flex flex-column w-100">
+				<div class="badges d-flex">
+					<div
+						class="loading-badge me-1 mb-1"
+						[appLoading]="user === null"
+						*ngIf="user === null"></div>
+					<div
+						class="loading-badge mb-1"
+						[appLoading]="user === null"
+						*ngIf="user === null"></div>
+					<div *ngFor="let title of user?.academicTitles" class="me-1">
+						<b
+							class="p-2 title-badge"
+							[ngStyle]="{
+								'background-color': getAcademicTitleTypeColor(
+									title.academicTitleType
+								)
+							}">
+							{{ title.name }}</b
+						>
+					</div>
+				</div>
+				<div class="d-flex flex-row w-100">
+					<div
+						class="loading-nick"
+						[appLoading]="user === null"
+						*ngIf="user === null"></div>
+					<div
+						class="d-flex flex-xl-row flex-column"
+						*ngIf="
+							user?.userData?.firstName && user?.userData?.lastName;
+							else onlyNick
+						">
+						<b class="nickname mt-2 mt-sm-0"
+							>{{ user?.userData?.firstName }} {{ user?.userData?.lastName }}</b
+						>
+						<span class="mt-auto mb-2 ms-2"
+							>({{ user?.userData?.nickname }})</span
+						>
+					</div>
+					<ng-template #onlyNick>
+						<b class="nickname mt-2 mt-sm-0">{{ user?.userData?.nickname }}</b>
+					</ng-template>
+					<a
+						*ngIf="
+							(userClaims$ | async)?.id === user?.userData?.id &&
+								user?.userData?.id !== null;
+							else otherProfileMobile
+						"
+						class="icon-edit mobile-profile-icon p-2 ms-auto me-4 my-auto d-flex d-lg-none"
+						href="/user/profile/settings/edit"></a>
+					<ng-template #otherProfileMobile>
+						<div
+							*ngIf="user?.userData?.id"
+							dropdown
+							[insideClick]="true"
+							container="body"
+							class="ms-auto me-4 my-auto d-flex d-lg-none">
+							<i class="icon-dots p-2 mobile-profile-icon" dropdownToggle></i>
+							<div
+								*dropdownMenu
+								class="dropdown-content d-flex flex-column py-2 d-lg-none"
+								appTheme>
+								<a
+									href="/premium/message/createNewMessage/{{
+										user?.userData?.id
+									}}"
+									*ngIf="'hasPremium' === 'hasPremium'"
+									class="mx-4 mt-1 d-flex justify-content-center">
+									<i class="icon-mail me-1 my-auto"></i>
+									Wyślij wiadomość </a
+								><!--TODO: dodać poprawny warunek sprawdzania premium-->
+								<hr class="mx-4 hrline my-2" />
+								<a
+									href="/user/report/{{ user?.userData?.id }}"
+									class="mx-4 d-flex justify-content-center">
+									<i class="icon-report me-1 my-auto"></i>
+									Zgłoś użytkownika
+								</a>
+							</div>
+						</div>
+						<div
+							class="icon-loading ms-auto me-4 my-auto d-flex d-lg-none"
+							[appLoading]="user === null"
+							*ngIf="user === null"></div>
+					</ng-template>
+				</div>
+			</div>
+			<app-user-profile-header-stats
+				[headerStatistics]="user?.headerStatistics"
+				class="my-auto ms-auto me-3 d-lg-flex d-none flex-row"></app-user-profile-header-stats>
+		</div>
+		<div class="d-flex flex-column universities mt-3 mt-xl-4">
+			<div
+				*ngFor="let university of user?.universities"
+				class="d-flex flex-row university">
+				<a href="/public/university/{{ university.id }}">
+					<img
+						[src]="university.logo"
+						alt="Logo placówki edukacyjnjej"
+						class="university-logo" />
+					{{ university.name }}
+					<i class="icon-linkv2 ms-1"> </i>
+				</a>
+			</div>
+			<div
+				class="university-loading w-75"
+				[appLoading]="user === null"
+				*ngIf="user === null"></div>
+			<div
+				class="university-loading w-75 mt-1"
+				[appLoading]="user === null"
+				*ngIf="user === null"></div>
+		</div>
+		<app-user-profile-header-stats
+			[headerStatistics]="user?.headerStatistics"
+			class="d-lg-none d-flex flex-row mx-auto mt-3"></app-user-profile-header-stats>
+		<hr class="mx-4 hrline d-lg-block d-none" />
+		<div
+			class="d-lg-flex d-none flex-row mx-auto me-5 mt-lg-0 mt-3"
+			*ngIf="
+				(userClaims$ | async)?.id === user?.userData?.id &&
+					user?.userData?.id !== null;
+				else otherProfile
+			">
+			<a href="/user/profile/settings/edit" class="link-header p-2">
+				<i class="icon-edit me-1"></i>
+				Edytuj profil
+			</a>
+		</div>
+		<ng-template #otherProfile>
+			<div
+				class="d-lg-flex d-none flex-row mx-auto me-5 mt-lg-0 mt-3"
+				*ngIf="user?.userData?.id !== null">
+				<a href="/user/report/{{ user?.userData?.id }}" class="link-header p-2">
+					<i class="icon-report"></i>
+					Zgłoś użytkownika
+				</a>
+				<a
+					href="/premium/message/createNewMessage/{{ user?.userData?.id }}"
+					*ngIf="'hasPremium' === 'hasPremium'"
+					class="ms-2 sendMessage link-header p-2">
+					<i class="icon-mail"></i>
+					Wyślij wiadomość </a
+				><!--TODO: dodać poprawny warunek sprawdzania premium-->
+			</div>
+			<div
+				class="action-button-loading d-lg-flex d-none mx-auto me-5 mt-lg-0 mt-3"
+				[appLoading]="user === null"></div>
+		</ng-template>
+	</div>
+</div>

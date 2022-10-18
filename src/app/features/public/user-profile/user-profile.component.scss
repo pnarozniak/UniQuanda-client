@@ -1,0 +1,22 @@
+@use './../../../../assets/scss/colors.scss' as colors;
+@use './../../../../assets/scss/dimensions.scss' as dim;
+.profile-rectangle {
+	border: 1px solid colors.$bordered-gray;
+	width: calc(1400px - dim.$nav-bar-width-sm);
+}
+
+.source-material {
+	border-left: 1px solid colors.$bordered-gray;
+}
+
+@media all and (max-width: 1399px) {
+	.profile-rectangle {
+		width: 100%;
+		border: none;
+	}
+}
+
+.question {
+	border: 1px solid colors.$bordered-gray;
+	max-width: 100%;
+}

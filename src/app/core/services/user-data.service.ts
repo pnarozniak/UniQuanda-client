@@ -7,9 +7,9 @@ import { StorageService } from './storage.service';
 @Injectable()
 export class UserDataService {
 	private readonly _userStorageKey = 'user';
-	private readonly _idJwtKey =
+	private readonly _idKey =
 		'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier';
-	private readonly _roleJwtKey =
+	private readonly _rolesKey =
 		'http://schemas.microsoft.com/ws/2008/06/identity/claims/role';
 	private readonly _user$ = new BehaviorSubject<IUserClaims | null>(null);
 
@@ -75,8 +75,8 @@ export class UserDataService {
 	private decodeAccessToken(token: string): { id: number; roles: Role[] } {
 		const decoded = JSON.parse(window.atob(token.split('.')[1]));
 		return {
-			id: decoded[this._idJwtKey],
-			roles: decoded[this._roleJwtKey],
+			id: Number(decoded[this._idKey]),
+			roles: decoded[this._rolesKey],
 		};
 	}
 

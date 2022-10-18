@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { UserDataService } from 'src/app/core/services/user-data.service';
 import { LoginApiService } from './services/login-api.service';
 import { LoginRequestDTO, LoginResponseStatus } from './models/login.dto';
+import { LoaderService } from 'src/app/core/services/loader.service';
+import { finalize } from 'rxjs';
 
 @Component({
 	selector: 'app-login',
@@ -12,37 +14,37 @@ import { LoginRequestDTO, LoginResponseStatus } from './models/login.dto';
 	styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-	public isPasswordShown: boolean;
-	public form: FormGroup;
+	public form: FormGroup = new FormGroup({
+		email: new FormControl('', [
+			Validators.required,
+			Validators.pattern('^.+@.+\\..+$'),
+			Validators.maxLength(320),
+		]),
+		password: new FormControl('', [
+			Validators.required,
+			Validators.minLength(8),
+			Validators.maxLength(30),
+			Validators.pattern('^(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[0-9]+).*$'),
+		]),
+	});
+
 	constructor(
 		private readonly _loginApiService: LoginApiService,
 		private readonly _userDataService: UserDataService,
 		private readonly _toastrService: ToastrService,
-		private readonly _router: Router
-	) {
-		this.isPasswordShown = false;
-		this.form = new FormGroup({
-			email: new FormControl('', [
-				Validators.required,
-				Validators.pattern('^.+@.+\\..+$'),
-				Validators.maxLength(320),
-			]),
-			password: new FormControl('', [
-				Validators.required,
-				Validators.minLength(8),
-				Validators.maxLength(30),
-				Validators.pattern('^(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[0-9]+).*$'),
-			]),
-		});
-	}
+		private readonly _router: Router,
+		private readonly _loader: LoaderService
+	) {}
 
 	handleLogin() {
 		this.form.markAllAsTouched();
 		if (this.form.invalid) return;
 
+		this._loader.show();
 		const formValue = this.form.value;
 		this._loginApiService
 			.login(new LoginRequestDTO(formValue.email, formValue.password))
+			.pipe(finalize(() => this._loader.hide()))
 			.subscribe({
 				next: (res) => {
 					if (res.body?.status === LoginResponseStatus.EmailNotConfirmed) {
