@@ -8,6 +8,8 @@ import {
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { finalize } from 'rxjs';
+import { LoaderService } from 'src/app/core/services/loader.service';
 import { ConfirmRegistrationRequestDTO } from './models/confirm-registration.dto';
 import { ConfirmRegistrationApiService } from './services/confirm-registration-api.service';
 
@@ -26,7 +28,8 @@ export class ConfirmRegistrationComponent implements OnInit {
 		private readonly _route: ActivatedRoute,
 		private readonly _router: Router,
 		private readonly _confirmRegistrationApiService: ConfirmRegistrationApiService,
-		private readonly _toastrService: ToastrService
+		private readonly _toastrService: ToastrService,
+		private readonly _loader: LoaderService
 	) {
 		this.form = new FormGroup({});
 		for (let i = 0; i < this.codeLength; i++) {
@@ -78,9 +81,17 @@ export class ConfirmRegistrationComponent implements OnInit {
 		}
 	}
 
+	resetForm() {
+		this.form.reset();
+		this.codeInputs.get(0)?.nativeElement.focus();
+	}
+
 	handleResendEmail() {
+		this.resetForm();
+		this._loader.show();
 		this._confirmRegistrationApiService
 			.resendRegistrationCode(this.email)
+			.pipe(finalize(() => this._loader.hide()))
 			.subscribe(() => {
 				this._toastrService.success(
 					'Sprawdź swoją skrzynkę odbiorczą',
@@ -96,20 +107,26 @@ export class ConfirmRegistrationComponent implements OnInit {
 		for (let i = 0; i < this.codeLength; i++) {
 			result += this.form.get(`codeInput${i}`)?.value;
 		}
+
+		this._loader.show();
 		this._confirmRegistrationApiService
 			.validateRegistrationCode(
 				new ConfirmRegistrationRequestDTO(this.email, result)
 			)
-			.subscribe((data) => {
-				if (data.status === 204) {
-					this._toastrService.success(
-						'Twoje konto zostało aktywowane',
-						'Sukces:'
-					);
-					this._router.navigate(['/public/login']);
-				} else {
-					this._toastrService.success('Taki kod nie istnieje', 'Błąd');
-				}
+			.pipe(finalize(() => this._loader.hide()))
+			.subscribe({
+				next: (data) => {
+					if (data.status === 204) {
+						this._toastrService.success(
+							'Twoje konto zostało aktywowane',
+							'Sukces:'
+						);
+						this._router.navigate(['/public/login']);
+					}
+				},
+				error: () => {
+					this._toastrService.error('Taki kod nie istnieje', 'Błąd');
+				},
 			});
 	}
 }

@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { UserDataService } from 'src/app/core/services/user-data.service';
 import { LoginApiService } from './services/login-api.service';
 import { LoginRequestDTO, LoginResponseStatus } from './models/login.dto';
+import { LoaderService } from 'src/app/core/services/loader.service';
+import { finalize } from 'rxjs';
 
 @Component({
 	selector: 'app-login',
@@ -30,16 +32,19 @@ export class LoginComponent {
 		private readonly _loginApiService: LoginApiService,
 		private readonly _userDataService: UserDataService,
 		private readonly _toastrService: ToastrService,
-		private readonly _router: Router
+		private readonly _router: Router,
+		private readonly _loader: LoaderService
 	) {}
 
 	handleLogin() {
 		this.form.markAllAsTouched();
 		if (this.form.invalid) return;
 
+		this._loader.show();
 		const formValue = this.form.value;
 		this._loginApiService
 			.login(new LoginRequestDTO(formValue.email, formValue.password))
+			.pipe(finalize(() => this._loader.hide()))
 			.subscribe({
 				next: (res) => {
 					if (res.body?.status === LoginResponseStatus.EmailNotConfirmed) {
