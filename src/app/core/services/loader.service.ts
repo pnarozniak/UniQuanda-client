@@ -21,7 +21,7 @@ export class LoaderService {
 	}
 
 	/**
-	 * Shows loader
+	 * Hides loader
 	 */
 	hide() {
 		this._overlayRef.detach();
