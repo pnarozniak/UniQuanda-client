@@ -17,6 +17,7 @@ import { SharedModule } from '../shared/shared.module';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { JwtTokenInterceptor } from './interceptors/jwt-token-interceptor.service';
 @NgModule({
 	providers: [
 		StorageService,
@@ -51,6 +52,6 @@ import { OverlayModule } from '@angular/cdk/overlay';
 		BsDropdownModule.forRoot(),
 		OverlayModule,
 	],
-	exports: [HeaderComponent, NavBarComponent, ThemeDirective],
+	exports: [HeaderComponent, NavBarComponent],
 })
 export class CoreModule {}

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RegisterApiService } from '../../services/register-api.service';
-import { RegisterValidationService } from '../../services/register-validation.service';
 import { ToastrService } from 'ngx-toastr';
 import { RegisterRequestDTO } from '../../models/register.dto';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { finalize } from 'rxjs';
+import { DateValidationService } from 'src/app/shared/services/date-validation.service';
 
 @Component({
 	selector: 'app-register-second-step',
@@ -18,7 +18,7 @@ export class RegisterSecondStepComponent implements OnInit {
 		firstName: new FormControl('', [Validators.maxLength(35)]),
 		lastName: new FormControl('', [Validators.maxLength(51)]),
 		birthdate: new FormControl('', [
-			this._registerValidationService.checkIfDateBeforeNow,
+			this._dateValidationService.checkIfDateBeforeNow,
 		]),
 		phoneNumber: new FormControl('', [Validators.maxLength(22)]),
 		city: new FormControl('', [Validators.maxLength(57)]),
@@ -31,7 +31,7 @@ export class RegisterSecondStepComponent implements OnInit {
 		private readonly _route: ActivatedRoute,
 		private readonly _router: Router,
 		private readonly _registerApiService: RegisterApiService,
-		private readonly _registerValidationService: RegisterValidationService,
+		private readonly _dateValidationService: DateValidationService,
 		private readonly _toastrService: ToastrService,
 		private readonly _loader: LoaderService
 	) {}
