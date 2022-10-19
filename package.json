@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --configuration production",
-    "developmentServer": "ng build --configuration dev",
+    "developmentServer": "ng build --configuration dev && cp .htaccess ./dist/.htaccess",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint --fix && npx stylelint \"*/*.scss\" --fix",
