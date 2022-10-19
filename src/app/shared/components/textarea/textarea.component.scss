@@ -13,9 +13,16 @@
 			padding-top: 0;
 			padding-right: 0;
 		}
-
 		.mat-input-element {
 			border: 1px solid colors.$bordered-gray;
+		}
+
+		.mat-input-element:hover {
+			border: 2px solid colors.$bordered-gray;
+		}
+
+		.mat-input-element:focus {
+			border: 2px solid #3F51B5;
 		}
 
 		.mat-form-field-subscript-wrapper {
@@ -25,12 +32,21 @@
 		}
 
 		.mat-form-field-underline::before {
-			background-color: colors.$bordered-gray;
 			height: 0;
 		}
 
+		.mat-form-field-ripple {
+			height: 0;
+		 }
+
 		.mat-form-field-label {
-			margin-left: 1px;
+			margin-left: 8px;
+			margin-top: 8px;
+		}
+
+		.mat-textarea {
+			width: calc(100% - 18px);
+			min-height: 66px;
 		}
 
 		.mat-form-field-infix {
@@ -42,13 +58,9 @@
 			top: 0;
 		}
 
-		.mat-form-field-label-wrapper:hover {
-			height: 0;
-		}
-
 		&.mat-form-field-should-float {
 			.mat-form-field-label-wrapper {
-				transform: translateY(-4px);
+				transform: translateY(-22px) translatex(-8px);
 			}
 		}
 	}

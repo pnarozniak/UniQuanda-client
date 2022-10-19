@@ -9,6 +9,7 @@ import { AbstractControl, FormControl } from '@angular/forms';
 export class TextareaComponent {
 	@Input() label = '';
 	@Input() hint = '';
+	@Input() placeholder = '';
 	@Input() control!: AbstractControl;
 	@Input() showRequiredMarker = false;
 	@Input() errors: { name: string | null; message: string }[] = [];
