@@ -1,0 +1,18 @@
+<mat-form-field appearance="fill" [hideRequiredMarker]="!showRequiredMarker">
+	<mat-label>{{ label }}</mat-label>
+	<mat-hint>{{ hint }}</mat-hint>
+
+	<textarea
+		matInput
+		[formControl]="formControl"
+		placeholder="Ex. It makes me feel..."></textarea>
+
+	<mat-error *ngFor="let error of errors">
+		<ng-container *ngIf="error.name">
+			{{ formControl.hasError(error.name) ? error.message : '' }}
+		</ng-container>
+		<ng-container *ngIf="!error.name">
+			{{ formControl.invalid ? error.message : '' }}
+		</ng-container>
+	</mat-error>
+</mat-form-field>

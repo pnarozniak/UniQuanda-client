@@ -43,6 +43,11 @@ export class ProfileSettingsComponent {
 		this.userBanner = null;
 
 		this.form = new FormGroup({
+			nickname: new FormControl('', [
+				Validators.required,
+				Validators.minLength(3),
+				Validators.maxLength(30),
+			]),
 			firstName: new FormControl(this.user?.firstName, [
 				Validators.maxLength(35),
 			]),

@@ -6,6 +6,7 @@ import { UserSettingsRoutingModule } from './user-settings-routing.module';
 import { UserSettingsComponent } from './user-settings.component';
 import { SettingsNavigationComponent } from './components/settings-navigation/settings-navigation.component';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
 	imports: [
@@ -13,6 +14,7 @@ import { RouterModule } from '@angular/router';
 		UserSettingsRoutingModule,
 		RouterModule,
 		ProfileSettingsModule,
+		SharedModule,
 	],
 	declarations: [UserSettingsComponent, SettingsNavigationComponent],
 })
