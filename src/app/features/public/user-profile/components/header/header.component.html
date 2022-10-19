@@ -71,7 +71,7 @@
 							else otherProfileMobile
 						"
 						class="icon-edit mobile-profile-icon p-2 ms-auto me-4 my-auto d-flex d-lg-none"
-						href="/user/profile/settings/edit"></a>
+						routerLink="/user/profile/settings/edit"></a>
 					<ng-template #otherProfileMobile>
 						<div
 							*ngIf="user?.userData?.id"
@@ -85,9 +85,8 @@
 								class="dropdown-content d-flex flex-column py-2 d-lg-none"
 								appTheme>
 								<a
-									href="/premium/message/createNewMessage/{{
-										user?.userData?.id
-									}}"
+									appNotImplemented
+									[routerLink]="['/premium/messages/new', user?.userData?.id]"
 									*ngIf="'hasPremium' === 'hasPremium'"
 									class="mx-4 mt-1 d-flex justify-content-center">
 									<i class="icon-mail me-1 my-auto"></i>
@@ -95,7 +94,8 @@
 								><!--TODO: dodać poprawny warunek sprawdzania premium-->
 								<hr class="mx-4 hrline my-2" />
 								<a
-									href="/user/report/{{ user?.userData?.id }}"
+									appNotImplemented
+									[routerLink]="['/user/report', user?.userData?.id]"
 									class="mx-4 d-flex justify-content-center">
 									<i class="icon-report me-1 my-auto"></i>
 									Zgłoś użytkownika
@@ -117,7 +117,7 @@
 			<div
 				*ngFor="let university of user?.universities"
 				class="d-flex flex-row university">
-				<a href="/public/university/{{ university.id }}">
+				<a [routerLink]="['/public/university', university.id]">
 					<img
 						[src]="university.logo"
 						alt="Logo placówki edukacyjnjej"
@@ -146,7 +146,7 @@
 					user?.userData?.id !== null;
 				else otherProfile
 			">
-			<a href="/user/profile/settings/edit" class="link-header p-2">
+			<a routerLink="/user/profile/settings/edit" class="link-header p-2">
 				<i class="icon-edit me-1"></i>
 				Edytuj profil
 			</a>
@@ -155,12 +155,19 @@
 			<div
 				class="d-lg-flex d-none flex-row mx-auto me-5 mt-lg-0 mt-3"
 				*ngIf="user?.userData?.id !== null">
-				<a href="/user/report/{{ user?.userData?.id }}" class="link-header p-2">
+				<a
+					appNotImplemented
+					[routerLink]="['/user/report', user?.userData?.id]"
+					class="link-header p-2">
 					<i class="icon-report"></i>
 					Zgłoś użytkownika
 				</a>
 				<a
-					href="/premium/message/createNewMessage/{{ user?.userData?.id }}"
+					appNotImplemented
+					[routerLink]="[
+						'/premium/message/createNewMessage',
+						user?.userData?.id
+					]"
 					*ngIf="'hasPremium' === 'hasPremium'"
 					class="ms-2 sendMessage link-header p-2">
 					<i class="icon-mail"></i>
