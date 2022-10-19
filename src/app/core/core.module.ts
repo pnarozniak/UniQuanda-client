@@ -15,6 +15,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HeaderDropdownComponent } from './components/header-dropdown/header-dropdown.component';
 import { SharedModule } from '../shared/shared.module';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { OverlayModule } from '@angular/cdk/overlay';
 @NgModule({
 	providers: [
 		StorageService,
@@ -31,6 +33,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 		NavBarComponent,
 		HeaderDropdownComponent,
 		NotFoundComponent,
+		LoaderComponent,
 	],
 	imports: [
 		RouterModule,
@@ -41,6 +44,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 		SharedModule,
 		TooltipModule.forRoot(),
 		BsDropdownModule.forRoot(),
+		OverlayModule,
 	],
 	exports: [HeaderComponent, NavBarComponent],
 })
