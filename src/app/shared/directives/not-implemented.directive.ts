@@ -18,6 +18,7 @@ export class NotImplementedDirective {
 	}
 
 	@HostListener('mouseover') mouseover() {
+		this.tooltip.position = 'above';
 		this.tooltip.message = 'Dostępne w wersji 2.0';
 		this.tooltip.show();
 	}
