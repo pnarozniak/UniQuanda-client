@@ -117,14 +117,10 @@ export class ProfileSettingsComponent {
 		if (this.form.get('birthdate')?.value)
 			userFormData.append(
 				'Birthdate',
-				moment(this.form.get('birthdate')?.value ?? '').format()
+				moment(this.form.get('birthdate')?.value ?? '')
+					.utc(true)
+					.toISOString()
 			);
-		userFormData.append(
-			'Birthdate',
-			moment(this.form.get('birthdate')?.value ?? '')
-				.utc(true)
-				.toISOString()
-		);
 		userFormData.append(
 			'PhoneNumber',
 			this.form.get('phoneNumber')?.value ?? ''
