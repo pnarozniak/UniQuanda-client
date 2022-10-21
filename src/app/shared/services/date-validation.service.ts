@@ -6,10 +6,10 @@ import { ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 })
 export class DateValidationService {
 	/**
-	 * Checks if birthdate is before now
+	 * Checks if date is before now
 	 * @param group form to validate
-	 * @returns ValidationErrors | null `before: true` if birthdate is before now or
-	 * null if birthdate is after now
+	 * @returns ValidationErrors | null `before: true` if date is before now or
+	 * null if date is after now
 	 */
 	checkIfDateBeforeNow: ValidatorFn = (
 		group: AbstractControl

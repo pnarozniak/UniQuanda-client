@@ -1,7 +1,6 @@
 import { ProfileSettingsComponent } from './pages/profile-settings/profile-settings.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserDataResolver } from './resolvers/user-data.resolver';
 import { UserSettingsComponent } from './user-settings.component';
 import AuthGuardService from 'src/app/core/guards/auth-guard.service';
 
@@ -15,7 +14,6 @@ const routes: Routes = [
 				component: ProfileSettingsComponent,
 				canActivate: [AuthGuardService],
 				data: { title: 'Edycja', expectedRole: 'user' },
-				// resolve: { appUser: UserDataResolver },
 			},
 		],
 	},
@@ -24,6 +22,6 @@ const routes: Routes = [
 @NgModule({
 	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule],
-	providers: [UserDataResolver],
+	providers: [],
 })
 export class UserSettingsRoutingModule {}

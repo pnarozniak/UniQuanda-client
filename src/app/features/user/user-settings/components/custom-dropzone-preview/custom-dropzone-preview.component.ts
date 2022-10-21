@@ -38,10 +38,6 @@ export class CustomDropzonePreviewComponent
 			);
 		};
 
-		reader.onerror = (event: any) => {
-			console.log(`File could not be read: ${event.target.error.code}`);
-		};
-
 		reader.readAsDataURL(this.file);
 	}
 }

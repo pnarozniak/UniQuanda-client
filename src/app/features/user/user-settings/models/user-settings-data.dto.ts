@@ -1,14 +1,12 @@
-export class UserSettingsDataResponseDTO {
-	constructor(
-		public nickName: string,
-		public firstName: string | null,
-		public lastName: string | null,
-		public birthdate: Date | null,
-		public phoneNumber: string | null,
-		public city: string | null,
-		public semanticScholarProfile: string | null,
-		public aboutText: string | null,
-		public avatar: string | null,
-		public banner: string | null
-	) {}
+export interface IUserSettingsDataResponseDTO {
+	nickName: string;
+	firstName: string | null;
+	lastName: string | null;
+	birthdate: Date | null;
+	phoneNumber: string | null;
+	city: string | null;
+	semanticScholarProfile: string | null;
+	aboutText: string | null;
+	avatar: string | null;
+	banner: string | null;
 }

@@ -5,7 +5,7 @@ import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { UserDataService } from 'src/app/core/services/user-data.service';
 import { DateValidationService } from 'src/app/shared/services/date-validation.service';
-import { UserSettingsDataResponseDTO } from '../../models/user-settings-data.dto';
+import { IUserSettingsDataResponseDTO } from '../../models/user-settings-data.dto';
 import { UserProfileApiService } from '../../services/user-profile-api.service';
 import {
 	BehaviorSubject,
@@ -25,7 +25,7 @@ import { HttpResponse } from '@angular/common/http';
 })
 export class ProfileSettingsComponent {
 	public form: FormGroup;
-	public user: UserSettingsDataResponseDTO | undefined | null;
+	public user: IUserSettingsDataResponseDTO | undefined | null;
 
 	public backgroundAvatar = 'common/user-profile/deafult_user_avatar.svg';
 	public backgroundBanner = 'common/user-profile/default_user_banner.svg';
@@ -33,7 +33,7 @@ export class ProfileSettingsComponent {
 	private userAvatar: File | null = null;
 	private userBanner: File | null = null;
 
-	public user$: Observable<UserSettingsDataResponseDTO | null>;
+	public user$: Observable<IUserSettingsDataResponseDTO | null>;
 
 	constructor(
 		private readonly _userSettingsApiService: UserProfileApiService,
@@ -43,7 +43,7 @@ export class ProfileSettingsComponent {
 		private readonly _loader: LoaderService,
 		private readonly _router: Router
 	) {
-		this.user$ = new BehaviorSubject<UserSettingsDataResponseDTO | null>(null);
+		this.user$ = new BehaviorSubject<IUserSettingsDataResponseDTO | null>(null);
 		this.loadUser();
 
 		this.form = new FormGroup({
@@ -70,7 +70,7 @@ export class ProfileSettingsComponent {
 		this.user$ = this._userSettingsApiService
 			.getUserDataForEditProfileSettings()
 			.pipe(
-				map((data: HttpResponse<UserSettingsDataResponseDTO>) => {
+				map((data: HttpResponse<IUserSettingsDataResponseDTO>) => {
 					this.user = data.body;
 					this.form.patchValue({
 						nickName: this.user?.nickName,

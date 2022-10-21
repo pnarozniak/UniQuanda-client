@@ -2,7 +2,7 @@ import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import ApiService from 'src/app/core/services/api.service';
-import { UserSettingsDataResponseDTO } from '../models/user-settings-data.dto';
+import { IUserSettingsDataResponseDTO } from '../models/user-settings-data.dto';
 
 @Injectable({
 	providedIn: 'root',
@@ -16,10 +16,10 @@ export class UserProfileApiService {
 	 * and information with UserData for edit profile
 	 */
 	public getUserDataForEditProfileSettings(): Observable<
-		HttpResponse<UserSettingsDataResponseDTO>
+		HttpResponse<IUserSettingsDataResponseDTO>
 		// eslint-disable-next-line indent
 	> {
-		return this._apiService.get<UserSettingsDataResponseDTO>(
+		return this._apiService.get<IUserSettingsDataResponseDTO>(
 			'appUserProfile/settings'
 		);
 	}
