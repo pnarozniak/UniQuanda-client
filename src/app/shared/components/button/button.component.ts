@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 
 @Component({
 	selector: 'app-button',
@@ -6,5 +6,11 @@ import { Component, Input } from '@angular/core';
 	styleUrls: ['./button.component.scss'],
 })
 export class ButtonComponent {
-	@Input() type: 'button' | 'link' = 'button';
+	@Input() mode: 'button' | 'submit' = 'button';
+	@Input() color: 'none' | 'blue' | 'purple' | 'gray' = 'blue';
+	@Input() shape: 'round' | 'rect' = 'round';
+
+	@HostBinding('class') get buttonClasses() {
+		return [this.color, this.shape].map((c) => `app-button-${c}`).join(' ');
+	}
 }

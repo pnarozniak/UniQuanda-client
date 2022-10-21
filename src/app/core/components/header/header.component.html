@@ -22,10 +22,15 @@
 			<app-header-dropdown></app-header-dropdown>
 		</ng-container>
 		<ng-template #GuestItems>
-			<a routerLink="/public/register" class="a-btn a-register btn me-sm-2 me-1"
-				>Zarejestruj się</a
-			>
-			<a routerLink="/public/login" class="a-btn a-login btn">Zaloguj się</a>
+			<app-button
+				color="purple"
+				routerLink="/public/register"
+				class="a-btn me-sm-2 me-1">
+				Zarejestruj się
+			</app-button>
+			<app-button class="a-btn" routerLink="/public/login">
+				Zaloguj się
+			</app-button>
 		</ng-template>
 	</div>
 	<div class="footer-container d-flex">

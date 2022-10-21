@@ -17,6 +17,8 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { PLDatePickerAdapter } from './components/date-picker/pl-date-picker-adapter';
 import { DateValidationService } from './services/date-validation.service';
 import { TextareaComponent } from './components/textarea/textarea.component';
+import { NotImplementedDirective } from './directives/not-implemented.directive';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const sharedComponents = [
 	InputComponent,
@@ -29,7 +31,12 @@ const sharedComponents = [
 
 const sharedModules = [CommonModule];
 
-const sharedDirectives = [ThemeDirective, LoadingDirective, ContextDirective];
+const sharedDirectives = [
+	ThemeDirective,
+	LoadingDirective,
+	ContextDirective,
+	NotImplementedDirective,
+];
 
 @NgModule({
 	imports: [
@@ -39,6 +46,7 @@ const sharedDirectives = [ThemeDirective, LoadingDirective, ContextDirective];
 		ReactiveFormsModule,
 		MatDatepickerModule,
 		MatNativeDateModule,
+		MatTooltipModule,
 	],
 	declarations: [sharedDirectives, sharedComponents],
 	exports: [sharedDirectives, sharedModules, sharedComponents],
