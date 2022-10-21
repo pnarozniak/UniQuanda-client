@@ -1,26 +1,62 @@
 @use '../../../../assets/scss/colors.scss' as colors;
 
-button {
-	width: 100%;
-	background-color: colors.$academic-blue;
-	color: colors.$crystal-white;
-	border-radius: 7px;
-	transition-property: 'opacity';
-	transition-duration: 300ms;
+:host {
+	transition: opacity 300ms ease-in-out;
+	cursor: pointer;
+	outline: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
-	&:hover {
-		opacity: .8;
-	}
-
-	&:not(.link) {
+	&:not(.app-button-none) {
 		font-weight: 500;
-		font-size: 16px;
+		font-size: 15px;
 	}
-	
-	&.link {
-		padding: 0 !important;
-		width: auto !important;
-		background-color: transparent !important;
-		color: inherit;
+
+	&.app-button-round {
+		border-radius: 7px;
+	}
+
+	&.app-button-blue {
+		background-color: colors.$academic-blue;
+		color: colors.$crystal-white;
+
+		&:hover {
+			opacity: .8;
+		}
+	}
+
+	&.app-button-purple {
+		background-color: colors.$light-purple;
+		color: colors.$crystal-white;
+
+		&:hover {
+			opacity: .8;
+		}
+	}
+
+	&.app-button-gray {
+		background-color: var(--bg-accent);
+		color: var(--text-default);
+
+		&:hover {
+			opacity: .6;
+		}
+	}
+
+	&.app-button-none {
+		display: inline;
+
+		&:hover {
+			opacity: .6;
+		}
+	}
+
+	.submit-btn {
+		width: 0;
+		padding: 0;
+		border: none;
+		white-space: nowrap;
+		overflow: hidden;
 	}
 }
