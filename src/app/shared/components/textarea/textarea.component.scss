@@ -14,15 +14,15 @@
 			padding-right: 0;
 		}
 		.mat-input-element {
-			border: 1px solid colors.$bordered-gray;
+			outline: 1px solid colors.$bordered-gray;
 		}
 
 		.mat-input-element:hover {
-			border: 2px solid colors.$bordered-gray;
+			outline: 2px solid colors.$bordered-gray;
 		}
 
 		.mat-input-element:focus {
-			border: 2px solid #3F51B5;
+			outline: 2px solid #3F51B5;
 		}
 
 		.mat-form-field-subscript-wrapper {
@@ -46,7 +46,6 @@
 
 		.mat-textarea {
 			width: calc(100% - 18px);
-			min-height: 66px;
 		}
 
 		.mat-form-field-infix {
