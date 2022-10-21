@@ -42,13 +42,6 @@ import { JwtTokenInterceptor } from './interceptors/jwt-token-interceptor.servic
 		NotFoundComponent,
 		LoaderComponent,
 	],
-	declarations: [
-		HeaderComponent,
-		NavBarComponent,
-		HeaderDropdownComponent,
-		NotFoundComponent,
-		LoaderComponent,
-	],
 	imports: [
 		RouterModule,
 		ToastrModule.forRoot(),
