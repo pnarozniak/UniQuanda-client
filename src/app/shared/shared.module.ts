@@ -40,8 +40,6 @@ const sharedDirectives = [ThemeDirective, LoadingDirective, ContextDirective];
 		MatDatepickerModule,
 		MatNativeDateModule,
 	],
-	declarations: [sharedDirectives, sharedComponents, TextareaComponent],
-	exports: [sharedDirectives, sharedModules, sharedComponents],
 	providers: [
 		DateValidationService,
 		{
