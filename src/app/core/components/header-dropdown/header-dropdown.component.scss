@@ -1,6 +1,7 @@
 @use './../../../../assets/icons/style.css';
 @use '/src/assets/scss/colors.scss' as colors;
 @use '/src/assets/scss/dimensions.scss' as dim;
+@use '/src/assets/scss/breakpoints.scss' as breakpoints;
 
 
 .dropdown-menu {
@@ -111,7 +112,7 @@
   }
 }
 
-@media all and (max-width: 575px) {
+@media all and (max-width: breakpoints.$sm) {
   .dropdown-menu {
     width: 100% !important;
     transform: translateY(calc(dim.$header-footer-height * -1)) !important;

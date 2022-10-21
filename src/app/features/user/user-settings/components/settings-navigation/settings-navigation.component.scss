@@ -1,5 +1,6 @@
 @use './../../../../../../assets/icons/style.css';
 @use './../../../../../../assets/scss/colors.scss' as colors;
+@use './../../../../../../assets/scss/breakpoints.scss' as breakpoints;
 
 .nav-container {
 	row-gap: 6px;
@@ -28,7 +29,7 @@
 	color: colors.$crystal-white;
 }
 
-@media all and (max-width: 575px) {
+@media all and (max-width: breakpoints.$sm) {
 	.item-text {
 		font-size: 13px;
 	}

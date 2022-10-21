@@ -1,6 +1,6 @@
 @use './../../../../../../assets/scss/colors.scss' as colors;
 @use './../../../../../../assets/icons/style.css';
-@use './../../../../../../assets/scss/breakpoints.scss' as breakpoint;
+@use './../../../../../../assets/scss/breakpoints.scss' as breakpoints;
 .banner {
 	height: 200px;
 	overflow: hidden;
@@ -141,7 +141,7 @@
 	}
 }
 
-@media all and (max-width: breakpoint.$xxl) {
+@media all and (max-width: breakpoints.$xxl) {
 	.banner {
 		height: 14.285714285714285vw;
 	}
@@ -179,16 +179,16 @@
 		margin-left: 2.7142857142857144vw;
 	}
 }
-@media all and (max-width: breakpoint.$sm) {
+@media all and (max-width: breakpoints.$sm) {
 	.banner {
 		height: 82px !important;
 		max-width: 100vw;
 		& .banner-image {
-			width: breakpoint.$sm !important;
-			min-width: breakpoint.$sm;
+			width: breakpoints.$sm !important;
+			min-width: breakpoints.$sm;
 			overflow-x: hidden;
 			position: relative;
-			left: calc(50% - breakpoint.$sm / 2);
+			left: calc(50% - breakpoints.$sm / 2);
 		}
 	}
 

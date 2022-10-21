@@ -1,6 +1,7 @@
 @use './../../../../assets/icons/style.css';
 @use './../../../../assets/scss/colors.scss' as colors;
 @use './../../../../assets/scss/dimensions.scss' as dim;
+@use './../../../../assets/scss/breakpoints.scss' as breakpoints;
 
 .nav-container {
 	background-color: colors.$academic-blue;
@@ -50,7 +51,7 @@
 	visibility: hidden;
 }
 
-@media all and (max-width: 575px) {
+@media all and (max-width: breakpoints.$sm) {
 	.nav-container {
 		height: dim.$nav-bar-height;
 		width: 100%;

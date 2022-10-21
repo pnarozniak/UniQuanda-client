@@ -1,5 +1,5 @@
 @use './../../../../../../../assets/scss/colors.scss' as colors;
-@use './../../../../../../../assets/scss/breakpoints.scss' as breakpoint;
+@use './../../../../../../../assets/scss/breakpoints.scss' as breakpoints;
 
 .stats {
 	b {
@@ -18,7 +18,7 @@
 .dark .stats-divider {
 	background-color: colors.$bordered-gray;
 }
-@media all and (max-width: breakpoint.$lg) {
+@media all and (max-width: breakpoints.$lg) {
 	.dark {
 		background-color: var(--bg-accent) !important;
 	}

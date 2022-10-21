@@ -1,6 +1,7 @@
 @use './../../../../assets/icons/style.css';
 @use './../../../../assets/scss/dimensions.scss' as dim;
 @use './../../../../assets/scss/colors.scss' as colors;
+@use './../../../../assets/scss/breakpoints.scss' as breakpoints;
 
 header {
 	position: fixed;
@@ -99,7 +100,7 @@ header {
 	background-color: colors.$light-red;
 }
 
-@media all and (max-width: 991px) {
+@media all and (max-width: breakpoints.$lg) {
 	.search-bar {
 		background-color: var(--bg-accent);
 		margin-right: 0.5rem;
@@ -110,14 +111,14 @@ header {
 	}
 }
 
-@media all and (max-width: 767px) {
+@media all and (max-width: breakpoints.$md) {
 	.a-btn{
 		padding-left: 27px;
 		padding-right: 27px;
 	}
 }
 
-@media all and (max-width: 575px) {
+@media all and (max-width: breakpoints.$sm) {
 	.search-bar {
 		margin-right: 0.25rem;
 	}
