@@ -23,6 +23,10 @@
 	column-gap: 64px;
 }
 
+.submit-row {
+	width: 85%;
+}
+
 .last-row-container {
 	width: calc((100% - 64px)/2);
 }
@@ -39,14 +43,18 @@
 	font-size: 15px;
 }
 
-.textarea-input {
-	min-height: 170px; 
-	resize: none;
-	border: 1px solid colors.$bordered-gray;
+.loading-input {
+	height: 50px;
 }
 
-.textarea-container {
-	border-bottom: 0;
+.loading-textarea {
+	height: 100px;
+}
+
+.loading-btn {
+	height: 50px;
+	width: 120px;
+	border-radius: 7px;
 }
 
 @media all and (max-width: 1399px) {
@@ -88,16 +96,7 @@
 		border: none;
 	}
 
-	// .register-input {
-	// 	font-size: 15px;
-	// }
-
 	.submit-button {
 		font-size: 11px;
-	}
-
-	.textarea-input {
-		min-height: 220px; 
-		resize: none;
 	}
 }

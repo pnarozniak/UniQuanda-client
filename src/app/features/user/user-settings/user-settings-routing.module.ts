@@ -15,7 +15,7 @@ const routes: Routes = [
 				component: ProfileSettingsComponent,
 				canActivate: [AuthGuardService],
 				data: { title: 'Edycja', expectedRole: 'user' },
-				resolve: { appUser: UserDataResolver },
+				// resolve: { appUser: UserDataResolver },
 			},
 		],
 	},

@@ -1,5 +1,6 @@
 export class UserSettingsDataResponseDTO {
 	constructor(
+		public nickName: string,
 		public firstName: string | null,
 		public lastName: string | null,
 		public birthdate: Date | null,
