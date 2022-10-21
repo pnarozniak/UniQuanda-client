@@ -155,24 +155,28 @@
 			<div
 				class="d-lg-flex d-none flex-row mx-auto me-5 mt-lg-0 mt-3"
 				*ngIf="user?.userData?.id !== null">
-				<a
+				<app-button
 					appNotImplemented
+					color="none"
 					[routerLink]="['/user/report', user?.userData?.id]"
-					class="link-header p-2">
-					<i class="icon-report"></i>
+					class="p-2">
+					<app-icon icon="report"></app-icon>
 					Zgłoś użytkownika
-				</a>
-				<a
+				</app-button>
+				<app-button
 					appNotImplemented
+					color="gray"
+					shape="rect"
 					[routerLink]="[
 						'/premium/message/createNewMessage',
 						user?.userData?.id
 					]"
 					*ngIf="'hasPremium' === 'hasPremium'"
-					class="ms-2 sendMessage link-header p-2">
-					<i class="icon-mail"></i>
-					Wyślij wiadomość </a
-				><!--TODO: dodać poprawny warunek sprawdzania premium-->
+					class="ms-2 p-2 sendMessage">
+					<app-icon icon="mail" class="me-1"></app-icon>
+					Wyślij wiadomość
+				</app-button>
+				<!--TODO: dodać poprawny warunek sprawdzania premium-->
 			</div>
 			<div
 				class="action-button-loading d-lg-flex d-none mx-auto me-5 mt-lg-0 mt-3"

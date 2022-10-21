@@ -126,19 +126,7 @@
 }
 
 .sendMessage {
-	background-color: var(--bg-accent);
-
-	&:hover {
-		background-color: colors.$light-purple !important;
-		color: colors.$crystal-white !important;
-	}
-}
-.link-header {
-	color: var(--text-default);
-
-	&:hover {
-		background-color: var(--bg-accent);
-	}
+	font-weight: 400 !important;
 }
 
 @media all and (max-width: breakpoint.$xxl) {
