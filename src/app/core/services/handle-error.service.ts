@@ -22,7 +22,6 @@ export class HandleErrorService {
 		} else if (err.status === 500) {
 			this.handle500Error();
 		}
-		return false;
 	}
 
 	handle401Error(): void {
