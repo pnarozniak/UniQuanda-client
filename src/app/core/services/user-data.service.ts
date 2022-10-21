@@ -68,8 +68,13 @@ export class UserDataService {
 	}
 
 	setAvatar(avatarUrl: string): void {
-		this._storageService.save('avatar', avatarUrl);
-		this.loadInitialState();
+		const newUser = {
+			...this._user$.getValue()!,
+			avatar: avatarUrl,
+		};
+
+		this._user$.next(newUser);
+		this._storageService.save(this._userStorageKey, newUser);
 	}
 
 	private decodeAccessToken(token: string): { id: number; roles: Role[] } {

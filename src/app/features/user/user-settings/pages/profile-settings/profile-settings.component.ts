@@ -27,8 +27,8 @@ export class ProfileSettingsComponent {
 	public form: FormGroup;
 	public user: IUserSettingsDataResponseDTO | undefined | null;
 
-	public backgroundAvatar = 'common/user-profile/deafult_user_avatar.svg';
-	public backgroundBanner = 'common/user-profile/default_user_banner.svg';
+	public backgroundAvatar = 'common/default_avatar.svg';
+	public backgroundBanner = 'common/default_users_background.svg';
 
 	private userAvatar: File | null = null;
 	private userBanner: File | null = null;
