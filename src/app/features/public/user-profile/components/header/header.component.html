@@ -89,7 +89,7 @@
 									[routerLink]="['/premium/messages/new', user?.userData?.id]"
 									*ngIf="'hasPremium' === 'hasPremium'"
 									class="mx-4 mt-1 d-flex justify-content-center">
-									<i class="icon-mail me-1 my-auto"></i>
+									<app-icon icon="mail" class="me-1 my-auto"></app-icon>
 									Wyślij wiadomość </a
 								><!--TODO: dodać poprawny warunek sprawdzania premium-->
 								<hr class="mx-4 hrline my-2" />
@@ -97,7 +97,7 @@
 									appNotImplemented
 									[routerLink]="['/user/report', user?.userData?.id]"
 									class="mx-4 d-flex justify-content-center">
-									<i class="icon-report me-1 my-auto"></i>
+									<app-icon icon="report" class="me-1 my-auto"></app-icon>
 									Zgłoś użytkownika
 								</a>
 							</div>
