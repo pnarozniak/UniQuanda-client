@@ -1,0 +1,16 @@
+.not-implemented {
+	cursor: not-allowed !important;
+	user-select: none;
+	-webkit-user-select: none;
+
+	* {
+		cursor: not-allowed !important;
+    pointer-events: none !important;
+	}
+}
+
+.not-implemented-tooltip {
+	transform: translateY(10px) !important;
+	-webkit-transform: translateY(10px) !important;
+  font-size: 14px;
+}

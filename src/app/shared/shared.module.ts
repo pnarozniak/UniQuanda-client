@@ -15,6 +15,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DateAdapter, MatNativeDateModule } from '@angular/material/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { PLDatePickerAdapter } from './components/date-picker/pl-date-picker-adapter';
+import { NotImplementedDirective } from './directives/not-implemented.directive';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const sharedComponents = [
 	InputComponent,
@@ -26,7 +28,12 @@ const sharedComponents = [
 
 const sharedModules = [CommonModule];
 
-const sharedDirectives = [ThemeDirective, LoadingDirective, ContextDirective];
+const sharedDirectives = [
+	ThemeDirective,
+	LoadingDirective,
+	ContextDirective,
+	NotImplementedDirective,
+];
 
 @NgModule({
 	imports: [
@@ -36,6 +43,7 @@ const sharedDirectives = [ThemeDirective, LoadingDirective, ContextDirective];
 		ReactiveFormsModule,
 		MatDatepickerModule,
 		MatNativeDateModule,
+		MatTooltipModule,
 	],
 	declarations: [sharedDirectives, sharedComponents],
 	exports: [sharedDirectives, sharedModules, sharedComponents],
