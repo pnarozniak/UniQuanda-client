@@ -60,16 +60,26 @@
 		font-size: small;
 		cursor: pointer;
 	}
-}
 
-.dark {
-	&.mat-form-field {
-		::ng-deep .mat-form-field-label {
-			color: colors.$bordered-gray !important;
+	.dark {
+		&.mat-form-field:not(.mat-focused) {
+			::ng-deep .mat-form-field-label {
+				color: colors.$bordered-gray !important;
+			}
 		}
 
-		::ng-deep .mat-hint {
-			color: colors.$light-gray;
+		&.mat-form-field {
+			::ng-deep .mat-hint {
+				color: colors.$light-gray;
+			}
+
+			::ng-deep .mat-icon-button {
+				color: colors.$bordered-gray;
+			}
+		}
+
+		.suffix {
+			color: colors.$bordered-gray;
 		}
 	}
 }
