@@ -1,4 +1,5 @@
 @use "./colors.scss" as colors;
+@use "./breakpoints.scss" as breakpoints;
 
 .ngx-toastr {
 	-webkit-box-shadow: -3px 1px 28px -18px rgba(66, 68, 90, 1) !important;
@@ -71,5 +72,16 @@
 		.toast-message {
 			color: colors.$bordered-gray !important;
 		}	
+	}
+}
+
+@media screen and (max-width: breakpoints.$sm) {
+	.toast-container {
+		left: 20px !important;
+		width: calc(100% - 40px) !important;
+
+		.ngx-toastr {
+			width: 100% !important;
+		}
 	}
 }
