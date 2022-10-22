@@ -1,0 +1,98 @@
+@use './../../../../../../assets/icons/style.css';
+@use './../../../../../../assets/scss/colors.scss' as colors;
+@use './../../../../../../assets/scss/breakpoints.scss' as breakpoints;
+
+.banner-container {
+	position: relative;
+	height: 200px;
+}
+
+.avatar-container {
+	position: absolute;
+	margin-left: 38px;
+	transform: translateY(-100px);
+	height: 200px;
+	width: 200px;
+}
+
+.form-container {
+	margin-top: min(150px, 13vw);
+}
+
+.row-content {
+	width: 85%;
+	column-gap: 64px;
+}
+
+.submit-row {
+	width: 85%;
+}
+
+.bordered {
+	border: 1px solid colors.$bordered-gray;
+}
+
+.loading-input {
+	height: 50px;
+}
+
+.loading-textarea {
+	height: 100px;
+}
+
+.loading-btn {
+	height: 50px;
+	width: 120px;
+	border-radius: 7px;
+}
+
+.loading-textarea-container {
+	width: calc((100% - 64px)/2);
+}
+
+@media all and (max-width: breakpoints.$xxl) {
+	.banner-container {
+		height: 14.285714285714285vw;
+	}
+
+	.avatar-container {
+		width: 14.285714285714285vw;
+		height: 14.285714285714285vw;
+		margin-left: 2.7142857142857144vw;
+		transform: translateY(-7.1428571428571425vw);
+	}
+}
+
+@media all and (max-width: breakpoints.$lg) {
+	.loading-textarea-container {
+		width: 100%;
+	}
+}
+
+@media all and (max-width: breakpoints.$sm) {
+	.main-container {
+		margin-bottom: 3rem;
+	}
+	.banner-container {
+		height: 82px !important;
+		max-width: 100vw;
+	}
+
+	.avatar-container {
+		width: 85px;
+		height: 85px;
+		transform: translateY(-21px);
+	}
+
+	.form-container{
+		margin-top: 90px;
+	}
+
+	.bordered {
+		border: none;
+	}
+
+	.submit-btn {
+		width: 100%;
+	}
+}

@@ -1,0 +1,38 @@
+@use './../../../../../../assets/icons/style.css';
+@use './../../../../../../assets/scss/colors.scss' as colors;
+@use './../../../../../../assets/scss/breakpoints.scss' as breakpoints;
+
+.custom-dropzone {
+	overflow: hidden;
+	border: none;
+	border-radius: 0;
+	background-size: cover;
+	background-position: center;
+	background-color: var(--bg-default);
+}
+
+.custom-dropzone.ngx-dz-hovered {
+	border: none;
+}
+
+.icon-camera-container {
+	background: colors.$crystal-black;
+	height: min(60px, 5vw);
+	width: min(60px, 5vw);
+}
+
+.icon-item {
+	font-size: min(30px, 2.5vw);
+	color: colors.$crystal-white;
+}
+
+@media all and (max-width: breakpoints.$sm) {
+	.icon-camera-container {
+		height: 30px;
+		width: 30px;
+	}
+
+	.icon-item {
+		font-size: 12px;
+	}
+}

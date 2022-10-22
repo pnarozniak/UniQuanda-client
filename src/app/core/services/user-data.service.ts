@@ -67,6 +67,16 @@ export class UserDataService {
 		return this._user$.asObservable();
 	}
 
+	setAvatar(avatarUrl: string): void {
+		const newUser = {
+			...this._user$.getValue()!,
+			avatar: avatarUrl,
+		};
+
+		this._user$.next(newUser);
+		this._storageService.save(this._userStorageKey, newUser);
+	}
+
 	private decodeAccessToken(token: string): { id: number; roles: Role[] } {
 		const decoded = JSON.parse(window.atob(token.split('.')[1]));
 		return {

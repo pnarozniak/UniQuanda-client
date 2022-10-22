@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserDataService } from '../services/user-data.service';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export default class AuthGuardService implements CanActivate {
 	constructor(
 		private readonly _userDataService: UserDataService,

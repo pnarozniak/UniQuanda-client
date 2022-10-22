@@ -1,0 +1,25 @@
+<mat-form-field
+	appearance="outline"
+	[hideRequiredMarker]="!showRequiredMarker"
+	appTheme>
+	<mat-label>{{ label }}</mat-label>
+	<mat-hint>{{ hint }}</mat-hint>
+
+	<textarea
+		class="p-2 mat-textarea"
+		cdkTextareaAutosize
+		cdkAutosizeMinRows="2"
+		cdkAutosizeMaxRows="5"
+		matInput
+		[formControl]="formControl"
+		[placeholder]="placeholder"></textarea>
+
+	<mat-error *ngFor="let error of errors">
+		<ng-container *ngIf="error.name">
+			{{ formControl.hasError(error.name) ? error.message : '' }}
+		</ng-container>
+		<ng-container *ngIf="!error.name">
+			{{ formControl.invalid ? error.message : '' }}
+		</ng-container>
+	</mat-error>
+</mat-form-field>

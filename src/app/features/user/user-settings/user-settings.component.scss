@@ -1,0 +1,35 @@
+@use './../../../../assets/scss/colors.scss' as colors;
+@use './../../../../assets/scss/breakpoints.scss' as breakpoints;
+
+.header {
+	max-width: 1430px;
+}
+
+.header-title {
+	font-size: 35px;
+}
+
+.data-container{
+	max-width: 1400px;
+}
+
+.hr-line {
+	display: none;
+}
+
+@media all and (max-width: breakpoints.$sm) {
+	.header {
+		padding-left: 16px;
+	}
+
+	.header-title {
+		font-size: 24px;
+	}
+
+	.hr-line {
+		display: block;
+		color: colors.$bordered-gray;
+		border: 1px;
+		opacity: 1;
+	}
+}

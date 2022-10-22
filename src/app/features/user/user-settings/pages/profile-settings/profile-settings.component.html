@@ -1,0 +1,181 @@
+<div
+	class="d-flex flex-column main-container"
+	*appContext="let userData of user$ | async">
+	<form
+		[formGroup]="form"
+		class="bordered"
+		(ngSubmit)="updateUser()"
+		*ngIf="userData !== null; else noData">
+		<div class="banner-container w-100">
+			<app-drag-and-drop-image-input
+				(image)="updateBanner($event)"
+				[backgroundImage]="backgroundBanner"
+				[isBanner]="true"
+				[initImageSrc]="user?.banner"></app-drag-and-drop-image-input>
+			<div class="avatar-container" [appLoading]="userData === null">
+				<app-drag-and-drop-image-input
+					(image)="updateAvatar($event)"
+					[backgroundImage]="backgroundAvatar"
+					[initImageSrc]="user?.avatar"></app-drag-and-drop-image-input>
+			</div>
+		</div>
+		<div
+			class="form-container d-flex flex-column align-items-center w-100 h-100">
+			<div class="d-flex flex-lg-row flex-column row-content">
+				<div class="d-flex flex-column w-100">
+					<app-input
+						label="Nazwa użytkownika"
+						[control]="this.form.controls['nickName']"
+						[showRequiredMarker]="true"
+						[errors]="[
+							{ name: 'required', message: 'Nazwa użytkownika jest wymagana.' },
+							{
+								name: 'minlength',
+								message: 'Nazwa użytkownika musi mieć min. 3 znaki.'
+							},
+							{
+								name: 'maxlength',
+								message: 'Nazwa użytkownika może mieć max. 30 znaków.'
+							},
+							{
+								name: 'nicknameExists',
+								message: 'Nazwa użytkownika jest już zajęta.'
+							}
+						]">
+					</app-input>
+				</div>
+				<div class="d-flex flex-column w-100">
+					<app-input
+						label="Link do profilu Sematic Schoolar"
+						[control]="this.form.controls['semanticScholarProfile']"
+						[errors]="[
+							{
+								name: 'pattern',
+								message: 'Błędny format linku do profilu Sematic Schoolar'
+							}
+						]">
+					</app-input>
+				</div>
+			</div>
+			<div class="d-flex flex-lg-row flex-column row-content">
+				<div class="d-flex flex-column w-100">
+					<app-input
+						label="Imię"
+						[control]="this.form.controls['firstName']"
+						[errors]="[
+							{
+								name: 'maxlength',
+								message:
+									'Sprawdzaliśmy w bazie imion polskich i nie znaleźliśmy dłuższych niż 35 znaków. Jeśli jednak masz dłuższe imie - daj nam o tym znać :)'
+							}
+						]">
+					</app-input>
+				</div>
+				<div class="d-flex flex-column w-100">
+					<app-input
+						label="Nazwisko"
+						[control]="this.form.controls['lastName']"
+						[errors]="[
+							{
+								name: 'maxlength',
+								message:
+									'Sprawdzaliśmy w bazie nazwisk polskich i nie znaleźliśmy dłuższych niż 35 znaków. Jeśli jednak masz dłuższe imie - daj nam o tym znać :)'
+							}
+						]">
+					</app-input>
+				</div>
+			</div>
+			<div
+				class="d-flex flex-lg-row flex-column justify-content-center row-content">
+				<div class="d-flex flex-column w-100">
+					<app-input
+						label="Miasto"
+						[control]="this.form.controls['city']"
+						[errors]="[
+							{
+								name: 'maxlength',
+								message:
+									'Za długa nazwa miasta. Najdłuższa miejscowość jaką znamy to Taumatawhakatangihangakoauauotamateapokaiwhenuakitanatahu w Nowej Zelandii (57 znaków).'
+							}
+						]">
+					</app-input>
+				</div>
+				<div class="d-flex flex-column w-100">
+					<app-input
+						label="Numer telefonu"
+						[control]="this.form.controls['phoneNumber']"
+						[errors]="[
+							{
+								name: 'maxlength',
+								message: 'Maksymalna długość numeru telefonu 22 znaki.'
+							}
+						]">
+					</app-input>
+				</div>
+			</div>
+			<div class="d-flex flex-lg-row flex-column row-content mb-3">
+				<div class="d-flex flex-column loading-textarea-container">
+					<app-date-picker
+						type="date"
+						label="Data urodzenia"
+						[control]="this.form.controls['birthdate']"
+						[disableFutureDates]="true"
+						[errors]="[
+							{
+								name: 'before',
+								message: 'Nie możliwe byś urodził się w przyszłości.'
+							}
+						]">
+					</app-date-picker>
+				</div>
+			</div>
+			<div class="row-content mb-2">
+				<app-textarea
+					label="O mnie..."
+					placeholder="Napisz coś o sobie!"
+					[control]="this.form.controls['aboutText']"
+					[errors]="[
+						{
+							name: 'maxlength',
+							message: 'Maksymalna opisu 300 znaków.'
+						}
+					]">
+				</app-textarea>
+			</div>
+			<div class="submit-row d-flex mb-sm-4 mb-3">
+				<app-button mode="submit" class="submit-btn px-4 py-2"
+					>Zapisz zmiany</app-button
+				>
+			</div>
+		</div>
+	</form>
+	<ng-template #noData>
+		<div class="bordered">
+			<div>
+				<div class="banner-container" [appLoading]="userData === null"></div>
+				<div class="avatar-container" [appLoading]="userData === null"></div>
+			</div>
+			<div
+				class="form-container d-flex flex-column align-items-center w-100 h-100">
+				<div
+					class="d-flex flex-lg-row flex-column row-content"
+					*ngFor="let _ of [].constructor(3)">
+					<div
+						class="d-flex flex-column w-100 mb-sm-5 mb-3 loading-input"
+						[appLoading]="userData === null"></div>
+					<div
+						class="d-flex flex-column w-100 mb-sm-5 mb-3 loading-input"
+						[appLoading]="userData === null"></div>
+				</div>
+			</div>
+			<div class="d-flex flex-column align-items-center">
+				<div
+					class="mx-auto row-content mb-4 loading-textarea"
+					[appLoading]="userData === null"></div>
+				<div class="submit-row d-flex mb-sm-4 mb-3">
+					<div class="loading-btn" [appLoading]="userData === null"></div>
+				</div>
+			</div>
+		</div>
+	</ng-template>
+</div>

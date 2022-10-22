@@ -18,7 +18,7 @@ export class UserProfileApiService {
 	public getProfile(userId: number): Observable<IUserProfileResponseDTO> {
 		const params = new HttpParams().set('userId', userId);
 		return this._apiService
-			.get<IUserProfileResponseDTO>('Profile/get-profile', params)
+			.get<IUserProfileResponseDTO>('AppUserProfile/get-profile', params)
 			.pipe(
 				map((data: HttpResponse<IUserProfileResponseDTO>) => {
 					const user = data.body as IUserProfileResponseDTO;

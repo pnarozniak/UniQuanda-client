@@ -15,6 +15,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DateAdapter, MatNativeDateModule } from '@angular/material/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { PLDatePickerAdapter } from './components/date-picker/pl-date-picker-adapter';
+import { DateValidationService } from './services/date-validation.service';
+import { TextareaComponent } from './components/textarea/textarea.component';
 import { NotImplementedDirective } from './directives/not-implemented.directive';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
@@ -24,6 +26,7 @@ const sharedComponents = [
 	IconComponent,
 	DatePickerComponent,
 	PaginatorComponent,
+	TextareaComponent,
 ];
 
 const sharedModules = [CommonModule];
@@ -48,6 +51,7 @@ const sharedDirectives = [
 	declarations: [sharedDirectives, sharedComponents],
 	exports: [sharedDirectives, sharedModules, sharedComponents],
 	providers: [
+		DateValidationService,
 		{
 			provide: DateAdapter,
 			useClass: PLDatePickerAdapter,
