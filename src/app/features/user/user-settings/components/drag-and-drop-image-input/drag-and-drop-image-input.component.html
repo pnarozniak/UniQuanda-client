@@ -1,8 +1,8 @@
 <ngx-dropzone
 	class="custom-dropzone h-100 w-100"
 	[multiple]="false"
-	[accept]="allowedImageType"
-	[maxFileSize]="maxFileSizeMB"
+	[accept]="_allowedImageType"
+	[maxFileSize]="_maxFileSizeMB"
 	(change)="onSelect($event)"
 	[ngStyle]="{
 		'background-image': files.length > 0 ? '' : 'url(' + backgroundImage + ')'

@@ -13,8 +13,9 @@ export class DragAndDropImageInputComponent implements OnInit {
 	@Output() image = new EventEmitter<File | null>();
 
 	files: File[] = [];
-	maxFileSizeMB: number = 10 * 1024 * 1024;
-	allowedImageType = 'image/png,image/jpg,image/jpeg,image/svg,image/svg+xml';
+	readonly _maxFileSizeMB: number = 10 * 1024 * 1024;
+	readonly _allowedImageType =
+		'image/png,image/jpg,image/jpeg,image/svg,image/svg+xml';
 
 	constructor(private readonly _toastrService: ToastrService) {}
 
@@ -52,7 +53,7 @@ export class DragAndDropImageInputComponent implements OnInit {
 			this.image.emit(...event.addedFiles);
 		} else {
 			let errorMessage;
-			if (event.rejectedFiles[0].size > this.maxFileSizeMB)
+			if (event.rejectedFiles[0].size > this._maxFileSizeMB)
 				errorMessage = 'Zbyt duży rozmiar pliku';
 			else errorMessage = 'Niedozwolony plik';
 			this._toastrService.error(errorMessage, 'Błąd');
