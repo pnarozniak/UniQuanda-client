@@ -28,20 +28,8 @@
 	width: 85%;
 }
 
-.last-row-container {
-	width: calc((100% - 64px)/2);
-}
-
 .bordered {
 	border: 1px solid colors.$bordered-gray;
-}
-
-.submit-button {
-	background-color: colors.$academic-blue;
-	color: colors.$crystal-white;
-	border-radius: 7px;
-	font-weight: 500;
-	font-size: 15px;
 }
 
 .loading-input {
@@ -58,6 +46,10 @@
 	border-radius: 7px;
 }
 
+.loading-textarea-container {
+	width: calc((100% - 64px)/2);
+}
+
 @media all and (max-width: breakpoints.$xxl) {
 	.banner-container {
 		height: 14.285714285714285vw;
@@ -72,7 +64,7 @@
 }
 
 @media all and (max-width: breakpoints.$lg) {
-	.last-row-container {
+	.loading-textarea-container {
 		width: 100%;
 	}
 }
@@ -97,7 +89,7 @@
 		border: none;
 	}
 
-	.submit-button {
-		font-size: 11px;
+	.submit-btn {
+		width: 100%;
 	}
 }
