@@ -1,62 +1,75 @@
-@import './colors.scss';
-$toastrWidth: 390px;
-.toast-container .ngx-toastr {
-	position: fixed !important;
-	overflow: hidden !important;
-	bottom: 95px !important;
-	width: $toastrWidth !important;
-	height: 110px !important;
-	top: auto !important;
-	right: 120px !important;
-	left: auto !important;
-	color: $light-gray;
-	background-color: $crystal-white;
-	border: 1px solid $bordered-gray;
-}
-.toast-title {
-	font-size: 16px;
-	font-weight: bold;
-	line-height: 20px;
-	margin: 0 150px 0 15px;
-	border-bottom: 2px solid $bordered-gray;
-	padding: 15px 0;
-	padding-left: 5px;
-}
-.toast-message {
-	margin: 15px;
+@use "./colors.scss" as colors;
 
-}
-.toast-error {
+.ngx-toastr {
+	-webkit-box-shadow: -3px 1px 28px -18px rgba(66, 68, 90, 1) !important;
+	-moz-box-shadow: -3px 1px 28px -18px rgba(66, 68, 90, 1) !important;
+	box-shadow: -3px 1px 28px -18px rgba(66, 68, 90, 1) !important;	
+	width: 388px !important;
+	background-color: colors.$crystal-white !important;
+	color: colors.$crystal-black !important;
+	border: 1px solid colors.$bordered-gray;
+	padding: 25px 20px !important;
+	background-image: none !important;
+	cursor: default !important;
+
+	.toast-close-button {
+		color: colors.$crystal-black !important;
+		font-size: 30px !important;
+		right: -.3em !important;
+		top: -.9em !important;
+
+		&:hover {
+			opacity: .6;
+		}
+	}
+
 	.toast-title {
+		font-size: 16px;
+		font-weight: bold;
+		border-bottom: 2px solid colors.$bordered-gray;
+		padding-bottom: 10px;
+		margin-bottom: 10px;
+		margin-right: 75px;
+
 		&:before {
+			border-radius: 50%;
 			font-family: 'Uniquanda';
-			color: $crystal-white;
-			background-color: $light-red;
-			border-radius: 100%;
 			padding: 7px;
-			margin-right: 10px;
+			margin-right: 5px;
+		}
+	}
+
+	.toast-message {
+		color: colors.$light-gray !important;
+	}
+
+	&.toast-error {
+		.toast-title:before {
+			color: colors.$crystal-white;
+			background-color: colors.$light-red;
 			content: "\e907";
 		}
 	}
-}
-.toast-success {
-	.toast-title {
-		&:before {
-			font-family: 'Uniquanda';
-			color: $crystal-white;
-			background-color: $blue-laguna;
-			border-radius: 100%;
-			margin-right: 10px;
-			padding: 7px 5px;
+
+	&.toast-success {
+		.toast-title:before {
+			color: colors.$crystal-white;
+			background-color: colors.$blue-laguna;
 			content: "\e906";
+			padding: 7px 5px;
 		}
 	}
-}
-@media all and (max-width: 576px) {
-	.toast-container .ngx-toastr {
-		right: unset !important;
-		left: unset !important;
-		right: calc(50% - $toastrWidth/2) !important;
-    left: calc(50% - $toastrWidth/2) !important;
+
+	&.dark {
+		background-color: colors.$dark-gray !important;
+		color: colors.$crystal-white !important;
+
+		.toast-close-button {
+			color: colors.$crystal-white !important;
+		}
+
+		.toast-message {
+			color: colors.$bordered-gray !important;
+		}	
 	}
 }

@@ -37,7 +37,12 @@ import { OverlayModule } from '@angular/cdk/overlay';
 	],
 	imports: [
 		RouterModule,
-		ToastrModule.forRoot(),
+		ToastrModule.forRoot({
+			timeOut: 4000,
+			positionClass: 'toast-bottom-right',
+			tapToDismiss: false,
+			closeButton: true,
+		}),
 		HttpClientModule,
 		CommonModule,
 		BrowserModule,
