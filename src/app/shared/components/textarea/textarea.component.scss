@@ -42,10 +42,15 @@
 		.mat-form-field-label {
 			margin-left: 8px;
 			margin-top: 8px;
+			color: var(--text-default) !important;
 		}
 
 		.mat-textarea {
 			width: calc(100% - 18px);
+		}
+
+		.mat-textarea::placeholder {
+			color: var(--text-default) !important;
 		}
 
 		.mat-form-field-infix {

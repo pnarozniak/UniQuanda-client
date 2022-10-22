@@ -23,19 +23,36 @@
 			background-color: colors.$bordered-gray;
 		}
 
+		.mat-form-field-ripple {
+			background-color: colors.$bordered-gray;
+		}
+
 		.mat-form-field-infix {
 			padding-top: 12px;
 			padding-bottom: 5px;
 		}
 
-		.mat-form-field-label-wrapper {
+		.mat-form-field-label-wrapper {	
 			top: 0;
+		}
+
+		.mat-form-field-label {
+			color: var(--text-default) !important;
 		}
 
 		&.mat-form-field-should-float {
 			.mat-form-field-label-wrapper {
 				transform: translateY(-4px);
+				color: green !important;
 			}
+		}
+	
+		.mat-hint {
+			color: var(--text-default) !important;
+		}
+
+		.mat-button-wrapper {
+			color: var(--text-default) !important;
 		}
 	}
 
