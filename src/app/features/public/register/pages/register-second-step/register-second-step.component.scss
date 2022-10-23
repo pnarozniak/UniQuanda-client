@@ -1,6 +1,10 @@
 @use './../../../../../../assets/scss/colors.scss' as colors;
 @use './../../../../../../assets/scss/breakpoints.scss' as breakpoints;
+@use "/src/assets/scss/dimensions.scss" as dim;
 
+.form-container {
+	min-height: 100vh;
+}
 .register-card {
 	width: 520px;
 
@@ -14,6 +18,9 @@
 }
 
 @media all and (max-width: breakpoints.$sm) {
+	.form-container {
+		min-height: calc(100vh - dim.$nav-bar-height);
+	}
 	.register-card {
 		width: 100%;
 

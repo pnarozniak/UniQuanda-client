@@ -1,10 +1,13 @@
 @use './../../../../assets/icons/style.css';
 @use './../../../../assets/scss/colors.scss' as colors;
 @use './../../../../assets/scss/breakpoints.scss' as breakpoints;
+@use "/src/assets/scss/dimensions.scss" as dim;
 
+.form-container {
+	min-height: 100vh;
+}
 .login-card {
 	width: 520px;
-
 	.google-box {
 		cursor: pointer;
 		border: 1px solid colors.$bordered-gray;
@@ -38,6 +41,10 @@
 }
 
 @media all and (max-width: breakpoints.$sm) {
+	.form-container {
+		min-height: calc(100vh - dim.$nav-bar-height);
+	}
+
 	.login-card {
 		width: 100%;
 	}

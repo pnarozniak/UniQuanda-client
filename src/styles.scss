@@ -31,7 +31,7 @@ a {
   background-image: url("assets/images/core/footer/decoration.svg");
   background-repeat: repeat-x;
   margin-top: auto;
-  height: 145px;
+  height: dim.$decoration-footer-height;
   margin-bottom: 0;
   overflow-x: hidden;
   width: 100%;
