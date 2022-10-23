@@ -3,7 +3,6 @@ import {
 	AbstractControl,
 	AsyncValidatorFn,
 	ValidationErrors,
-	ValidatorFn,
 } from '@angular/forms';
 import { finalize, Observable, of } from 'rxjs';
 import { RegisterApiService } from './register-api.service';
@@ -13,20 +12,6 @@ import { RegisterApiService } from './register-api.service';
 })
 export class RegisterValidationService {
 	constructor(private readonly _registerApiService: RegisterApiService) {}
-	/**
-	 * Checks if two passwords are equal.
-	 * Sets repeatPassword error `notSame: true` if passwords are not equal, otherwise clears error
-	 * @param group form to validate
-	 * @returns null
-	 */
-	checkIfPasswordsMatch: ValidatorFn = (group: AbstractControl): null => {
-		const pass = group.get('password')?.value;
-		const confirmPass = group.get('repeatPassword')?.value;
-		group
-			.get('repeatPassword')
-			?.setErrors(pass === confirmPass ? null : { notSame: true });
-		return null;
-	};
 
 	/**
 	 * Checks if username and email are unique.
