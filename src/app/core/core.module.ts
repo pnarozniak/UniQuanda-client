@@ -42,6 +42,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 			positionClass: 'toast-bottom-right',
 			tapToDismiss: false,
 			closeButton: true,
+			maxOpened: 3,
 		}),
 		HttpClientModule,
 		CommonModule,
