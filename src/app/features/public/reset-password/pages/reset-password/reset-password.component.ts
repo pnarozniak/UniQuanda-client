@@ -23,7 +23,7 @@ export class ResetPasswordComponent implements OnInit {
 			this.email = email;
 			this.recoveryToken = recoveryToken;
 		} else {
-			this._router.navigate(['/']);
+			this._router.navigate(['/page-not-found']);
 		}
 	}
 }
