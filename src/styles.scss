@@ -3,12 +3,13 @@
 @use "/src/assets/icons/style";
 @use "/src/assets/scss/loading-animations.scss";
 @use "/src/assets/scss/not-implemented.scss";
+@use "/src/assets/scss/colors.scss" as colors;
+@use "/src/assets/scss/dimensions.scss" as dim;
+@use "/src/assets/scss/toastr.scss";
 
-/* Importing Bootstrap SCSS file. */
 @import "~bootstrap/scss/bootstrap";
+@import "~ngx-toastr/toastr";
 
-@import "assets/scss/toastr.scss"; /* stylelint-disable-line */
-@import "assets/scss/dimensions.scss"; /* stylelint-disable-line */
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
 
 html,
@@ -19,7 +20,7 @@ body {
 }
 
 .height-header {
-  min-height: calc(100vh - $header-height-sm);
+  min-height: calc(100vh - dim.$header-height-sm);
 }
 
 a {
@@ -37,8 +38,8 @@ a {
 }
 
 .tooltip-inner {
-  background-color: $academic-blue;
-  color: $crystal-white;
+  background-color: colors.$academic-blue;
+  color: colors.$crystal-white;
   white-space: nowrap;
   font-family: Ubuntu, sans-serif !important;
   font-weight: 500;
@@ -49,15 +50,15 @@ a {
 }
 
 .tooltip.bs-tooltip-top .tooltip-arrow::before {
-  border-top-color: $academic-blue;
+  border-top-color: colors.$academic-blue;
 }
 
 .tooltip.bs-tooltip-bottom .tooltip-arrow::before {
-  border-bottom-color: $academic-blue;
+  border-bottom-color: colors.$academic-blue;
 }
 
 .tooltip.bs-tooltip-start .tooltip-arrow::before {
-  border-left-color: $academic-blue;
+  border-left-color: colors.$academic-blue;
 }
 
 bs-dropdown-container {
@@ -65,12 +66,12 @@ bs-dropdown-container {
 }
 
 .tooltip.bs-tooltip-end .tooltip-arrow::before {
-  border-right-color: $academic-blue;
+  border-right-color: colors.$academic-blue;
 }
 
 @media all and (max-width: 575px) {
   .height-header {
-    min-height: calc(100vh - $header-height);
+    min-height: calc(100vh - dim.$header-height);
   }
 
   .tooltip {

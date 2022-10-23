@@ -44,7 +44,13 @@ import { JwtTokenInterceptor } from './interceptors/jwt-token-interceptor.servic
 	],
 	imports: [
 		RouterModule,
-		ToastrModule.forRoot(),
+		ToastrModule.forRoot({
+			timeOut: 3000,
+			positionClass: 'toast-bottom-right',
+			tapToDismiss: false,
+			closeButton: true,
+			maxOpened: 3,
+		}),
 		HttpClientModule,
 		CommonModule,
 		BrowserModule,
