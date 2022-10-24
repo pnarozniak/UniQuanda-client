@@ -1,5 +1,5 @@
-@use './../../../../assets/scss/colors.scss' as colors;
-@use './../../../../assets/scss/breakpoints.scss' as breakpoints;
+@use 'colors' as colors;
+@use 'breakpoints' as breakpoints;
 
 .header {
 	max-width: 1430px;
