@@ -6,10 +6,8 @@
 @use "/src/assets/scss/colors.scss" as colors;
 @use "/src/assets/scss/dimensions.scss" as dim;
 @use "/src/assets/scss/toastr.scss";
-
 @import "~bootstrap/scss/bootstrap";
 @import "~ngx-toastr/toastr";
-
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
 
 html,
