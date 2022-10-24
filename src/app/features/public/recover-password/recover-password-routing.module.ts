@@ -7,7 +7,7 @@ const routes: Routes = [
 		path: '',
 		pathMatch: 'full',
 		component: RecoverPasswordComponent,
-		data: { title: 'Odyskaj hasło' },
+		data: { title: 'Odzyskaj hasło' },
 	},
 ];
 @NgModule({
