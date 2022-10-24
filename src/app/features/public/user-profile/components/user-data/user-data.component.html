@@ -1,6 +1,7 @@
 <div
 	class="infoContainer ms-4 pt-3 d-flex flex-column"
-	*appContext="let user of profile$ | async">
+	*appContext="let user of profile$ | async"
+	appTheme>
 	<ng-container *ngIf="user; else userLoading">
 		<div *ngIf="user?.userData?.aboutText">
 			<h5>O mnie</h5>
@@ -68,6 +69,7 @@
 					*ngIf="i !== user?.pointsInTags.length - 1"></div>
 			</div>
 			<app-button
+				appNotImplemented
 				color="none"
 				class="see-more-text small-text mb-5"
 				routerLink="/public/user-tags/1">
@@ -81,9 +83,7 @@
 						<h5 class="mb-3">Prace naukowe</h5>
 						<div class="d-flex flex-row my-2" *ngFor="let paper of papers">
 							<app-icon icon="certificate"></app-icon>
-							<span class="see-more-text small-text ms-2">
-								{{ paper.title }}</span
-							>
+							<span class="paper small-text ms-2"> {{ paper.title }}</span>
 						</div>
 					</ng-container>
 				</ng-container>

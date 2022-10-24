@@ -9,9 +9,21 @@
 	}
 	& .see-more-text {
 		color: colors.$light-gray;
+		width: fit-content;
 	}
 	& .small-text {
 		font-size: 13px;
+	}
+	& .paper {
+		color: colors.$light-gray;
+	}
+}
+.dark {
+	& .paper {
+		color: colors.$dark-yellow;
+	}
+	& .see-more-text {
+		color: colors.$crystal-white;
 	}
 }
 .loading-box {
