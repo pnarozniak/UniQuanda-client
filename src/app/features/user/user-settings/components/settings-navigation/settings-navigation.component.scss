@@ -17,10 +17,6 @@
 	padding: 10px 13px 10px 13px;
 	background-color: var(--bg-accent);
 	color: var(--text-default);
-}
-
-.item-text {
-	white-space: nowrap;
 	font-size: 16px;
 }
 
@@ -30,12 +26,9 @@
 }
 
 @media all and (max-width: breakpoints.$sm) {
-	.item-text {
-		font-size: 13px;
-	}
-
 	.item {
 		padding: 6px 13px 6px 13px;
+		font-size: 13px;
 	}
 
 	.icon-item {

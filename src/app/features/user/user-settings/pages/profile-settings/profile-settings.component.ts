@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { UserDataService } from 'src/app/core/services/user-data.service';
-import { DateValidationService } from 'src/app/shared/services/date-validation.service';
+import { FormsValidationService } from 'src/app/shared/services/forms-validation.service';
 import { IUserSettingsDataResponseDTO } from '../../models/user-settings-data.dto';
 import { UserProfileApiService } from '../../services/user-profile-api.service';
 import {
@@ -37,7 +37,7 @@ export class ProfileSettingsComponent {
 
 	constructor(
 		private readonly _userSettingsApiService: UserProfileApiService,
-		private readonly _dateValidationService: DateValidationService,
+		private readonly _formsValidationService: FormsValidationService,
 		private readonly _userdataService: UserDataService,
 		private readonly _toastrService: ToastrService,
 		private readonly _loader: LoaderService,
@@ -55,7 +55,7 @@ export class ProfileSettingsComponent {
 			firstName: new FormControl('', [Validators.maxLength(35)]),
 			lastName: new FormControl('', [Validators.maxLength(51)]),
 			birthdate: new FormControl('', [
-				this._dateValidationService.checkIfDateBeforeNow,
+				this._formsValidationService.checkIfDateBeforeNow,
 			]),
 			phoneNumber: new FormControl('', [Validators.maxLength(22)]),
 			city: new FormControl('', [Validators.maxLength(57)]),

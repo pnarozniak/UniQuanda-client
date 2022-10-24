@@ -1,5 +1,7 @@
+import { Injectable } from '@angular/core';
 import { NativeDateAdapter } from '@angular/material/core';
 
+@Injectable()
 export class PLDatePickerAdapter extends NativeDateAdapter {
 	override format(date: Date, displayFormat: any): string {
 		const days = date.getDate();
@@ -10,7 +12,7 @@ export class PLDatePickerAdapter extends NativeDateAdapter {
 
 	override parse(value: any): Date | null {
 		const values = value.split('-');
-		const date = `${values[1]}-${values[0]}-${values[2]}`;
+		const date = `${values[1]}/${values[0]}/${values[2]}`;
 		return new Date(date);
 	}
 }
