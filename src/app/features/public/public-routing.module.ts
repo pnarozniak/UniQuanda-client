@@ -25,6 +25,20 @@ const routes: Routes = [
 		data: { title: 'Potwierdź konto' },
 	},
 	{
+		path: 'recover-password',
+		loadChildren: () =>
+			import('./recover-password/recover-password.module').then(
+				(m) => m.RecoverPasswordModule
+			),
+	},
+	{
+		path: 'reset-password',
+		loadChildren: () =>
+			import('./reset-password/reset-password.module').then(
+				(m) => m.ResetPasswordModule
+			),
+	},
+	{
 		path: 'profile/:id',
 		loadChildren: () =>
 			import('./user-profile/user-profile.module').then(
