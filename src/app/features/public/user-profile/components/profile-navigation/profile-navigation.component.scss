@@ -1,0 +1,55 @@
+@use './../../../../../../assets/icons/style.css';
+@use './../../../../../../assets/scss/colors.scss' as colors;
+@use './../../../../../../assets/scss/breakpoints.scss' as breakpoints;
+
+.nav-container {
+	row-gap: 6px;
+	column-gap: 10px;
+	font-weight: 500;
+}
+
+.item {
+	padding: 10px 13px 10px 13px;
+	background-color: var(--bg-accent);
+	color: var(--text-default);
+	min-width: unset;
+	width: fit-content;
+}
+.mat-tab-label-active {
+	background-color: colors.$academic-blue;
+	color: colors.$crystal-white;
+	opacity: 1;
+}
+.item-text {
+	font-family: Ubuntu, sans-serif;
+	white-space: nowrap;
+	font-size: 16px;
+}
+.myPanels::ng-deep {
+	.mat-ink-bar {
+		display: none;
+	}
+	.mat-tab-links {
+		justify-content: center !important;
+		flex-wrap: wrap !important;
+	}
+}
+
+@media all and (max-width: breakpoints.$lg) {
+	.item-text {
+		font-size: 13px;
+	}
+
+	.item {
+		padding: 2px 7px 2px 7px;
+	}
+
+	.icon-item {
+		font-size: 13px;
+		margin-right: 9px;
+	}
+
+	.mat-tab-link {
+		height: 40px;
+	}
+}

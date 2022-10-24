@@ -9,6 +9,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { UserProfileRoutingModule } from './user-profile-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { UserDataComponent } from './components/user-data/user-data.component';
+import { ProfileNavigationComponent } from './components/profile-navigation/profile-navigation.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
 	imports: [
@@ -18,12 +20,14 @@ import { UserDataComponent } from './components/user-data/user-data.component';
 		SharedModule,
 		ToastrModule.forRoot(),
 		BsDropdownModule.forRoot(),
+		MatTabsModule,
 	],
 	declarations: [
 		UserProfileComponent,
 		HeaderComponent,
 		StatsComponent,
 		UserDataComponent,
+		ProfileNavigationComponent,
 	],
 })
 export class UserProfileModule {}

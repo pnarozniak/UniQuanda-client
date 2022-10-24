@@ -2,7 +2,7 @@
 @use './../../../../../../assets/icons/style.css';
 @use './../../../../../../assets/scss/breakpoints.scss' as breakpoints;
 .infoContainer {
-	max-width: 260px;
+	width: 260px;
 	& .divider {
 		height: 0.5px;
 		background-color: colors.$light-gray;

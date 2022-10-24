@@ -12,14 +12,26 @@
 	border-left: 1px solid colors.$bordered-gray;
 }
 
+.navigation {
+	width: calc(1400px - dim.$nav-bar-width-sm - 260px);
+}
+
 @media all and (max-width: breakpoints.$xxl) {
 	.profile-rectangle {
 		width: 100%;
 		border: none;
 	}
+	.navigation {
+		width: calc(100vw - dim.$nav-bar-width-sm - 260px);
+	}
 }
-
-.question {
-	border: 1px solid colors.$bordered-gray;
-	max-width: 100%;
+@media all and (max-width: breakpoints.$lg) {
+	.navigation {
+		width: calc(100vw - dim.$nav-bar-width-sm);
+	}
+}
+@media all and (max-width: breakpoints.$sm) {
+	.navigation {
+		width: 100vw
+	}
 }

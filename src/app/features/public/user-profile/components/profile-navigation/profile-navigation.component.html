@@ -1,0 +1,46 @@
+<nav
+	mat-tab-nav-bar
+	[tabPanel]="tabPanel"
+	class="myPanels ms-lg-5 me-auto ms-auto mt-3 d-flex">
+	<a
+		mat-tab-link
+		class="item me-2 d-lg-none d-flex"
+		(click)="setActivePage(profileSubpage.UserData)"
+		[active]="activePage === profileSubpage.UserData">
+		<span class="item-text">O użytkowniku</span>
+	</a>
+	<a
+		mat-tab-link
+		class="item me-2 d-none d-lg-flex"
+		(click)="setActivePage(profileSubpage.Questions)"
+		[active]="
+			activePage === profileSubpage.Questions ||
+			activePage === profileSubpage.UserData
+		">
+		<span class="item-text">Pytania</span>
+	</a>
+	<a
+		mat-tab-link
+		class="item me-2 d-lg-none d-flex"
+		(click)="setActivePage(profileSubpage.Questions)"
+		[active]="activePage === profileSubpage.Questions">
+		<span class="item-text">Pytania</span>
+	</a>
+	<a
+		mat-tab-link
+		class="item me-2"
+		(click)="setActivePage(profileSubpage.Answers)"
+		[active]="activePage === profileSubpage.Answers">
+		<span class="item-text">Odpowiedzi</span>
+	</a>
+	<a
+		mat-tab-link
+		class="item"
+		appNotImplemented
+		[active]="activePage === profileSubpage.Tests">
+		<span class="item-text">Testy</span>
+	</a>
+</nav>
+<mat-tab-nav-panel #tabPanel>
+	<span>{{ activePage.toString() }}</span></mat-tab-nav-panel
+>
