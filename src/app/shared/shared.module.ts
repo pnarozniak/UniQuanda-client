@@ -19,6 +19,7 @@ import { DateValidationService } from './services/date-validation.service';
 import { TextareaComponent } from './components/textarea/textarea.component';
 import { NotImplementedDirective } from './directives/not-implemented.directive';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { TagComponent } from './components/tag/tag.component';
 
 const sharedComponents = [
 	InputComponent,
@@ -27,6 +28,7 @@ const sharedComponents = [
 	DatePickerComponent,
 	PaginatorComponent,
 	TextareaComponent,
+	TagComponent,
 ];
 
 const sharedModules = [CommonModule];

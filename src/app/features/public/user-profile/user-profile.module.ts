@@ -8,6 +8,7 @@ import { StatsComponent } from './components/header/stats/stats.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { UserProfileRoutingModule } from './user-profile-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { UserDataComponent } from './components/user-data/user-data.component';
 
 @NgModule({
 	imports: [
@@ -18,6 +19,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
 		ToastrModule.forRoot(),
 		BsDropdownModule.forRoot(),
 	],
-	declarations: [UserProfileComponent, HeaderComponent, StatsComponent],
+	declarations: [
+		UserProfileComponent,
+		HeaderComponent,
+		StatsComponent,
+		UserDataComponent,
+	],
 })
 export class UserProfileModule {}

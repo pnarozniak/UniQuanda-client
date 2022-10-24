@@ -5,4 +5,9 @@ export interface IUserData {
 	lastName?: string;
 	avatar?: string;
 	banner?: string;
+	aboutText?: string;
+	birthdate?: Date;
+	city?: string;
+	phoneNumber?: string;
+	semanticScholarProfile?: string;
 }

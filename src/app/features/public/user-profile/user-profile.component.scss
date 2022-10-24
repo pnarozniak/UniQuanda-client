@@ -4,7 +4,8 @@
 
 .profile-rectangle {
 	border: 1px solid colors.$bordered-gray;
-	width: calc(1400px - dim.$nav-bar-width-sm);
+	width: calc(1400px - dim.$nav-bar-width-sm - 28px);
+	margin-bottom: 100px;
 }
 
 .source-material {
