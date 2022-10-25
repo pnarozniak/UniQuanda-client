@@ -45,7 +45,7 @@
 	}
 
 	&.app-button-none {
-		display: inline;
+		display: inline-flex;
 
 		&:hover {
 			opacity: .6;

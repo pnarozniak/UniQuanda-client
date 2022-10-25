@@ -15,8 +15,9 @@
   .dropdown-content {
     width: 100%;
 
-    .icon-close {
+    app-icon {
       color: var(--text-default);
+      font-size: 16px;
     }
   }
 
