@@ -4,10 +4,8 @@ import { Observable } from 'rxjs';
 import ApiService from 'src/app/core/services/api.service';
 import { IUserSettingsDataResponseDTO } from '../models/user-settings-data.dto';
 
-@Injectable({
-	providedIn: 'root',
-})
-export class UserProfileApiService {
+@Injectable()
+export class UserProfileSettingsApiService {
 	constructor(private readonly _apiService: ApiService) {}
 
 	/**

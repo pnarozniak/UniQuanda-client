@@ -5,8 +5,8 @@ import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { UserDataService } from 'src/app/core/services/user-data.service';
 import { DateValidationService } from 'src/app/shared/services/date-validation.service';
-import { IUserSettingsDataResponseDTO } from '../../models/user-settings-data.dto';
-import { UserProfileApiService } from '../../services/user-profile-api.service';
+import { IUserSettingsDataResponseDTO } from './models/user-settings-data.dto';
+import { UserProfileSettingsApiService } from './services/user-profile-settings-api.service';
 import {
 	BehaviorSubject,
 	catchError,
@@ -36,7 +36,7 @@ export class ProfileSettingsComponent {
 	public user$: Observable<IUserSettingsDataResponseDTO | null>;
 
 	constructor(
-		private readonly _userSettingsApiService: UserProfileApiService,
+		private readonly _userSettingsApiService: UserProfileSettingsApiService,
 		private readonly _dateValidationService: DateValidationService,
 		private readonly _userdataService: UserDataService,
 		private readonly _toastrService: ToastrService,
