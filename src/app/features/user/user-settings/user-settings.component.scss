@@ -13,6 +13,10 @@
 	max-width: 1400px;
 }
 
+.bordered {
+	border: 1px solid colors.$bordered-gray;
+}	
+
 .hr-line {
 	display: none;
 }
@@ -24,6 +28,10 @@
 
 	.header-title {
 		font-size: 24px;
+	}
+
+	.bordered {
+		border: none;
 	}
 
 	.hr-line {

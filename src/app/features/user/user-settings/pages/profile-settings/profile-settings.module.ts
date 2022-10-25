@@ -7,8 +7,8 @@ import { RouterModule } from '@angular/router';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ProfileSettingsComponent } from './profile-settings.component';
-import { CustomDropzonePreviewComponent } from '../../components/custom-dropzone-preview/custom-dropzone-preview.component';
-import { DragAndDropImageInputComponent } from '../../components/drag-and-drop-image-input/drag-and-drop-image-input.component';
+import { CustomDropzonePreviewComponent } from './components/custom-dropzone-preview/custom-dropzone-preview.component';
+import { DragAndDropImageInputComponent } from './components/drag-and-drop-image-input/drag-and-drop-image-input.component';
 
 @NgModule({
 	declarations: [
