@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
 import { IUserProfileResponseDTO } from '../../models/user-profile.dto';
@@ -10,27 +10,14 @@ import { ISemanticScholarPaperDTO } from '../../models/semantic-scholar-paper.dt
 	templateUrl: './user-data.component.html',
 	styleUrls: ['./user-data.component.scss'],
 })
-export class UserDataComponent implements OnInit {
+export class UserDataComponent {
 	@Input()
 	public profile$!: Observable<IUserProfileResponseDTO | null>;
 
-	public papers$!: Observable<ISemanticScholarPaperDTO[]>;
+	@Input()
+	public papers$!: Observable<ISemanticScholarPaperDTO[] | null>;
 
 	public readonly _moment = moment;
-
-	constructor(
-		private readonly _semanticScholarService: SemanticScholarService
-	) {}
-
-	ngOnInit(): void {
-		this.profile$.subscribe((profile) => {
-			if (profile && profile.userData.semanticScholarProfile) {
-				this.papers$ = this.getAcademicPapers(
-					profile.userData.semanticScholarProfile
-				);
-			}
-		});
-	}
 
 	generatePointsSuffix(points: number): string {
 		if (points === 1) {
@@ -42,10 +29,5 @@ export class UserDataComponent implements OnInit {
 			return 'punkty';
 		}
 		return 'punktów';
-	}
-
-	getAcademicPapers(semanticScholarProfile: string) {
-		const profileId = semanticScholarProfile.split('/').pop();
-		return this._semanticScholarService.getPapersOfAuthor(profileId ?? '');
 	}
 }

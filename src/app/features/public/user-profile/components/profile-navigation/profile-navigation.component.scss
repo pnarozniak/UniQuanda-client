@@ -75,4 +75,7 @@
 	.mat-tab-header {
 		border-bottom: 0px;
 	}
+	.mat-tab-header-pagination-chevron {
+		border-color: var(--text-default) !important;
+	}
 }

@@ -78,18 +78,13 @@
 		</ng-template>
 		<ng-container *ngIf="user?.userData.semanticScholarProfile">
 			<ng-container *appContext="let papers of papers$ | async">
-				<ng-container *ngIf="papers; else loadingPapers">
-					<ng-container *ngIf="papers?.length !== 0">
-						<h5 class="mb-3">Prace naukowe</h5>
-						<div class="d-flex flex-row my-2" *ngFor="let paper of papers">
-							<app-icon icon="certificate"></app-icon>
-							<span class="paper small-text ms-2"> {{ paper.title }}</span>
-						</div>
-					</ng-container>
+				<ng-container *ngIf="papers && papers?.length !== 0">
+					<h5 class="mb-3">Prace naukowe</h5>
+					<div class="d-flex flex-row my-2" *ngFor="let paper of papers">
+						<app-icon icon="certificate"></app-icon>
+						<span class="paper small-text ms-2"> {{ paper.title }}</span>
+					</div>
 				</ng-container>
-				<ng-template #loadingPapers>
-					<div class="loading-box mt-3" [appLoading]="true"></div>
-				</ng-template>
 			</ng-container>
 		</ng-container>
 	</ng-container>

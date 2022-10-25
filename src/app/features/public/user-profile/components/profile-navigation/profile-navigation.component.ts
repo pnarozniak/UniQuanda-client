@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ProfileSubpageEnum } from '../../models/profile-subpage.enum';
+import { ISemanticScholarPaperDTO } from '../../models/semantic-scholar-paper.dto';
 import { IUserProfileResponseDTO } from '../../models/user-profile.dto';
 
 @Component({
@@ -14,6 +15,7 @@ import { IUserProfileResponseDTO } from '../../models/user-profile.dto';
 export class ProfileNavigationComponent {
 	public activePage = ProfileSubpageEnum.Questions;
 	@Input() public profile$!: Observable<IUserProfileResponseDTO | null>;
+	@Input() public papers$!: Observable<ISemanticScholarPaperDTO[] | null>;
 	constructor(
 		private readonly _route: ActivatedRoute,
 		private readonly _router: Router,
