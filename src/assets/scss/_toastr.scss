@@ -1,5 +1,5 @@
-@use "./colors.scss" as colors;
-@use "./breakpoints.scss" as breakpoints;
+@use 'colors' as colors;
+@use 'breakpoints' as breakpoints;
 
 .ngx-toastr {
 	-webkit-box-shadow: -3px 1px 28px -18px rgba(66, 68, 90, 1) !important;

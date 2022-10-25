@@ -1,7 +1,6 @@
-@use './../../../../assets/icons/style.css';
-@use './../../../../assets/scss/colors.scss' as colors;
-@use './../../../../assets/scss/dimensions.scss' as dim;
-@use './../../../../assets/scss/breakpoints.scss' as breakpoints;
+@use 'colors' as colors;
+@use 'dimensions' as dim;
+@use 'breakpoints' as breakpoints;
 
 .nav-container {
 	padding-top: dim.$header-height-sm;

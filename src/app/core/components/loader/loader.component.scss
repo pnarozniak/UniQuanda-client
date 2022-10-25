@@ -1,6 +1,6 @@
-@use '../../../../assets/scss/colors.scss' as colors;
-@use '../../../../assets/scss/breakpoints.scss' as breakpoints;
-@use '../../../../assets/scss/dimensions.scss' as dimensions;
+@use 'colors' as colors;
+@use 'breakpoints' as breakpoints;
+@use 'dimensions' as dimensions;
 
 $items-colors:  
 	colors.$academic-blue, 

@@ -1,6 +1,6 @@
-@use './../../../../../../assets/scss/colors.scss' as colors;
-@use './../../../../../../assets/icons/style.css';
-@use './../../../../../../assets/scss/breakpoints.scss' as breakpoints;
+@use 'colors' as colors;
+@use 'breakpoints' as breakpoints;
+
 .banner {
 	height: 200px;
 	overflow: hidden;
