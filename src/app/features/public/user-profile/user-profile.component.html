@@ -9,9 +9,7 @@
 				class="d-lg-block d-none"></app-user-profile-user-data>
 			<app-profile-navigation
 				class="d-flex flex-column navigation"
-				[nickname]="
-					(profile$ | async)?.userData?.nickname
-				"></app-profile-navigation>
+				[profile$]="profile$"></app-profile-navigation>
 		</div>
 	</div>
 </div>

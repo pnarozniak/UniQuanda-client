@@ -22,7 +22,7 @@
 		border: none;
 	}
 	.navigation {
-		width: calc(100vw - dim.$nav-bar-width-sm - 260px);
+		width: calc(100vw - 371px);
 	}
 }
 @media all and (max-width: breakpoints.$lg) {

@@ -1,4 +1,4 @@
-<nav
+<!-- <nav
 	mat-tab-nav-bar
 	[tabPanel]="tabPanel"
 	class="myPanels ms-lg-5 me-auto ms-auto mt-3 d-flex">
@@ -42,5 +42,45 @@
 	</a>
 </nav>
 <mat-tab-nav-panel #tabPanel>
-	<span>{{ activePage.toString() }}</span></mat-tab-nav-panel
->
+	<app-user-data-profile
+		class="d-block d-lg-none"
+		*ngIf="activePage === profileSubpage.UserData"></app-user-data-profile>
+	<app-questions-profile
+		class="d-lg-none d-flex"
+		*ngIf="activePage === profileSubpage.Questions"></app-questions-profile>
+	<app-questions-profile
+		class="d-none d-lg-flex"
+		*ngIf="
+			activePage === profileSubpage.Questions ||
+			activePage === profileSubpage.UserData
+		"></app-questions-profile>
+	<app-answers-profile class="" *ngIf="activePage === profileSubpage.Answers">
+	</app-answers-profile>
+</mat-tab-nav-panel> -->
+<mat-tab-group
+	class="mt-2 mx-auto ms-lg-2"
+	[selectedIndex]="getActiveTabId()"
+	(selectedTabChange)="setActivePage($event)"
+	preserveContent>
+	<mat-tab style="display: none">
+		<ng-template mat-tab-label>
+			<span>O użytkowniku</span>
+		</ng-template>
+		Content 1
+	</mat-tab>
+	<mat-tab label="Pytania">
+		<ng-template matTabContent>
+			<app-questions-profile></app-questions-profile>
+		</ng-template>
+	</mat-tab>
+	<mat-tab label="Odpowiedzi">
+		<ng-template matTabContent>
+			<app-answers-profile></app-answers-profile>
+		</ng-template>
+	</mat-tab>
+	<mat-tab>
+		<ng-template mat-tab-label class="item me-2 d-lg-none d-flex">
+			<span appNotImplemented>Testy</span> </ng-template
+		>Niezaimplementowane testy (niewidoczne)
+	</mat-tab>
+</mat-tab-group>

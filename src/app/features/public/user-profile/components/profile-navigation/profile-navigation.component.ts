@@ -1,7 +1,10 @@
 import { Component, Input } from '@angular/core';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { ProfileSubpageEnum } from '../../models/profile-subpage.enum';
+import { IUserProfileResponseDTO } from '../../models/user-profile.dto';
 
 @Component({
 	selector: 'app-profile-navigation',
@@ -10,7 +13,7 @@ import { ProfileSubpageEnum } from '../../models/profile-subpage.enum';
 })
 export class ProfileNavigationComponent {
 	public activePage = ProfileSubpageEnum.Questions;
-	@Input() public nickname: string | undefined;
+	@Input() public profile$!: Observable<IUserProfileResponseDTO | null>;
 	constructor(
 		private readonly _route: ActivatedRoute,
 		private readonly _router: Router,
@@ -36,25 +39,56 @@ export class ProfileNavigationComponent {
 		});
 	}
 
-	setActivePage(page: ProfileSubpageEnum) {
-		this.activePage = page;
+	setActivePage(event: MatTabChangeEvent) {
+		let activePage = null;
+		switch (event.index) {
+			case 0:
+				activePage = ProfileSubpageEnum.UserData;
+				break;
+			case 1:
+				activePage = ProfileSubpageEnum.Questions;
+				break;
+			case 2:
+				activePage = ProfileSubpageEnum.Answers;
+				break;
+			case 3:
+				activePage = ProfileSubpageEnum.Tests;
+				break;
+			default:
+				activePage = ProfileSubpageEnum.Questions;
+		}
+		this.activePage = activePage;
 		this._router
 			.navigate([], {
 				queryParams: {
 					...this._route.snapshot.queryParams,
-					subpage: page.toString(),
+					subpage: activePage.toString(),
 				},
 				queryParamsHandling: 'merge',
 				relativeTo: this._route,
 			})
 			.then(() => {
-				this._titleService.setTitle(
-					`UniQuanda - Profil użytkownika ${this.nickname}`
-				);
+				this.profile$.subscribe((user) => {
+					this._titleService.setTitle(
+						`UniQuanda - Profil użytkownika ${user?.userData.nickname}`
+					);
+				});
 			});
 	}
 
-	public get profileSubpage(): typeof ProfileSubpageEnum {
-		return ProfileSubpageEnum;
+	getActiveTabId(): number {
+		const breakpoint = 991;
+		switch (this.activePage) {
+			case ProfileSubpageEnum.UserData:
+				return window.innerWidth <= breakpoint ? 0 : 1;
+			case ProfileSubpageEnum.Questions:
+				return 1;
+			case ProfileSubpageEnum.Answers:
+				return 2;
+			case ProfileSubpageEnum.Tests:
+				return 3;
+			default:
+				return 1;
+		}
 	}
 }
