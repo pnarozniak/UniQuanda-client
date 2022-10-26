@@ -2,22 +2,7 @@
 @use './../../../../../../assets/scss/colors.scss' as colors;
 @use './../../../../../../assets/scss/breakpoints.scss' as breakpoints;
 
-.nav-container {
-	row-gap: 6px;
-	column-gap: 10px;
-	font-weight: 500;
-}
 
-.item {
-	padding: 10px 13px 10px 13px;
-	background-color: var(--bg-accent);
-	color: var(--text-default);
-	min-width: unset;
-	width: fit-content;
-	font-family: Ubuntu, sans-serif;
-	white-space: nowrap;
-	font-size: 16px;
-}
 .mat-tab-label-active {
 	background-color: colors.$academic-blue;
 	color: colors.$crystal-white;
@@ -55,7 +40,7 @@
 		color: var(--text-default);
 		opacity: 1 !important;
 		background-color: var(--bg-accent);
-		font-family: Ubuntu, sans-serif;
+		font-family: Ubuntu, sans-serif !important;
 		margin-right: 1rem;
 		min-width: unset !important;
 		display: flex;
@@ -63,10 +48,14 @@
 			display: none;
 		}
 	}
+	.mat-tab-body {
+		font-family: Ubuntu, sans-serif !important;
+	}
 
 	/* Styles for the active tab label */
 	.mat-tab-label.mat-tab-label-active {
 		background-color: colors.$academic-blue;
+		color: colors.$crystal-white;
 	}
 	.mat-ink-bar {
 		display: none;

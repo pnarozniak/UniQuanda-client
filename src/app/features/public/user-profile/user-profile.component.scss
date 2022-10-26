@@ -27,11 +27,14 @@
 }
 @media all and (max-width: breakpoints.$lg) {
 	.navigation {
-		width: calc(100vw - dim.$nav-bar-width-sm);
+		width: calc(100vw - dim.$nav-bar-width-sm - 17px);
 	}
 }
 @media all and (max-width: breakpoints.$sm) {
 	.navigation {
 		width: 100vw
 	}
+}
+.teest {
+	max-width: 100vw;
 }

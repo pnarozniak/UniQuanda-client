@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
 import { IUserProfileResponseDTO } from '../../models/user-profile.dto';
-import { SemanticScholarService } from '../../services/semantic-scholar.service';
 import { ISemanticScholarPaperDTO } from '../../models/semantic-scholar-paper.dto';
 
 @Component({

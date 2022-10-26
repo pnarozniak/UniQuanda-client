@@ -30,3 +30,8 @@
 	width: 100%;
 	height: 200px;
 }
+@media screen and (max-width: breakpoints.$lg) {
+	.infoContainer {
+		width: unset;
+	}
+}

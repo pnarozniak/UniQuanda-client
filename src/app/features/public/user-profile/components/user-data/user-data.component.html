@@ -1,12 +1,12 @@
 <div
-	class="infoContainer ms-4 pt-3 d-flex flex-column"
+	class="infoContainer ms-lg-4 mx-auto pt-3 d-flex flex-column"
 	*appContext="let user of profile$ | async"
 	appTheme>
-	<ng-container *ngIf="user; else userLoading">
-		<div *ngIf="user?.userData?.aboutText">
+	<div *ngIf="user; else userLoading" class="d-flex flex-column">
+		<!-- <div *ngIf="user?.userData?.aboutText">
 			<h5>O mnie</h5>
-			<p class="small-text">{{ user?.userData?.aboutText }}</p>
-		</div>
+			<span class="small-text">{{ user?.userData?.aboutText }}</span>
+		</div> -->
 		<h5 class="my-3">Dane użytkownika</h5>
 		<div *ngIf="false; else noUserData">
 			<div
@@ -76,22 +76,24 @@
 				Zobacz więcej>>
 			</app-button>
 		</ng-template>
-		<ng-container *ngIf="user?.userData.semanticScholarProfile">
+		<!-- <ng-container *ngIf="user?.userData.semanticScholarProfile">
 			<ng-container *appContext="let papers of papers$ | async">
 				<ng-container *ngIf="papers && papers?.length !== 0">
 					<h5 class="mb-3">Prace naukowe</h5>
-					<div class="d-flex flex-row my-2" *ngFor="let paper of papers">
+					<div
+						class="d-flex flex-row my-2 paper-container"
+						*ngFor="let paper of papers">
 						<app-icon icon="certificate"></app-icon>
 						<span class="paper small-text ms-2"> {{ paper.title }}</span>
 					</div>
 				</ng-container>
 			</ng-container>
-		</ng-container>
-	</ng-container>
+		</ng-container> -->
+	</div>
 	<ng-template #userLoading>
 		<div class="loading-box" [appLoading]="true"></div>
 		<div class="loading-box mt-3" [appLoading]="true"></div>
 		<div class="loading-box mt-3" [appLoading]="true"></div>
-		<div class="loading-box my-3" [appLoading]="true"></div>
+		<div class="loading-box mt-3" [appLoading]="true"></div>
 	</ng-template>
 </div>
