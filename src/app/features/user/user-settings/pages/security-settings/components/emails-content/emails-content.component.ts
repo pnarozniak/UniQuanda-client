@@ -1,10 +1,8 @@
 import { SecuritySettingsApiService } from '../../services/security-settings-api.service';
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IGetUserEmailsReponseDTO } from '../../models/get-user-emails-reponse.dto';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { LoaderService } from 'src/app/core/services/loader.service';
 
 @Component({
 	selector: 'app-emails-content',
@@ -14,12 +12,10 @@ import { LoaderService } from 'src/app/core/services/loader.service';
 export class EmailsContentComponent {
 	userEmails: IGetUserEmailsReponseDTO | null = null;
 	isExtraEmailFormVisible = false;
-	
 
 	constructor(
 		private readonly _securitySettingsApiService: SecuritySettingsApiService,
 		private readonly _toastrService: ToastrService,
-		private readonly _loader: LoaderService,
 		private readonly _router: Router
 	) {
 		this._securitySettingsApiService.getUserEmails().subscribe({

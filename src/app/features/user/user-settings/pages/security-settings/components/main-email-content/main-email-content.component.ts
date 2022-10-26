@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -30,5 +30,8 @@ export class MainEmailContentComponent {
 		this.isFormVisible = !this.isFormVisible;
 	}
 
-	sendForm() {}
+	sendForm() {
+		this.form.markAllAsTouched();
+		if (this.form.invalid) return;
+	}
 }

@@ -17,7 +17,7 @@ import { SecuritySettingsApiService } from '../../services/security-settings-api
 export class ExtraEmailContentComponent {
 	@Input() extraEmail: IUserEmailValue | null = null;
 
-	isDeleteFormVisibility: boolean = false;
+	isDeleteFormVisibility = false;
 	passwordForm: FormControl;
 
 	constructor(
