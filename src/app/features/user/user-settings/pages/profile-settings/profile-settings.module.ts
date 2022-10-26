@@ -23,6 +23,6 @@ import { UserProfileSettingsApiService } from './services/user-profile-settings-
 		NgxDropzoneModule,
 		SharedModule,
 	],
-	providers: [UserProfileSettingsApiService]
+	providers: [UserProfileSettingsApiService],
 })
 export class ProfileSettingsModule {}

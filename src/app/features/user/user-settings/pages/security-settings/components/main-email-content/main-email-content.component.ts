@@ -6,7 +6,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 	templateUrl: './main-email-content.component.html',
 	styleUrls: ['./main-email-content.component.scss'],
 })
-export class MainEmailContentComponent implements OnInit {
+export class MainEmailContentComponent {
 	isFormVisible = false;
 	form: FormGroup;
 
@@ -25,8 +25,6 @@ export class MainEmailContentComponent implements OnInit {
 			]),
 		});
 	}
-
-	ngOnInit(): void {}
 
 	changeVisibilityForm() {
 		this.isFormVisible = !this.isFormVisible;

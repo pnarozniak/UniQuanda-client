@@ -1,3 +1,4 @@
+import { SecuritySettingsComponent } from './pages/security-settings/security-settings.component';
 import { ProfileSettingsComponent } from './pages/profile-settings/profile-settings.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -13,7 +14,13 @@ const routes: Routes = [
 				path: 'profile',
 				component: ProfileSettingsComponent,
 				canActivate: [AuthGuardService],
-				data: { title: 'Edycja', expectedRole: 'user' },
+				data: { title: 'Edycja profilu', expectedRole: 'user' },
+			},
+			{
+				path: 'security',
+				component: SecuritySettingsComponent,
+				canActivate: [AuthGuardService],
+				data: { title: 'Bezpieczeństwo', expectedRole: 'user' },
 			},
 		],
 	},
