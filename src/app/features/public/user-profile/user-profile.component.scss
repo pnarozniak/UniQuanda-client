@@ -1,6 +1,6 @@
-@use './../../../../assets/scss/colors.scss' as colors;
-@use './../../../../assets/scss/dimensions.scss' as dim;
-@use './../../../../assets/scss/breakpoints.scss' as breakpoints;
+@use 'colors' as colors;
+@use 'dimensions' as dim;
+@use 'breakpoints' as breakpoints;
 
 .profile-rectangle {
 	border: 1px solid colors.$bordered-gray;

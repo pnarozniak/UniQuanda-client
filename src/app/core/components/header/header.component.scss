@@ -1,7 +1,6 @@
-@use './../../../../assets/icons/style.css';
-@use './../../../../assets/scss/dimensions.scss' as dim;
-@use './../../../../assets/scss/colors.scss' as colors;
-@use './../../../../assets/scss/breakpoints.scss' as breakpoints;
+@use 'dimensions' as dim;
+@use 'colors' as colors;
+@use 'breakpoints' as breakpoints;
 
 header {
 	position: fixed;

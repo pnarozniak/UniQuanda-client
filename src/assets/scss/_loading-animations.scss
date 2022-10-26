@@ -1,4 +1,5 @@
-@use "colors.scss" as col;
+@use 'colors' as col;
+
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;

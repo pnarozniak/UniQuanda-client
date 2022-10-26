@@ -1,5 +1,5 @@
-@use './../assets/scss/dimensions.scss' as dim;
-@use './../assets/scss/breakpoints.scss' as breakpoints;
+@use 'dimensions' as dim;
+@use 'breakpoints' as breakpoints;
 
 .main-content{
 	padding-top: dim.$header-height-sm;
