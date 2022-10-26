@@ -3,16 +3,23 @@
 	*appContext="let user of profile$ | async"
 	appTheme>
 	<div *ngIf="user; else userLoading" class="d-flex flex-column">
-		<!-- <div *ngIf="user?.userData?.aboutText">
+		<div *ngIf="user?.userData?.aboutText">
 			<h5>O mnie</h5>
 			<span class="small-text">{{ user?.userData?.aboutText }}</span>
-		</div> -->
+		</div>
 		<h5 class="my-3">Dane użytkownika</h5>
-		<div *ngIf="false; else noUserData">
+		<div
+			*ngIf="
+				user?.userData.firstName ||
+					user?.userData.lastName ||
+					user?.userData.birthdate ||
+					user.userData.phoneNumber;
+				else noUserData
+			">
 			<div
 				class="d-flex my-1"
 				*ngIf="user?.userData.firstName || user?.userData.lastName">
-				<app-icon icon="profile"></app-icon>
+				<app-icon icon="profile" class="my-auto"></app-icon>
 				<div class="d-flex flex-column ms-1">
 					<span *ngIf="user?.userData.firstName" class="small-text">{{
 						user?.userData.firstName
@@ -76,19 +83,24 @@
 				Zobacz więcej>>
 			</app-button>
 		</ng-template>
-		<!-- <ng-container *ngIf="user?.userData.semanticScholarProfile">
+		<ng-container *ngIf="user?.userData.semanticScholarProfile">
 			<ng-container *appContext="let papers of papers$ | async">
-				<ng-container *ngIf="papers && papers?.length !== 0">
-					<h5 class="mb-3">Prace naukowe</h5>
-					<div
-						class="d-flex flex-row my-2 paper-container"
-						*ngFor="let paper of papers">
-						<app-icon icon="certificate"></app-icon>
-						<span class="paper small-text ms-2"> {{ paper.title }}</span>
-					</div>
+				<ng-container *ngIf="papers; else loadingPapers">
+					<ng-container *ngIf="papers?.length !== 0">
+						<h5 class="mb-3">Prace naukowe</h5>
+						<div
+							class="d-flex flex-row my-2 paper-container"
+							*ngFor="let paper of papers">
+							<app-icon icon="certificate"></app-icon>
+							<span class="paper small-text ms-2"> {{ paper.title }}</span>
+						</div>
+					</ng-container>
 				</ng-container>
+				<ng-template #loadingPapers>
+					<div class="loading-box" [appLoading]="true"></div>
+				</ng-template>
 			</ng-container>
-		</ng-container> -->
+		</ng-container>
 	</div>
 	<ng-template #userLoading>
 		<div class="loading-box" [appLoading]="true"></div>

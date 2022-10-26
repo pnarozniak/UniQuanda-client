@@ -92,6 +92,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy(): void {
+		this.prevId = null;
 		this.subscription.unsubscribe();
 	}
 }
