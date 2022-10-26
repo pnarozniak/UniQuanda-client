@@ -56,8 +56,10 @@
 	}
 
 	.suffix {
+		transform: translateY(5px);
+		-webkit-transform: translateY(5px);
 		color: colors.$light-gray;
-		font-size: small;
+		font-size: 30px;
 		cursor: pointer;
 	}
 
