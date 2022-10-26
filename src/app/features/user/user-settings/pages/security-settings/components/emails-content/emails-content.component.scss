@@ -1,0 +1,20 @@
+@use './../../../../../../../../assets/scss/breakpoints.scss' as breakpoints;
+@use './../../../../../../../../assets/scss/colors.scss' as colors;
+
+.description {
+	margin-bottom: 24px;
+}
+
+.action-btn {
+	margin-top: 24px;
+}
+
+@media all and (max-width: breakpoints.$sm) {
+	.title {
+		margin-bottom: 9px;
+	}
+
+	.action-btn {
+		margin-top: 12px;
+	}
+}

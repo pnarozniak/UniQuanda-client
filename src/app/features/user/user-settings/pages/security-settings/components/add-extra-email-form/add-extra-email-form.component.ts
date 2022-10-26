@@ -1,7 +1,6 @@
 import { ConflictResponseStatus } from './../../enums/conflict-response-status.enum';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { SecuritySettingsApiService } from '../../services/security-settings-api.service';
@@ -23,8 +22,7 @@ export class AddExtraEmailFormComponent {
 		private readonly _securitySettingsApiService: SecuritySettingsApiService,
 		private readonly _commonToastrService: CommonToastrService,
 		private readonly _toastrService: ToastrService,
-		private readonly _loader: LoaderService,
-		private readonly _router: Router
+		private readonly _loader: LoaderService
 	) {
 		this.form = new FormGroup({
 			email: new FormControl('', [
