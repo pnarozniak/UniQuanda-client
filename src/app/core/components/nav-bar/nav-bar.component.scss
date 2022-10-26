@@ -1,9 +1,9 @@
-@use './../../../../assets/icons/style.css';
-@use './../../../../assets/scss/colors.scss' as colors;
-@use './../../../../assets/scss/dimensions.scss' as dim;
-@use './../../../../assets/scss/breakpoints.scss' as breakpoints;
+@use 'colors' as colors;
+@use 'dimensions' as dim;
+@use 'breakpoints' as breakpoints;
 
 .nav-container {
+	padding-top: dim.$header-height-sm;
 	background-color: colors.$academic-blue;
 	height: 100%;
 	width: dim.$nav-bar-width-sm;
@@ -18,7 +18,7 @@
 	align-items: center;
 }
 
-.uniquanda-icon {
+app-icon {
 	font-size: 30px;
 	color: colors.$crystal-white;
 }
@@ -56,6 +56,7 @@
 		height: dim.$nav-bar-height;
 		width: 100%;
 		bottom: 0;
+		padding-top: 0;
 	}
 
 	.item {
@@ -63,7 +64,7 @@
 		width: 25%;
 	}
 
-	.uniquanda-icon {
+	app-icon {
 		font-size: 20px;
 	}
 

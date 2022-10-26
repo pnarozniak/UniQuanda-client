@@ -66,11 +66,13 @@ export class LoginComponent {
 						this._router.navigate(['/public/home']);
 					}
 				},
-				error: () => {
-					this._toastrService.error(
-						'Nie znaleziono użytkownika o podanych danych',
-						'Błąd'
-					);
+				error: (error) => {
+					if (error.status === 404) {
+						this._toastrService.error(
+							'Nie znaleziono użytkownika o podanych danych',
+							'Błąd'
+						);
+					}
 				},
 			});
 	}

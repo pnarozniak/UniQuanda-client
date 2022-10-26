@@ -15,14 +15,14 @@ export default class ApiService {
 		url: string,
 		httpParams: HttpParams = new HttpParams()
 	): Observable<HttpResponse<T>> {
-		return this.http.get<T>(`${this.server}/${url}/`, {
+		return this.http.get<T>(`${this.server}/${url}`, {
 			params: httpParams,
 			observe: 'response',
 		});
 	}
 
 	public post<T, B>(url: string, body: B): Observable<HttpResponse<T>> {
-		return this.http.post<T>(`${this.server}/${url}/`, body, {
+		return this.http.post<T>(`${this.server}/${url}`, body, {
 			observe: 'response',
 		});
 	}
@@ -32,7 +32,7 @@ export default class ApiService {
 		body: B,
 		httpParams: HttpParams = new HttpParams()
 	): Observable<HttpResponse<T>> {
-		return this.http.put<T>(`${this.server}/${url}/`, body, {
+		return this.http.put<T>(`${this.server}/${url}`, body, {
 			params: httpParams,
 			observe: 'response',
 		});

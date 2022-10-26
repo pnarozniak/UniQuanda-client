@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { RegisterRequestDTO } from '../../models/register.dto';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { finalize } from 'rxjs';
-import { DateValidationService } from 'src/app/shared/services/date-validation.service';
+import { FormsValidationService } from 'src/app/shared/services/forms-validation.service';
 
 @Component({
 	selector: 'app-register-second-step',
@@ -18,7 +18,7 @@ export class RegisterSecondStepComponent implements OnInit {
 		firstName: new FormControl('', [Validators.maxLength(35)]),
 		lastName: new FormControl('', [Validators.maxLength(51)]),
 		birthdate: new FormControl('', [
-			this._dateValidationService.checkIfDateBeforeNow,
+			this._formsValidationService.checkIfDateBeforeNow,
 		]),
 		phoneNumber: new FormControl('', [Validators.maxLength(22)]),
 		city: new FormControl('', [Validators.maxLength(57)]),
@@ -31,7 +31,7 @@ export class RegisterSecondStepComponent implements OnInit {
 		private readonly _route: ActivatedRoute,
 		private readonly _router: Router,
 		private readonly _registerApiService: RegisterApiService,
-		private readonly _dateValidationService: DateValidationService,
+		private readonly _formsValidationService: FormsValidationService,
 		private readonly _toastrService: ToastrService,
 		private readonly _loader: LoaderService
 	) {}
@@ -69,18 +69,21 @@ export class RegisterSecondStepComponent implements OnInit {
 				)
 			)
 			.pipe(finalize(() => this._loader.hide()))
-			.subscribe((response) => {
-				if (response.status === 201) {
+			.subscribe({
+				next: () => {
 					this._router.navigate([
 						'/public/confirm-registration',
 						{ email: this.email },
 					]);
-				} else if (response.status === 409) {
-					this._toastrService.error(
-						'Ktoś właśnie zarejestrował się podobnymi danymi, spróbuj ponownie',
-						'Błąd'
-					);
-				}
+				},
+				error: (error) => {
+					if (error.status === 409) {
+						this._toastrService.error(
+							'Ktoś właśnie zarejestrował się podobnymi danymi, spróbuj ponownie',
+							'Błąd'
+						);
+					}
+				},
 			});
 	}
 }

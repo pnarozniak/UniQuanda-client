@@ -1,4 +1,4 @@
-@use '../../../../assets/scss/colors.scss' as colors;
+@use 'colors' as colors;
 
 :host {
 	transition: opacity 300ms ease-in-out;
@@ -46,7 +46,7 @@
 	}
 
 	&.app-button-none {
-		display: inline;
+		display: inline-flex;
 
 		&:hover {
 			opacity: .6;

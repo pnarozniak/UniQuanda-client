@@ -1,11 +1,15 @@
-@use './../assets/scss/dimensions.scss' as dim;
-@use './../assets/scss/breakpoints.scss' as breakpoints;
+@use 'dimensions' as dim;
+@use 'breakpoints' as breakpoints;
 
 .main-content{
-	margin-top: dim.$header-height-sm;
-	min-height: calc(100vh - dim.$header-height-sm);
+	padding-top: dim.$header-height-sm;
+	min-height: 100vh;
 	background-color: var(--bg-default);
 	color: var(--text-default);
+
+	::ng-deep > *:nth-child(2) {
+		flex-grow: 1;
+	}
 }
 
 .nav-bar-margin{
@@ -14,10 +18,9 @@
 
 @media all and (max-width: breakpoints.$sm) {
 	.main-content{
-		margin-top: dim.$header-height;
+		padding-top: dim.$header-height;
 		max-width: 100%;
-		min-height: calc(100vh - (dim.$header-height + dim.$nav-bar-height));
-		margin-bottom: dim.$nav-bar-height;
+		padding-bottom: dim.$nav-bar-height;
 	}
 
 	.nav-bar-margin{

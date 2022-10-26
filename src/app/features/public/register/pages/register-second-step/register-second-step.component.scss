@@ -1,5 +1,5 @@
-@use './../../../../../../assets/scss/colors.scss' as colors;
-@use './../../../../../../assets/scss/breakpoints.scss' as breakpoints;
+@use 'colors' as colors;
+@use 'breakpoints' as breakpoints;
 
 .register-card {
 	width: 520px;
@@ -9,6 +9,11 @@
 
 		.header {
 			white-space: nowrap;
+		}
+
+		.description {
+			font-size: 15px;
+			font-weight: 400;
 		}
 	}
 }

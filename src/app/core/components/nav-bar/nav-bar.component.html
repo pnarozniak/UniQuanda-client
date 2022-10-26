@@ -6,7 +6,7 @@
 			routerLinkActive="active"
 			tooltip="Strona Główna"
 			placement="right">
-			<i class="uniquanda-icon icon-home"> </i>
+			<app-icon icon="home"></app-icon>
 		</a>
 		<a
 			routerLink="/public/tags"
@@ -14,7 +14,7 @@
 			class="tag item"
 			tooltip="Tagi"
 			placement="right">
-			<i class="uniquanda-icon icon-tag"> </i>
+			<app-icon icon="tag"></app-icon>
 		</a>
 		<a
 			routerLink="/public/tests"
@@ -22,7 +22,7 @@
 			class="test item"
 			tooltip="Testy"
 			placement="right">
-			<i class="uniquanda-icon icon-test"> </i>
+			<app-icon icon="test"></app-icon>
 		</a>
 		<a
 			routerLink="/public/ranking"
@@ -30,7 +30,7 @@
 			class="ranking item"
 			tooltip="Ranking"
 			placement="right">
-			<i class="uniquanda-icon icon-ranking"> </i>
+			<app-icon icon="ranking"></app-icon>
 		</a>
 		<a
 			*ngIf="user$ | async"
@@ -38,12 +38,12 @@
 			tooltip="Wyloguj"
 			placement="right"
 			routerLink="/logout">
-			<i class="uniquanda-icon icon-logout"> </i>
+			<app-icon icon="logout"></app-icon>
 		</a>
 		<a
 			routerLink="/public/questions/add"
 			class="item plus mx-auto rounded-circle">
-			<i class="uniquanda-icon icon-plus fs-6"></i>
+			<app-icon icon="plus" class="fs-6"></app-icon>
 		</a>
 	</div>
 </nav>

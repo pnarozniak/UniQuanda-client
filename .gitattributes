@@ -4,3 +4,4 @@
 
 # Binary files that should be ignored:
 *.ico binary
+*/assets/icons/fonts/* binary

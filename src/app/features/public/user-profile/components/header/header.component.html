@@ -64,14 +64,18 @@
 					<ng-template #onlyNick>
 						<b class="nickname mt-2 mt-sm-0">{{ user?.userData?.nickname }}</b>
 					</ng-template>
-					<a
+					<app-button
 						*ngIf="
 							(userClaims$ | async)?.id === user?.userData?.id &&
 								user?.userData?.id !== null;
 							else otherProfileMobile
 						"
-						class="icon-edit mobile-profile-icon p-2 ms-auto me-4 my-auto d-flex d-lg-none"
-						routerLink="/user/settings/profile"></a>
+						color="gray"
+						shape="rect"
+						routerLink="/user/settings/profile"
+						class="p-2 ms-auto my-auto me-4 d-lg-none">
+						<app-icon icon="edit"></app-icon>
+					</app-button>
 					<ng-template #otherProfileMobile>
 						<div
 							*ngIf="user?.userData?.id"
@@ -79,7 +83,9 @@
 							[insideClick]="true"
 							container="body"
 							class="ms-auto me-4 my-auto d-flex d-lg-none">
-							<i class="icon-dots p-2 mobile-profile-icon" dropdownToggle></i>
+							<app-button color="gray" shape="rect" dropdownToggle>
+								<app-icon icon="dots" class="p-2"></app-icon>
+							</app-button>
 							<div
 								*dropdownMenu
 								class="dropdown-content d-flex flex-column py-2 d-lg-none"
@@ -88,16 +94,16 @@
 									appNotImplemented
 									[routerLink]="['/premium/messages/new', user?.userData?.id]"
 									*ngIf="'hasPremium' === 'hasPremium'"
-									class="mx-4 mt-1 d-flex justify-content-center">
-									<app-icon icon="mail" class="me-1 my-auto"></app-icon>
+									class="mx-4 mt-1 d-flex justify-content-center py-1">
+									<app-icon icon="mail" class="me-2 my-auto"></app-icon>
 									Wyślij wiadomość </a
 								><!--TODO: dodać poprawny warunek sprawdzania premium-->
 								<hr class="mx-4 hrline my-2" />
 								<a
 									appNotImplemented
 									[routerLink]="['/user/report', user?.userData?.id]"
-									class="mx-4 d-flex justify-content-center">
-									<app-icon icon="report" class="me-1 my-auto"></app-icon>
+									class="mx-4 d-flex justify-content-center py-1">
+									<app-icon icon="report" class="me-2 my-auto"></app-icon>
 									Zgłoś użytkownika
 								</a>
 							</div>
@@ -123,7 +129,7 @@
 						alt="Logo placówki edukacyjnjej"
 						class="university-logo" />
 					{{ university.name }}
-					<i class="icon-linkv2 ms-1"> </i>
+					<app-icon icon="linkv2" class="ms-1"></app-icon>
 				</a>
 			</div>
 			<div
@@ -146,10 +152,10 @@
 					user?.userData?.id !== null;
 				else otherProfile
 			">
-			<a routerLink="/user/settings/profile" class="link-header p-2">
-				<i class="icon-edit me-1"></i>
+			<app-button color="none" class="p-2" routerLink="/user/settings/profile">
+				<app-icon icon="edit" class="me-1"></app-icon>
 				Edytuj profil
-			</a>
+			</app-button>
 		</div>
 		<ng-template #otherProfile>
 			<div
@@ -160,7 +166,7 @@
 					color="none"
 					[routerLink]="['/user/report', user?.userData?.id]"
 					class="p-2">
-					<app-icon icon="report"></app-icon>
+					<app-icon icon="report" class="me-1"></app-icon>
 					Zgłoś użytkownika
 				</app-button>
 				<app-button

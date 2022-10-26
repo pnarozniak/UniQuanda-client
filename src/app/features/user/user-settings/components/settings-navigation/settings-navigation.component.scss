@@ -1,6 +1,5 @@
-@use './../../../../../../assets/icons/style.css';
-@use './../../../../../../assets/scss/colors.scss' as colors;
-@use './../../../../../../assets/scss/breakpoints.scss' as breakpoints;
+@use 'colors' as colors;
+@use 'breakpoints' as breakpoints;
 
 .nav-container {
 	row-gap: 6px;
@@ -17,6 +16,7 @@
 	padding: 10px 13px 10px 13px;
 	background-color: var(--bg-accent);
 	color: var(--text-default);
+	font-size: 16px;
 }
 
 .item:hover {
@@ -34,12 +34,9 @@
 }
 
 @media all and (max-width: breakpoints.$sm) {
-	.item-text {
-		font-size: 13px;
-	}
-
 	.item {
 		padding: 6px 13px 6px 13px;
+		font-size: 13px;
 	}
 
 	.icon-item {

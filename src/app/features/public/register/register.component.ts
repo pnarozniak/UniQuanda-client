@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FormsValidationService } from 'src/app/shared/services/forms-validation.service';
 import { RegisterValidationService } from './services/register-validation.service';
 
 @Component({
@@ -29,13 +30,14 @@ export class RegisterComponent {
 			]),
 			repeatPassword: new FormControl('', [Validators.required]),
 		},
-		this._registerValidationService.checkIfPasswordsMatch,
+		this._formsValidationService.checkIfPasswordsMatch,
 		this._registerValidationService.checkNicknameAndEmailAvailability
 	);
 
 	constructor(
 		private readonly _router: Router,
-		private readonly _registerValidationService: RegisterValidationService
+		private readonly _registerValidationService: RegisterValidationService,
+		private readonly _formsValidationService: FormsValidationService
 	) {}
 
 	handleRegister() {

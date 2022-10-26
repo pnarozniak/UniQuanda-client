@@ -30,11 +30,14 @@ export class HandleErrorService {
 	}
 
 	handle403Error(): void {
-		this.displayErrorMessage('', 'Niewystarczające uprawnienia');
+		this.displayErrorMessage('Niewystarczające uprawnienia', '');
 	}
 
 	handle500Error(): void {
-		this.displayErrorMessage('', 'Błąd serwera');
+		this.displayErrorMessage(
+			'Błąd serwera',
+			'Przepraszamy, spróbuj ponownie później.'
+		);
 	}
 
 	displayErrorMessage(title: string, message: string): void {
