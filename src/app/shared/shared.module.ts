@@ -1,3 +1,4 @@
+import { CommonToastrService } from './services/common-toastr.service';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -60,6 +61,7 @@ const sharedDirectives = [
 			provide: MAT_DATE_LOCALE,
 			useValue: 'pl-PL',
 		},
+		CommonToastrService,
 	],
 })
 export class SharedModule {}
