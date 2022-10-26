@@ -1,23 +1,6 @@
-@use './../../../../../../assets/icons/style.css';
-@use './../../../../../../assets/scss/colors.scss' as colors;
-@use './../../../../../../assets/scss/breakpoints.scss' as breakpoints;
+@use 'colors' as colors;
+@use 'breakpoints' as breakpoints;
 
-
-.mat-tab-label-active {
-	background-color: colors.$academic-blue;
-	color: colors.$crystal-white;
-	opacity: 1;
-}
-
-.myPanels::ng-deep {
-	.mat-ink-bar {
-		display: none;
-	}
-	.mat-tab-links {
-		justify-content: center !important;
-		flex-wrap: wrap !important;
-	}
-}
 
 @media all and (max-width: breakpoints.$lg) {
 	.item {
