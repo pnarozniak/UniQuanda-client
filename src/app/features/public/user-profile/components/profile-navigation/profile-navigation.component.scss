@@ -16,8 +16,16 @@
 		.mat-tab-label:first-of-type {
 			display: flex;
 		}
+		.mat-tab-list {
+			margin-right: 0;
+		}
+		.mat-tab-labels {
+			margin-left: auto;
+			margin-right: auto;
+		}
 	}
 }
+
 ::ng-deep {
 	.mat-tab-label {
 		color: var(--text-default);
@@ -50,4 +58,21 @@
 	.mat-tab-header-pagination-chevron {
 		border-color: var(--text-default) !important;
 	}
+	.mat-tab-list {
+		align-content: start;
+		display: flex;
+		width: 1000px;
+	}
+	.mat-tab-header-pagination-controls-enabled {
+		& .mat-tab-labels {
+			margin-left: 0 !important;
+		}
+		& .mat-tab-list {
+			margin-left: 0 !important;
+		}
+	}
+}
+.divider {
+	border-bottom: 2px solid colors.$bordered-gray;
+	opacity: 1;
 }

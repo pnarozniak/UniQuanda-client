@@ -44,7 +44,7 @@
 				</div>
 			</div>
 			<div class="d-flex my-1" *ngIf="user?.userData.phoneNumber">
-				<app-icon icon="help"></app-icon>
+				<app-icon icon="phone"></app-icon>
 				<div class="d-flex flex-column ms-1 small-text">
 					<span>{{ user?.userData.phoneNumber }}</span>
 				</div>
@@ -71,9 +71,7 @@
 						>{{ tag.points }} {{ generatePointsSuffix(tag.points) }}</span
 					>
 				</div>
-				<div
-					class="w-100 divider"
-					*ngIf="i !== user?.pointsInTags.length - 1"></div>
+				<hr class="w-100 divider" *ngIf="i !== user?.pointsInTags.length - 1" />
 			</div>
 			<app-button
 				appNotImplemented

@@ -1,0 +1,6 @@
+@use 'colors' as colors;
+
+.divider {
+	border-bottom: 2px solid colors.$bordered-gray;
+	opacity: 1;
+}

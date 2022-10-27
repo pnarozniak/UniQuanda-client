@@ -4,8 +4,8 @@
 .infoContainer {
 	width: 260px;
 	& .divider {
-		height: 0.5px;
 		background-color: colors.$light-gray;
+    opacity: 1;
 	}
 	& .see-more-text {
 		color: colors.$light-gray;
