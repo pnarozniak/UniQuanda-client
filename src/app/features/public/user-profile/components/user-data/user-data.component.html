@@ -1,5 +1,5 @@
 <div
-	class="infoContainer ms-lg-4 mx-auto pt-3 d-flex flex-column"
+	class="infoContainer ms-lg-4 pt-3 d-flex flex-column"
 	*appContext="let user of profile$ | async"
 	appTheme>
 	<div *ngIf="user; else userLoading" class="d-flex flex-column">
@@ -65,7 +65,7 @@
 			<div
 				*ngFor="let tag of user?.pointsInTags; let i = index"
 				class="d-flex flex-column">
-				<div class="d-flex flex-row my-3">
+				<div class="d-flex flex-row">
 					<app-tag [name]="tag.name" class="me-auto"></app-tag>
 					<span class="ms-2 small-text"
 						>{{ tag.points }} {{ generatePointsSuffix(tag.points) }}</span
@@ -76,7 +76,7 @@
 			<app-button
 				appNotImplemented
 				color="none"
-				class="see-more-text small-text mb-5"
+				class="see-more-text small-text mb-5 mt-3"
 				routerLink="/public/user-tags/1">
 				Zobacz więcej>>
 			</app-button>

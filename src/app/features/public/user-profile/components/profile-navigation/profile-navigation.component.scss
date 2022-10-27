@@ -1,6 +1,14 @@
 @use 'colors' as colors;
 @use 'breakpoints' as breakpoints;
+@use 'dimensions' as dim;
 
+@media all and (max-width: breakpoints.$xxl) {
+	*::ng-deep {
+		.mat-tab-list {
+			width: calc(100vw - dim.$nav-bar-width-sm - 309px);
+		}
+	}
+}
 
 @media all and (max-width: breakpoints.$lg) {
 	.item {
@@ -18,6 +26,7 @@
 		}
 		.mat-tab-list {
 			margin-right: 0;
+			width: 100vw;
 		}
 		.mat-tab-labels {
 			margin-left: auto;
@@ -25,7 +34,6 @@
 		}
 	}
 }
-
 ::ng-deep {
 	.mat-tab-label {
 		color: var(--text-default);

@@ -27,14 +27,11 @@
 }
 @media all and (max-width: breakpoints.$lg) {
 	.navigation {
-		width: calc(100vw - dim.$nav-bar-width-sm);
+		width: calc(100vw - dim.$nav-bar-width-sm - 18px); //poprawka na scrollbar na niektórych przeglądarkach
 	}
 }
 @media all and (max-width: breakpoints.$sm) {
 	.navigation {
-		width: 100vw
+		width: calc(100vw - 18px); //poprawka na scrollbar na niektórych przeglądarkach
 	}
-}
-.teest {
-	max-width: 100vw;
 }
