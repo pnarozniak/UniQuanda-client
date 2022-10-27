@@ -7,7 +7,10 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
 	selector: 'app-emails-content',
 	templateUrl: './emails-content.component.html',
-	styleUrls: ['./emails-content.component.scss'],
+	styleUrls: [
+		'./emails-content.component.scss',
+		'./../../styles/security-settings-component-style.scss',
+	],
 })
 export class EmailsContentComponent {
 	userEmails: IGetUserEmailsReponseDTO | null = null;

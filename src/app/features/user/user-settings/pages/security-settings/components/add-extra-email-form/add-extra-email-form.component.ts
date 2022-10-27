@@ -12,7 +12,10 @@ import { CommonToastrService } from 'src/app/shared/services/common-toastr.servi
 @Component({
 	selector: 'app-add-extra-email-form',
 	templateUrl: './add-extra-email-form.component.html',
-	styleUrls: ['./add-extra-email-form.component.scss'],
+	styleUrls: [
+		'./add-extra-email-form.component.scss',
+		'./../../styles/security-settings-component-style.scss',
+	],
 })
 export class AddExtraEmailFormComponent {
 	@Input() userEmails: IGetUserEmailsReponseDTO | null = null;

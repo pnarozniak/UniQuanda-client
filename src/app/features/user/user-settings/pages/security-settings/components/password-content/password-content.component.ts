@@ -1,45 +1,17 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
 	selector: 'app-password-content',
 	templateUrl: './password-content.component.html',
-	styleUrls: ['./password-content.component.scss'],
+	styleUrls: [
+		'./password-content.component.scss',
+		'./../../styles/security-settings-component-style.scss',
+	],
 })
 export class PasswordContentComponent {
 	isFormVisible = false;
-	form: FormGroup;
-	constructor() {
-		this.form = new FormGroup(
-			{
-				nickname: new FormControl('', [
-					Validators.required,
-					Validators.minLength(3),
-					Validators.maxLength(30),
-				]),
-				email: new FormControl('', [
-					Validators.required,
-					Validators.pattern('^.+@.+\\..+$'),
-					Validators.maxLength(320),
-				]),
-				password: new FormControl('', [
-					Validators.required,
-					Validators.minLength(8),
-					Validators.maxLength(30),
-					Validators.pattern('^(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[0-9]+).*$'),
-				]),
-				repeatPassword: new FormControl('', [Validators.required]),
-			}
-			// this._registerValidationService.checkIfPasswordsMatch,
-		);
-	}
 
-	changeVisibilityForm() {
-		this.isFormVisible = !this.isFormVisible;
-	}
-
-	sendForm() {
-		this.form.markAllAsTouched();
-		if (this.form.invalid) return;
+	changeVisibilityForm(value: boolean | null = null) {
+		this.isFormVisible = value ?? !this.isFormVisible;
 	}
 }

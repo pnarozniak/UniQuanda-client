@@ -12,7 +12,10 @@ import { SecuritySettingsApiService } from '../../services/security-settings-api
 @Component({
 	selector: 'app-extra-email-content',
 	templateUrl: './extra-email-content.component.html',
-	styleUrls: ['./extra-email-content.component.scss'],
+	styleUrls: [
+		'./extra-email-content.component.scss',
+		'./../../styles/security-settings-component-style.scss',
+	],
 })
 export class ExtraEmailContentComponent {
 	@Input() extraEmail: IUserEmailValue | null = null;

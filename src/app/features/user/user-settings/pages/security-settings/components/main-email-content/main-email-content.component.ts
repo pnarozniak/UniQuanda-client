@@ -4,7 +4,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
 	selector: 'app-main-email-content',
 	templateUrl: './main-email-content.component.html',
-	styleUrls: ['./main-email-content.component.scss'],
+	styleUrls: [
+		'./main-email-content.component.scss',
+		'./../../styles/security-settings-component-style.scss',
+	],
 })
 export class MainEmailContentComponent {
 	isFormVisible = false;

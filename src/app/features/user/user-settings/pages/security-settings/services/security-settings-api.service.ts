@@ -6,6 +6,7 @@ import { IAddExtraEmailRequestDTO } from '../models/add-extra-email-request.dto'
 import { IAuthConflictResponseDTO } from '../models/auth-conflict-response.dto';
 import { IDeleteExtraEmailRequestDTO } from '../models/delete-extra-email-request.dto';
 import { IGetUserEmailsReponseDTO } from '../models/get-user-emails-reponse.dto';
+import { IUpdatePasswordRequestDTO } from '../models/update-password-request.dto';
 
 @Injectable()
 export class SecuritySettingsApiService {
@@ -37,7 +38,7 @@ export class SecuritySettingsApiService {
 
 	/**
 	 * Send a request to delete an extra email
-	 * @param body DTO with ide of extra email and password
+	 * @param body DTO with id of extra email and password
 	 * @returns Observable<HttpResponse<IGetUserEmailsReponseDTO>> object with status code of request and status of delete
 	 */
 	public deleteExtraEmail(
@@ -47,5 +48,19 @@ export class SecuritySettingsApiService {
 			IAuthConflictResponseDTO | null,
 			IDeleteExtraEmailRequestDTO
 		>('Auth/delete-extra-email', body);
+	}
+
+	/**
+	 * Send a request to update user password
+	 * @param body DTO with new and old password
+	 * @returns Observable<HttpResponse<IGetUserEmailsReponseDTO>> object with status code of request and status of update
+	 */
+	public updateUserPassword(
+		body: IUpdatePasswordRequestDTO
+	): Observable<HttpResponse<IAuthConflictResponseDTO | null>> {
+		return this._apiService.put<
+			IAuthConflictResponseDTO | null,
+			IUpdatePasswordRequestDTO
+		>('Auth/update-user-password', body);
 	}
 }

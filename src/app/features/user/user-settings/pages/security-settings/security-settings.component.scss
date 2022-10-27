@@ -1,67 +1,18 @@
-@use './../../../../../../assets/scss/breakpoints.scss' as breakpoints;
-@use './../../../../../../assets/scss/colors.scss' as colors;
+@use 'breakpoints' as breakpoints;
+@use 'colors' as colors;
 
-.main-column {
+.main-container {
 	width: 89%;
-}
-
-.page-title {
-	margin-bottom: 35px;
-	font-weight: 500;
 }
 
 .line-break {
 	opacity: 1 !important;
 }
 
-::ng-deep .title {
-	font-size: 18px;
-	margin-bottom: 12px;
-	font-weight: 500;
-}
-
-::ng-deep .description {
-	font-size: 16px;
-}
-
-::ng-deep .form-container {
-	width: max(72%, 400px);
-	padding-left: min(48px, 5%);
-	margin-top: 8px;
-}
-
-::ng-deep .sumbit-btn {
-	margin-top: 32px;
-	background-color: colors.$tag-blue !important;
-	color: colors.$academic-blue !important;
-}
-
 @media all and (max-width: breakpoints.$sm) {
-	.main-column {
+	.main-container {
 		width: 100%;
 		padding-left: 16px;
 		padding-right: 16px;
-	}
-
-	.page-title {
-		margin-bottom: 14px;
-	}
-
-	::ng-deep .title {
-		font-size: 15px;
-		margin-bottom: 9px;
-	}
-
-	::ng-deep .description {
-		font-size: 13px;
-	}
-
-	::ng-deep .form-container {
-		width: 100%;
-		padding-left: 5%;
-	}
-
-	::ng-deep .sumbit-btn {
-		width: 100%;
 	}
 }
