@@ -10,14 +10,14 @@ import { IUserEmailValue } from '../../models/get-user-emails-reponse.dto';
 import { SecuritySettingsApiService } from '../../services/security-settings-api.service';
 
 @Component({
-	selector: 'app-extra-email-content',
-	templateUrl: './extra-email-content.component.html',
+	selector: 'app-delete-extra-email-form',
+	templateUrl: './delete-extra-email-form.component.html',
 	styleUrls: [
-		'./extra-email-content.component.scss',
+		'./delete-extra-email-form.component.scss',
 		'./../../styles/security-settings-component-style.scss',
 	],
 })
-export class ExtraEmailContentComponent {
+export class DeleteExtraEmailFormComponent {
 	@Input() extraEmail: IUserEmailValue | null = null;
 
 	isDeleteFormVisibility = false;

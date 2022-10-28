@@ -4,10 +4,10 @@
 		>Do swojego konta możesz przypisać 3 dodatkowe e-maile.</span
 	>
 	<span class="mb-2"><b>Główny:</b> {{ userEmails?.mainEmail?.value }}</span>
-	<app-extra-email-content
+	<app-delete-extra-email-form
 		class="w-100"
 		*ngFor="let extraEmail of userEmails?.extraEmails"
-		[extraEmail]="extraEmail"></app-extra-email-content>
+		[extraEmail]="extraEmail"></app-delete-extra-email-form>
 	<app-button class="action-btn px-4 py-2" (click)="changeVisibilityForm()">{{
 		isExtraEmailFormVisible ? 'Zamknij' : 'Przypisz kolejny e-mail do konta'
 	}}</app-button>
