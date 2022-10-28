@@ -1,5 +1,6 @@
-<app-input
-	label="Nowy e-mail"
+<app-auto-complete
+	label="Nowy główny e-mail"
+	[options]="extraEmails"
 	[control]="form.controls['email']"
 	[errors]="[
 		{
@@ -11,11 +12,15 @@
 			message: 'Niepoprawny adres e-mail.'
 		},
 		{
+			name: 'identicalEmail',
+			message: 'E-mail nie różni się od aktualnego'
+		},
+		{
 			name: 'emailNotAvailable',
 			message: 'Wybrany adres e-mail jest już zajęty.'
 		}
 	]">
-</app-input>
+</app-auto-complete>
 <app-input
 	label="Hasło"
 	type="password"
@@ -36,5 +41,5 @@
 		}
 	]"></app-input>
 <app-button class="sumbit-btn px-4 py-2" (click)="sendForm()"
-	>Przypisz e-mail do konta</app-button
+	>Zmień główny e-mail</app-button
 >

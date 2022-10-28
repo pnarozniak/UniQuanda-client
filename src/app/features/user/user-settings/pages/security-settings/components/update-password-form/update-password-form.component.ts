@@ -49,10 +49,6 @@ export class UpdatePasswordFormComponent {
 		);
 	}
 
-	// hideForm() {
-	// 	this.isFormVisibleEvent.emit(false);
-	// }
-
 	sendForm() {
 		this.form.markAllAsTouched();
 		if (this.form.invalid) return;

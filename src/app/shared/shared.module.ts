@@ -20,6 +20,8 @@ import { FormsValidationService } from './services/forms-validation.service';
 import { TextareaComponent } from './components/textarea/textarea.component';
 import { NotImplementedDirective } from './directives/not-implemented.directive';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { AutoCompleteComponent } from './components/auto-complete/auto-complete.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 const sharedComponents = [
 	InputComponent,
@@ -28,6 +30,7 @@ const sharedComponents = [
 	DatePickerComponent,
 	PaginatorComponent,
 	TextareaComponent,
+	AutoCompleteComponent,
 ];
 
 const sharedModules = [CommonModule];
@@ -48,6 +51,7 @@ const sharedDirectives = [
 		MatDatepickerModule,
 		MatNativeDateModule,
 		MatTooltipModule,
+		MatAutocompleteModule,
 	],
 	declarations: [sharedDirectives, sharedComponents],
 	exports: [sharedDirectives, sharedModules, sharedComponents],

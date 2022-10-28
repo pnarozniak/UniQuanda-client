@@ -1,3 +1,4 @@
+import { IUpdateUserMainEmailRequestDTO } from './../models/update-user-main-email-request.dto';
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -62,5 +63,14 @@ export class SecuritySettingsApiService {
 			IAuthConflictResponseDTO | null,
 			IUpdatePasswordRequestDTO
 		>('Auth/update-user-password', body);
+	}
+
+	public updateUserMainEmail(
+		body: IUpdateUserMainEmailRequestDTO
+	): Observable<HttpResponse<IAuthConflictResponseDTO | null>> {
+		return this._apiService.put<
+			IAuthConflictResponseDTO | null,
+			IUpdateUserMainEmailRequestDTO
+		>('Auth/update-main-email', body);
 	}
 }

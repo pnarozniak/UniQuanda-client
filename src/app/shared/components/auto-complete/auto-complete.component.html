@@ -1,0 +1,24 @@
+<mat-form-field
+	appearance="fill"
+	[hideRequiredMarker]="!showRequiredMarker"
+	appTheme>
+	<mat-label>{{ label }}</mat-label>
+	<input
+		matInput
+		[formControl]="formControl"
+		[type]="type"
+		[matAutocomplete]="auto" />
+	<mat-autocomplete #auto="matAutocomplete">
+		<mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+			{{ option }}
+		</mat-option>
+	</mat-autocomplete>
+	<mat-error *ngFor="let error of errors">
+		<ng-container *ngIf="error.name">
+			{{ formControl.hasError(error.name) ? error.message : '' }}
+		</ng-container>
+		<ng-container *ngIf="!error.name">
+			{{ formControl.invalid ? error.message : '' }}
+		</ng-container>
+	</mat-error>
+</mat-form-field>

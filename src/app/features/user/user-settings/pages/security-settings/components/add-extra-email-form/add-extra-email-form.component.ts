@@ -93,7 +93,7 @@ export class AddExtraEmailFormComponent {
 				'Błąd'
 			);
 		} else if (status === ConflictResponseStatus.EmailNotAvailable) {
-			this.form.get('email')?.setErrors({ emailExists: true });
+			this.form.get('email')?.setErrors({ emailNotAvailable: true });
 		}
 	}
 }

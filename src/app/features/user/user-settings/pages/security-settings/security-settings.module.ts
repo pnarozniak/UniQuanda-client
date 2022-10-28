@@ -10,6 +10,7 @@ import { ExtraEmailContentComponent } from './components/extra-email-content/ext
 import { AddExtraEmailFormComponent } from './components/add-extra-email-form/add-extra-email-form.component';
 import { PasswordContentComponent } from './components/password-content/password-content.component';
 import { UpdatePasswordFormComponent } from './components/update-password-form/update-password-form.component';
+import { UpdateMainEmailFormComponent } from './components/update-main-email-form/update-main-email-form.component';
 
 @NgModule({
 	declarations: [
@@ -20,6 +21,7 @@ import { UpdatePasswordFormComponent } from './components/update-password-form/u
 		AddExtraEmailFormComponent,
 		PasswordContentComponent,
 		UpdatePasswordFormComponent,
+		UpdateMainEmailFormComponent,
 	],
 	imports: [CommonModule, RouterModule, SharedModule],
 	providers: [SecuritySettingsApiService],
