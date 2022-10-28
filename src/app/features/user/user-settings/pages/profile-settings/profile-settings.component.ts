@@ -67,31 +67,29 @@ export class ProfileSettingsComponent {
 	}
 
 	loadUser() {
-		this.user$ = this._userProfileSettingApiService
-			.getUserDataForEditProfileSettings()
-			.pipe(
-				map((data: HttpResponse<IUserSettingsDataResponseDTO>) => {
-					this.user = data.body;
-					this.form.patchValue({
-						nickName: this.user?.nickName,
-						firstName: this.user?.firstName,
-						lastName: this.user?.lastName,
-						birthdate: this.user?.birthdate,
-						phoneNumber: this.user?.phoneNumber,
-						city: this.user?.city,
-						semanticScholarProfile: this.user?.semanticScholarProfile,
-						aboutText: this.user?.aboutText,
-					});
-					return data.body;
-				}),
-				catchError((req) => {
-					if (req.status === 404) {
-						this._toastrService.error('Błąd ładowania strony', 'Błąd');
-						this._router.navigate(['/public/home']);
-					}
-					return of();
-				})
-			);
+		this._userProfileSettingApiService.getUserDataForEditProfileSettings().pipe(
+			map((data: HttpResponse<IUserSettingsDataResponseDTO>) => {
+				this.user = data.body;
+				this.form.patchValue({
+					nickName: this.user?.nickName,
+					firstName: this.user?.firstName,
+					lastName: this.user?.lastName,
+					birthdate: this.user?.birthdate,
+					phoneNumber: this.user?.phoneNumber,
+					city: this.user?.city,
+					semanticScholarProfile: this.user?.semanticScholarProfile,
+					aboutText: this.user?.aboutText,
+				});
+				return data.body;
+			}),
+			catchError((req) => {
+				if (req.status === 404) {
+					this._toastrService.error('Błąd ładowania strony', 'Błąd');
+					this._router.navigate(['/public/home']);
+				}
+				return of();
+			})
+		);
 	}
 
 	handleDateChange(date: Date) {

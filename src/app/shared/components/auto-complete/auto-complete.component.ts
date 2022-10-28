@@ -36,8 +36,4 @@ export class AutoCompleteComponent implements OnInit {
 			option.toLowerCase().includes(filterValue)
 		);
 	}
-
-	// displayFn(option: string): string {
-	// 	return option ?? '';
-	// }
 }

@@ -1,9 +1,13 @@
 @use 'breakpoints' as breakpoints;
 @use 'colors' as colors;
  
- .page-title {
+.page-title {
 	margin-bottom: 24px;
 	font-weight: 500;
+}
+
+.title-container {
+	column-gap: 10px;
 }
 
  .title {
@@ -23,9 +27,25 @@
 }
 
  .sumbit-btn {
-	margin-top: 32px;
+	//margin-top: 24px;
 	background-color: colors.$tag-blue !important;
 	color: colors.$academic-blue !important;
+}
+
+.header-container-loading {
+	text-align: justify;
+}
+
+.loading {
+	&.page-title {
+		width: 20%;
+	}
+}
+
+@media all and (max-width: breakpoints.$lg) {
+	.header-container {
+		margin-bottom: 24px;
+	}
 }
 
 @media all and (max-width: breakpoints.$sm) {
@@ -47,6 +67,6 @@
 	}
 
 	 .action-btn {
-		width: 100%;
+		width: 100% !important;
 	}
 }

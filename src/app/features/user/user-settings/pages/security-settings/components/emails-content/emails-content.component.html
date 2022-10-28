@@ -1,16 +1,31 @@
 <div class="d-flex flex-column align-items-start">
-	<h5 class="title">E-maile przypisane do konta</h5>
-	<span class="description"
+	<h5 class="title" [appLoading]="!userEmails">E-maile przypisane do konta</h5>
+	<span class="description" [appLoading]="!userEmails"
 		>Do swojego konta możesz przypisać 3 dodatkowe e-maile.</span
 	>
-	<span class="mb-2"><b>Główny:</b> {{ userEmails?.mainEmail?.value }}</span>
-	<app-delete-extra-email-form
-		class="w-100"
-		*ngFor="let extraEmail of userEmails?.extraEmails"
-		[extraEmail]="extraEmail"></app-delete-extra-email-form>
-	<app-button class="action-btn px-4 py-2" (click)="changeVisibilityForm()">{{
-		isExtraEmailFormVisible ? 'Zamknij' : 'Przypisz kolejny e-mail do konta'
-	}}</app-button>
+	<div class="d-flex flex-column w-100" *ngIf="userEmails; else noData">
+		<span class="mt-4 mb-2" [appLoading]="!userEmails"
+			><b>Główny:</b> {{ userEmails.mainEmail.value }}</span
+		>
+		<app-delete-extra-email-form
+			class="w-100"
+			*ngFor="let extraEmail of userEmails?.extraEmails"
+			[extraEmail]="extraEmail"></app-delete-extra-email-form>
+	</div>
+	<ng-template #noData>
+		<div
+			class="w-50 mt-3 lh-1 email-row-loading"
+			*ngFor="let _ of [].constructor(3)"
+			[appLoading]="!userEmails"></div>
+	</ng-template>
+	<app-button
+		class="action-btn px-4 py-2 mt-sm-4 mt-3"
+		(click)="changeVisibilityForm()"
+		[appLoading]="!userEmails"
+		>{{
+			isExtraEmailFormVisible ? 'Zamknij' : 'Przypisz kolejny e-mail do konta'
+		}}</app-button
+	>
 	<app-add-extra-email-form
 		*ngIf="isExtraEmailFormVisible"
 		[userEmails]="userEmails"

@@ -21,9 +21,11 @@ export class SecuritySettingsComponent {
 			next: (req) => {
 				this.userEmails = req.body;
 			},
-			error: () => {
-				this._toastrService.error('Błąd ładowania strony', 'Błąd');
-				this._router.navigate(['/public/home']);
+			error: (err) => {
+				if (err.status === 404) {
+					this._toastrService.error('Błąd ładowania danych', 'Błąd');
+					this._router.navigate(['/public/home']);
+				}
 			},
 		});
 	}

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { IGetUserEmailsReponseDTO } from './../../models/get-user-emails-reponse.dto';
+import { Component, Input } from '@angular/core';
 
 @Component({
 	selector: 'app-password-content',
@@ -9,6 +10,8 @@ import { Component } from '@angular/core';
 	],
 })
 export class PasswordContentComponent {
+	@Input() userEmails: IGetUserEmailsReponseDTO | null = null;
+
 	isFormVisible = false;
 
 	changeVisibilityForm(value: boolean | null = null) {

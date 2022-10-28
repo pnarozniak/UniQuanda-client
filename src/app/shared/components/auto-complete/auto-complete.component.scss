@@ -74,20 +74,12 @@
 	}
 }
 
-
-	::ng-deep .dark .mat-autocomplete-panel {
-		background-color: colors.$light-gray !important;
-		//border-radius: 7px;
-		//border: 1px solid white;
-		
-		.mat-option {
-			color: colors.$crystal-white;
-		}
+::ng-deep .mat-autocomplete-panel {
+	.dark {
+		background-color: var(--bg-accent) !important;
+		color: var(--text-default) !important;
 	}
-
-
-	
-
-
-
-
+	.dark:hover {
+		opacity: 0.8;
+	}
+}
