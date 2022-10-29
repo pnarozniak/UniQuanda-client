@@ -61,11 +61,12 @@ export class UpdateMainEmailFormComponent implements OnInit {
 		}
 
 		this._loader.show();
+		const idExtraEmail =
+			this.userEmails?.extraEmails.find((ue) => ue.value === newMainEmail)
+				?.idEmail ?? null;
 		const request: IUpdateUserMainEmailRequestDTO = {
-			newMainEmail: newMainEmail,
-			idExtraEmail:
-				this.userEmails?.extraEmails.find((ue) => ue.value === newMainEmail)
-					?.idEmail ?? null,
+			newMainEmail: idExtraEmail ? null : newMainEmail,
+			idExtraEmail: idExtraEmail,
 			password: this.form.get('password')?.value,
 		};
 

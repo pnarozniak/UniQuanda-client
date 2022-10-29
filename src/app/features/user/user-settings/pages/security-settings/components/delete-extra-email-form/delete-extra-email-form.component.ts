@@ -56,8 +56,8 @@ export class DeleteExtraEmailFormComponent {
 			.pipe(finalize(() => this._loader.hide()))
 			.subscribe({
 				next: () => {
-					window.location.reload();
 					this._toastrService.success('E-mail został usunięty', 'Sukces');
+					window.location.reload();
 				},
 				error: (err) => {
 					if (err.error.status === ConflictResponseStatus.InvalidPassword) {

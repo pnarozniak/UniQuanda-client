@@ -70,11 +70,11 @@ export class AddExtraEmailFormComponent {
 			.pipe(finalize(() => this._loader.hide()))
 			.subscribe({
 				next: () => {
-					window.location.reload();
 					this._toastrService.success(
 						'E-mail został pomyślnie przypisany',
 						'Sukces'
 					);
+					window.location.reload();
 				},
 				error: (err) => {
 					this.handleConflictRespone(err.error.status);
