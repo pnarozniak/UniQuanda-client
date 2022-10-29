@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs';
 import { LoaderService } from 'src/app/core/services/loader.service';
@@ -27,7 +28,8 @@ export class UpdateMainEmailFormComponent implements OnInit {
 		private readonly _securitySettingsApiService: SecuritySettingsApiService,
 		private readonly _commonToastrService: CommonToastrService,
 		private readonly _toastrService: ToastrService,
-		private readonly _loader: LoaderService
+		private readonly _loader: LoaderService,
+		private readonly _router: Router
 	) {
 		this.form = new FormGroup({
 			email: new FormControl('', [
@@ -79,6 +81,10 @@ export class UpdateMainEmailFormComponent implements OnInit {
 						'Główny e-mail został zmieninoy',
 						'Sukces'
 					);
+					const currentUrl = this._router.url;
+					this._router
+						.navigateByUrl('/', { skipLocationChange: true })
+						.then(() => this._router.navigate([currentUrl]));
 					window.location.reload();
 				},
 				error: (err) => {

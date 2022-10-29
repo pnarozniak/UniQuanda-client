@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs';
 import { LoaderService } from 'src/app/core/services/loader.service';
@@ -27,7 +28,8 @@ export class DeleteExtraEmailFormComponent {
 		private readonly _securitySettingsApiService: SecuritySettingsApiService,
 		private readonly _commonToastrService: CommonToastrService,
 		private readonly _toastrService: ToastrService,
-		private readonly _loader: LoaderService
+		private readonly _loader: LoaderService,
+		private readonly _router: Router
 	) {
 		this.passwordForm = new FormControl('', [
 			Validators.required,
@@ -56,8 +58,14 @@ export class DeleteExtraEmailFormComponent {
 			.pipe(finalize(() => this._loader.hide()))
 			.subscribe({
 				next: () => {
-					this._toastrService.success('E-mail został usunięty', 'Sukces');
-					window.location.reload();
+					this._toastrService.success(
+						'Daodatkowy e-mail został usunięty',
+						'Sukces'
+					);
+					const currentUrl = this._router.url;
+					this._router
+						.navigateByUrl('/', { skipLocationChange: true })
+						.then(() => this._router.navigate([currentUrl]));
 				},
 				error: (err) => {
 					if (err.error.status === ConflictResponseStatus.InvalidPassword) {

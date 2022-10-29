@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ConflictResponseStatus } from './../../enums/conflict-response-status.enum';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, Input } from '@angular/core';
@@ -25,7 +26,8 @@ export class AddExtraEmailFormComponent {
 		private readonly _securitySettingsApiService: SecuritySettingsApiService,
 		private readonly _commonToastrService: CommonToastrService,
 		private readonly _toastrService: ToastrService,
-		private readonly _loader: LoaderService
+		private readonly _loader: LoaderService,
+		private readonly _router: Router
 	) {
 		this.form = new FormGroup({
 			email: new FormControl('', [
@@ -74,7 +76,10 @@ export class AddExtraEmailFormComponent {
 						'E-mail został pomyślnie przypisany',
 						'Sukces'
 					);
-					window.location.reload();
+					const currentUrl = this._router.url;
+					this._router
+						.navigateByUrl('/', { skipLocationChange: true })
+						.then(() => this._router.navigate([currentUrl]));
 				},
 				error: (err) => {
 					this.handleConflictRespone(err.error.status);
