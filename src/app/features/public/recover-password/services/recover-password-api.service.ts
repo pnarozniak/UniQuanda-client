@@ -1,6 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { RecaptchaAction } from 'src/app/core/enums/recaptcha-action.enum';
 import ApiService from 'src/app/core/services/api.service';
 
 @Injectable()
@@ -13,6 +14,10 @@ export class RecoverPasswordApiService {
 	 * @returns Observable<HttpResponse<unknown>> object
 	 */
 	recoverPassword(email: string): Observable<HttpResponse<unknown>> {
-		return this._apiService.post('Auth/recover-password', { email: email });
+		return this._apiService.post(
+			'Auth/recover-password',
+			{ email: email },
+			RecaptchaAction.RECOVER_PASSWORD
+		);
 	}
 }
