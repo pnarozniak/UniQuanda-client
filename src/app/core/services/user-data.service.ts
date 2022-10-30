@@ -67,14 +67,18 @@ export class UserDataService {
 		return this._user$.asObservable();
 	}
 
-	setAvatar(avatarUrl: string): void {
-		const newUser = {
+	/**
+	 * Updates user data and saves it to storage
+	 * @param data user data to be updated
+	 */
+	updateUserData(data: { [K in keyof IUserClaims]?: IUserClaims[K] }) {
+		const updatedUser = {
 			...this._user$.getValue()!,
-			avatar: avatarUrl,
+			...data,
 		};
 
-		this._user$.next(newUser);
-		this._storageService.save(this._userStorageKey, newUser);
+		this._user$.next(updatedUser);
+		this._storageService.save(this._userStorageKey, updatedUser);
 	}
 
 	private decodeAccessToken(token: string): { id: number; roles: Role[] } {

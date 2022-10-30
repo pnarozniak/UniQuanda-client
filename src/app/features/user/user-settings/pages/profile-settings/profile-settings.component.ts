@@ -144,7 +144,9 @@ export class ProfileSettingsComponent {
 							'Sukces',
 							'Twoje zmiany zostały zapisane'
 						);
-						this._userdataService.setAvatar(res.body.avatarUrl);
+						this._userdataService.updateUserData({
+							avatar: res.body.avatarUrl,
+						});
 					}
 				},
 				error: (res) => {
