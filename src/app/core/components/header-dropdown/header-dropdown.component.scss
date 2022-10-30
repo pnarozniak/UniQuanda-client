@@ -2,15 +2,13 @@
 @use 'dimensions' as dim;
 @use 'breakpoints' as breakpoints;
 
-
-.dropdown-menu {
+.dropdown-wrapper {
   font-size: 14px;
   min-width: 250px;
   border-radius: 0;
   border: 1px solid colors.$bordered-gray;
   background-color: var(--bg-default);
   color: var(--text-default);
-  transform: translate(-10px, calc(dim.$header-footer-height * -1)) !important;
 
   .dropdown-content {
     width: 100%;
@@ -30,8 +28,8 @@
     border-width: 1px 1px 0 0;
     width: 15px;
     height: 15px;
-    top: -8.3px;
-    right: 15px;
+    top: -7px;
+    right: 11px;
     background: inherit;
     transform: rotate(-45deg);
   }
@@ -113,9 +111,8 @@
 }
 
 @media all and (max-width: breakpoints.$sm) {
-  .dropdown-menu {
+  .dropdown-wrapper {
     width: 100% !important;
-    transform: translateY(calc(dim.$header-footer-height * -1)) !important;
 
     .dropdown-content {
       width: 100%;
@@ -124,8 +121,8 @@
     &:after {
       width: 12px;
       height: 12px;
-      top: -6.8px;
-      right: 14px;
+      top: -5.5px;
+      right: 15px;
     }
   }
 }

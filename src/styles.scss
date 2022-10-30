@@ -6,6 +6,7 @@
 @use "colors" as colors;
 @use "dimensions" as dim;
 @use "toastr";
+@use "header-dropdown";
 @import "~bootstrap/scss/bootstrap";
 @import "~ngx-toastr/toastr";
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
