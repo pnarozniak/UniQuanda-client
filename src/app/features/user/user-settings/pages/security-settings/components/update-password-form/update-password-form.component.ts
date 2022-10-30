@@ -71,7 +71,7 @@ export class UpdatePasswordFormComponent {
 			.pipe(finalize(() => this._loader.hide()))
 			.subscribe({
 				next: () => {
-					this._toastrService.success('Hasło zostało zmienione', 'Sukces');
+					this._toastrService.success('Hasło zostało zaktualizowane', 'Sukces');
 					this.isFormVisibleEvent.emit(false);
 				},
 				error: (err) => {

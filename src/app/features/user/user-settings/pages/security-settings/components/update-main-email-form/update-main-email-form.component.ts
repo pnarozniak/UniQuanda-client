@@ -67,7 +67,7 @@ export class UpdateMainEmailFormComponent implements OnInit {
 			this.userEmails?.extraEmails.find((ue) => ue.value === newMainEmail)
 				?.idEmail ?? null;
 		const request: IUpdateUserMainEmailRequestDTO = {
-			newMainEmail: idExtraEmail ? null : newMainEmail,
+			newMainEmail: newMainEmail,
 			idExtraEmail: idExtraEmail,
 			password: this.form.get('password')?.value,
 		};
@@ -78,14 +78,13 @@ export class UpdateMainEmailFormComponent implements OnInit {
 			.subscribe({
 				next: () => {
 					this._toastrService.success(
-						'Główny e-mail został zmieninoy',
+						'Główny e-mail został zaktualizowany',
 						'Sukces'
 					);
 					const currentUrl = this._router.url;
 					this._router
 						.navigateByUrl('/', { skipLocationChange: true })
 						.then(() => this._router.navigate([currentUrl]));
-					window.location.reload();
 				},
 				error: (err) => {
 					if (err.error.status === ConflictResponseStatus.InvalidPassword) {
