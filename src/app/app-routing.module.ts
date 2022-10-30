@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LogoutComponent } from './core/components/logout/logout.component';
 import AuthGuardService from './core/guards/auth-guard.service';
 import { NotFoundComponent } from './core/pages/not-found/not-found.component';
 
 const routes: Routes = [
+	{ path: '', redirectTo: 'public/home', pathMatch: 'full' },
 	{
 		path: 'public',
 		loadChildren: () =>
@@ -37,11 +39,14 @@ const routes: Routes = [
 		},
 	},
 	{
+		path: 'logout',
+		component: LogoutComponent,
+	},
+	{
 		path: '**',
 		component: NotFoundComponent,
 		data: { title: 'Nie znaleziono danej strony' },
 	},
-	{ path: '', redirectTo: 'public/home', pathMatch: 'full' },
 ];
 
 @NgModule({
