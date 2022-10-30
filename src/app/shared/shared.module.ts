@@ -19,6 +19,7 @@ import { FormsValidationService } from './services/forms-validation.service';
 import { TextareaComponent } from './components/textarea/textarea.component';
 import { NotImplementedDirective } from './directives/not-implemented.directive';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { RecaptchaTermsComponent } from './components/recaptcha-terms/recaptcha-terms.component';
 
 const sharedComponents = [
 	InputComponent,
@@ -27,6 +28,7 @@ const sharedComponents = [
 	DatePickerComponent,
 	PaginatorComponent,
 	TextareaComponent,
+	RecaptchaTermsComponent,
 ];
 
 const sharedModules = [CommonModule];

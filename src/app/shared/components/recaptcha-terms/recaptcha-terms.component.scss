@@ -1,0 +1,10 @@
+@use 'colors' as colors;
+
+.recaptcha-terms {
+	font-size: 12px;
+	text-align: center;
+
+	a {
+		color: colors.$academic-blue;
+	}
+}
