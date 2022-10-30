@@ -18,6 +18,9 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { JwtTokenInterceptor } from './interceptors/jwt-token-interceptor.service';
+import { RecaptchaV3Module, RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
+import { environment } from 'src/environments/environment';
+import { RecaptchaInterceptor } from './interceptors/recaptcha.interceptor';
 
 @NgModule({
 	providers: [
@@ -33,6 +36,15 @@ import { JwtTokenInterceptor } from './interceptors/jwt-token-interceptor.servic
 			provide: HTTP_INTERCEPTORS,
 			useClass: JwtTokenInterceptor,
 			multi: true,
+		},
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: RecaptchaInterceptor,
+			multi: true,
+		},
+		{
+			provide: RECAPTCHA_V3_SITE_KEY,
+			useValue: environment.recaptcha.siteKey,
 		},
 	],
 	declarations: [
@@ -58,6 +70,7 @@ import { JwtTokenInterceptor } from './interceptors/jwt-token-interceptor.servic
 		TooltipModule.forRoot(),
 		BsDropdownModule.forRoot(),
 		OverlayModule,
+		RecaptchaV3Module,
 	],
 	exports: [HeaderComponent, NavBarComponent],
 })
