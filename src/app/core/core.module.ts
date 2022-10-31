@@ -15,6 +15,9 @@ import { SharedModule } from '../shared/shared.module';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { RecaptchaV3Module, RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
+import { environment } from 'src/environments/environment';
+import { RecaptchaInterceptor } from './interceptors/recaptcha.interceptor';
 import { MatMenuModule } from '@angular/material/menu';
 import { ErrorHandlerInterceptor } from './interceptors/error-handler.interceptor';
 import { AccessTokenInterceptor } from './interceptors/access-token.interceptor';
@@ -35,6 +38,15 @@ import { RefreshTokenService } from './services/refresh-token.service';
 			provide: HTTP_INTERCEPTORS,
 			useClass: AccessTokenInterceptor,
 			multi: true,
+		},
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: RecaptchaInterceptor,
+			multi: true,
+		},
+		{
+			provide: RECAPTCHA_V3_SITE_KEY,
+			useValue: environment.recaptcha.siteKey,
 		},
 	],
 	declarations: [
@@ -59,6 +71,7 @@ import { RefreshTokenService } from './services/refresh-token.service';
 		SharedModule,
 		TooltipModule.forRoot(),
 		OverlayModule,
+		RecaptchaV3Module,
 		MatMenuModule,
 	],
 	exports: [HeaderComponent, NavBarComponent],

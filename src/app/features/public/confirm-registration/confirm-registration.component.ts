@@ -110,7 +110,7 @@ export class ConfirmRegistrationComponent implements OnInit {
 
 		this._loader.show();
 		this._confirmRegistrationApiService
-			.validateRegistrationCode(
+			.confirmRegistration(
 				new ConfirmRegistrationRequestDTO(this.email, result)
 			)
 			.pipe(finalize(() => this._loader.hide()))
