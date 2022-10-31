@@ -23,10 +23,8 @@ import { UserProfileApiService } from './services/user-profile-api.service';
 	styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent implements OnInit, OnDestroy {
-	public profile$: BehaviorSubject<IUserProfileResponseDTO | null> =
-		new BehaviorSubject<IUserProfileResponseDTO | null>(null);
-	public papers$: BehaviorSubject<ISemanticScholarPaperDTO[] | null> =
-		new BehaviorSubject<ISemanticScholarPaperDTO[] | null>(null);
+	public profile$ = new BehaviorSubject<IUserProfileResponseDTO | null>(null);
+	public papers$ = new BehaviorSubject<ISemanticScholarPaperDTO[] | null>(null);
 	public userClaims$: Observable<IUserClaims | null>;
 	public subscription = new Subscription();
 	private prevId: number | null = null;

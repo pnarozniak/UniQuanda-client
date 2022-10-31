@@ -4,10 +4,10 @@
 			[profile$]="profile$.asObservable()"
 			[userClaims$]="userClaims$"></app-user-profile-header>
 		<div class="d-flex flex-row profile-page">
-			<app-user-profile-user-data
+			<app-user-profile-left-data
 				[profile$]="profile$.asObservable()"
 				[papers$]="papers$.asObservable()"
-				class="d-lg-block d-none"></app-user-profile-user-data>
+				class="d-lg-block d-none"></app-user-profile-left-data>
 			<app-profile-navigation
 				class="d-flex flex-column navigation"
 				[papers$]="papers$.asObservable()"

@@ -5,11 +5,11 @@ import { IUserProfileResponseDTO } from '../../models/user-profile.dto';
 import { ISemanticScholarPaperDTO } from '../../models/semantic-scholar-paper.dto';
 
 @Component({
-	selector: 'app-user-profile-user-data',
-	templateUrl: './user-data.component.html',
-	styleUrls: ['./user-data.component.scss'],
+	selector: 'app-user-profile-left-data',
+	templateUrl: './left-data.component.html',
+	styleUrls: ['./left-data.component.scss'],
 })
-export class UserDataComponent {
+export class ProfileLeftDataComponent {
 	@Input()
 	public profile$!: Observable<IUserProfileResponseDTO | null>;
 

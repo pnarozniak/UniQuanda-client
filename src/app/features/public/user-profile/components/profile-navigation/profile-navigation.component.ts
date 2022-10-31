@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { first, Observable, Subscription } from 'rxjs';
 import { ProfileSubpageEnum } from '../../models/profile-subpage.enum';
 import { ISemanticScholarPaperDTO } from '../../models/semantic-scholar-paper.dto';
 import { IUserProfileResponseDTO } from '../../models/user-profile.dto';
@@ -12,65 +12,62 @@ import { IUserProfileResponseDTO } from '../../models/user-profile.dto';
 	templateUrl: './profile-navigation.component.html',
 	styleUrls: ['./profile-navigation.component.scss'],
 })
-export class ProfileNavigationComponent {
+export class ProfileNavigationComponent implements OnInit, OnDestroy {
 	public activePage = ProfileSubpageEnum.Questions;
 	@Input() public profile$!: Observable<IUserProfileResponseDTO | null>;
 	@Input() public papers$!: Observable<ISemanticScholarPaperDTO[] | null>;
+
+	public allTabs: ProfileSubpageEnum[] = [
+		ProfileSubpageEnum.UserData,
+		ProfileSubpageEnum.Questions,
+		ProfileSubpageEnum.Answers,
+		ProfileSubpageEnum.Tests,
+	];
+	public activeTab: ProfileSubpageEnum = this.allTabs[0];
+
+	private readonly _paramSubscription = new Subscription();
+
 	constructor(
 		private readonly _route: ActivatedRoute,
 		private readonly _router: Router,
 		private readonly _titleService: Title
-	) {
-		this._route.queryParams.subscribe((params) => {
-			switch (params['subpage']) {
-				case ProfileSubpageEnum.UserData.toString():
-					this.activePage = ProfileSubpageEnum.UserData;
-					break;
-				case ProfileSubpageEnum.Questions.toString():
-					this.activePage = ProfileSubpageEnum.Questions;
-					break;
-				case ProfileSubpageEnum.Answers.toString():
-					this.activePage = ProfileSubpageEnum.Answers;
-					break;
-				case ProfileSubpageEnum.Tests.toString():
-					this.activePage = ProfileSubpageEnum.Tests;
-					break;
-				default:
-					this.activePage = ProfileSubpageEnum.Questions;
-			}
-		});
+	) {}
+
+	ngOnInit(): void {
+		this._paramSubscription.add(
+			this._route.queryParams.subscribe((params) => {
+				const subpage = params['subpage'];
+				this.activePage = ProfileSubpageEnum.Questions;
+				this.allTabs.forEach((tab) => {
+					if (tab.toString() === subpage) {
+						this.activePage = tab;
+					}
+				});
+			})
+		);
+	}
+
+	ngOnDestroy(): void {
+		this._paramSubscription.unsubscribe();
 	}
 
 	setActivePage(event: MatTabChangeEvent) {
-		let activePage = null;
-		switch (event.index) {
-			case 0:
-				activePage = ProfileSubpageEnum.UserData;
-				break;
-			case 1:
-				activePage = ProfileSubpageEnum.Questions;
-				break;
-			case 2:
-				activePage = ProfileSubpageEnum.Answers;
-				break;
-			case 3:
-				activePage = ProfileSubpageEnum.Tests;
-				break;
-			default:
-				activePage = ProfileSubpageEnum.Questions;
-		}
-		this.activePage = activePage;
+		this.allTabs.forEach((tab, index) => {
+			if (index === event.index) {
+				this.activePage = tab;
+			}
+		});
 		this._router
 			.navigate([], {
 				queryParams: {
 					...this._route.snapshot.queryParams,
-					subpage: activePage.toString(),
+					subpage: this.activePage.toString(),
 				},
 				queryParamsHandling: 'merge',
 				relativeTo: this._route,
 			})
 			.then(() => {
-				this.profile$.subscribe((user) => {
+				this.profile$.pipe(first()).subscribe((user) => {
 					this._titleService.setTitle(
 						`UniQuanda - Profil użytkownika ${user?.userData.nickname}`
 					);
@@ -80,17 +77,10 @@ export class ProfileNavigationComponent {
 
 	getActiveTabId(): number {
 		const breakpoint = 991;
-		switch (this.activePage) {
-			case ProfileSubpageEnum.UserData:
-				return window.innerWidth <= breakpoint ? 0 : 1;
-			case ProfileSubpageEnum.Questions:
-				return 1;
-			case ProfileSubpageEnum.Answers:
-				return 2;
-			case ProfileSubpageEnum.Tests:
-				return 3;
-			default:
-				return 1;
-		}
+		const index = this.allTabs.indexOf(this.activePage);
+		return this.activePage === ProfileSubpageEnum.UserData &&
+			window.innerWidth > breakpoint
+			? 1
+			: index;
 	}
 }
