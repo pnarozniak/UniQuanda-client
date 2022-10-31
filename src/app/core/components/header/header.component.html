@@ -12,14 +12,16 @@
 		</div>
 		<ng-container *ngIf="user$ | async as user; else GuestItems">
 			<img
-				dropdownToggle
+				[matMenuTriggerFor]="menu"
 				src="{{
 					user.avatar ? user.avatar : 'assets/images/common/default_avatar.svg'
 				}}"
 				width="35"
 				height="35"
 				class="btn-avatar" />
-			<app-header-dropdown></app-header-dropdown>
+			<mat-menu #menu="matMenu" backdropClass="app-header-dropdown-overlay">
+				<app-header-dropdown></app-header-dropdown>
+			</mat-menu>
 		</ng-container>
 		<ng-template #GuestItems>
 			<app-button
