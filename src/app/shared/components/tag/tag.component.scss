@@ -1,0 +1,11 @@
+@use '../../../../assets/scss/colors.scss' as colors;
+span {
+	background-color: colors.$tag-blue;
+	color: colors.$academic-blue;
+	border-radius: 5px;
+	font-size: 13px;
+}
+.dark {
+	background-color: colors.$academic-blue;
+	color: colors.$crystal-white;
+}

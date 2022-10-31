@@ -10,11 +10,23 @@ export class HandleErrorService {
 		private readonly _router: Router
 	) {}
 
-	public handleClientSideError(err: ErrorEvent) {
+	/**
+	 * Handles http error
+	 * @param err HttpErrorResponse
+	 */
+	handleError(err: HttpErrorResponse) {
+		if (err.error instanceof ErrorEvent) {
+			this.handleClientSideError(err.error);
+		} else {
+			this.handleServerSideError(err);
+		}
+	}
+
+	private handleClientSideError(err: ErrorEvent) {
 		this.displayErrorMessage('Błąd', err.message);
 	}
 
-	public handleServerSideError(err: HttpErrorResponse) {
+	private handleServerSideError(err: HttpErrorResponse) {
 		if (err.status === 401) {
 			this.handle401Error();
 		} else if (err.status === 403) {
@@ -24,23 +36,26 @@ export class HandleErrorService {
 		}
 	}
 
-	handle401Error(): void {
+	private handle401Error(): void {
 		this._router.navigate(['/public/login']);
-		this.displayErrorMessage('Nieautoryzowany dostęp', 'Musisz się zalogować!');
+		this.displayErrorMessage(
+			'Twoja sesja wygasła',
+			'Musisz zalogować się ponownie'
+		);
 	}
 
-	handle403Error(): void {
+	private handle403Error(): void {
 		this.displayErrorMessage('Niewystarczające uprawnienia', '');
 	}
 
-	handle500Error(): void {
+	private handle500Error(): void {
 		this.displayErrorMessage(
 			'Błąd serwera',
 			'Przepraszamy, spróbuj ponownie później.'
 		);
 	}
 
-	displayErrorMessage(title: string, message: string): void {
+	private displayErrorMessage(title: string, message: string): void {
 		this._toastrService.error(message, title);
 	}
 }

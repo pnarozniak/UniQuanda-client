@@ -1,48 +1,46 @@
-<ng-container *ngIf="user$ | async as user">
-	<div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
-		<div class="dropdown-content d-flex flex-column p-2 position-relative">
-			<app-icon
-				icon="close"
-				class="position-absolute top-0 end-0 btn d-sm-none">
-			</app-icon>
-			<h5 class="px-1 mb-3">{{ user.nickname }}</h5>
-			<a class="dropdown-item" [routerLink]="['/public/profile/' + user?.id]">
-				<app-icon icon="profile"></app-icon>
-				<span class="ms-2">Przejdź do profilu</span>
-			</a>
-			<a class="dropdown-item" [routerLink]="['/user/settings/profile']">
-				<app-icon icon="settings"></app-icon>
-				<span class="ms-2">Ustawienia konta</span>
-			</a>
-			<div class="divider dropdown-divider my-1"></div>
-			<div
-				class="d-flex align-items-center px-2"
-				(click)="$event.stopImmediatePropagation()">
-				Motyw:
-				<label class="theme-switch ms-1">
-					<input
-						*ngIf="{ isDark: isDarkTheme$ | async } as theme"
-						type="checkbox"
-						[checked]="theme.isDark"
-						(change)="handleThemeChange()" />
-					<span class="slider"></span>
-				</label>
-			</div>
-			<div class="divider dropdown-divider my-1"></div>
-			<a
-				appNotImplemented
-				class="dropdown-item px-2 d-flex align-items-center"
-				[routerLink]="['/public/help']">
-				<app-icon icon="help"></app-icon>
-				<span class="ms-2">Pomoc</span>
-			</a>
-			<div class="divider dropdown-divider my-1"></div>
-			<a
-				class="dropdown-item px-2 d-flex align-items-center"
-				routerLink="/logout">
-				<app-icon icon="logout"></app-icon>
-				<span class="ms-2">Wyloguj się</span>
-			</a>
+<div class="dropdown-wrapper py-2" appTheme>
+	<div
+		class="dropdown-content d-flex flex-column p-2 position-relative"
+		*ngIf="user$ | async as user">
+		<app-icon icon="close" class="position-absolute top-0 end-0 btn d-sm-none">
+		</app-icon>
+		<h5 class="px-1 mb-3">{{ user.nickname }}</h5>
+		<a class="dropdown-item" [routerLink]="['/public/profile/' + user?.id]">
+			<app-icon icon="profile"></app-icon>
+			<span class="ms-2">Przejdź do profilu</span>
+		</a>
+		<a class="dropdown-item" [routerLink]="['/user/settings/profile']">
+			<app-icon icon="settings"></app-icon>
+			<span class="ms-2">Ustawienia konta</span>
+		</a>
+		<div class="divider dropdown-divider my-1"></div>
+		<div
+			class="d-flex align-items-center px-2"
+			(click)="$event.stopImmediatePropagation()">
+			Motyw:
+			<label class="theme-switch ms-1">
+				<input
+					*ngIf="{ isDark: isDarkTheme$ | async } as theme"
+					type="checkbox"
+					[checked]="theme.isDark"
+					(change)="handleThemeChange()" />
+				<span class="slider"></span>
+			</label>
 		</div>
+		<div class="divider dropdown-divider my-1"></div>
+		<a
+			appNotImplemented
+			class="dropdown-item px-2 d-flex align-items-center"
+			[routerLink]="['/public/help']">
+			<app-icon icon="help"></app-icon>
+			<span class="ms-2">Pomoc</span>
+		</a>
+		<div class="divider dropdown-divider my-1"></div>
+		<a
+			class="dropdown-item px-2 d-flex align-items-center"
+			routerLink="/logout">
+			<app-icon icon="logout"></app-icon>
+			<span class="ms-2">Wyloguj się</span>
+		</a>
 	</div>
-</ng-container>
+</div>
