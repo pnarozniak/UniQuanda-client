@@ -2,6 +2,36 @@
 @use 'dimensions' as dim;
 @use 'breakpoints' as breakpoints;
 
+::ng-deep {
+  .app-header-dropdown-overlay +* {
+    margin-top: 15px;
+  
+    .mat-menu-content {
+      padding: 0 !important;
+    }
+  
+    .mat-menu-panel {
+      max-width: none !important;
+      border-radius: 0 !important;
+      overflow: visible !important;
+    }
+  }
+  
+  @media screen and (max-width: breakpoints.$sm) {
+    .app-header-dropdown-overlay +* {
+      margin-top: 12px;
+    }
+  
+    .app-header-dropdown-overlay +* .cdk-overlay-pane {
+      width: 100%;
+  
+      .mat-menu-panel {
+        width: 100%;
+      }
+    }
+  }
+}
+
 .dropdown-wrapper {
   font-size: 14px;
   min-width: 250px;
