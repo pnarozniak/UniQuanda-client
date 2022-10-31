@@ -93,7 +93,14 @@
 					(tagClick)="loadSubTag($event)"></app-tag-on-list>
 			</ng-container>
 		</div>
-		<ng-template #loadingTags></ng-template>
+		<ng-template #loadingTags>
+			<div class="d-flex flex-wrap justify-content-center">
+				<div
+					*ngFor="let temp of [].constructor(_pageSize)"
+					[appLoading]="true"
+					class="loading-div mt-2 mx-1"></div>
+			</div>
+		</ng-template>
 		<app-paginator
 			*ngIf="tags !== null"
 			class="ms-auto me-lg-0 mt-3 mx-auto"

@@ -103,7 +103,6 @@ export class TagsComponent implements OnInit, OnDestroy {
 	 * Downloads data from server
 	 */
 	getTags(): void {
-		console.log(this.parentTag);
 		this._tagsService
 			.getTags(
 				new GetTagsRequestDto(

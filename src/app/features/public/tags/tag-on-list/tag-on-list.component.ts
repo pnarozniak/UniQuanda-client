@@ -10,4 +10,5 @@ export class TagOnListComponent {
 	@Input() tag!: ITag;
 	@Input() parentTagId: number | null = null;
 	@Output() tagClick = new EventEmitter<ITag>();
+	public isLoading = true;
 }
