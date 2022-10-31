@@ -1,5 +1,5 @@
 <div
-	class="infoContainer ms-lg-4 pt-3 d-flex flex-column"
+	class="info-container ms-lg-4 pt-3 d-flex flex-column"
 	*appContext="let user of profile$ | async"
 	appTheme>
 	<div *ngIf="user; else userLoading" class="d-flex flex-column">

@@ -4,7 +4,7 @@ import { UserProfileComponent } from './user-profile.component';
 
 const routes: Routes = [
 	{
-		path: '**',
+		path: ':id',
 		component: UserProfileComponent,
 		data: { title: 'Ładowanie profilu...' },
 	},

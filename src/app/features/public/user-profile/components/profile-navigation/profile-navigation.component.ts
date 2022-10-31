@@ -2,7 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { first, Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, take } from 'rxjs';
 import { ProfileSubpageEnum } from '../../models/profile-subpage.enum';
 import { ISemanticScholarPaperDTO } from '../../models/semantic-scholar-paper.dto';
 import { IUserProfileResponseDTO } from '../../models/user-profile.dto';
@@ -67,7 +67,7 @@ export class ProfileNavigationComponent implements OnInit, OnDestroy {
 				relativeTo: this._route,
 			})
 			.then(() => {
-				this.profile$.pipe(first()).subscribe((user) => {
+				this.profile$.pipe(take(1)).subscribe((user) => {
 					this._titleService.setTitle(
 						`UniQuanda - Profil użytkownika ${user?.userData.nickname}`
 					);
