@@ -6,18 +6,8 @@ import {
 	HttpInterceptor,
 	HttpErrorResponse,
 } from '@angular/common/http';
-import {
-	catchError,
-	filter,
-	finalize,
-	Observable,
-	switchMap,
-	take,
-	tap,
-	throwError,
-} from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { HandleErrorService } from '../services/handle-error.service';
-import { UserDataService } from '../services/user-data.service';
 import { RefreshTokenService } from '../services/refresh-token.service';
 
 @Injectable()
@@ -26,7 +16,6 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
 
 	constructor(
 		private readonly _handleErrorService: HandleErrorService,
-		private readonly _userDataService: UserDataService,
 		private readonly _refreshTokenService: RefreshTokenService
 	) {}
 

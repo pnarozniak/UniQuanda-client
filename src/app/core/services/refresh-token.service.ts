@@ -31,6 +31,14 @@ export class RefreshTokenService {
 		private readonly _apiService: ApiService
 	) {}
 
+	/**
+	 * Executes a call to api to generate new access and refresh tokens for logged user
+	 * @param prevReq Request that requires a token refresh
+	 * @param prevErr Error of request requiring token refresh
+	 * @param prevNext Next element of request chain
+	 * @returns Observable<HttpEvent<unknown>> On success, returns clone of previous request
+	 * with the new access-token attached. If fails, throws an error with previus error
+	 */
 	refresh(
 		prevReq: HttpRequest<unknown>,
 		prevErr: HttpErrorResponse,
