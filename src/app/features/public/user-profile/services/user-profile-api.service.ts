@@ -24,6 +24,7 @@ export class UserProfileApiService {
 					const user = data.body as IUserProfileResponseDTO;
 					user.academicTitles.sort((a, b) => a.order - b.order);
 					user.universities.sort((a, b) => a.order - b.order);
+					user.pointsInTags.sort((a, b) => b.points - a.points);
 					return user;
 				})
 			);

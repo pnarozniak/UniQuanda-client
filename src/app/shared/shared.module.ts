@@ -20,6 +20,7 @@ import { TextareaComponent } from './components/textarea/textarea.component';
 import { NotImplementedDirective } from './directives/not-implemented.directive';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RecaptchaTermsComponent } from './components/recaptcha-terms/recaptcha-terms.component';
+import { TagComponent } from './components/tag/tag.component';
 
 const sharedComponents = [
 	InputComponent,
@@ -29,6 +30,7 @@ const sharedComponents = [
 	PaginatorComponent,
 	TextareaComponent,
 	RecaptchaTermsComponent,
+	TagComponent,
 ];
 
 const sharedModules = [CommonModule];

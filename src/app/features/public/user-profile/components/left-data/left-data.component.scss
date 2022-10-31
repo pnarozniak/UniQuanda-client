@@ -1,0 +1,37 @@
+@use 'colors' as colors;
+@use 'breakpoints' as breakpoints;
+
+.info-container {
+	width: 260px;
+	& .divider {
+		background-color: colors.$light-gray;
+    opacity: 1;
+	}
+	& .see-more-text {
+		color: colors.$light-gray;
+		width: fit-content;
+	}
+	& .small-text {
+		font-size: 13px;
+	}
+	& .paper {
+		color: colors.$light-gray;
+	}
+}
+.dark {
+	& .paper {
+		color: colors.$dark-yellow;
+	}
+	& .see-more-text {
+		color: colors.$crystal-white;
+	}
+}
+.loading-box {
+	width: 100%;
+	height: 200px;
+}
+@media screen and (max-width: breakpoints.$lg) {
+	.info-container {
+		width: unset;
+	}
+}
