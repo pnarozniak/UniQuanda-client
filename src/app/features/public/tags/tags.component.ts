@@ -7,7 +7,6 @@ import GetTagsRequestDto, {
 	ITag,
 } from './models/get-tags.dto';
 import { TagsService } from './services/tags.service';
-import { Location } from '@angular/common';
 import { HttpParams } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { OrderDirection } from 'src/app/shared/enums/order-direction.enum';

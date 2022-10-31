@@ -7,7 +7,6 @@ import {
 	OnInit,
 	Output,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({
@@ -27,8 +26,6 @@ export class PaginatorComponent implements OnChanges, OnInit, OnDestroy {
 	inputValue = '';
 
 	private readonly _subscription = new Subscription();
-
-	constructor(private readonly _route: ActivatedRoute) {}
 
 	ngOnDestroy(): void {
 		this._subscription.unsubscribe();
@@ -63,8 +60,7 @@ export class PaginatorComponent implements OnChanges, OnInit, OnDestroy {
 	}
 
 	private changePage(pageNumber: number) {
-		if (isNaN(pageNumber) || (!this.pageExists(pageNumber) && pageNumber !== 1))
-			return;
+		if (isNaN(pageNumber) || !this.pageExists(pageNumber)) return;
 		this.currentPage = pageNumber;
 		this.pageChange.emit(this.currentPage);
 	}
