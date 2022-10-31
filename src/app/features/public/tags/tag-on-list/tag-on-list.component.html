@@ -1,0 +1,42 @@
+<div class="tag-box d-flex flex-column mt-2 mx-1">
+	<div class="d-flex flex-column p-3 h-100" *ngIf="!parentTagId; else subtag">
+		<span>{{ tag.name }}</span>
+		<span *ngIf="tag.description">{{ tag.description }}</span>
+		<a
+			[routerLink]="['/public/home']"
+			[queryParams]="{ tagId: tag.id }"
+			class="mt-auto all-tags-text mb-2"
+			>Przejdź do wszystkich pytań w tagu ></a
+		>
+		<app-button
+			*ngIf="!tag.parentTagId"
+			class="show-subtags py-1 px-4 ms-auto mb-0"
+			(click)="tagClick.emit(tag)">
+			Pokaż podtagi ></app-button
+		>
+	</div>
+	<ng-template #subtag>
+		<div class="image-container">
+			<div class="background-academic-blue"></div>
+
+			<h4 class="text-container">{{ tag.name }}</h4>
+			<app-button
+				[routerLink]="['/public/home']"
+				[queryParams]="{ tagId: tag.id }"
+				class="all-tags-button px-3 py-1"
+				>Pokaż pytania w podtagu ></app-button
+			>
+			<img
+				src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1280px-Image_created_with_a_mobile_phone.png"
+				alt="tag logo"
+				class="tag-logo" />
+		</div>
+	</ng-template>
+	<div class="d-flex footer mt-auto mb-0" *ngIf="!parentTagId">
+		<div class="footer-box academic-blue"></div>
+		<div class="footer-box blue-laguna"></div>
+		<div class="footer-box dark-yellow"></div>
+		<div class="footer-box pink"></div>
+		<div class="footer-box light-red"></div>
+	</div>
+</div>

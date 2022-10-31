@@ -3,33 +3,45 @@ import {
 	EventEmitter,
 	Input,
 	OnChanges,
+	OnDestroy,
 	OnInit,
 	Output,
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
 	selector: 'app-paginator',
 	templateUrl: './paginator.component.html',
 	styleUrls: ['./paginator.component.scss'],
 })
-export class PaginatorComponent implements OnChanges, OnInit {
+export class PaginatorComponent implements OnChanges, OnInit, OnDestroy {
 	@Input() totalSize!: number;
 	@Input() pageSize!: number;
 	@Input() showInput = true;
+	@Input() page!: Observable<number | null>;
 	@Output() pageChange = new EventEmitter<number>();
 
 	totalPages!: number;
 	currentPage = 1;
 	inputValue = '';
 
-	constructor(
-		private readonly _router: Router,
-		private readonly _route: ActivatedRoute
-	) {}
+	private readonly _subscription = new Subscription();
+
+	constructor(private readonly _route: ActivatedRoute) {}
+
+	ngOnDestroy(): void {
+		this._subscription.unsubscribe();
+	}
 
 	ngOnInit(): void {
-		this.loadQueryParams();
+		this._subscription.add(
+			this.page.subscribe((page) => {
+				if (page) {
+					this.currentPage = page;
+				}
+			})
+		);
 	}
 
 	ngOnChanges(): void {
@@ -51,30 +63,9 @@ export class PaginatorComponent implements OnChanges, OnInit {
 	}
 
 	private changePage(pageNumber: number) {
-		if (isNaN(pageNumber) || !this.pageExists(pageNumber)) return;
-
+		if (isNaN(pageNumber) || (!this.pageExists(pageNumber) && pageNumber !== 1))
+			return;
 		this.currentPage = pageNumber;
 		this.pageChange.emit(this.currentPage);
-		this.buildQueryParams();
-	}
-
-	private buildQueryParams(): void {
-		this._router.navigate([], {
-			queryParams: {
-				...this._route.snapshot.queryParams,
-				page: this.currentPage,
-			},
-		});
-	}
-
-	private loadQueryParams(): void {
-		const pageNumber = parseInt(
-			this._route.snapshot.queryParamMap.get('page') ?? ''
-		);
-		if (this.pageExists(pageNumber)) {
-			this.changePage(pageNumber);
-		} else {
-			this.changePage(this.currentPage);
-		}
 	}
 }

@@ -1,0 +1,78 @@
+@use 'colors' as colors;
+.tag-box {
+	width: 273px;
+	height: 208px;
+	border: 1px solid var(--bg-accent);
+	font-size: 13px;
+	& .all-tags-text {
+		color: var(--link-default);
+	}
+	& .show-subtags {
+		width: fit-content;
+		font-size: 13px;
+	}
+	.image-container {
+		position: relative;
+		text-align: center;
+		& .tag-logo {
+			width: 273px;
+			height: 208px;
+			filter: brightness(0.8) opacity(1);
+			background-color: colors.$academic-blue;
+			transition: 0.5s;
+		}
+		& .text-container {
+			position: absolute;
+			top: 30px;
+			left: 50%;
+			transform: translate(-50%, 0);
+			z-index: 1;
+			color: colors.$crystal-white;
+			&:hover {
+				cursor: pointer;
+			}
+		}
+		& .background-academic-blue {
+			background-color: colors.$academic-blue;
+			width: 273px;
+			height: 208px;
+			top: 0;
+			left: 0;
+			position: absolute;
+		}
+		.all-tags-button {
+			position: absolute;
+			bottom: 30px;
+			left: 50%;
+			transform: translate(-50%, 0);
+			width: 240px;
+			z-index: 1;
+			opacity: 1 !important;
+			&:hover + .tag-logo {
+					filter: brightness(0.5) opacity(0.5);
+					cursor: pointer;
+			}
+		}
+	}
+}
+.footer {
+	.footer-box {
+		width: calc(273px / 5);
+		height: 4px;
+	}
+	.academic-blue {
+		background-color: colors.$academic-blue;
+	}
+	.blue-laguna {
+		background-color: colors.$blue-laguna;
+	}
+	.dark-yellow {
+		background-color: colors.$dark-yellow;
+	}
+	.pink {
+		background-color: colors.$pink;
+	}
+	.light-red {
+		background-color: colors.$light-red;
+	}
+}
