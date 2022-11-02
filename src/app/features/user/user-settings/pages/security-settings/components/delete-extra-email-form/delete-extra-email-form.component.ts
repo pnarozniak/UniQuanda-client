@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs';
@@ -22,7 +22,7 @@ export class DeleteExtraEmailFormComponent {
 	@Input() extraEmail: IUserEmailValue | null = null;
 
 	isDeleteFormVisibility = false;
-	passwordForm: FormControl;
+	form: FormGroup;
 
 	constructor(
 		private readonly _securitySettingsApiService: SecuritySettingsApiService,
@@ -31,12 +31,14 @@ export class DeleteExtraEmailFormComponent {
 		private readonly _loader: LoaderService,
 		private readonly _router: Router
 	) {
-		this.passwordForm = new FormControl('', [
-			Validators.required,
-			Validators.minLength(8),
-			Validators.maxLength(30),
-			Validators.pattern('^(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[0-9]+).*$'),
-		]);
+		this.form = new FormGroup({
+			password: new FormControl('', [
+				Validators.required,
+				Validators.minLength(8),
+				Validators.maxLength(30),
+				Validators.pattern('^(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[0-9]+).*$'),
+			])
+		});
 	}
 
 	changeVisibilityDeleteForm(): void {
@@ -44,13 +46,13 @@ export class DeleteExtraEmailFormComponent {
 	}
 
 	sendForm(): void {
-		this.passwordForm.markAllAsTouched();
-		if (this.passwordForm.invalid) return;
+		this.form.markAllAsTouched();
+		if (this.form.invalid) return;
 
 		this._loader.show();
 		const request: IDeleteExtraEmailRequestDTO = {
 			idExtraEmail: this.extraEmail!.idEmail,
-			password: this.passwordForm.value,
+			password: this.form.get('password')?.value,
 		};
 
 		this._securitySettingsApiService
@@ -69,7 +71,7 @@ export class DeleteExtraEmailFormComponent {
 				},
 				error: (err) => {
 					if (err.error.status === ConflictResponseStatus.InvalidPassword) {
-						this.passwordForm.setErrors({ invalidPassword: true });
+						this.form.get('password')?.setErrors({ invalidPassword: true });
 					} else if (err.error.status === ConflictResponseStatus.DbConflict) {
 						this._commonToastrService.databaseError();
 					}

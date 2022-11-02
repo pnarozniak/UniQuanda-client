@@ -1,40 +1,44 @@
-<div class="d-flex flex-row mb-2">
-	<span><b>Dodatkowy:</b> {{ extraEmail?.value }}</span>
-	<app-icon
-		icon="delete"
-		class="ms-2"
-		style="cursor: pointer"
-		(click)="changeVisibilityDeleteForm()"></app-icon>
-</div>
+<form [formGroup]="form" (ngSubmit)="sendForm()">
+	<div class="d-flex flex-row mb-2">
+		<span><b>Dodatkowy:</b> {{ extraEmail?.value }}</span>
+		<app-icon
+			icon="delete"
+			class="ms-2"
+			style="cursor: pointer"
+			(click)="changeVisibilityDeleteForm()"></app-icon>
+	</div>
 
-<div
-	*ngIf="isDeleteFormVisibility"
-	class="d-flex flex-column align-items-start form-container mt-4">
-	<h5 class="title">Czy napewno chcesz usunąć adres e-mail z konta?</h5>
-	<span class="description"
-		>Ze względów bezpieczeństwa usunięcie adresu e-mail z konta wymagana
-		potwierdzenia hasłem</span
-	>
-	<app-input
-		label="Hasło"
-		type="password"
-		[control]="passwordForm"
-		hint="Ze względów bezpieczeństwa zmiana głównego adresu e-mail wymagana potwierdzenia hasłem"
-		[errors]="[
-			{
-				name: 'required',
-				message: 'Hasło jest wymagane.'
-			},
-			{
-				name: 'pattern',
-				message: 'Siła hasła nie spełnia polityki serwisu.'
-			},
-			{
-				name: 'invalidPassword',
-				message: 'Błędne hasło.'
-			}
-		]"></app-input>
-	<app-button class="sumbit-btn mt-3 px-4 py-2 mb-3" (click)="sendForm()"
-		>Usuń e-mail</app-button
-	>
-</div>
+	<div
+		*ngIf="isDeleteFormVisibility"
+		class="d-flex flex-column align-items-start form-container mt-4">
+		<h5 class="title">Czy napewno chcesz usunąć adres e-mail z konta?</h5>
+		<span class="description"
+			>Ze względów bezpieczeństwa usunięcie adresu e-mail z konta wymagana
+			potwierdzenia hasłem</span
+		>
+		<app-input
+			label="Hasło"
+			type="password"
+			[control]="form.controls['password']"
+			hint="Ze względów bezpieczeństwa zmiana głównego adresu e-mail wymagana potwierdzenia hasłem"
+			[errors]="[
+				{
+					name: 'required',
+					message: 'Hasło jest wymagane.'
+				},
+				{
+					name: 'pattern',
+					message: 'Siła hasła nie spełnia polityki serwisu.'
+				},
+				{
+					name: 'invalidPassword',
+					message: 'Błędne hasło.'
+				}
+			]"></app-input>
+		<app-button class="sumbit-btn mt-3 px-4 py-2 mb-3" mode="submit"
+			>Usuń e-mail</app-button
+		>
+	</div>
+</form>
+
+

@@ -11,6 +11,7 @@ import { PasswordContentComponent } from './components/password-content/password
 import { UpdatePasswordFormComponent } from './components/update-password-form/update-password-form.component';
 import { UpdateMainEmailFormComponent } from './components/update-main-email-form/update-main-email-form.component';
 import { DeleteExtraEmailFormComponent } from './components/delete-extra-email-form/delete-extra-email-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [
@@ -23,7 +24,7 @@ import { DeleteExtraEmailFormComponent } from './components/delete-extra-email-f
 		UpdatePasswordFormComponent,
 		UpdateMainEmailFormComponent,
 	],
-	imports: [CommonModule, RouterModule, SharedModule],
+	imports: [CommonModule, RouterModule, SharedModule, ReactiveFormsModule],
 	providers: [SecuritySettingsApiService],
 })
 export class SecuritySettingsModule {}
