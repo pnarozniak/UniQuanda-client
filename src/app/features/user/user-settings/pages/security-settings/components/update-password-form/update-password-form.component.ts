@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs';
 import { LoaderService } from 'src/app/core/services/loader.service';
-import { CommonToastrService } from 'src/app/shared/services/common-toastr.service';
 import { FormsValidationService } from 'src/app/shared/services/forms-validation.service';
 import { ConflictResponseStatus } from '../../enums/conflict-response-status.enum';
 import { IUpdatePasswordRequestDTO } from '../../models/update-password-request.dto';
@@ -25,7 +24,6 @@ export class UpdatePasswordFormComponent {
 	constructor(
 		private readonly _formsValidationService: FormsValidationService,
 		private readonly _securitySettingsApiService: SecuritySettingsApiService,
-		private readonly _commonToastrService: CommonToastrService,
 		private readonly _toastrService: ToastrService,
 		private readonly _loader: LoaderService
 	) {
@@ -78,7 +76,7 @@ export class UpdatePasswordFormComponent {
 					if (err.error.status === ConflictResponseStatus.InvalidPassword) {
 						this.form.get('oldPassword')?.setErrors({ invalidPassword: true });
 					} else if (err.error.status === ConflictResponseStatus.DbConflict) {
-						this._commonToastrService.databaseError();
+						this._toastrService.error('Błąd przetwarzania danych', 'Błąd');
 					}
 				},
 			});

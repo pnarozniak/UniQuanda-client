@@ -1,4 +1,7 @@
-<form [formGroup]="form" (ngSubmit)="sendForm()" class="d-flex flex-column align-items-start form-container">
+<form
+	[formGroup]="form"
+	(ngSubmit)="sendForm()"
+	class="d-flex flex-column align-items-start form-container">
 	<app-auto-complete
 		label="Nowy główny e-mail"
 		[options]="extraEmails"
@@ -41,7 +44,7 @@
 				message: 'Błędne hasło.'
 			}
 		]"></app-input>
-	<app-button class="sumbit-btn mt-3 px-4 py-2" mode="submit"
+	<app-button class="mt-3 px-4 py-2" mode="submit" color="purple"
 		>Zmień główny e-mail</app-button
 	>
 </form>

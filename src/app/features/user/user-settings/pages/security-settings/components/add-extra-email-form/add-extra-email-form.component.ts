@@ -8,7 +8,6 @@ import { SecuritySettingsApiService } from '../../services/security-settings-api
 import { IGetUserEmailsReponseDTO } from '../../models/get-user-emails-reponse.dto';
 import { IAddExtraEmailRequestDTO } from '../../models/add-extra-email-request.dto';
 import { finalize } from 'rxjs';
-import { CommonToastrService } from 'src/app/shared/services/common-toastr.service';
 
 @Component({
 	selector: 'app-add-extra-email-form',
@@ -24,7 +23,6 @@ export class AddExtraEmailFormComponent {
 
 	constructor(
 		private readonly _securitySettingsApiService: SecuritySettingsApiService,
-		private readonly _commonToastrService: CommonToastrService,
 		private readonly _toastrService: ToastrService,
 		private readonly _loader: LoaderService,
 		private readonly _router: Router
@@ -55,7 +53,7 @@ export class AddExtraEmailFormComponent {
 				this.userEmails?.extraEmails.filter((ue) => ue.value === email).length >
 					0)
 		) {
-			this._toastrService.info(
+			this._toastrService.error(
 				'E-mail jest już przypisany do konta',
 				'Informacja'
 			);
@@ -91,7 +89,7 @@ export class AddExtraEmailFormComponent {
 		if (status === ConflictResponseStatus.InvalidPassword) {
 			this.form.get('password')?.setErrors({ invalidPassword: true });
 		} else if (status === ConflictResponseStatus.DbConflict) {
-			this._commonToastrService.databaseError();
+			this._toastrService.error('Błąd przetwarzania danych', 'Błąd');
 		} else if (status === ConflictResponseStatus.OverLimitOfExtraEmails) {
 			this._toastrService.error(
 				'Konto może posiadać maksymalnie 3 dodatkowe e-maile',

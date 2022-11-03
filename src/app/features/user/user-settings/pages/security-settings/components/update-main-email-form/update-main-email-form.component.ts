@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs';
 import { LoaderService } from 'src/app/core/services/loader.service';
-import { CommonToastrService } from 'src/app/shared/services/common-toastr.service';
 import { ConflictResponseStatus } from '../../enums/conflict-response-status.enum';
 import { IGetUserEmailsReponseDTO } from '../../models/get-user-emails-reponse.dto';
 import { IUpdateUserMainEmailRequestDTO } from '../../models/update-user-main-email-request.dto';
@@ -26,7 +25,6 @@ export class UpdateMainEmailFormComponent implements OnInit {
 
 	constructor(
 		private readonly _securitySettingsApiService: SecuritySettingsApiService,
-		private readonly _commonToastrService: CommonToastrService,
 		private readonly _toastrService: ToastrService,
 		private readonly _loader: LoaderService,
 		private readonly _router: Router
@@ -90,7 +88,7 @@ export class UpdateMainEmailFormComponent implements OnInit {
 					if (err.error.status === ConflictResponseStatus.InvalidPassword) {
 						this.form.get('password')?.setErrors({ invalidPassword: true });
 					} else if (err.error.status === ConflictResponseStatus.DbConflict) {
-						this._commonToastrService.databaseError();
+						this._toastrService.error('Błąd przetwarzania danych', 'Błąd');
 					} else if (
 						err.error.status === ConflictResponseStatus.EmailNotAvailable
 					) {

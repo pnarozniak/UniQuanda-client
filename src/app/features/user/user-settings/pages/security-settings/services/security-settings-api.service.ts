@@ -65,6 +65,11 @@ export class SecuritySettingsApiService {
 		>('Auth/update-user-password', body);
 	}
 
+	/**
+	 * Send a request to update main email user
+	 * @param body DTO with new main email and password
+	 * @returns Observable<HttpResponse<IAuthConflictResponseDTO>> object with status code of request and status of update
+	 */
 	public updateUserMainEmail(
 		body: IUpdateUserMainEmailRequestDTO
 	): Observable<HttpResponse<IAuthConflictResponseDTO | null>> {

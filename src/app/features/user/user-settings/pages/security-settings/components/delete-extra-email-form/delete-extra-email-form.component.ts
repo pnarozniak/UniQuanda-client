@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs';
 import { LoaderService } from 'src/app/core/services/loader.service';
-import { CommonToastrService } from 'src/app/shared/services/common-toastr.service';
 import { ConflictResponseStatus } from '../../enums/conflict-response-status.enum';
 import { IDeleteExtraEmailRequestDTO } from '../../models/delete-extra-email-request.dto';
 import { IUserEmailValue } from '../../models/get-user-emails-reponse.dto';
@@ -26,7 +25,6 @@ export class DeleteExtraEmailFormComponent {
 
 	constructor(
 		private readonly _securitySettingsApiService: SecuritySettingsApiService,
-		private readonly _commonToastrService: CommonToastrService,
 		private readonly _toastrService: ToastrService,
 		private readonly _loader: LoaderService,
 		private readonly _router: Router
@@ -37,7 +35,7 @@ export class DeleteExtraEmailFormComponent {
 				Validators.minLength(8),
 				Validators.maxLength(30),
 				Validators.pattern('^(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[0-9]+).*$'),
-			])
+			]),
 		});
 	}
 
@@ -73,7 +71,7 @@ export class DeleteExtraEmailFormComponent {
 					if (err.error.status === ConflictResponseStatus.InvalidPassword) {
 						this.form.get('password')?.setErrors({ invalidPassword: true });
 					} else if (err.error.status === ConflictResponseStatus.DbConflict) {
-						this._commonToastrService.databaseError();
+						this._toastrService.error('Błąd przetwarzania danych', 'Błąd');
 					}
 				},
 			});
