@@ -26,6 +26,7 @@
 		}}</app-button
 	>
 	<app-add-extra-email-form
+		#componentRef
 		*ngIf="isExtraEmailFormVisible"
 		[userEmails]="userEmails"
 		class="form-container"></app-add-extra-email-form>

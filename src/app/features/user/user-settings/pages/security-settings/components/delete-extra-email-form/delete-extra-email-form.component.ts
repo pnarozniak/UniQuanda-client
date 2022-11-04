@@ -8,6 +8,7 @@ import { ConflictResponseStatus } from '../../enums/conflict-response-status.enu
 import { IDeleteExtraEmailRequestDTO } from '../../models/delete-extra-email-request.dto';
 import { IUserEmailValue } from '../../models/get-user-emails-reponse.dto';
 import { SecuritySettingsApiService } from '../../services/security-settings-api.service';
+import { ScrollToElementFeatureComponent } from '../scroll-to-element-feature/scroll-to-element-feature.component';
 
 @Component({
 	selector: 'app-delete-extra-email-form',
@@ -17,7 +18,7 @@ import { SecuritySettingsApiService } from '../../services/security-settings-api
 		'./../../styles/security-settings-component-style.scss',
 	],
 })
-export class DeleteExtraEmailFormComponent {
+export class DeleteExtraEmailFormComponent extends ScrollToElementFeatureComponent {
 	@Input() extraEmail: IUserEmailValue | null = null;
 
 	isDeleteFormVisibility = false;
@@ -29,6 +30,7 @@ export class DeleteExtraEmailFormComponent {
 		private readonly _loader: LoaderService,
 		private readonly _router: Router
 	) {
+		super();
 		this.form = new FormGroup({
 			password: new FormControl('', [
 				Validators.required,
@@ -41,6 +43,7 @@ export class DeleteExtraEmailFormComponent {
 
 	changeVisibilityDeleteForm(): void {
 		this.isDeleteFormVisibility = !this.isDeleteFormVisibility;
+		super.scrollToEl();
 	}
 
 	sendForm(): void {
