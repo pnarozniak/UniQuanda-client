@@ -36,8 +36,15 @@
 					message: 'Błędne hasło.'
 				}
 			]"></app-input>
-		<app-button class="mt-3 px-4 py-2 mb-3" mode="submit" color="purple"
-			>Usuń e-mail</app-button
-		>
+		<div class="d-flex flex-row gap-2 mt-3 mb-3">
+			<app-button class="px-4 py-2" mode="submit" color="purple"
+				>Usuń e-mail</app-button
+			>
+			<app-button
+				class="px-4 py-2 close-btn"
+				(click)="changeVisibilityDeleteForm()"
+				>Zamknij</app-button
+			>
+		</div>
 	</div>
 </form>
