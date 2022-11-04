@@ -9,13 +9,13 @@ import { Observable } from 'rxjs';
 import { UserDataService } from '../services/user-data.service';
 
 @Injectable({ providedIn: 'root' })
-export class JwtTokenInterceptor implements HttpInterceptor {
+export class AccessTokenInterceptor implements HttpInterceptor {
 	constructor(private userDataService: UserDataService) {}
 
 	intercept(
-		req: HttpRequest<any>,
+		req: HttpRequest<unknown>,
 		next: HttpHandler
-	): Observable<HttpEvent<any>> {
+	): Observable<HttpEvent<unknown>> {
 		const user = this.userDataService.getUserData();
 		if (!user) {
 			return next.handle(req);
@@ -27,7 +27,7 @@ export class JwtTokenInterceptor implements HttpInterceptor {
 		}
 
 		req = req.clone({
-			setHeaders: { authorization: `Bearer ${token}` },
+			headers: req.headers.append('authorization', `Bearer ${token}`),
 		});
 		return next.handle(req);
 	}

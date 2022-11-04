@@ -1,11 +1,17 @@
 <div class="d-flex flex-column">
 	<div class="profile-rectangle mx-auto mt-0 mt-xxl-5">
 		<app-user-profile-header
-			[profile$]="profile$"
+			[profile$]="profile$.asObservable()"
 			[userClaims$]="userClaims$"></app-user-profile-header>
-		<div>
-			<!-- Right Items -->
-			<!-- Left Items-->
+		<div class="d-flex flex-row profile-page">
+			<app-user-profile-left-data
+				[profile$]="profile$.asObservable()"
+				[papers$]="papers$.asObservable()"
+				class="d-lg-block d-none"></app-user-profile-left-data>
+			<app-profile-navigation
+				class="d-flex flex-column navigation"
+				[papers$]="papers$.asObservable()"
+				[profile$]="profile$.asObservable()"></app-profile-navigation>
 		</div>
 	</div>
 </div>

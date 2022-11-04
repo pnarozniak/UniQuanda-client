@@ -1,6 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { RecaptchaAction } from 'src/app/core/enums/recaptcha-action.enum';
 import ApiService from 'src/app/core/services/api.service';
 import { IResetPasswordDto } from '../models/reset-password.dto';
 
@@ -14,6 +15,10 @@ export class ResetPasswordApiService {
 	 * @returns Observable<HttpResponse<unknown>> object
 	 */
 	resetPassword(data: IResetPasswordDto): Observable<HttpResponse<unknown>> {
-		return this._apiService.post('Auth/reset-password', data);
+		return this._apiService.post(
+			'Auth/reset-password',
+			data,
+			RecaptchaAction.RESET_PASSWORD
+		);
 	}
 }

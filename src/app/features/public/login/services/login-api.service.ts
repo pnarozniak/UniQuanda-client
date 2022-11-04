@@ -1,6 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { RecaptchaAction } from 'src/app/core/enums/recaptcha-action.enum';
 import ApiService from 'src/app/core/services/api.service';
 import { LoginRequestDTO, LoginResponseDTO } from '../models/login.dto';
 
@@ -21,7 +22,8 @@ export class LoginApiService {
 	): Observable<HttpResponse<LoginResponseDTO>> {
 		return this._apiService.post<LoginResponseDTO, LoginRequestDTO>(
 			'Auth/login',
-			request
+			request,
+			RecaptchaAction.LOGIN
 		);
 	}
 }

@@ -8,6 +8,12 @@ import { StatsComponent } from './components/header/stats/stats.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { UserProfileRoutingModule } from './user-profile-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ProfileLeftDataComponent } from './components/left-data/left-data.component';
+import { ProfileNavigationComponent } from './components/profile-navigation/profile-navigation.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { QuestionsProfileComponent } from './pages/questions-profile/questions-profile.component';
+import { AnswersProfileComponent } from './pages/answers-profile/answers-profile.component';
+import { LeftDataProfileComponent } from './pages/left-data-profile/left-data-profile.component';
 
 @NgModule({
 	imports: [
@@ -17,7 +23,17 @@ import { SharedModule } from 'src/app/shared/shared.module';
 		SharedModule,
 		ToastrModule.forRoot(),
 		BsDropdownModule.forRoot(),
+		MatTabsModule,
 	],
-	declarations: [UserProfileComponent, HeaderComponent, StatsComponent],
+	declarations: [
+		UserProfileComponent,
+		HeaderComponent,
+		StatsComponent,
+		ProfileLeftDataComponent,
+		ProfileNavigationComponent,
+		QuestionsProfileComponent,
+		AnswersProfileComponent,
+		LeftDataProfileComponent,
+	],
 })
 export class UserProfileModule {}
