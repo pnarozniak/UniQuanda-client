@@ -1,0 +1,25 @@
+<h5 class="mt-3" [ngSwitch]="data.reportType">
+	<ng-container *ngSwitchCase="'users'">
+		Dlaczego zgłaszasz to konto?
+	</ng-container>
+	<ng-container *ngSwitchCase="'questions'">
+		Dlaczego zgłaszasz to pytanie?
+	</ng-container>
+	<ng-container *ngSwitchCase="'answers'">
+		Dlaczego zgłaszasz tą odpowiedź?
+	</ng-container>
+</h5>
+<hr />
+<div *ngFor="let reportType of reportTypes; let last = last">
+	<div class="d-flex align-items-center">
+		{{ reportType.name }}
+		<app-button
+			color="none"
+			mat-ripple
+			class="ms-auto"
+			(click)="selectReportType(reportType)">
+			<app-icon icon="arrow"></app-icon>
+		</app-button>
+	</div>
+	<hr *ngIf="!last" />
+</div>

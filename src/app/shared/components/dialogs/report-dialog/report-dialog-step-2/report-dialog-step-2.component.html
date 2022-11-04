@@ -1,0 +1,41 @@
+<app-button
+	color="none"
+	mat-ripple
+	class="back-btn"
+	(click)="viewChange.emit('step-1')">
+	<app-icon icon="arrow"></app-icon>
+</app-button>
+<div class="d-flex align-items-center">
+	<h6 class="m-0 me-2">Wybrałeś:</h6>
+	<span>{{ selectedReportType.name }}</span>
+</div>
+<hr />
+<h6>Opowiedz nam więcej o sytuacji (opcjonalne)</h6>
+<hr class="mb-0" />
+<span class="info d-block mt-1">
+	Znająć więcej informacji, będziemy w stanie szybciej i sprawniej rozwiązać
+	problem
+</span>
+<form class="mt-2" (ngSubmit)="createReport()">
+	<app-textarea
+		placeholder="Napisz o sytuacji..."
+		label="Napisz o sytuacji..."
+		[control]="fc"
+		[errors]="[
+			{
+				name: 'maxlength',
+				message: 'Maksymalnie 1000 znaków.'
+			}
+		]">
+	</app-textarea>
+	<div class="d-sm-flex">
+		<app-button
+			class="ms-auto py-2 px-4"
+			mode="submit"
+			[ngSwitch]="data.reportType">
+			<ng-container *ngSwitchCase="'users'"> Zgłoś użytkownika </ng-container>
+			<ng-container *ngSwitchCase="'questions'"> Zgłoś pytanie </ng-container>
+			<ng-container *ngSwitchCase="'answers'"> Zgłoś odpowiedź </ng-container>
+		</app-button>
+	</div>
+</form>
