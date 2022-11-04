@@ -45,7 +45,7 @@ export class SecuritySettingsApiService {
 	public deleteExtraEmail(
 		body: IDeleteExtraEmailRequestDTO
 	): Observable<IAuthConflictResponseDTO | null> {
-		return this._apiService.delete<
+		return this._apiService.post<
 			IAuthConflictResponseDTO | null,
 			IDeleteExtraEmailRequestDTO
 		>('Auth/delete-extra-email', body);

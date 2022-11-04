@@ -38,15 +38,13 @@ export default class ApiService {
 		});
 	}
 
-	public delete<T, B>(
+	public delete<T>(
 		url: string,
-		body: B,
 		httpParams: HttpParams = new HttpParams()
 	): Observable<HttpResponse<T>> {
-		return this.http.delete<T>(`${this.server}/${url}/`, {
+		return this.http.delete<T>(`${this.server}/${url}`, {
 			params: httpParams,
 			observe: 'response',
-			body: body,
 		});
 	}
 }
