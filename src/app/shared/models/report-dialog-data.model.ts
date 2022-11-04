@@ -1,4 +1,4 @@
 export interface IReportDialogData {
-	reportType: 'users' | 'questions' | 'answers';
+	reportType: 'user' | 'question' | 'answer';
 	reportedEntityId: number;
 }

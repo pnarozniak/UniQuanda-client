@@ -100,8 +100,7 @@
 								><!--TODO: dodać poprawny warunek sprawdzania premium-->
 								<hr class="mx-4 hrline my-2" />
 								<a
-									appNotImplemented
-									[routerLink]="['/user/report', user?.userData?.id]"
+									(click)="reportUser(user.userData.id)"
 									class="mx-4 d-flex justify-content-center py-1">
 									<app-icon icon="report" class="me-2 my-auto"></app-icon>
 									Zgłoś użytkownika
@@ -162,9 +161,8 @@
 				class="d-lg-flex d-none flex-row mx-auto me-5 mt-lg-0 mt-3"
 				*ngIf="user?.userData?.id !== null">
 				<app-button
-					appNotImplemented
+					(click)="reportUser(user.userData.id)"
 					color="none"
-					[routerLink]="['/user/report', user?.userData?.id]"
 					class="p-2">
 					<app-icon icon="report" class="me-1"></app-icon>
 					Zgłoś użytkownika
