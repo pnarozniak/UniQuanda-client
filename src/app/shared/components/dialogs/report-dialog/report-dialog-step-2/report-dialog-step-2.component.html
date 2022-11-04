@@ -33,9 +33,9 @@
 			class="ms-auto py-2 px-4"
 			mode="submit"
 			[ngSwitch]="data.reportType">
-			<ng-container *ngSwitchCase="'users'"> Zgłoś użytkownika </ng-container>
-			<ng-container *ngSwitchCase="'questions'"> Zgłoś pytanie </ng-container>
-			<ng-container *ngSwitchCase="'answers'"> Zgłoś odpowiedź </ng-container>
+			<ng-container *ngSwitchCase="'user'"> Zgłoś użytkownika </ng-container>
+			<ng-container *ngSwitchCase="'question'"> Zgłoś pytanie </ng-container>
+			<ng-container *ngSwitchCase="'answer'"> Zgłoś odpowiedź </ng-container>
 		</app-button>
 	</div>
 </form>
