@@ -3,6 +3,7 @@ import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 import { Observable } from 'rxjs';
 import { IUserClaims } from 'src/app/core/models/user-claims.model';
 import { DialogService } from 'src/app/core/services/dialog.service';
+import { CreateAnAccountDialogComponent } from 'src/app/shared/components/dialogs/create-an-account-dialog/create-an-account-dialog.component';
 import { ReportDialogComponent } from 'src/app/shared/components/dialogs/report-dialog/report-dialog.component';
 import { AcademicTitleType } from '../../models/acedemic-title';
 import { IUserProfileResponseDTO } from '../../models/user-profile.dto';
@@ -22,7 +23,7 @@ export class HeaderComponent {
 	@Input()
 	public profile$!: Observable<IUserProfileResponseDTO | null>;
 	@Input()
-	public userClaims$!: Observable<IUserClaims | null>;
+	public userClaims: IUserClaims | null = null;
 
 	constructor(private readonly _dialogService: DialogService) {}
 
@@ -40,8 +41,12 @@ export class HeaderComponent {
 	}
 
 	reportUser(userId: number) {
-		this._dialogService.open(ReportDialogComponent, {
-			data: { reportType: 'user', reportedEntityId: userId },
-		});
+		if (!this.userClaims) {
+			this._dialogService.open(CreateAnAccountDialogComponent);
+		} else {
+			this._dialogService.open(ReportDialogComponent, {
+				data: { reportType: 'user', reportedEntityId: userId },
+			});
+		}
 	}
 }

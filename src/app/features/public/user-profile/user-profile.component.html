@@ -2,7 +2,8 @@
 	<div class="profile-rectangle mx-auto mt-0 mt-xxl-5">
 		<app-user-profile-header
 			[profile$]="profile$.asObservable()"
-			[userClaims$]="userClaims$"></app-user-profile-header>
+			[userClaims]="userClaims$ | async">
+		</app-user-profile-header>
 		<div class="d-flex flex-row profile-page">
 			<app-user-profile-left-data
 				[profile$]="profile$.asObservable()"

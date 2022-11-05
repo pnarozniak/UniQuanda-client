@@ -31,6 +31,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ReportDialogStep1Component } from './components/dialogs/report-dialog/report-dialog-step-1/report-dialog-step-1.component';
 import { ReportDialogStep2Component } from './components/dialogs/report-dialog/report-dialog-step-2/report-dialog-step-2.component';
 import { UniquandaLineComponent } from './components/uniquanda-line/uniquanda-line.component';
+import { CreateAnAccountDialogComponent } from './components/dialogs/create-an-account-dialog/create-an-account-dialog.component';
+import { RouterModule } from '@angular/router';
 
 const sharedComponents = [
 	InputComponent,
@@ -43,6 +45,7 @@ const sharedComponents = [
 	TagComponent,
 	ReportDialogComponent,
 	UniquandaLineComponent,
+	CreateAnAccountDialogComponent,
 ];
 
 const privateComponents = [
@@ -71,6 +74,7 @@ const sharedDirectives = [
 		MatTooltipModule,
 		MatDialogModule,
 		MatRippleModule,
+		RouterModule,
 	],
 	declarations: [sharedDirectives, sharedComponents, privateComponents],
 	exports: [sharedDirectives, sharedModules, sharedComponents],

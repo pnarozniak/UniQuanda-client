@@ -66,7 +66,7 @@
 					</ng-template>
 					<app-button
 						*ngIf="
-							(userClaims$ | async)?.id === user?.userData?.id &&
+							userClaims?.id === user?.userData?.id &&
 								user?.userData?.id !== null;
 							else otherProfileMobile
 						"
@@ -147,8 +147,7 @@
 		<div
 			class="d-lg-flex d-none flex-row mx-auto me-5 mt-lg-0 mt-3"
 			*ngIf="
-				(userClaims$ | async)?.id === user?.userData?.id &&
-					user?.userData?.id !== null;
+				userClaims?.id === user?.userData?.id && user?.userData?.id !== null;
 				else otherProfile
 			">
 			<app-button color="none" class="p-2" routerLink="/user/settings/profile">
@@ -171,10 +170,7 @@
 					appNotImplemented
 					color="gray"
 					shape="rect"
-					[routerLink]="[
-						'/premium/message/createNewMessage',
-						user?.userData?.id
-					]"
+					[routerLink]="['/premium/message/create', user?.userData?.id]"
 					*ngIf="'hasPremium' === 'hasPremium'"
 					class="ms-2 p-2 sendMessage">
 					<app-icon icon="mail" class="me-1"></app-icon>
