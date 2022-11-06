@@ -21,7 +21,7 @@
 		class="action-btn px-4 py-2 mt-3"
 		(click)="changeVisibilityForm()"
 		[appLoading]="!userEmails">
-		<app-icon icon="plus me-2"> </app-icon>
+		<app-icon icon="plus me-2" *ngIf="!isExtraEmailFormVisible"> </app-icon>
 		{{
 			isExtraEmailFormVisible ? 'Zamknij' : 'Przypisz kolejny e-mail do konta'
 		}}</app-button
