@@ -3,11 +3,12 @@ import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs';
-import { RecaptchaAction } from 'src/app/core/enums/recaptcha-action.enum';
-import ApiService from 'src/app/core/services/api.service';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { IReportDialogData } from 'src/app/shared/models/report-dialog-data.model';
-import { IReportType, ReportDialogComponent } from '../report-dialog.component';
+import { ICreateReportDTO } from '../../models/create-report.dto';
+import { IReportType } from '../../models/report-type.model';
+import { ReportDialogComponent } from '../../report-dialog.component';
+import { ReportDialogApiService } from '../../services/report-dialog-api.service';
 
 @Component({
 	selector: 'app-report-dialog-step-2',
@@ -23,7 +24,7 @@ export class ReportDialogStep2Component {
 	fc = new FormControl('', Validators.maxLength(300));
 
 	constructor(
-		private readonly _api: ApiService,
+		private readonly _reportDialogApiService: ReportDialogApiService,
 		private readonly _loader: LoaderService,
 		private readonly _toastr: ToastrService,
 		private readonly _matDialogRef: MatDialogRef<ReportDialogComponent>
@@ -32,19 +33,15 @@ export class ReportDialogStep2Component {
 	createReport() {
 		if (this.fc.invalid) return;
 
-		const body: ICreateReportDTO = {
+		const newReport: ICreateReportDTO = {
 			reportedEntityId: this.data.reportedEntityId,
 			reportTypeId: this.selectedReportType.id,
 			description: this.fc.value,
 		};
 
 		this._loader.show();
-		this._api
-			.post<ICreateReportDTO, unknown>(
-				'report',
-				body,
-				RecaptchaAction.CREATE_REPORT
-			)
+		this._reportDialogApiService
+			.createReport(newReport)
 			.pipe(finalize(() => this._loader.hide()))
 			.subscribe({
 				next: () => {
@@ -62,10 +59,4 @@ export class ReportDialogStep2Component {
 				},
 			});
 	}
-}
-
-interface ICreateReportDTO {
-	reportedEntityId: number;
-	reportTypeId: number;
-	description?: string;
 }

@@ -32,7 +32,7 @@
 		<app-button
 			class="ms-auto py-2 px-4"
 			mode="submit"
-			[ngSwitch]="data.reportType">
+			[ngSwitch]="data.reportCategory">
 			<ng-container *ngSwitchCase="'user'"> Zgłoś użytkownika </ng-container>
 			<ng-container *ngSwitchCase="'question'"> Zgłoś pytanie </ng-container>
 			<ng-container *ngSwitchCase="'answer'"> Zgłoś odpowiedź </ng-container>

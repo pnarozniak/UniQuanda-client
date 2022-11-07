@@ -45,7 +45,7 @@ export class HeaderComponent {
 			this._dialogService.open(CreateAnAccountDialogComponent);
 		} else {
 			this._dialogService.open(ReportDialogComponent, {
-				data: { reportType: 'user', reportedEntityId: userId },
+				data: { reportCategory: 'user', reportedEntityId: userId },
 			});
 		}
 	}

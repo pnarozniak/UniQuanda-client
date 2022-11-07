@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IReportDialogData } from 'src/app/shared/models/report-dialog-data.model';
-import { IReportType } from '../report-dialog.component';
+import { IReportType } from '../../models/report-type.model';
 
 @Component({
 	selector: 'app-report-dialog-step-1',

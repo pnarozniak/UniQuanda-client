@@ -1,10 +1,10 @@
-import { HttpParams } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { finalize } from 'rxjs';
-import ApiService from 'src/app/core/services/api.service';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { IReportDialogData } from 'src/app/shared/models/report-dialog-data.model';
+import { IReportType } from './models/report-type.model';
+import { ReportDialogApiService } from './services/report-dialog-api.service';
 
 @Component({
 	selector: 'app-report-dialog',
@@ -19,7 +19,7 @@ export class ReportDialogComponent implements OnInit {
 	constructor(
 		@Inject(MAT_DIALOG_DATA)
 		public data: IReportDialogData,
-		private readonly _api: ApiService,
+		private readonly _reportDialogApiService: ReportDialogApiService,
 		private readonly _loader: LoaderService,
 		private readonly _dialogRef: MatDialogRef<ReportDialogComponent>
 	) {}
@@ -30,20 +30,12 @@ export class ReportDialogComponent implements OnInit {
 
 	private getReportTypes() {
 		this._loader.show();
-		this._api
-			.get<{ items: IReportType[] }>(
-				'report/types',
-				new HttpParams().append(this.data.reportType, true)
-			)
+		this._reportDialogApiService
+			.getReportTypes(this.data.reportCategory)
 			.pipe(finalize(() => this._loader.hide()))
 			.subscribe({
-				next: (res) => (this.reportTypes = res.body!.items),
+				next: (response) => (this.reportTypes = response.items),
 				error: () => this._dialogRef.close(),
 			});
 	}
-}
-
-export interface IReportType {
-	id: number;
-	name: string;
 }

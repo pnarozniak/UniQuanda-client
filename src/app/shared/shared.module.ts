@@ -28,11 +28,12 @@ import { TagComponent } from './components/tag/tag.component';
 import { DialogBaseComponent } from './components/dialogs/dialog-base/dialog-base.component';
 import { ReportDialogComponent } from './components/dialogs/report-dialog/report-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ReportDialogStep1Component } from './components/dialogs/report-dialog/report-dialog-step-1/report-dialog-step-1.component';
-import { ReportDialogStep2Component } from './components/dialogs/report-dialog/report-dialog-step-2/report-dialog-step-2.component';
 import { UniquandaLineComponent } from './components/uniquanda-line/uniquanda-line.component';
 import { CreateAnAccountDialogComponent } from './components/dialogs/create-an-account-dialog/create-an-account-dialog.component';
 import { RouterModule } from '@angular/router';
+import { ReportDialogStep1Component } from './components/dialogs/report-dialog/components/report-dialog-step-1/report-dialog-step-1.component';
+import { ReportDialogStep2Component } from './components/dialogs/report-dialog/components/report-dialog-step-2/report-dialog-step-2.component';
+import { ReportDialogApiService } from './components/dialogs/report-dialog/services/report-dialog-api.service';
 
 const sharedComponents = [
 	InputComponent,
@@ -80,6 +81,7 @@ const sharedDirectives = [
 	exports: [sharedDirectives, sharedModules, sharedComponents],
 	providers: [
 		FormsValidationService,
+		ReportDialogApiService,
 		{
 			provide: DateAdapter,
 			useClass: PLDatePickerAdapter,
