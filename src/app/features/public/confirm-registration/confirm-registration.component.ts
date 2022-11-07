@@ -22,7 +22,7 @@ export class ConfirmRegistrationComponent implements OnInit {
 	public codeLength = 6;
 	@ViewChildren('codeInput') codeInputs!: QueryList<ElementRef>;
 	public email = '';
-	public form: FormGroup;
+	public form = new FormGroup({});
 
 	constructor(
 		private readonly _route: ActivatedRoute,
@@ -30,7 +30,19 @@ export class ConfirmRegistrationComponent implements OnInit {
 		private readonly _confirmRegistrationApiService: ConfirmRegistrationApiService,
 		private readonly _toastrService: ToastrService,
 		private readonly _loader: LoaderService
-	) {
+	) {}
+
+	ngOnInit(): void {
+		this.createForm();
+		this.email = this._route.snapshot.queryParamMap.get('email') ?? '';
+		if (!this.email) {
+			this._router.navigate(['/public/home']);
+		} else {
+			this.initializeFormWithCode();
+		}
+	}
+
+	private createForm() {
 		this.form = new FormGroup({});
 		for (let i = 0; i < this.codeLength; i++) {
 			this.form.addControl(
@@ -44,13 +56,14 @@ export class ConfirmRegistrationComponent implements OnInit {
 		}
 	}
 
-	ngOnInit(): void {
-		const email = this._route.snapshot.paramMap.get('email');
-		if (email !== null) {
-			this.email = email;
-		} else {
-			this._router.navigate(['/public/home']);
+	private initializeFormWithCode() {
+		const code = this._route.snapshot.queryParamMap.get('code')?.split('');
+		if (code?.length !== this.codeLength) return;
+		for (let i = 0; i < this.codeLength; i++) {
+			const input = this.form.get(`codeInput${i}`);
+			input?.setValue(code?.[i]);
 		}
+		this.handleSubmit();
 	}
 
 	handleInputChange(inputId: number) {
