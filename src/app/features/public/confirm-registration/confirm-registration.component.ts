@@ -36,7 +36,7 @@ export class ConfirmRegistrationComponent implements OnInit {
 		this.createForm();
 		this.email = this._route.snapshot.queryParamMap.get('email') ?? '';
 		if (!this.email) {
-			this._router.navigate(['/public/home']);
+			this._router.navigate(['/page-not-found']);
 		} else {
 			this.initializeFormWithCode();
 		}
