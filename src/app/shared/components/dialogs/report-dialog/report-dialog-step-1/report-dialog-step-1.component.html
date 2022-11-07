@@ -6,20 +6,16 @@
 		Dlaczego zgłaszasz to pytanie?
 	</ng-container>
 	<ng-container *ngSwitchCase="'answer'">
-		Dlaczego zgłaszasz tą odpowiedź?
+		Dlaczego zgłaszasz tę odpowiedź?
 	</ng-container>
 </h5>
 <hr />
 <div *ngFor="let reportType of reportTypes; let last = last">
-	<div class="d-flex align-items-center">
+	<div
+		class="d-flex align-items-center report-type"
+		(click)="selectReportType(reportType)">
 		{{ reportType.name }}
-		<app-button
-			color="none"
-			mat-ripple
-			class="ms-auto"
-			(click)="selectReportType(reportType)">
-			<app-icon icon="arrow"></app-icon>
-		</app-button>
+		<app-icon icon="arrow" class="ms-auto"></app-icon>
 	</div>
 	<hr *ngIf="!last" />
 </div>
