@@ -75,28 +75,8 @@ header {
 	background-color: colors.$academic-blue;
 }
 
-.footer-container {
+.app-uniquanda-line {
 	height: dim.$header-footer-height;
-}
-
-.footer-cell-academicBlue {
-	background-color: colors.$academic-blue;
-}
-
-.footer-cell-blueLaguna {
-	background-color: colors.$blue-laguna;
-}
-
-.footer-cell-darkYellow {
-	background-color: colors.$dark-yellow;
-}
-
-.footer-cell-pink {
-	background-color: colors.$pink;
-}
-
-.footer-cell-lightRed {
-	background-color: colors.$light-red;
 }
 
 @media all and (max-width: breakpoints.$lg) {

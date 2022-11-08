@@ -7,4 +7,5 @@ export enum RecaptchaAction {
 	RECOVER_PASSWORD = 'recover_password',
 	RESET_PASSWORD = 'reset_password',
 	IS_EMAIL_AND_NICKNAME_AVAILABLE = 'is_email_and_nickname_available',
+	CREATE_REPORT = 'create_report',
 }
