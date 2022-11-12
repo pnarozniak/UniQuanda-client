@@ -1,13 +1,13 @@
 <form [formGroup]="form" (ngSubmit)="sendForm()">
-	<div class="d-flex flex-row mb-2">
-		<span><b>Dodatkowy:</b> {{ extraEmail?.value }}</span>
+	<div class="d-flex flex-row mb-2 w-100">
+		<span [ngClass]="{ 'email-text': (extraEmail?.value)!.length > 23 }"
+			><b>Dodatkowy:</b> {{ extraEmail?.value }}
+		</span>
 		<app-icon
 			icon="delete"
 			class="ms-2"
-			style="cursor: pointer"
 			(click)="changeVisibilityDeleteForm()"></app-icon>
 	</div>
-
 	<div
 		*ngIf="isDeleteFormVisibility"
 		class="d-flex flex-column align-items-start form-container mt-4">

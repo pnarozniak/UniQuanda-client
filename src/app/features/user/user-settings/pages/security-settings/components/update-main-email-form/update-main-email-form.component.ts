@@ -75,14 +75,16 @@ export class UpdateMainEmailFormComponent implements OnInit {
 			.pipe(finalize(() => this._loader.hide()))
 			.subscribe({
 				next: () => {
+					// ToDo
 					this._toastrService.success(
 						'Główny e-mail został zaktualizowany',
 						'Sukces'
 					);
-					const currentUrl = this._router.url;
-					this._router
-						.navigateByUrl('/', { skipLocationChange: true })
-						.then(() => this._router.navigate([currentUrl]));
+					// displayDialog();
+					// const currentUrl = this._router.url;
+					// this._router
+					// 	.navigateByUrl('/', { skipLocationChange: true })
+					// 	.then(() => this._router.navigate([currentUrl]));
 				},
 				error: (err) => {
 					if (err.error.status === ConflictResponseStatus.InvalidPassword) {

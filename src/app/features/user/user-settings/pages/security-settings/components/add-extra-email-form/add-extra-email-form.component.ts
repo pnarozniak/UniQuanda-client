@@ -70,14 +70,16 @@ export class AddExtraEmailFormComponent {
 			.pipe(finalize(() => this._loader.hide()))
 			.subscribe({
 				next: () => {
+					// ToDo
 					this._toastrService.success(
-						'E-mail został pomyślnie przypisany',
-						'Sukces'
+						'Sukces',
+						'Na twój nowy dodatkowy e-mail został wysłany email z potwierdzeniem'
 					);
 					const currentUrl = this._router.url;
 					this._router
 						.navigateByUrl('/', { skipLocationChange: true })
 						.then(() => this._router.navigate([currentUrl]));
+					// display Dialog
 				},
 				error: (err) => {
 					this.handleConflictRespone(err.error.status);
@@ -93,6 +95,11 @@ export class AddExtraEmailFormComponent {
 		} else if (status === ConflictResponseStatus.OverLimitOfExtraEmails) {
 			this._toastrService.error(
 				'Konto może posiadać maksymalnie 3 dodatkowe e-maile',
+				'Błąd'
+			);
+		} else if (status === ConflictResponseStatus.UserHasActionToConfirm) {
+			this._toastrService.error(
+				'Potwierdź najpierw inne akcje związane z twoim kontem',
 				'Błąd'
 			);
 		} else if (status === ConflictResponseStatus.EmailNotAvailable) {

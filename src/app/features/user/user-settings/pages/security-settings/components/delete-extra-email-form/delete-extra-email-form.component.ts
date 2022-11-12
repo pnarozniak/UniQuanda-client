@@ -62,7 +62,7 @@ export class DeleteExtraEmailFormComponent extends ScrollToElementFeatureCompone
 			.subscribe({
 				next: () => {
 					this._toastrService.success(
-						'Daodatkowy e-mail został usunięty',
+						'Dodatkowy e-mail został usunięty',
 						'Sukces'
 					);
 					const currentUrl = this._router.url;

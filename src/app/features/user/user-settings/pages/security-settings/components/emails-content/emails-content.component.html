@@ -10,6 +10,22 @@
 		<app-delete-extra-email-form
 			*ngFor="let extraEmail of userEmails?.extraEmails"
 			[extraEmail]="extraEmail"></app-delete-extra-email-form>
+		<span
+			class="mb-2"
+			style="white-space: nowrap"
+			[appLoading]="!userEmails"
+			*ngIf="userEmails.emailToConfirm"
+			><b
+				>Niepotwierdzony
+				{{
+					userEmails.emailToConfirm.isMainEmail === true
+						? 'główny'
+						: 'dodatkowy'
+				}}:</b
+			>
+			{{ userEmails.emailToConfirm.value }}
+			<app-icon class="ms-2" icon="help"></app-icon>
+		</span>
 	</div>
 	<ng-template #noData>
 		<div

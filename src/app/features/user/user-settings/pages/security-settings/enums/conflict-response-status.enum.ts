@@ -3,4 +3,5 @@ export enum ConflictResponseStatus {
 	DbConflict,
 	EmailNotAvailable,
 	OverLimitOfExtraEmails,
+	UserHasActionToConfirm,
 }
