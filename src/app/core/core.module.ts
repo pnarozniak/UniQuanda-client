@@ -22,6 +22,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ErrorHandlerInterceptor } from './interceptors/error-handler.interceptor';
 import { AccessTokenInterceptor } from './interceptors/access-token.interceptor';
 import { RefreshTokenService } from './services/refresh-token.service';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
 	providers: [
@@ -73,6 +74,7 @@ import { RefreshTokenService } from './services/refresh-token.service';
 		OverlayModule,
 		RecaptchaV3Module,
 		MatMenuModule,
+		MatDialogModule,
 	],
 	exports: [HeaderComponent, NavBarComponent],
 })

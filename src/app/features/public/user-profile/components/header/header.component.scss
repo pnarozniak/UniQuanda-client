@@ -116,6 +116,7 @@
 
 	a {
 		color: var(--text-default);
+		cursor: pointer;
 		&:hover {
 			background-color: var(--bg-accent);
 		}
