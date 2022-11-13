@@ -9,7 +9,6 @@ import { ConfirmEmailApiService } from './services/confirm-email-api.service';
 @Component({
 	selector: 'app-confirm-email',
 	templateUrl: './confirm-email.component.html',
-	styleUrls: ['./confirm-email.component.scss'],
 })
 export class ConfirmEmailComponent implements OnInit {
 	constructor(
@@ -43,7 +42,7 @@ export class ConfirmEmailComponent implements OnInit {
 								'Nie udało się potwierdzić emaila',
 								'Błąd'
 							);
-							this._router.navigate(['user/settings/security']);
+							this._router.navigate(['/']);
 						}
 					},
 				});
