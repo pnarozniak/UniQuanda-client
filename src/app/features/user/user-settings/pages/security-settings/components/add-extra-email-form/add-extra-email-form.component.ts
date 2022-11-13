@@ -1,3 +1,4 @@
+import { Overlay } from '@angular/cdk/overlay';
 import { DialogService } from './../../../../../../../core/services/dialog.service';
 import { Router } from '@angular/router';
 import { ConflictResponseStatus } from './../../enums/conflict-response-status.enum';
@@ -28,7 +29,8 @@ export class AddExtraEmailFormComponent {
 		private readonly _toastrService: ToastrService,
 		private readonly _loader: LoaderService,
 		private readonly _router: Router,
-		private readonly _dialogService: DialogService
+		private readonly _dialogService: DialogService,
+		private readonly _overlay: Overlay
 	) {
 		this.form = new FormGroup({
 			email: new FormControl('', [
@@ -78,6 +80,7 @@ export class AddExtraEmailFormComponent {
 						.navigateByUrl('/', { skipLocationChange: true })
 						.then(() => this._router.navigate([currentUrl]));
 					this._dialogService.open(ConfirmEmailInfoDialogComponent, {
+						scrollStrategy: this._overlay.scrollStrategies.noop(),
 						data: { email: email },
 					});
 				},

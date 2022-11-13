@@ -12,9 +12,8 @@
 		<app-delete-extra-email-form
 			*ngFor="let extraEmail of userEmails?.extraEmails"
 			[extraEmail]="extraEmail"></app-delete-extra-email-form>
-		<div class="d-flex flex-row mb-2 w-100">
+		<div class="d-flex flex-row mb-2 w-100" *ngIf="userEmails.emailToConfirm">
 			<app-email-text
-				*ngIf="userEmails.emailToConfirm"
 				emailTitle="Niepotwierdzony {{
 					userEmails.emailToConfirm.isMainEmail === true
 						? 'główny'
