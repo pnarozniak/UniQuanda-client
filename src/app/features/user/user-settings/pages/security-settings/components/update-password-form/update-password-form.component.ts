@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -25,7 +26,8 @@ export class UpdatePasswordFormComponent {
 		private readonly _formsValidationService: FormsValidationService,
 		private readonly _securitySettingsApiService: SecuritySettingsApiService,
 		private readonly _toastrService: ToastrService,
-		private readonly _loader: LoaderService
+		private readonly _loader: LoaderService,
+		private readonly _router: Router
 	) {
 		this.form = new FormGroup(
 			{
@@ -72,11 +74,21 @@ export class UpdatePasswordFormComponent {
 					this._toastrService.success('Hasło zostało zaktualizowane', 'Sukces');
 					this.isFormVisibleEvent.emit(false);
 				},
-				error: (err) => {
-					if (err.error.status === ConflictResponseStatus.InvalidPassword) {
-						this.form.get('oldPassword')?.setErrors({ invalidPassword: true });
-					} else if (err.error.status === ConflictResponseStatus.DbConflict) {
-						this._toastrService.error('Błąd przetwarzania danych', 'Błąd');
+				error: (req) => {
+					if (req.status === 404) {
+						this._toastrService.error('Zasób nie istnieje', 'Błąd');
+						const currentUrl = this._router.url;
+						this._router
+							.navigateByUrl('/', { skipLocationChange: true })
+							.then(() => this._router.navigate([currentUrl]));
+					} else if (req.status === 409) {
+						if (req.error.status === ConflictResponseStatus.InvalidPassword) {
+							this.form
+								.get('oldPassword')
+								?.setErrors({ invalidPassword: true });
+						} else if (req.error.status === ConflictResponseStatus.DbConflict) {
+							this._toastrService.error('Błąd przetwarzania danych', 'Błąd');
+						}
 					}
 				},
 			});

@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { DialogService } from 'src/app/core/services/dialog.service';
 import { IGetUserEmailsReponseDTO } from '../../models/get-user-emails-reponse.dto';
+import { ConfirmEmailInfoDialogComponent } from '../confirm-email-info-dialog/confirm-email-info-dialog.component';
 import { ScrollToElementFeatureComponent } from '../scroll-to-element-feature/scroll-to-element-feature.component';
 
 @Component({
@@ -15,8 +17,20 @@ export class EmailsContentComponent extends ScrollToElementFeatureComponent {
 
 	isExtraEmailFormVisible = false;
 
+	constructor(private readonly _dialogService: DialogService) {
+		super();
+	}
+
 	changeVisibilityForm(): void {
 		this.isExtraEmailFormVisible = !this.isExtraEmailFormVisible;
 		super.scrollToEl();
+	}
+
+	displayInfoEmailDialog(): void {
+		this._dialogService.open(ConfirmEmailInfoDialogComponent, {
+			data: {
+				email: this.userEmails?.emailToConfirm?.value,
+			},
+		});
 	}
 }

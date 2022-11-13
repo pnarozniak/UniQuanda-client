@@ -70,11 +70,19 @@ export class DeleteExtraEmailFormComponent extends ScrollToElementFeatureCompone
 						.navigateByUrl('/', { skipLocationChange: true })
 						.then(() => this._router.navigate([currentUrl]));
 				},
-				error: (err) => {
-					if (err.error.status === ConflictResponseStatus.InvalidPassword) {
-						this.form.get('password')?.setErrors({ invalidPassword: true });
-					} else if (err.error.status === ConflictResponseStatus.DbConflict) {
-						this._toastrService.error('Błąd przetwarzania danych', 'Błąd');
+				error: (req) => {
+					if (req.status === 404) {
+						this._toastrService.error('Zasób nie istnieje', 'Błąd');
+						const currentUrl = this._router.url;
+						this._router
+							.navigateByUrl('/', { skipLocationChange: true })
+							.then(() => this._router.navigate([currentUrl]));
+					} else if (req.status === 409) {
+						if (req.error.status === ConflictResponseStatus.InvalidPassword) {
+							this.form.get('password')?.setErrors({ invalidPassword: true });
+						} else if (req.error.status === ConflictResponseStatus.DbConflict) {
+							this._toastrService.error('Błąd przetwarzania danych', 'Błąd');
+						}
 					}
 				},
 			});

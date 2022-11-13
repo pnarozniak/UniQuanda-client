@@ -9,7 +9,9 @@ import { IDeleteExtraEmailRequestDTO } from '../models/delete-extra-email-reques
 import { IGetUserEmailsReponseDTO } from '../models/get-user-emails-reponse.dto';
 import { IUpdatePasswordRequestDTO } from '../models/update-password-request.dto';
 
-@Injectable()
+@Injectable({
+	providedIn: 'any',
+})
 export class SecuritySettingsApiService {
 	constructor(private readonly _apiService: ApiService) {}
 
@@ -77,5 +79,24 @@ export class SecuritySettingsApiService {
 			IAuthConflictResponseDTO | null,
 			IUpdateUserMainEmailRequestDTO
 		>('Auth/update-main-email', body);
+	}
+
+	/**
+	 * Send a request to resend link to activate email
+	 * @returns Observable<HttpResponse<IAuthConflictResponseDTO>> object with status code of request and status of resend link
+	 */
+	public resendConfirmationEmail(): Observable<HttpResponse<any>> {
+		return this._apiService.put<any, null>(
+			'Auth/resend-confirmation-email',
+			null
+		);
+	}
+
+	/**
+	 * Send a request to cancel email confirmation
+	 * @returns Observable<HttpResponse<IAuthConflictResponseDTO>> object with status code of request and status of cancelation email
+	 */
+	public cancelConfirmationEmail(): Observable<HttpResponse<any>> {
+		return this._apiService.delete<any>('Auth/cancel-email-confirmation');
 	}
 }

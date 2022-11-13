@@ -1,3 +1,4 @@
+import { DialogService } from './../../../../../../../core/services/dialog.service';
 import { Router } from '@angular/router';
 import { ConflictResponseStatus } from './../../enums/conflict-response-status.enum';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -8,6 +9,7 @@ import { SecuritySettingsApiService } from '../../services/security-settings-api
 import { IGetUserEmailsReponseDTO } from '../../models/get-user-emails-reponse.dto';
 import { IAddExtraEmailRequestDTO } from '../../models/add-extra-email-request.dto';
 import { finalize } from 'rxjs';
+import { ConfirmEmailInfoDialogComponent } from '../confirm-email-info-dialog/confirm-email-info-dialog.component';
 
 @Component({
 	selector: 'app-add-extra-email-form',
@@ -25,7 +27,8 @@ export class AddExtraEmailFormComponent {
 		private readonly _securitySettingsApiService: SecuritySettingsApiService,
 		private readonly _toastrService: ToastrService,
 		private readonly _loader: LoaderService,
-		private readonly _router: Router
+		private readonly _router: Router,
+		private readonly _dialogService: DialogService
 	) {
 		this.form = new FormGroup({
 			email: new FormControl('', [
@@ -70,19 +73,18 @@ export class AddExtraEmailFormComponent {
 			.pipe(finalize(() => this._loader.hide()))
 			.subscribe({
 				next: () => {
-					// ToDo
-					this._toastrService.success(
-						'Sukces',
-						'Na twój nowy dodatkowy e-mail został wysłany email z potwierdzeniem'
-					);
 					const currentUrl = this._router.url;
 					this._router
 						.navigateByUrl('/', { skipLocationChange: true })
 						.then(() => this._router.navigate([currentUrl]));
-					// display Dialog
+					this._dialogService.open(ConfirmEmailInfoDialogComponent, {
+						data: { email: email },
+					});
 				},
-				error: (err) => {
-					this.handleConflictRespone(err.error.status);
+				error: (req) => {
+					if (req.status === 409) {
+						this.handleConflictRespone(req.error.status);
+					}
 				},
 			});
 	}

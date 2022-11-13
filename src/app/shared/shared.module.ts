@@ -26,9 +26,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { RecaptchaTermsComponent } from './components/recaptcha-terms/recaptcha-terms.component';
 import { TagComponent } from './components/tag/tag.component';
 import { AutoCompleteComponent } from './components/auto-complete/auto-complete.component';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { RecaptchaTermsComponent } from './components/recaptcha-terms/recaptcha-terms.component';
-import { TagComponent } from './components/tag/tag.component';
 import { DialogBaseComponent } from './components/dialogs/dialog-base/dialog-base.component';
 import { ReportDialogComponent } from './components/dialogs/report-dialog/report-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -38,6 +35,7 @@ import { RouterModule } from '@angular/router';
 import { ReportDialogStep1Component } from './components/dialogs/report-dialog/components/report-dialog-step-1/report-dialog-step-1.component';
 import { ReportDialogStep2Component } from './components/dialogs/report-dialog/components/report-dialog-step-2/report-dialog-step-2.component';
 import { ReportDialogApiService } from './components/dialogs/report-dialog/services/report-dialog-api.service';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 const sharedComponents = [
 	InputComponent,
@@ -51,15 +49,13 @@ const sharedComponents = [
 	ReportDialogComponent,
 	UniquandaLineComponent,
 	CreateAnAccountDialogComponent,
+	AutoCompleteComponent,
+	DialogBaseComponent,
 ];
 
 const privateComponents = [
-	DialogBaseComponent,
 	ReportDialogStep1Component,
 	ReportDialogStep2Component,
-	RecaptchaTermsComponent,
-	TagComponent,
-	AutoCompleteComponent,
 ];
 
 const sharedModules = [CommonModule];
@@ -79,10 +75,11 @@ const sharedDirectives = [
 		ReactiveFormsModule,
 		MatDatepickerModule,
 		MatNativeDateModule,
-		MatTooltipModule,
 		MatDialogModule,
+		MatTooltipModule,
 		MatRippleModule,
 		RouterModule,
+		MatAutocompleteModule,
 	],
 	declarations: [sharedDirectives, sharedComponents, privateComponents],
 	exports: [sharedDirectives, sharedModules, sharedComponents],

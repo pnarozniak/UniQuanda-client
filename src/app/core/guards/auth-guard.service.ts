@@ -14,8 +14,6 @@ export default class AuthGuardService implements CanActivate {
 	) {}
 
 	canActivate(route: ActivatedRouteSnapshot): boolean {
-		console.log('@@@@@@@@@@@@@@@@');
-		console.log(route);
 		const claims = this._userDataService.getUserData();
 		const expectedRole = route.data['expectedRole'];
 		if (!claims) {

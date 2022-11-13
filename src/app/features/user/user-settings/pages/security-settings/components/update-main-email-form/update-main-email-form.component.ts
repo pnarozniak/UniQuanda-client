@@ -1,3 +1,4 @@
+import { DialogService } from 'src/app/core/services/dialog.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -8,6 +9,7 @@ import { ConflictResponseStatus } from '../../enums/conflict-response-status.enu
 import { IGetUserEmailsReponseDTO } from '../../models/get-user-emails-reponse.dto';
 import { IUpdateUserMainEmailRequestDTO } from '../../models/update-user-main-email-request.dto';
 import { SecuritySettingsApiService } from '../../services/security-settings-api.service';
+import { ConfirmEmailInfoDialogComponent } from '../confirm-email-info-dialog/confirm-email-info-dialog.component';
 
 @Component({
 	selector: 'app-update-main-email-form',
@@ -27,7 +29,8 @@ export class UpdateMainEmailFormComponent implements OnInit {
 		private readonly _securitySettingsApiService: SecuritySettingsApiService,
 		private readonly _toastrService: ToastrService,
 		private readonly _loader: LoaderService,
-		private readonly _router: Router
+		private readonly _router: Router,
+		private readonly _dialogService: DialogService
 	) {
 		this.form = new FormGroup({
 			email: new FormControl('', [
@@ -75,26 +78,40 @@ export class UpdateMainEmailFormComponent implements OnInit {
 			.pipe(finalize(() => this._loader.hide()))
 			.subscribe({
 				next: () => {
-					// ToDo
-					this._toastrService.success(
-						'Główny e-mail został zaktualizowany',
-						'Sukces'
-					);
-					// displayDialog();
-					// const currentUrl = this._router.url;
-					// this._router
-					// 	.navigateByUrl('/', { skipLocationChange: true })
-					// 	.then(() => this._router.navigate([currentUrl]));
+					const currentUrl = this._router.url;
+					this._router
+						.navigateByUrl('/', { skipLocationChange: true })
+						.then(() => this._router.navigate([currentUrl]));
+					if (!request.idExtraEmail) {
+						this._dialogService.open(ConfirmEmailInfoDialogComponent, {
+							data: {
+								email: newMainEmail,
+							},
+						});
+					} else {
+						this._toastrService.success(
+							'Twój główny e-mail został zaktualizoany',
+							'Sukces'
+						);
+					}
 				},
-				error: (err) => {
-					if (err.error.status === ConflictResponseStatus.InvalidPassword) {
-						this.form.get('password')?.setErrors({ invalidPassword: true });
-					} else if (err.error.status === ConflictResponseStatus.DbConflict) {
-						this._toastrService.error('Błąd przetwarzania danych', 'Błąd');
-					} else if (
-						err.error.status === ConflictResponseStatus.EmailNotAvailable
-					) {
-						this.form.get('email')?.setErrors({ emailNotAvailable: true });
+				error: (req) => {
+					if (req.status === 404) {
+						this._toastrService.error('Zasób nie istnieje', 'Błąd');
+						const currentUrl = this._router.url;
+						this._router
+							.navigateByUrl('/', { skipLocationChange: true })
+							.then(() => this._router.navigate([currentUrl]));
+					} else if (req.status === 409) {
+						if (req.error.status === ConflictResponseStatus.InvalidPassword) {
+							this.form.get('password')?.setErrors({ invalidPassword: true });
+						} else if (req.error.status === ConflictResponseStatus.DbConflict) {
+							this._toastrService.error('Błąd przetwarzania danych', 'Błąd');
+						} else if (
+							req.error.status === ConflictResponseStatus.EmailNotAvailable
+						) {
+							this.form.get('email')?.setErrors({ emailNotAvailable: true });
+						}
 					}
 				},
 			});

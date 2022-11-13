@@ -24,7 +24,10 @@
 				}}:</b
 			>
 			{{ userEmails.emailToConfirm.value }}
-			<app-icon class="ms-2" icon="help"></app-icon>
+			<app-icon
+				class="ms-2"
+				icon="help"
+				(click)="displayInfoEmailDialog()"></app-icon>
 		</span>
 	</div>
 	<ng-template #noData>
