@@ -1,8 +1,8 @@
 <form [formGroup]="form" (ngSubmit)="sendForm()">
 	<div class="d-flex flex-row mb-2 w-100">
-		<span [ngClass]="{ 'email-text': (extraEmail?.value)!.length > 23 }"
-			><b>Dodatkowy:</b> {{ extraEmail?.value }}
-		</span>
+		<app-email-text
+			emailTitle="Dodatkowy"
+			[emailValue]="extraEmail?.value"></app-email-text>
 		<app-icon
 			icon="delete"
 			class="ms-2"

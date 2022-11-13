@@ -1,27 +1,5 @@
 @use 'colors' as colors;
-@use 'breakpoints' as breakpoints;
 
 .close-btn {
 	background-color: colors.$light-red;
 }
-
-.email-text {
-  overflow-x: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 1280px;
-  display: inline-block;
-}
-
-@media all and (max-width: breakpoints.$xxl) {
-	.email-text {
-		max-width: 450px;
-	}
-}
-
-@media all and (max-width: breakpoints.$sm) {
-	.email-text {
-		max-width: 280px;
-	}
-}
-

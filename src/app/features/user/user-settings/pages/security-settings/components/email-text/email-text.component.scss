@@ -1,0 +1,25 @@
+@use 'breakpoints' as breakpoints;
+
+.email-title {
+	font-weight: 500;
+}
+
+.email-text {
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 1175px;
+  display: inline-block;
+}
+
+@media all and (max-width: breakpoints.$xxl) {
+	.email-text {
+		max-width: 400px;
+	}
+}
+
+@media all and (max-width: breakpoints.$sm) {
+	.email-text {
+		max-width: 280px;
+	}
+}

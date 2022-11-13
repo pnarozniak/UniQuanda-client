@@ -4,31 +4,30 @@
 		>Do swojego konta możesz przypisać 3 dodatkowe e-maile.</i
 	>
 	<div class="d-flex flex-column w-100" *ngIf="userEmails; else noData">
-		<span class="mt-3 mb-2" [appLoading]="!userEmails"
-			><b>Główny:</b> {{ userEmails.mainEmail.value }}</span
-		>
+		<app-email-text
+			emailTitle="Główny"
+			[emailValue]="userEmails.mainEmail.value"
+			class="mt-3 mb-2"
+			[appLoading]="!userEmails"></app-email-text>
 		<app-delete-extra-email-form
 			*ngFor="let extraEmail of userEmails?.extraEmails"
 			[extraEmail]="extraEmail"></app-delete-extra-email-form>
-		<span
-			class="mb-2"
-			style="white-space: nowrap"
-			[appLoading]="!userEmails"
-			*ngIf="userEmails.emailToConfirm"
-			><b
-				>Niepotwierdzony
-				{{
+		<div class="d-flex flex-row mb-2 w-100">
+			<app-email-text
+				*ngIf="userEmails.emailToConfirm"
+				emailTitle="Niepotwierdzony {{
 					userEmails.emailToConfirm.isMainEmail === true
 						? 'główny'
 						: 'dodatkowy'
-				}}:</b
-			>
-			{{ userEmails.emailToConfirm.value }}
+				}}"
+				[emailValue]="userEmails.emailToConfirm.value"
+				[appLoading]="!userEmails">
+			</app-email-text>
 			<app-icon
 				class="ms-2"
 				icon="help"
 				(click)="displayInfoEmailDialog()"></app-icon>
-		</span>
+		</div>
 	</div>
 	<ng-template #noData>
 		<div

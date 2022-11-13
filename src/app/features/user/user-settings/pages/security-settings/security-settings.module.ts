@@ -13,6 +13,7 @@ import { UpdateMainEmailFormComponent } from './components/update-main-email-for
 import { DeleteExtraEmailFormComponent } from './components/delete-extra-email-form/delete-extra-email-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ConfirmEmailInfoDialogComponent } from './components/confirm-email-info-dialog/confirm-email-info-dialog.component';
+import { EmailTextComponent } from './components/email-text/email-text.component';
 
 @NgModule({
 	declarations: [
@@ -25,6 +26,7 @@ import { ConfirmEmailInfoDialogComponent } from './components/confirm-email-info
 		UpdatePasswordFormComponent,
 		UpdateMainEmailFormComponent,
 		ConfirmEmailInfoDialogComponent,
+		EmailTextComponent,
 	],
 	imports: [CommonModule, RouterModule, SharedModule, ReactiveFormsModule],
 	providers: [SecuritySettingsApiService],

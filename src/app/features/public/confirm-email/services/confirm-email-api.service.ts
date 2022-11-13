@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import ApiService from 'src/app/core/services/api.service';
 import { HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { RecaptchaAction } from 'src/app/core/enums/recaptcha-action.enum';
 
 @Injectable()
 export class ConfirmEmailApiService {
@@ -13,7 +14,8 @@ export class ConfirmEmailApiService {
 	): Observable<HttpResponse<any>> {
 		return this._apiService.post<any, IConfirmEmailRequestDTO>(
 			'Auth/confirm-email',
-			body
+			body,
+			RecaptchaAction.CONFIRM_USER_EMAIL
 		);
 	}
 }
