@@ -1,0 +1,30 @@
+<app-dialog-base title="Potwierdź e-mail" class="d-flex flex-column">
+	<h6 class="text-center mt-3">
+		Na twój e-mail: <i>"{{ email }}"</i> został wysłany link potwierdzający
+		przypisanie e-maila do konta.
+	</h6>
+	<div class="d-flex flex-sm-row flex-column justify-content-sm-between">
+		<app-button class="px-3 py-1 mb-sm-0 mb-2" (click)="resendLink()"
+			>Wyślij ponownie link potwierdzający</app-button
+		>
+		<app-button
+			class="cancel-btn px-3 py-1"
+			(click)="changeVisibilityOfDeleteQuestion()"
+			>Usuń e-mail</app-button
+		>
+	</div>
+	<hr />
+	<div *ngIf="isDeleteQuestionVisible" class="text-center">
+		Czy napewno chcesz usunąć email?
+		<div class="d-flex flex-row justify-content-center mt-2">
+			<app-button
+				class="cancel-btn px-3 py-1 me-2"
+				(click)="changeVisibilityOfDeleteQuestion()"
+				>Nie</app-button
+			>
+			<app-button class="confirm-btn px-3 py-1" (click)="deleteEmail()"
+				>Tak</app-button
+			>
+		</div>
+	</div>
+</app-dialog-base>

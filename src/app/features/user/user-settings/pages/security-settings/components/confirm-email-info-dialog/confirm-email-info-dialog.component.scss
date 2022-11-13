@@ -1,0 +1,9 @@
+@use 'colors' as colors;
+
+.cancel-btn {
+	background-color: colors.$light-red;
+}
+
+.confirm-btn {
+	background-color: colors.$green;
+}
