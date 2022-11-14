@@ -8,6 +8,7 @@ import { IAuthConflictResponseDTO } from '../models/auth-conflict-response.dto';
 import { IDeleteExtraEmailRequestDTO } from '../models/delete-extra-email-request.dto';
 import { IGetUserEmailsReponseDTO } from '../models/get-user-emails-reponse.dto';
 import { IUpdatePasswordRequestDTO } from '../models/update-password-request.dto';
+import { RecaptchaAction } from 'src/app/core/enums/recaptcha-action.enum';
 
 @Injectable({
 	providedIn: 'any',
@@ -86,9 +87,10 @@ export class SecuritySettingsApiService {
 	 * @returns Observable<HttpResponse<IAuthConflictResponseDTO>> object with status code of request and status of resend link
 	 */
 	public resendConfirmationEmail(): Observable<HttpResponse<any>> {
-		return this._apiService.put<any, null>(
+		return this._apiService.post<any, null>(
 			'Auth/resend-confirmation-email',
-			null
+			null,
+			RecaptchaAction.RESEND_CONFIRMATION_EMAIL
 		);
 	}
 

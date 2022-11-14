@@ -9,4 +9,5 @@ export enum RecaptchaAction {
 	IS_EMAIL_AND_NICKNAME_AVAILABLE = 'is_email_and_nickname_available',
 	CREATE_REPORT = 'create_report',
 	CONFIRM_USER_EMAIL = 'confirm_user_email',
+	RESEND_CONFIRMATION_EMAIL = 'resend_confirmation_email',
 }
