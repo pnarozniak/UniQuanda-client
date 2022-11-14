@@ -19,13 +19,11 @@
 						? 'główny'
 						: 'dodatkowy'
 				}}"
+				icon="help"
+				(iconClick)="displayInfoEmailDialog()"
 				[emailValue]="userEmails.emailToConfirm.value"
 				[appLoading]="!userEmails">
 			</app-email-text>
-			<app-icon
-				class="ms-2"
-				icon="help"
-				(click)="displayInfoEmailDialog()"></app-icon>
 		</div>
 	</div>
 	<ng-template #noData>

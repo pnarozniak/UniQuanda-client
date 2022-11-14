@@ -2,11 +2,9 @@
 	<div class="d-flex flex-row mb-2 w-100">
 		<app-email-text
 			emailTitle="Dodatkowy"
-			[emailValue]="extraEmail?.value"></app-email-text>
-		<app-icon
 			icon="delete"
-			class="ms-2"
-			(click)="changeVisibilityDeleteForm()"></app-icon>
+			(iconClick)="changeVisibilityDeleteForm()"
+			[emailValue]="extraEmail?.value"></app-email-text>
 	</div>
 	<div
 		*ngIf="isDeleteFormVisibility"

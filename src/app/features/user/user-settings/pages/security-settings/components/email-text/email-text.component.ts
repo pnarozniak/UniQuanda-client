@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
 	selector: 'app-email-text',
@@ -8,4 +8,11 @@ import { Component, Input } from '@angular/core';
 export class EmailTextComponent {
 	@Input() emailTitle: string | undefined;
 	@Input() emailValue: string | undefined;
+	@Input() icon: string | undefined;
+
+	@Output() iconClick: EventEmitter<void> = new EventEmitter();
+
+	onClick(): void {
+		this.iconClick.emit();
+	}
 }
