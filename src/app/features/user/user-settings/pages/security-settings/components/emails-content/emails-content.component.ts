@@ -33,4 +33,11 @@ export class EmailsContentComponent extends ScrollToElementFeatureComponent {
 			},
 		});
 	}
+
+	checkIfUserCanAddEmail(): boolean {
+		if (this.userEmails?.emailToConfirm) {
+			return this.userEmails?.extraEmails.length < 2;
+		}
+		return this.userEmails!.extraEmails.length < 3;
+	}
 }

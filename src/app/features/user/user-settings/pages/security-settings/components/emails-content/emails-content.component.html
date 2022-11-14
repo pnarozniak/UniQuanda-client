@@ -33,6 +33,7 @@
 			[appLoading]="!userEmails"></div>
 	</ng-template>
 	<app-button
+		*ngIf="checkIfUserCanAddEmail()"
 		class="action-btn px-4 py-2 mt-3"
 		(click)="changeVisibilityForm()"
 		[appLoading]="!userEmails">
@@ -41,6 +42,13 @@
 			isExtraEmailFormVisible ? 'Zamknij' : 'Przypisz kolejny e-mail do konta'
 		}}</app-button
 	>
+	<i
+		*ngIf="!checkIfUserCanAddEmail()"
+		class="info-text"
+		[appLoading]="!userEmails">
+		Nie możesz już przypisać więcej adresów e-mail. By to zrobić, usuń jeden z
+		aktualnych adresów.
+	</i>
 	<app-add-extra-email-form
 		#componentRef
 		*ngIf="isExtraEmailFormVisible"
