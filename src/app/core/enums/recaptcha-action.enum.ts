@@ -10,4 +10,10 @@ export enum RecaptchaAction {
 	CREATE_REPORT = 'create_report',
 	CONFIRM_USER_EMAIL = 'confirm_user_email',
 	RESEND_CONFIRMATION_EMAIL = 'resend_confirmation_email',
+	GET_USER_EMAILS = 'get_user_emails',
+	ADD_EXTRA_EMAIL = 'add_extra_email',
+	DELETE_EXTRA_EMAIL = 'delete_extra_email',
+	UPDATE_USER_PASSWORD = 'update_user_password',
+	UPDATE_USER_MAIN_EMAIL = 'update_user_main_email',
+	CANCEL_CONFIRMATION_EMAIL = 'cancel_confirmation_email',
 }

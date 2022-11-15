@@ -22,7 +22,9 @@ export class SecuritySettingsApiService {
 	 */
 	public getUserEmails(): Observable<HttpResponse<IGetUserEmailsReponseDTO>> {
 		return this._apiService.get<IGetUserEmailsReponseDTO>(
-			'Auth/get-user-emails'
+			'Auth/get-user-emails',
+			undefined,
+			RecaptchaAction.GET_USER_EMAILS
 		);
 	}
 
@@ -37,7 +39,7 @@ export class SecuritySettingsApiService {
 		return this._apiService.post<
 			IAuthConflictResponseDTO | null,
 			IAddExtraEmailRequestDTO
-		>('Auth/add-extra-email', body);
+		>('Auth/add-extra-email', body, RecaptchaAction.ADD_EXTRA_EMAIL);
 	}
 
 	/**
@@ -51,7 +53,7 @@ export class SecuritySettingsApiService {
 		return this._apiService.post<
 			IAuthConflictResponseDTO | null,
 			IDeleteExtraEmailRequestDTO
-		>('Auth/delete-extra-email', body);
+		>('Auth/delete-extra-email', body, RecaptchaAction.DELETE_EXTRA_EMAIL);
 	}
 
 	/**
@@ -65,7 +67,12 @@ export class SecuritySettingsApiService {
 		return this._apiService.put<
 			IAuthConflictResponseDTO | null,
 			IUpdatePasswordRequestDTO
-		>('Auth/update-user-password', body);
+		>(
+			'Auth/update-user-password',
+			body,
+			undefined,
+			RecaptchaAction.UPDATE_USER_PASSWORD
+		);
 	}
 
 	/**
@@ -79,7 +86,12 @@ export class SecuritySettingsApiService {
 		return this._apiService.put<
 			IAuthConflictResponseDTO | null,
 			IUpdateUserMainEmailRequestDTO
-		>('Auth/update-main-email', body);
+		>(
+			'Auth/update-main-email',
+			body,
+			undefined,
+			RecaptchaAction.UPDATE_USER_MAIN_EMAIL
+		);
 	}
 
 	/**
@@ -99,6 +111,10 @@ export class SecuritySettingsApiService {
 	 * @returns Observable<HttpResponse<IAuthConflictResponseDTO>> object with status code of request and status of cancelation email
 	 */
 	public cancelConfirmationEmail(): Observable<HttpResponse<any>> {
-		return this._apiService.delete<any>('Auth/cancel-email-confirmation');
+		return this._apiService.delete<any>(
+			'Auth/cancel-email-confirmation',
+			undefined,
+			RecaptchaAction.CANCEL_CONFIRMATION_EMAIL
+		);
 	}
 }

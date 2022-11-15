@@ -22,7 +22,14 @@ export class DeleteExtraEmailFormComponent extends ScrollToElementFeatureCompone
 	@Input() extraEmail: IUserEmailValue | null = null;
 
 	isDeleteFormVisibility = false;
-	form: FormGroup;
+	form: FormGroup = new FormGroup({
+		password: new FormControl('', [
+			Validators.required,
+			Validators.minLength(8),
+			Validators.maxLength(30),
+			Validators.pattern('^(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[0-9]+).*$'),
+		]),
+	});
 
 	constructor(
 		private readonly _securitySettingsApiService: SecuritySettingsApiService,
@@ -31,14 +38,6 @@ export class DeleteExtraEmailFormComponent extends ScrollToElementFeatureCompone
 		private readonly _router: Router
 	) {
 		super();
-		this.form = new FormGroup({
-			password: new FormControl('', [
-				Validators.required,
-				Validators.minLength(8),
-				Validators.maxLength(30),
-				Validators.pattern('^(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[0-9]+).*$'),
-			]),
-		});
 	}
 
 	changeVisibilityDeleteForm(): void {

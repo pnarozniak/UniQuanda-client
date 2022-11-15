@@ -23,8 +23,20 @@ import { ConfirmEmailInfoDialogComponent } from '../confirm-email-info-dialog/co
 export class UpdateMainEmailFormComponent implements OnInit {
 	@Input() userEmails: IGetUserEmailsReponseDTO | null = null;
 
-	form: FormGroup;
 	extraEmails: string[] = [];
+	form: FormGroup = new FormGroup({
+		email: new FormControl('', [
+			Validators.required,
+			Validators.pattern('^.+@.+\\..+$'),
+			Validators.maxLength(320),
+		]),
+		password: new FormControl('', [
+			Validators.required,
+			Validators.minLength(8),
+			Validators.maxLength(30),
+			Validators.pattern('^(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[0-9]+).*$'),
+		]),
+	});
 
 	constructor(
 		private readonly _securitySettingsApiService: SecuritySettingsApiService,
@@ -33,21 +45,7 @@ export class UpdateMainEmailFormComponent implements OnInit {
 		private readonly _router: Router,
 		private readonly _dialogService: DialogService,
 		private readonly _overlay: Overlay
-	) {
-		this.form = new FormGroup({
-			email: new FormControl('', [
-				Validators.required,
-				Validators.pattern('^.+@.+\\..+$'),
-				Validators.maxLength(320),
-			]),
-			password: new FormControl('', [
-				Validators.required,
-				Validators.minLength(8),
-				Validators.maxLength(30),
-				Validators.pattern('^(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[0-9]+).*$'),
-			]),
-		});
-	}
+	) {}
 
 	ngOnInit(): void {
 		if (this.userEmails?.extraEmails)

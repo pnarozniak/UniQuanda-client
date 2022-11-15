@@ -22,7 +22,19 @@ import { ConfirmEmailInfoDialogComponent } from '../confirm-email-info-dialog/co
 })
 export class AddExtraEmailFormComponent {
 	@Input() userEmails: IGetUserEmailsReponseDTO | null = null;
-	form: FormGroup;
+	form: FormGroup = new FormGroup({
+		email: new FormControl('', [
+			Validators.required,
+			Validators.pattern('^.+@.+\\..+$'),
+			Validators.maxLength(320),
+		]),
+		password: new FormControl('', [
+			Validators.required,
+			Validators.minLength(8),
+			Validators.maxLength(30),
+			Validators.pattern('^(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[0-9]+).*$'),
+		]),
+	});
 
 	constructor(
 		private readonly _securitySettingsApiService: SecuritySettingsApiService,
@@ -31,21 +43,7 @@ export class AddExtraEmailFormComponent {
 		private readonly _router: Router,
 		private readonly _dialogService: DialogService,
 		private readonly _overlay: Overlay
-	) {
-		this.form = new FormGroup({
-			email: new FormControl('', [
-				Validators.required,
-				Validators.pattern('^.+@.+\\..+$'),
-				Validators.maxLength(320),
-			]),
-			password: new FormControl('', [
-				Validators.required,
-				Validators.minLength(8),
-				Validators.maxLength(30),
-				Validators.pattern('^(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[0-9]+).*$'),
-			]),
-		});
-	}
+	) {}
 
 	sendForm(): void {
 		this.form.markAllAsTouched();

@@ -4,6 +4,8 @@
 		<span [ngClass]="{ 'email-text': emailValue!.length > 23 }">
 			{{ emailValue }}
 		</span>
-		<app-icon class="ms-2" icon="{{ icon }}" (click)="onClick()"></app-icon>
+		<app-button class="ms-2" class="ms-2" color="none" (click)="onClick()">
+			<app-icon icon="{{ icon }}"></app-icon>
+		</app-button>
 	</div>
 </div>

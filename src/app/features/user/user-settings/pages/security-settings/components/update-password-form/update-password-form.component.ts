@@ -20,7 +20,24 @@ import { SecuritySettingsApiService } from '../../services/security-settings-api
 export class UpdatePasswordFormComponent {
 	@Output() isFormVisibleEvent = new EventEmitter<boolean>();
 
-	form: FormGroup;
+	form: FormGroup = new FormGroup(
+		{
+			oldPassword: new FormControl('', [
+				Validators.required,
+				Validators.minLength(8),
+				Validators.maxLength(30),
+				Validators.pattern('^(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[0-9]+).*$'),
+			]),
+			newPassword: new FormControl('', [
+				Validators.required,
+				Validators.minLength(8),
+				Validators.maxLength(30),
+				Validators.pattern('^(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[0-9]+).*$'),
+			]),
+			newRepeatedPassword: new FormControl('', [Validators.required]),
+		},
+		this._formsValidationService.checkIfPasswordsMatch
+	);
 
 	constructor(
 		private readonly _formsValidationService: FormsValidationService,
@@ -28,26 +45,7 @@ export class UpdatePasswordFormComponent {
 		private readonly _toastrService: ToastrService,
 		private readonly _loader: LoaderService,
 		private readonly _router: Router
-	) {
-		this.form = new FormGroup(
-			{
-				oldPassword: new FormControl('', [
-					Validators.required,
-					Validators.minLength(8),
-					Validators.maxLength(30),
-					Validators.pattern('^(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[0-9]+).*$'),
-				]),
-				newPassword: new FormControl('', [
-					Validators.required,
-					Validators.minLength(8),
-					Validators.maxLength(30),
-					Validators.pattern('^(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[0-9]+).*$'),
-				]),
-				newRepeatedPassword: new FormControl('', [Validators.required]),
-			},
-			this._formsValidationService.checkIfPasswordsMatch
-		);
-	}
+	) {}
 
 	sendForm() {
 		this.form.markAllAsTouched();

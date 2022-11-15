@@ -38,11 +38,7 @@ export class ConfirmEmailComponent implements OnInit {
 					},
 					error: (err) => {
 						if (err.status === 409) {
-							this._toastrService.error(
-								'Nie udało się potwierdzić emaila',
-								'Błąd'
-							);
-							this._router.navigate(['/']);
+							this._router.navigate(['/page-not-found']);
 						}
 					},
 				});
