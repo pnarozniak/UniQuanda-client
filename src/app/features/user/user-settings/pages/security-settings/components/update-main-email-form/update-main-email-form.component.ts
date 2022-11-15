@@ -1,4 +1,3 @@
-import { Overlay } from '@angular/cdk/overlay';
 import { DialogService } from 'src/app/core/services/dialog.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -43,8 +42,7 @@ export class UpdateMainEmailFormComponent implements OnInit {
 		private readonly _toastrService: ToastrService,
 		private readonly _loader: LoaderService,
 		private readonly _router: Router,
-		private readonly _dialogService: DialogService,
-		private readonly _overlay: Overlay
+		private readonly _dialogService: DialogService
 	) {}
 
 	ngOnInit(): void {
@@ -84,7 +82,6 @@ export class UpdateMainEmailFormComponent implements OnInit {
 						.then(() => this._router.navigate([currentUrl]));
 					if (!request.idExtraEmail) {
 						this._dialogService.open(ConfirmEmailInfoDialogComponent, {
-							scrollStrategy: this._overlay.scrollStrategies.noop(),
 							data: {
 								email: newMainEmail,
 							},

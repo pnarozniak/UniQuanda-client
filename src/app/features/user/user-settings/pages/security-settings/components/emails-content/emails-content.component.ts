@@ -1,4 +1,3 @@
-import { Overlay } from '@angular/cdk/overlay';
 import { Component, Input } from '@angular/core';
 import { DialogService } from 'src/app/core/services/dialog.service';
 import { IGetUserEmailsReponseDTO } from '../../models/get-user-emails-reponse.dto';
@@ -18,10 +17,7 @@ export class EmailsContentComponent extends ScrollToElementFeatureComponent {
 
 	isExtraEmailFormVisible = false;
 
-	constructor(
-		private readonly _dialogService: DialogService,
-		private readonly _overlay: Overlay
-	) {
+	constructor(private readonly _dialogService: DialogService) {
 		super();
 	}
 
@@ -32,7 +28,6 @@ export class EmailsContentComponent extends ScrollToElementFeatureComponent {
 
 	displayInfoEmailDialog(): void {
 		this._dialogService.open(ConfirmEmailInfoDialogComponent, {
-			scrollStrategy: this._overlay.scrollStrategies.noop(),
 			data: {
 				email: this.userEmails?.emailToConfirm?.value,
 			},
