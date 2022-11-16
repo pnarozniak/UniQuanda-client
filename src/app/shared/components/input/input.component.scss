@@ -25,10 +25,6 @@
 
 		.mat-form-field-underline::before {
 			background-color: colors.$bordered-gray;
-
-			&:hover {
-				background-color: green !important;
-			}
 		}
 
 		.mat-form-field-infix {
