@@ -84,6 +84,7 @@ export class UpdateMainEmailFormComponent implements OnInit {
 						this._dialogService.open(ConfirmEmailInfoDialogComponent, {
 							data: {
 								email: newMainEmail,
+								isBasicTitle: true,
 							},
 						});
 					} else {

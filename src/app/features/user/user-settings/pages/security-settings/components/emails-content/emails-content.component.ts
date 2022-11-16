@@ -22,14 +22,24 @@ export class EmailsContentComponent extends ScrollToElementFeatureComponent {
 	}
 
 	changeVisibilityForm(): void {
-		this.isExtraEmailFormVisible = !this.isExtraEmailFormVisible;
-		super.scrollToEl();
+		if (!this.isExtraEmailFormVisible && this.userEmails?.emailToConfirm) {
+			this._dialogService.open(ConfirmEmailInfoDialogComponent, {
+				data: {
+					email: this.userEmails.emailToConfirm.value,
+					isBasicTitle: false,
+				},
+			});
+		} else {
+			this.isExtraEmailFormVisible = !this.isExtraEmailFormVisible;
+			super.scrollToEl();
+		}
 	}
 
 	displayInfoEmailDialog(): void {
 		this._dialogService.open(ConfirmEmailInfoDialogComponent, {
 			data: {
 				email: this.userEmails?.emailToConfirm?.value,
+				isBasicTitle: true,
 			},
 		});
 	}

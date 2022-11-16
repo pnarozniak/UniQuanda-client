@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
+import { DialogService } from 'src/app/core/services/dialog.service';
 import { IGetUserEmailsReponseDTO } from '../../models/get-user-emails-reponse.dto';
+import { ConfirmEmailInfoDialogComponent } from '../confirm-email-info-dialog/confirm-email-info-dialog.component';
 import { ScrollToElementFeatureComponent } from '../scroll-to-element-feature/scroll-to-element-feature.component';
 
 @Component({
@@ -14,17 +15,19 @@ import { ScrollToElementFeatureComponent } from '../scroll-to-element-feature/sc
 export class MainEmailContentComponent extends ScrollToElementFeatureComponent {
 	@Input() userEmails: IGetUserEmailsReponseDTO | null = null;
 
-	constructor(private readonly _toastrService: ToastrService) {
+	constructor(private readonly _dialogService: DialogService) {
 		super();
 	}
 	isFormVisible = false;
 
 	changeVisibilityForm() {
 		if (!this.isFormVisible && this.userEmails?.emailToConfirm) {
-			this._toastrService.error(
-				'Zmiana wymaga potwierdzenie innego e-maila',
-				'Niedostępna akcja'
-			);
+			this._dialogService.open(ConfirmEmailInfoDialogComponent, {
+				data: {
+					email: this.userEmails.emailToConfirm.value,
+					isBasicTitle: false,
+				},
+			});
 		} else {
 			this.isFormVisible = !this.isFormVisible;
 			super.scrollToEl();

@@ -1,7 +1,11 @@
 <app-dialog-base dialogTitle="Potwierdź e-mail" class="d-flex flex-column">
-	<h6 class="text-center mt-3">
+	<h6 class="text-center mt-3" *ngIf="isBasicTitle">
 		Na twój e-mail: <i>"{{ email }}"</i> został wysłany link potwierdzający
 		przypisanie e-maila do konta.
+	</h6>
+	<h6 class="text-center mt-3" *ngIf="!isBasicTitle">
+		Akcja wymaga potwierdzenia e-maila: <i>"{{ email }}"</i>, na który został
+		wysłany link potwierdzający przypisanie e-maila do konta.
 	</h6>
 	<div
 		class="d-flex flex-sm-row flex-column justify-content-sm-between btn-container">

@@ -1,5 +1,5 @@
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { SecuritySettingsApiService } from '../../services/security-settings-api.service';
@@ -11,8 +11,8 @@ import { IConfirmEmailInfoDialog } from '../../models/confirm-email-info-dialog.
 	styleUrls: ['./confirm-email-info-dialog.component.scss'],
 })
 export class ConfirmEmailInfoDialogComponent implements OnInit {
-	@Input() email = '';
-
+	email = '';
+	isBasicTitle = true;
 	isDeleteQuestionVisible = false;
 
 	constructor(
@@ -25,6 +25,7 @@ export class ConfirmEmailInfoDialogComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.email = this.data.email;
+		this.isBasicTitle = this.data.isBasicTitle;
 	}
 
 	changeVisibilityOfDeleteQuestion() {

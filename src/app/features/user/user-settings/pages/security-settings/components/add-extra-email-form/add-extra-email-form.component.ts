@@ -76,7 +76,7 @@ export class AddExtraEmailFormComponent {
 						.navigateByUrl('/', { skipLocationChange: true })
 						.then(() => this._router.navigate([currentUrl]));
 					this._dialogService.open(ConfirmEmailInfoDialogComponent, {
-						data: { email: email },
+						data: { email: email, isBasicTitle: true },
 					});
 				},
 				error: (req) => {
