@@ -35,7 +35,11 @@
 				}
 			]"></app-input>
 		<div class="d-flex flex-row gap-2 mt-3 mb-3">
-			<app-button class="px-4 py-2" mode="submit" color="purple"
+			<app-button
+				class="px-4 py-2"
+				mode="submit"
+				color="purple"
+				[ngClass]="{ 'disabled-btn': form.invalid }"
 				>Usuń e-mail</app-button
 			>
 			<app-button

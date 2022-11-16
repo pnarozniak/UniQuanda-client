@@ -10,7 +10,7 @@
 	column-gap: 10px;
 }
 
- .title {
+.title {
 	font-size: 18px;
 	margin-bottom: 8px;
 	font-weight: 500;
@@ -20,10 +20,15 @@
 	font-size: 16px;
 }
 
- .form-container {
+.form-container {
 	width: max(72%, 400px);
 	padding-left: min(48px, 5%);
 	margin-top: 8px;
+}
+
+.disabled-btn {
+	background-color: colors.$bordered-gray;
+	pointer-events: none;
 }
 
 .header-container-loading {
