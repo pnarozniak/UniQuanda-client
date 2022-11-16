@@ -34,7 +34,7 @@ export class ConfirmEmailComponent implements OnInit {
 				.subscribe({
 					next: () => {
 						this._toastrService.success('Email został potwierdzony', 'Sukces');
-						this._router.navigate(['user/settings/security']);
+						this._router.navigate(['/user/settings/security']);
 					},
 					error: (err) => {
 						if (err.status === 409) {
