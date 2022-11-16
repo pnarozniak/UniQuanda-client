@@ -36,6 +36,16 @@
 	}
 
 	.dark {
+		&.mat-form-field.mat-focused:not(.mat-form-field-invalid) {
+			::ng-deep .mat-form-field-label {
+				color: colors.$dark-yellow;
+			}
+		}
+
+		::ng-deep .mat-form-field-outline-thick {
+				color: colors.$dark-yellow !important;
+		}
+
 		&.mat-form-field:not(.mat-focused) {
 			::ng-deep .mat-form-field-label {
 				color: colors.$bordered-gray !important;
