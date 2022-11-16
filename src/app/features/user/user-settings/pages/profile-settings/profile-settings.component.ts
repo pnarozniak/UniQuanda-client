@@ -5,8 +5,6 @@ import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { UserDataService } from 'src/app/core/services/user-data.service';
 import { FormsValidationService } from 'src/app/shared/services/forms-validation.service';
-import { IUserSettingsDataResponseDTO } from '../../models/user-settings-data.dto';
-import { UserProfileApiService } from '../../services/user-profile-api.service';
 import {
 	BehaviorSubject,
 	catchError,
@@ -17,6 +15,8 @@ import {
 } from 'rxjs';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { HttpResponse } from '@angular/common/http';
+import { IUserSettingsDataResponseDTO } from './models/user-settings-data.dto';
+import { UserProfileSettingsApiService } from './services/user-profile-settings-api.service';
 
 @Component({
 	selector: 'app-profile-settings',
@@ -36,7 +36,7 @@ export class ProfileSettingsComponent {
 	public user$: Observable<IUserSettingsDataResponseDTO | null>;
 
 	constructor(
-		private readonly _userSettingsApiService: UserProfileApiService,
+		private readonly _userProfileSettingApiService: UserProfileSettingsApiService,
 		private readonly _formsValidationService: FormsValidationService,
 		private readonly _userdataService: UserDataService,
 		private readonly _toastrService: ToastrService,
@@ -67,7 +67,7 @@ export class ProfileSettingsComponent {
 	}
 
 	loadUser() {
-		this.user$ = this._userSettingsApiService
+		this.user$ = this._userProfileSettingApiService
 			.getUserDataForEditProfileSettings()
 			.pipe(
 				map((data: HttpResponse<IUserSettingsDataResponseDTO>) => {
@@ -134,7 +134,7 @@ export class ProfileSettingsComponent {
 		if (this.userBanner) userFormData.append('Banner', this.userBanner);
 		if (this.userAvatar) userFormData.append('Avatar', this.userAvatar);
 
-		this._userSettingsApiService
+		this._userProfileSettingApiService
 			.updateUser(userFormData)
 			.pipe(finalize(() => this._loader.hide()))
 			.subscribe({

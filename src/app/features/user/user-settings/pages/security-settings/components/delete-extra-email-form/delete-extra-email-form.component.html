@@ -1,0 +1,52 @@
+<form [formGroup]="form" (ngSubmit)="sendForm()">
+	<div class="d-flex flex-row mb-2 w-100">
+		<app-email-text
+			emailTitle="Dodatkowy"
+			icon="delete"
+			(iconClick)="changeVisibilityDeleteForm()"
+			[emailValue]="extraEmail?.value"></app-email-text>
+	</div>
+	<div
+		*ngIf="isDeleteFormVisibility"
+		class="d-flex flex-column align-items-start form-container mt-4">
+		<h5 class="title">Czy napewno chcesz usunąć adres e-mail z konta?</h5>
+		<span class="description"
+			>Ze względów bezpieczeństwa usunięcie adresu e-mail z konta wymagana
+			potwierdzenia hasłem</span
+		>
+		<app-input
+			#componentRef
+			label="Hasło"
+			type="password"
+			[control]="form.controls['password']"
+			hint="Ze względów bezpieczeństwa zmiana głównego adresu e-mail wymagana potwierdzenia hasłem"
+			[errors]="[
+				{
+					name: 'required',
+					message: 'Hasło jest wymagane.'
+				},
+				{
+					name: 'pattern',
+					message: 'Siła hasła nie spełnia polityki serwisu.'
+				},
+				{
+					name: 'invalidPassword',
+					message: 'Błędne hasło.'
+				}
+			]"></app-input>
+		<div class="d-flex flex-row gap-2 mt-3 mb-3">
+			<app-button
+				class="px-4 py-2"
+				mode="submit"
+				color="purple"
+				[disabled]="form.invalid"
+				>Usuń e-mail</app-button
+			>
+			<app-button
+				class="px-4 py-2 close-btn"
+				(click)="changeVisibilityDeleteForm()"
+				>Zamknij</app-button
+			>
+		</div>
+	</div>
+</form>

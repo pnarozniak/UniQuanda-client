@@ -68,7 +68,7 @@ export default class ApiService {
 		httpParams: HttpParams = new HttpParams(),
 		recaptchaAction: RecaptchaAction | null = null
 	): Observable<HttpResponse<T>> {
-		return this.http.delete<T>(`${this.server}/${url}/`, {
+		return this.http.delete<T>(`${this.server}/${url}`, {
 			params: httpParams,
 			observe: 'response',
 			context: new HttpContext().set(

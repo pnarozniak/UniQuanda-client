@@ -17,13 +17,18 @@ export class ButtonComponent {
 	@Input() color: 'none' | 'blue' | 'purple' | 'gray' = 'blue';
 	@Input() shape: 'round' | 'rect' = 'round';
 	@ViewChild('buttonRef') buttonRef?: ElementRef;
+	@Input() disabled = false;
 
 	@HostBinding('class') get buttonClasses() {
-		return [this.color, this.shape].map((c) => `app-button-${c}`).join(' ');
+		return [this.color, this.shape, this.disabled ? 'disabled' : 'enabled']
+			.map((c) => `app-button-${c}`)
+			.join(' ');
 	}
 
 	@HostListener('click')
 	onClick() {
-		this.buttonRef?.nativeElement.click();
+		if (!this.disabled) {
+			this.buttonRef?.nativeElement.click();
+		}
 	}
 }

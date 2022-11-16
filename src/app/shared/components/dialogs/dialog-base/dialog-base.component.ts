@@ -18,7 +18,7 @@ import { ThemeService } from 'src/app/core/services/theme.service';
 export class DialogBaseComponent implements OnInit, OnDestroy {
 	@Input() width = '600px';
 	@Input() height?: string;
-	@Input() title?: string;
+	@Input() dialogTitle?: string;
 	@Input() showBackButton = false;
 	@Output() backButtonClicked = new EventEmitter();
 
