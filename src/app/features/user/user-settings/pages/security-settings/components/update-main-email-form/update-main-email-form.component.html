@@ -48,7 +48,7 @@
 		class="mt-3 px-4 py-2"
 		mode="submit"
 		color="purple"
-		[ngClass]="{ 'disabled-btn': form.invalid }"
+		[disabled]="form.invalid"
 		>Zmień główny e-mail</app-button
 	>
 </form>

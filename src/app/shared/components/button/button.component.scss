@@ -60,4 +60,9 @@
 		white-space: nowrap;
 		overflow: hidden;
 	}
+
+	&.app-button-disabled {
+		background-color: colors.$bordered-gray;
+		pointer-events: none;
+	}
 }
