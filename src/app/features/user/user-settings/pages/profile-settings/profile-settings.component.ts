@@ -1,4 +1,4 @@
-import { AppUserProfileUpdateStatusEnum } from './enums/app-user-profile-update-status.enum';
+import { AppUserProfileUpdateResultEnum } from './enums/app-user-profile-update-result.enum';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -66,7 +66,6 @@ export class ProfileSettingsComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		console.log('@@@@@@@@@@@@')
 		this.loadUser();
 	}
 
@@ -161,7 +160,7 @@ export class ProfileSettingsComponent implements OnInit {
 					} else if (res.status === 409) {
 						if (
 							res.error.appUserUpdateStatus ===
-							AppUserProfileUpdateStatusEnum.NickNameIsUsed
+							AppUserProfileUpdateResultEnum.NickNameIsUsed
 						) {
 							this.form.get('nickName')?.setErrors({ nicknameExists: true });
 						} else {
