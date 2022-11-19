@@ -72,7 +72,7 @@ export class RegisterSecondStepComponent implements OnInit {
 			.subscribe({
 				next: () => {
 					this._router.navigate(['/public/confirm-registration'], {
-						queryParams: { email: this.form.value.email },
+						queryParams: { email: this.email },
 					});
 				},
 				error: (error) => {
