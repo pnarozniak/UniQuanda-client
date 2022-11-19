@@ -1,6 +1,6 @@
-import { AppUserProfileUpdateResultEnum } from '../enums/app-user-profile-update-result.enum';
+import { AppUserProfileUpdateResult } from '../enums/app-user-profile-update-result.enum';
 
 export interface IUpdateAppUserProfileResponseDTO {
-	updateStatus: AppUserProfileUpdateResultEnum;
+	updateStatus: AppUserProfileUpdateResult;
 	avatarUrl: string;
 }
