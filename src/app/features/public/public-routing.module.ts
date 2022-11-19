@@ -46,6 +46,14 @@ const routes: Routes = [
 			),
 		data: { title: 'Ładowanie profilu...' },
 	},
+	{
+		path: 'confirm-email',
+		loadChildren: () =>
+			import('./confirm-email/confirm-email.module').then(
+				(m) => m.ConfirmEmailModule
+			),
+		data: { title: 'Ładowanie...' },
+	},
 ];
 @NgModule({
 	imports: [RouterModule.forChild(routes)],

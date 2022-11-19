@@ -1,13 +1,12 @@
+import { IUpdateAppUserProfileResponseDTO } from './../models/update-app-user-profile.dto';
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import ApiService from 'src/app/core/services/api.service';
 import { IUserSettingsDataResponseDTO } from '../models/user-settings-data.dto';
 
-@Injectable({
-	providedIn: 'root',
-})
-export class UserProfileApiService {
+@Injectable()
+export class UserProfileSettingsApiService {
 	constructor(private readonly _apiService: ApiService) {}
 
 	/**
@@ -31,8 +30,8 @@ export class UserProfileApiService {
 	 */
 	public updateUser(
 		userSettingsDataFormData: FormData
-	): Observable<HttpResponse<any>> {
-		return this._apiService.put<any, FormData>(
+	): Observable<HttpResponse<IUpdateAppUserProfileResponseDTO>> {
+		return this._apiService.put<IUpdateAppUserProfileResponseDTO, FormData>(
 			'appUserProfile/settings',
 			userSettingsDataFormData
 		);

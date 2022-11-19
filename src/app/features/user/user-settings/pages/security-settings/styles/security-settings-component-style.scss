@@ -1,0 +1,67 @@
+@use 'breakpoints' as breakpoints;
+@use 'colors' as colors;
+ 
+.page-title {
+	margin-bottom: 24px;
+	font-weight: 500;
+}
+
+.title-container {
+	column-gap: 10px;
+}
+
+.title {
+	font-size: 18px;
+	margin-bottom: 8px;
+	font-weight: 500;
+}
+
+ .description {
+	font-size: 16px;
+}
+
+.form-container {
+	width: max(72%, 400px);
+	padding-left: min(48px, 5%);
+	margin-top: 8px;
+}
+
+
+.header-container-loading {
+	text-align: justify;
+}
+
+.loading {
+	&.page-title {
+		width: 20%;
+	}
+}
+
+@media all and (max-width: breakpoints.$lg) {
+	.header-container {
+		margin-bottom: 24px;
+	}
+}
+
+@media all and (max-width: breakpoints.$sm) {
+	 .page-title {
+		margin-bottom: 14px;
+	}
+
+	 .title {
+		font-size: 15px;
+		margin-bottom: 9px;
+	}
+
+	 .description {
+		font-size: 13px;
+	}
+
+	 .form-container {
+		width: 100%;
+	}
+
+	 .action-btn {
+		width: 100% !important;
+	}
+}

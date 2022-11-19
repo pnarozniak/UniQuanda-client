@@ -1,0 +1,15 @@
+<app-dialog-base dialogTitle="Zgłoś" [ngSwitch]="view">
+	<app-report-dialog-step-1
+		*ngSwitchCase="'step-1'"
+		[data]="data"
+		[reportTypes]="reportTypes"
+		[(selectedReportType)]="selectedReportType"
+		[(view)]="view">
+	</app-report-dialog-step-1>
+	<app-report-dialog-step-2
+		*ngSwitchCase="'step-2'"
+		[data]="data"
+		[selectedReportType]="selectedReportType"
+		[(view)]="view">
+	</app-report-dialog-step-2>
+</app-dialog-base>

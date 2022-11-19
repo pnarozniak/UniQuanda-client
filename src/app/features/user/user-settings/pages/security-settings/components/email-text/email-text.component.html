@@ -1,0 +1,11 @@
+<div class="d-flex flex-sm-row flex-column">
+	<span class="email-title">{{ emailTitle }}:&nbsp;</span>
+	<div class="d-flex flex-row">
+		<span [ngClass]="{ 'email-text': emailValue!.length > 23 }">
+			{{ emailValue }}
+		</span>
+		<app-button class="ms-2" class="ms-2" color="none" (click)="onClick()">
+			<app-icon icon="{{ icon }}"></app-icon>
+		</app-button>
+	</div>
+</div>

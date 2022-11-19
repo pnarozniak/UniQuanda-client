@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserDataService } from 'src/app/core/services/user-data.service';
 import { LoginApiService } from './services/login-api.service';
@@ -27,13 +27,16 @@ export class LoginComponent {
 			Validators.pattern('^(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[0-9]+).*$'),
 		]),
 	});
+	private redirectUrl: string | null =
+		this._activatedRoute.snapshot.queryParamMap.get('redirectUrl');
 
 	constructor(
 		private readonly _loginApiService: LoginApiService,
 		private readonly _userDataService: UserDataService,
 		private readonly _toastrService: ToastrService,
 		private readonly _router: Router,
-		private readonly _loader: LoaderService
+		private readonly _loader: LoaderService,
+		private readonly _activatedRoute: ActivatedRoute
 	) {}
 
 	handleLogin() {
@@ -62,7 +65,7 @@ export class LoginComponent {
 							res.body.accessToken ?? '',
 							res.body.refreshToken ?? ''
 						);
-						this._router.navigate(['/public/home']);
+						this._router.navigate([this.redirectUrl || '/public/home']);
 					}
 				},
 				error: (error) => {
