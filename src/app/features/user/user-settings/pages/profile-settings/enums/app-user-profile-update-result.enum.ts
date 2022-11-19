@@ -1,4 +1,4 @@
-export enum AppUserProfileUpdateResultEnum {
+export enum AppUserProfileUpdateResult {
 	ContentNotExist,
 	NickNameIsUsed,
 	AvatarUploadError,

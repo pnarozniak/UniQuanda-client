@@ -1,4 +1,4 @@
-import { AppUserProfileUpdateResultEnum } from './enums/app-user-profile-update-result.enum';
+import { AppUserProfileUpdateResult } from './enums/app-user-profile-update-result.enum';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -160,7 +160,7 @@ export class ProfileSettingsComponent implements OnInit {
 					} else if (res.status === 409) {
 						if (
 							res.error.appUserUpdateStatus ===
-							AppUserProfileUpdateResultEnum.NickNameIsUsed
+							AppUserProfileUpdateResult.NickNameIsUsed
 						) {
 							this.form.get('nickName')?.setErrors({ nicknameExists: true });
 						} else {
