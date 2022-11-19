@@ -1,4 +1,4 @@
-@use '../../../../assets/scss/colors.scss' as colors;
+@use 'colors' as colors;
 span {
 	background-color: colors.$tag-blue;
 	color: colors.$academic-blue;
@@ -6,6 +6,6 @@ span {
 	font-size: 13px;
 }
 .dark {
-	background-color: colors.$academic-blue;
+	background-color: colors.$pink;
 	color: colors.$crystal-white;
 }
