@@ -155,7 +155,7 @@ export class ProfileSettingsComponent implements OnInit {
 				},
 				error: (res) => {
 					if (res.status === 404) {
-						this._toastrService.error('Błąd', 'Podany zasób nie istnieje');
+						this._toastrService.error('Błąd', 'Zasób nie istnieje');
 						this._router.navigate(['/page-not-found']);
 					} else if (res.status === 409) {
 						if (
