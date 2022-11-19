@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs';
 import { LoaderService } from 'src/app/core/services/loader.service';
-import { ConflictResponseStatus } from '../../enums/conflict-response-status.enum';
+import { AppUserSecurityActionResult } from '../../enums/app-user-security-action-result.enum';
 import { IGetUserEmailsReponseDTO } from '../../models/get-user-emails-reponse.dto';
 import { IUpdateUserMainEmailRequestDTO } from '../../models/update-user-main-email-request.dto';
 import { SecuritySettingsApiService } from '../../services/security-settings-api.service';
@@ -96,18 +96,22 @@ export class UpdateMainEmailFormComponent implements OnInit {
 				},
 				error: (req) => {
 					if (req.status === 404) {
-						this._toastrService.error('Zasób nie istnieje', 'Błąd');
-						const currentUrl = this._router.url;
-						this._router
-							.navigateByUrl('/', { skipLocationChange: true })
-							.then(() => this._router.navigate([currentUrl]));
+						this._toastrService.error('Błąd', 'Zasób nie istnieje');
+						this._router.navigate(['/page-not-found']);
 					} else if (req.status === 409) {
-						if (req.error.status === ConflictResponseStatus.InvalidPassword) {
+						if (
+							req.error.actionResult ===
+							AppUserSecurityActionResult.InvalidPassword
+						) {
 							this.form.get('password')?.setErrors({ invalidPassword: true });
-						} else if (req.error.status === ConflictResponseStatus.DbConflict) {
+						} else if (
+							req.error.actionResult ===
+							AppUserSecurityActionResult.UnSuccessful
+						) {
 							this._toastrService.error('Błąd przetwarzania danych', 'Błąd');
 						} else if (
-							req.error.status === ConflictResponseStatus.EmailNotAvailable
+							req.error.actionResult ===
+							AppUserSecurityActionResult.EmailNotAvailable
 						) {
 							this.form.get('email')?.setErrors({ emailNotAvailable: true });
 						}

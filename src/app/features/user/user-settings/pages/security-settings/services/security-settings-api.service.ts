@@ -1,13 +1,24 @@
-import { IUpdateUserMainEmailRequestDTO } from './../models/update-user-main-email-request.dto';
+import {
+	IUpdateUserMainEmailRequestDTO,
+	IUpdateUserMainEmailResponseDTO,
+} from './../models/update-user-main-email-request.dto';
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import ApiService from 'src/app/core/services/api.service';
-import { IAddExtraEmailRequestDTO } from '../models/add-extra-email-request.dto';
-import { IAuthConflictResponseDTO } from '../models/auth-conflict-response.dto';
-import { IDeleteExtraEmailRequestDTO } from '../models/delete-extra-email-request.dto';
+import {
+	IAddExtraEmailRequestDTO,
+	IAddExtraEmailResponseDTO,
+} from '../models/add-extra-email-request.dto';
+import {
+	IDeleteExtraEmailRequestDTO,
+	IDeleteExtraEmailResponseDTO,
+} from '../models/delete-extra-email-request.dto';
 import { IGetUserEmailsReponseDTO } from '../models/get-user-emails-reponse.dto';
-import { IUpdatePasswordRequestDTO } from '../models/update-password-request.dto';
+import {
+	IUpdatePasswordRequestDTO,
+	IUpdatePasswordResponseDTO,
+} from '../models/update-password-request.dto';
 import { RecaptchaAction } from 'src/app/core/enums/recaptcha-action.enum';
 
 @Injectable({
@@ -35,9 +46,9 @@ export class SecuritySettingsApiService {
 	 */
 	public addExtraEmail(
 		body: IAddExtraEmailRequestDTO
-	): Observable<HttpResponse<IAuthConflictResponseDTO | null>> {
+	): Observable<HttpResponse<IAddExtraEmailResponseDTO>> {
 		return this._apiService.post<
-			IAuthConflictResponseDTO | null,
+			IAddExtraEmailResponseDTO,
 			IAddExtraEmailRequestDTO
 		>('Auth/add-extra-email', body, RecaptchaAction.ADD_EXTRA_EMAIL);
 	}
@@ -49,9 +60,9 @@ export class SecuritySettingsApiService {
 	 */
 	public deleteExtraEmail(
 		body: IDeleteExtraEmailRequestDTO
-	): Observable<IAuthConflictResponseDTO | null> {
+	): Observable<HttpResponse<IDeleteExtraEmailResponseDTO>> {
 		return this._apiService.post<
-			IAuthConflictResponseDTO | null,
+			IDeleteExtraEmailResponseDTO,
 			IDeleteExtraEmailRequestDTO
 		>('Auth/delete-extra-email', body, RecaptchaAction.DELETE_EXTRA_EMAIL);
 	}
@@ -63,9 +74,9 @@ export class SecuritySettingsApiService {
 	 */
 	public updateUserPassword(
 		body: IUpdatePasswordRequestDTO
-	): Observable<HttpResponse<IAuthConflictResponseDTO | null>> {
+	): Observable<HttpResponse<IUpdatePasswordResponseDTO>> {
 		return this._apiService.put<
-			IAuthConflictResponseDTO | null,
+			IUpdatePasswordResponseDTO,
 			IUpdatePasswordRequestDTO
 		>(
 			'Auth/update-user-password',
@@ -82,9 +93,9 @@ export class SecuritySettingsApiService {
 	 */
 	public updateUserMainEmail(
 		body: IUpdateUserMainEmailRequestDTO
-	): Observable<HttpResponse<IAuthConflictResponseDTO | null>> {
+	): Observable<HttpResponse<IUpdateUserMainEmailResponseDTO>> {
 		return this._apiService.put<
-			IAuthConflictResponseDTO | null,
+			IUpdateUserMainEmailResponseDTO,
 			IUpdateUserMainEmailRequestDTO
 		>(
 			'Auth/update-main-email',
@@ -110,8 +121,11 @@ export class SecuritySettingsApiService {
 	 * Send a request to cancel email confirmation
 	 * @returns Observable<HttpResponse<IAuthConflictResponseDTO>> object with status code of request and status of cancelation email
 	 */
-	public cancelConfirmationEmail(): Observable<HttpResponse<any>> {
-		return this._apiService.delete<any>(
+	public cancelConfirmationEmail(): Observable<
+		HttpResponse<IDeleteExtraEmailResponseDTO>
+		// eslint-disable-next-line indent
+	> {
+		return this._apiService.delete<IDeleteExtraEmailResponseDTO>(
 			'Auth/cancel-email-confirmation',
 			undefined,
 			RecaptchaAction.CANCEL_CONFIRMATION_EMAIL
