@@ -27,10 +27,6 @@
 	width: 85%;
 }
 
-.bordered {
-	border: 1px solid colors.$bordered-gray;
-}
-
 .loading-input {
 	height: 50px;
 }
@@ -69,9 +65,6 @@
 }
 
 @media all and (max-width: breakpoints.$sm) {
-	.main-container {
-		margin-bottom: 3rem;
-	}
 	.banner-container {
 		height: 82px !important;
 		max-width: 100vw;
@@ -85,10 +78,6 @@
 
 	.form-container{
 		margin-top: 90px;
-	}
-
-	.bordered {
-		border: none;
 	}
 
 	.submit-btn {

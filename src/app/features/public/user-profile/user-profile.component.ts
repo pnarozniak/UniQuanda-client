@@ -70,7 +70,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 				}),
 				catchError(() => {
 					this._toastrService.error('Nieprawidłowy profil', 'Błąd');
-					this._router.navigate(['/pageNotFound']);
+					this._router.navigate(['/page-not-found']);
 					return of();
 				})
 			)

@@ -1,0 +1,23 @@
+<h4 class="page-title" [appLoading]="!userEmails">Email</h4>
+<div
+	class="d-flex flex-lg-row flex-column align-items-lg-end justify-content-lg-between align-items-start title-container">
+	<div
+		class="header-container"
+		[ngClass]="{ 'header-container-loading': !userEmails }">
+		<h5 class="title" [appLoading]="!userEmails">Zmień główny e-mail</h5>
+		<span class="description" [appLoading]="!userEmails"
+			>Wybierz główny e-mail konta. Na niego będziemy wysyłać najważniejsze
+			powiadomienia związane z kontem.</span
+		>
+	</div>
+	<app-button
+		class="action-btn px-4 py-2"
+		(click)="changeVisibilityForm()"
+		[appLoading]="!userEmails"
+		>{{ isFormVisible ? 'Zamknij' : 'Zmień główny e-mail' }}</app-button
+	>
+</div>
+<app-update-main-email-form
+	#componentRef
+	*ngIf="isFormVisible"
+	[userEmails]="userEmails"></app-update-main-email-form>

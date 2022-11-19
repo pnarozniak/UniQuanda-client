@@ -1,0 +1,54 @@
+<form
+	[formGroup]="form"
+	(ngSubmit)="sendForm()"
+	class="d-flex flex-column align-items-start form-container">
+	<app-auto-complete
+		label="Nowy główny e-mail"
+		[options]="extraEmails"
+		[control]="form.controls['email']"
+		[errors]="[
+			{
+				name: 'required',
+				message: 'Adres e-mail jest wymagany.'
+			},
+			{
+				name: 'pattern',
+				message: 'Niepoprawny adres e-mail.'
+			},
+			{
+				name: 'identicalEmail',
+				message: 'E-mail nie różni się od aktualnego'
+			},
+			{
+				name: 'emailNotAvailable',
+				message: 'Wybrany adres e-mail jest już zajęty.'
+			}
+		]">
+	</app-auto-complete>
+	<app-input
+		label="Hasło"
+		type="password"
+		[control]="form.controls['password']"
+		hint="Ze względów bezpieczeństwa zmiana głównego adresu e-mail wymagana potwierdzenia hasłem"
+		[errors]="[
+			{
+				name: 'required',
+				message: 'Hasło jest wymagane.'
+			},
+			{
+				name: 'pattern',
+				message: 'Siła hasła nie spełnia polityki serwisu.'
+			},
+			{
+				name: 'invalidPassword',
+				message: 'Błędne hasło.'
+			}
+		]"></app-input>
+	<app-button
+		class="mt-3 px-4 py-2"
+		mode="submit"
+		color="purple"
+		[disabled]="form.invalid"
+		>Zmień główny e-mail</app-button
+	>
+</form>

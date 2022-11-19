@@ -51,6 +51,14 @@ const routes: Routes = [
 		loadChildren: () => import('./tags/tags.module').then((m) => m.TagsModule),
 		data: { title: 'Lista tagów' },
 	},
+	{
+		path: 'confirm-email',
+		loadChildren: () =>
+			import('./confirm-email/confirm-email.module').then(
+				(m) => m.ConfirmEmailModule
+			),
+		data: { title: 'Ładowanie...' },
+	},
 ];
 @NgModule({
 	imports: [RouterModule.forChild(routes)],

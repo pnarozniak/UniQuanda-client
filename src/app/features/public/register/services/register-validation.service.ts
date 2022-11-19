@@ -27,7 +27,7 @@ export class RegisterValidationService {
 		const email = group.get('email')?.value;
 		if (nickname && email) {
 			this._registerApiService
-				.confirmRegistration(nickname, email)
+				.isEmailAndNicknameAvailable(email, nickname)
 				.pipe(
 					finalize(() => {
 						group.setErrors(null);

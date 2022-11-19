@@ -1,8 +1,8 @@
+import { SecuritySettingsComponent } from './pages/security-settings/security-settings.component';
 import { ProfileSettingsComponent } from './pages/profile-settings/profile-settings.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserSettingsComponent } from './user-settings.component';
-import AuthGuardService from 'src/app/core/guards/auth-guard.service';
 
 const routes: Routes = [
 	{
@@ -12,8 +12,12 @@ const routes: Routes = [
 			{
 				path: 'profile',
 				component: ProfileSettingsComponent,
-				canActivate: [AuthGuardService],
-				data: { title: 'Edycja', expectedRole: 'user' },
+				data: { title: 'Edycja profilu' },
+			},
+			{
+				path: 'security',
+				component: SecuritySettingsComponent,
+				data: { title: 'Bezpieczeństwo' },
 			},
 		],
 	},

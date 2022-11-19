@@ -1,0 +1,18 @@
+@use 'breakpoints' as breakpoints;
+@use 'colors' as colors;
+
+.main-container {
+	width: 89%;
+}
+
+.line-break {
+	opacity: 1 !important;
+}
+
+@media all and (max-width: breakpoints.$sm) {
+	.main-container {
+		width: 100%;
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+}

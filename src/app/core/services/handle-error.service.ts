@@ -33,6 +33,8 @@ export class HandleErrorService {
 			this.handle403Error();
 		} else if (err.status === 500) {
 			this.handle500Error();
+		} else if (err.status === 429) {
+			this.handle429Error();
 		}
 	}
 
@@ -52,6 +54,13 @@ export class HandleErrorService {
 		this.displayErrorMessage(
 			'Błąd serwera',
 			'Przepraszamy, spróbuj ponownie później.'
+		);
+	}
+
+	private handle429Error() {
+		this.displayErrorMessage(
+			'Ups, coś poszło nie tak',
+			'Przepraszamy, nie mogliśmy zwerfikować czy nie jesteś robotem. Spróbuj ponownie.'
 		);
 	}
 
