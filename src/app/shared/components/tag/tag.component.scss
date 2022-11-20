@@ -4,6 +4,11 @@ span {
 	color: colors.$academic-blue;
 	border-radius: 5px;
 	font-size: 13px;
+	max-width: 100%;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .dark {
 	background-color: colors.$pink;

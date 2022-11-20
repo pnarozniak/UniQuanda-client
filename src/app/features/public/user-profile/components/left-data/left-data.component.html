@@ -66,7 +66,7 @@
 				*ngFor="let tag of user?.pointsInTags; let i = index"
 				class="d-flex flex-column">
 				<div class="d-flex flex-row">
-					<app-tag [name]="tag.name" class="me-auto"></app-tag>
+					<app-tag [name]="tag.name" class="me-auto tag"></app-tag>
 					<span class="ms-2 small-text"
 						>{{ tag.points }} {{ generatePointsSuffix(tag.points) }}</span
 					>

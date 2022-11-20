@@ -1,5 +1,7 @@
 <div class="tag-box d-flex flex-column mt-2 mx-1">
-	<div class="d-flex flex-column p-3 h-100" *ngIf="!parentTagId; else subtag">
+	<div
+		class="d-flex flex-column p-3 h-100 tag-box-child"
+		*ngIf="!parentTagId; else subtag">
 		<app-tag [name]="tag.name" class="mb-2"></app-tag>
 		<span *ngIf="tag.description">{{ tag.description }}</span>
 		<a
@@ -11,12 +13,12 @@
 		<app-button
 			*ngIf="!tag.parentTagId"
 			class="show-subtags py-1 px-4 ms-auto mb-0"
-			(click)="tagClick.emit(tag)">
+			(click)="this.tagClick.emit(tag)">
 			Pokaż podtagi ></app-button
 		>
 	</div>
 	<ng-template #subtag>
-		<div class="image-container">
+		<div class="image-container tag-box-child">
 			<div class="background-academic-blue"></div>
 
 			<h4 class="text-container">{{ tag.name }}</h4>

@@ -30,10 +30,10 @@ export class TagsService {
 			.append('page', requestData.page)
 			.append('pageSize', requestData.pageSize)
 			.append('addCount', requestData.addCount)
-			.append('order', requestData.orderDirection);
+			.append('orderDirection', requestData.orderDirection);
 		if (requestData.parentTagId) {
 			httpParams = httpParams
-				.append('idTag', requestData.parentTagId)
+				.append('tagId', requestData.parentTagId)
 				.append('addParentTagData', requestData.addParentTagData ?? false);
 		}
 		if (requestData.keyword) {

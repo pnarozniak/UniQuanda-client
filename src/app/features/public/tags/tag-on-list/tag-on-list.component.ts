@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ITag } from '../models/get-tags.dto';
 
 @Component({
@@ -10,5 +11,7 @@ export class TagOnListComponent {
 	@Input() tag!: ITag;
 	@Input() parentTagId: number | null = null;
 	@Output() tagClick = new EventEmitter<ITag>();
+
+	@Input() destoryListener!: Observable<boolean>;
 	public isLoading = true;
 }

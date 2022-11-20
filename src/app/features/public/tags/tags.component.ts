@@ -10,6 +10,7 @@ import { TagsService } from './services/tags.service';
 import { HttpParams } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { OrderDirection } from 'src/app/shared/enums/order-direction.enum';
+import { Location } from '@angular/common';
 
 @Component({
 	selector: 'app-tags',
@@ -48,7 +49,8 @@ export class TagsComponent implements OnInit, OnDestroy {
 		private readonly _tagsService: TagsService,
 		private readonly _route: ActivatedRoute,
 		private readonly _router: Router,
-		private readonly _toastrService: ToastrService
+		private readonly _toastrService: ToastrService,
+		private readonly _location: Location
 	) {}
 	ngOnInit(): void {
 		this.subscriptionInputValue.add(
@@ -58,19 +60,8 @@ export class TagsComponent implements OnInit, OnDestroy {
 					this.pageBehavior.next(this.page);
 					this.loadTotalCount = true;
 					this.keyword = value;
-					this._router.navigate([], {
-						queryParams: {
-							page: this.page,
-							keyword: this.keyword,
-							tagId: this.parentTagId,
-							order:
-								this.orderDirection === OrderDirection.Ascending
-									? 'asc'
-									: 'desc',
-						},
-						queryParamsHandling: 'merge',
-						relativeTo: this._route,
-					});
+					this._location.replaceState('/public/tags', this.getParamsAsString());
+					this.getTags();
 				}
 			})
 		);
@@ -139,7 +130,7 @@ export class TagsComponent implements OnInit, OnDestroy {
 			});
 	}
 
-	loadSubTag(tag: ITag) {
+	loadSubTag(tag: any) {
 		this.page = 1;
 		this.keyword = '';
 		this.searchControl.setValue(this.keyword);
@@ -223,5 +214,15 @@ export class TagsComponent implements OnInit, OnDestroy {
 			});
 			this.getTags();
 		}
+	}
+
+	getParamsAsString(): string {
+		let params = new HttpParams().append('page', this.page);
+		if (this.keyword) params = params.append('keyword', this.keyword);
+		if (this.parentTagId) params = params.append('tagId', this.parentTagId);
+		if (this.orderDirection === OrderDirection.Descending)
+			params = params.append('order', 'desc');
+		else params = params.append('order', 'asc');
+		return params.toString();
 	}
 }

@@ -66,7 +66,6 @@ export class ProfileSettingsComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		console.log('@@@@@@@@@@@@')
 		this.loadUser();
 	}
 
