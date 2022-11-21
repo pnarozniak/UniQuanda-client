@@ -1,5 +1,5 @@
 import { IUpdateAppUserProfileResponseDTO } from './../models/update-app-user-profile.dto';
-import { HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import ApiService from 'src/app/core/services/api.service';
@@ -7,7 +7,10 @@ import { IUserSettingsDataResponseDTO } from '../models/user-settings-data.dto';
 
 @Injectable()
 export class UserProfileSettingsApiService {
-	constructor(private readonly _apiService: ApiService) {}
+	constructor(
+		private readonly _apiService: ApiService,
+		private readonly _http: HttpClient
+	) {}
 
 	/**
 	 * Send request to get data for update of user profile settings
@@ -35,5 +38,12 @@ export class UserProfileSettingsApiService {
 			'appUserProfile/settings',
 			userSettingsDataFormData
 		);
+	}
+
+	public getImage(imageUrl: string): Observable<HttpResponse<Blob>> {
+		return this._http.get(imageUrl, {
+			responseType: 'blob',
+			observe: 'response',
+		});
 	}
 }

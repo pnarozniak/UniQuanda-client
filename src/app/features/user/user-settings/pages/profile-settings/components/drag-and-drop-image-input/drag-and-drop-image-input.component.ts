@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { UserProfileSettingsApiService } from '../../services/user-profile-settings-api.service';
 
 @Component({
 	selector: 'app-drag-and-drop-image-input',
@@ -18,7 +19,10 @@ export class DragAndDropImageInputComponent implements OnInit {
 	readonly _allowedImageType =
 		'image/png,image/jpg,image/jpeg,image/svg,image/svg+xml';
 
-	constructor(private readonly _toastrService: ToastrService) {}
+	constructor(
+		private readonly _toastrService: ToastrService,
+		private readonly _userProfileSettingApiService: UserProfileSettingsApiService
+	) {}
 
 	ngOnInit(): void {
 		if (this.backgroundImage) {
@@ -26,27 +30,7 @@ export class DragAndDropImageInputComponent implements OnInit {
 		}
 
 		if (this.initImageSrc) {
-			this.getImageFromUrl(this.initImageSrc).then((result) => {
-				if (result) {
-					const fileData = this.getBase64AndTypeFromImage(result as string);
-					const imageName = `avatar.${fileData.imageType}`;
-					try {
-						const imageBlob = this.base64ToBlob(fileData.base64, fileData.type);
-						const imageFile = new File([imageBlob], imageName, {
-							type: fileData.type,
-						});
-						this.files.push(imageFile);
-					} catch {
-						const errorMsg = this.isBanner ? 'tła profilu' : 'avatara';
-						this._toastrService.error(
-							`Błąd podczas ładowania ${errorMsg}`,
-							'Błąd'
-						);
-					} finally {
-						this.isImageLoaded = true;
-					}
-				}
-			});
+			this.getImageFromService(this.initImageSrc);
 		} else {
 			this.isImageLoaded = true;
 		}
@@ -58,11 +42,12 @@ export class DragAndDropImageInputComponent implements OnInit {
 			this.files.push(...event.addedFiles);
 			this.image.emit(...event.addedFiles);
 		} else {
-			let errorMessage;
-			if (event.rejectedFiles[0].size > this._maxFileSizeMB)
-				errorMessage = 'Zbyt duży rozmiar pliku';
-			else errorMessage = 'Niedozwolony plik';
-			this._toastrService.error(errorMessage, 'Błąd');
+			const isUnderRequiredSize =
+				event.rejectedFiles[0].size > this._maxFileSizeMB;
+			this._toastrService.error(
+				isUnderRequiredSize ? 'Zbyt duży rozmiar pliku' : 'Niedozwolony plik',
+				'Błąd'
+			);
 		}
 	}
 
@@ -71,48 +56,20 @@ export class DragAndDropImageInputComponent implements OnInit {
 		this.image.emit(null);
 	}
 
-	async getImageFromUrl(imageUrl: any) {
-		const res = await fetch(imageUrl);
-		const blob = await res.blob();
-
-		return new Promise((resolve, reject) => {
-			const reader = new FileReader();
-			reader.addEventListener(
-				'load',
-				function () {
-					resolve(reader.result);
-				},
-				false
-			);
-
-			reader.onerror = () => {
-				return reject(this);
-			};
-			reader.readAsDataURL(blob);
+	getImageFromService(imageUrl: string) {
+		this._userProfileSettingApiService.getImage(imageUrl).subscribe({
+			next: (data) => {
+				const imageFile = new File([data.body as BlobPart], '', {
+					type: data.body?.type,
+				});
+				this.files.push(imageFile);
+				this.isImageLoaded = true;
+			},
+			error: () => {
+				const errorMsg = this.isBanner ? 'tła profilu' : 'avatara';
+				this._toastrService.error(`Błąd podczas ładowania ${errorMsg}`, 'Błąd');
+				this.isImageLoaded = true;
+			},
 		});
-	}
-
-	getBase64AndTypeFromImage(content: string) {
-		const data = content.split(';');
-		const type = data[0].split(':')[1];
-		const base64 = data[1].split(',')[1];
-		return {
-			type: type,
-			base64: base64,
-			imageType: type.split('/')[1],
-		};
-	}
-
-	base64ToBlob(base64: string, imageType: string): any {
-		const byteString = window.atob(base64);
-		const arrayBuffer = new ArrayBuffer(byteString.length);
-
-		const int8Array = new Uint8Array(arrayBuffer);
-
-		for (let i = 0; i < byteString.length; i++) {
-			int8Array[i] = byteString.charCodeAt(i);
-		}
-		const blob = new Blob([int8Array], { type: imageType });
-		return blob;
 	}
 }
