@@ -1,11 +1,16 @@
-@use '../../../../assets/scss/colors.scss' as colors;
+@use 'colors' as colors;
 span {
 	background-color: colors.$tag-blue;
 	color: colors.$academic-blue;
 	border-radius: 5px;
 	font-size: 13px;
+	max-width: 100%;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .dark {
-	background-color: colors.$academic-blue;
+	background-color: colors.$pink;
 	color: colors.$crystal-white;
 }
