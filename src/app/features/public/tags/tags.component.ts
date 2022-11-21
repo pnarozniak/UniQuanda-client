@@ -151,17 +151,6 @@ export class TagsComponent implements OnInit, OnDestroy {
 		});
 	}
 
-	getHttpParamsAsString(): string {
-		let params = new HttpParams();
-		if (this.page) params = params.append('page', this.page.toString());
-		if (this.keyword) params = params.append('keyword', this.keyword);
-		if (this.parentTagId)
-			params = params.append('tagId', this.parentTagId.toString());
-		if (this.orderDirection === OrderDirection.Descending)
-			params = params.append('order', 'desc');
-		return params.toString();
-	}
-
 	ngOnDestroy(): void {
 		this.subscriptionParams.unsubscribe();
 		this.subscriptionInputValue.unsubscribe();
