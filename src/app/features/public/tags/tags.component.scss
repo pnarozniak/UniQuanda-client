@@ -1,0 +1,37 @@
+.label {
+	font-weight: bold;
+}
+.tag-input {
+	outline: none !important;
+	border: none !important;
+	background-color: var(--bg-accent);
+	color: var(--text-accent);
+}
+.link-text {
+	color: var(--link-default);
+	font-size: 13px;
+}
+.tag-description {
+	font-size: 14px;
+}
+.dropdown-icon {
+	transform: rotate(90deg);
+	cursor: pointer;
+	transition: 0.5;
+	&:hover {
+		opacity: 0.8;
+	}
+}
+::ng-deep {
+	.mat-menu-content {
+		padding: 0 !important;
+	}
+}
+.dark,
+.light {
+	background-color: var(--bg-default);
+}
+.loading-div {
+	width: 273px;
+	height: 208px;
+}

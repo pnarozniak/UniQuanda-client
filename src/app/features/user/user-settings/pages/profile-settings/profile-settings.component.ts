@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { AppUserProfileUpdateStatusEnum } from './enums/app-user-profile-update-status.enum';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
@@ -23,17 +24,37 @@ import { UserProfileSettingsApiService } from './services/user-profile-settings-
 	templateUrl: './profile-settings.component.html',
 	styleUrls: ['./profile-settings.component.scss'],
 })
-export class ProfileSettingsComponent {
-	public form: FormGroup;
+export class ProfileSettingsComponent implements OnInit {
+	public user$: Observable<IUserSettingsDataResponseDTO | null> =
+		new BehaviorSubject<IUserSettingsDataResponseDTO | null>(null);
 	public user: IUserSettingsDataResponseDTO | undefined | null;
 
 	public backgroundAvatar = 'common/default_avatar.svg';
 	public backgroundBanner = 'common/default_users_background.svg';
 
 	private userAvatar: File | null = null;
+	private isNewAvatar = false;
 	private userBanner: File | null = null;
+	private isNewBanner = false;
 
-	public user$: Observable<IUserSettingsDataResponseDTO | null>;
+	public form: FormGroup = new FormGroup({
+		nickName: new FormControl('', [
+			Validators.required,
+			Validators.minLength(3),
+			Validators.maxLength(30),
+		]),
+		firstName: new FormControl('', [Validators.maxLength(35)]),
+		lastName: new FormControl('', [Validators.maxLength(51)]),
+		birthdate: new FormControl('', [
+			this._formsValidationService.checkIfDateBeforeNow,
+		]),
+		phoneNumber: new FormControl('', [Validators.maxLength(22)]),
+		city: new FormControl('', [Validators.maxLength(57)]),
+		semanticScholarProfile: new FormControl('', [
+			Validators.pattern('^https://www.semanticscholar.org/author/.*/.*$'),
+		]),
+		aboutText: new FormControl('', [Validators.maxLength(4000)]),
+	});
 
 	constructor(
 		private readonly _userProfileSettingApiService: UserProfileSettingsApiService,
@@ -42,28 +63,10 @@ export class ProfileSettingsComponent {
 		private readonly _toastrService: ToastrService,
 		private readonly _loader: LoaderService,
 		private readonly _router: Router
-	) {
-		this.user$ = new BehaviorSubject<IUserSettingsDataResponseDTO | null>(null);
-		this.loadUser();
+	) {}
 
-		this.form = new FormGroup({
-			nickName: new FormControl('', [
-				Validators.required,
-				Validators.minLength(3),
-				Validators.maxLength(30),
-			]),
-			firstName: new FormControl('', [Validators.maxLength(35)]),
-			lastName: new FormControl('', [Validators.maxLength(51)]),
-			birthdate: new FormControl('', [
-				this._formsValidationService.checkIfDateBeforeNow,
-			]),
-			phoneNumber: new FormControl('', [Validators.maxLength(22)]),
-			city: new FormControl('', [Validators.maxLength(57)]),
-			semanticScholarProfile: new FormControl('', [
-				Validators.pattern('^https://www.semanticscholar.org/author/.*/.*$'),
-			]),
-			aboutText: new FormControl('', [Validators.maxLength(4000)]),
-		});
+	ngOnInit(): void {
+		this.loadUser();
 	}
 
 	loadUser() {
@@ -86,8 +89,7 @@ export class ProfileSettingsComponent {
 				}),
 				catchError((req) => {
 					if (req.status === 404) {
-						this._toastrService.error('Błąd ładowania strony', 'Błąd');
-						this._router.navigate(['/public/home']);
+						this._router.navigate(['/page-not-found']);
 					}
 					return of();
 				})
@@ -132,7 +134,9 @@ export class ProfileSettingsComponent {
 		);
 		userFormData.append('AboutText', this.form.get('aboutText')?.value ?? '');
 		if (this.userBanner) userFormData.append('Banner', this.userBanner);
+		userFormData.append('isNewAvatar', this.isNewAvatar.toString());
 		if (this.userAvatar) userFormData.append('Avatar', this.userAvatar);
+		userFormData.append('isNewBanner', this.isNewBanner.toString());
 
 		this._userProfileSettingApiService
 			.updateUser(userFormData)
@@ -145,31 +149,35 @@ export class ProfileSettingsComponent {
 							'Twoje zmiany zostały zapisane'
 						);
 						this._userdataService.updateUserData({
-							avatar: res.body.avatarUrl,
+							avatar: res.body?.avatarUrl,
 						});
 					}
 				},
 				error: (res) => {
 					if (res.status === 404) {
-						this._toastrService.error('Błąd', 'Błąd przetwarzania danych');
+						this._toastrService.error('Błąd', 'Podany zasób nie istnieje');
+						this._router.navigate(['/page-not-found']);
 					} else if (res.status === 409) {
-						if (res.error.isNickNameUsed) {
+						if (
+							res.error.appUserUpdateStatus ===
+							AppUserProfileUpdateStatusEnum.NickNameIsUsed
+						) {
 							this.form.get('nickName')?.setErrors({ nicknameExists: true });
 						} else {
 							this._toastrService.error('Błąd', 'Błąd aktualizacji danych');
 						}
-					} else {
-						this._toastrService.error('Błąd', res?.body?.avatarUrl?.toString());
 					}
 				},
 			});
 	}
 
 	updateAvatar(file: File | null) {
+		this.isNewAvatar = true;
 		this.userAvatar = file;
 	}
 
 	updateBanner(file: File | null) {
+		this.isNewBanner = true;
 		this.userBanner = file;
 	}
 }

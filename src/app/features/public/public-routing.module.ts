@@ -47,6 +47,11 @@ const routes: Routes = [
 		data: { title: 'Ładowanie profilu...' },
 	},
 	{
+		path: 'tags',
+		loadChildren: () => import('./tags/tags.module').then((m) => m.TagsModule),
+		data: { title: 'Lista tagów' },
+	},
+	{
 		path: 'confirm-email',
 		loadChildren: () =>
 			import('./confirm-email/confirm-email.module').then(

@@ -17,6 +17,9 @@
 	& .paper {
 		color: colors.$light-gray;
 	}
+	& .tag {
+		max-width: 170px;
+	}
 }
 .dark {
 	& .paper {
@@ -34,4 +37,18 @@
 	.info-container {
 		width: unset;
 	}
+}
+@media screen and (max-width: breakpoints.$md) {
+	.info-container {
+		& .tag {
+			max-width: 71vw;
+		}
+	}	
+}
+@media screen and (max-width: breakpoints.$sm) {
+	.info-container {
+		& .tag {
+			max-width: 70vw;
+		}
+	}	
 }
