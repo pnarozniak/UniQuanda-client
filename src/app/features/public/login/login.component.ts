@@ -52,13 +52,12 @@ export class LoginComponent {
 				next: (res) => {
 					if (res.body?.status === LoginResponseStatus.EmailNotConfirmed) {
 						this._toastrService.error(
-							'Konto posiada nie potwierdzony adres E-mail. Sprawdź swoją skrzynkę pocztową',
+							'Konto posiada niepotwierdzony adres E-mail. Sprawdź swoją skrzynkę pocztową',
 							'Błąd'
 						);
-						this._router.navigate([
-							'/public/confirm-registration',
-							{ email: this.form.value.email },
-						]);
+						this._router.navigate(['/public/confirm-registration'], {
+							queryParams: { email: this.form.value.email },
+						});
 					} else if (res.body?.status === LoginResponseStatus.Success) {
 						this._userDataService.setUserData(
 							res.body.nickname ?? '',
