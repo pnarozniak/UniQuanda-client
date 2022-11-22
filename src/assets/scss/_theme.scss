@@ -7,6 +7,8 @@
 
 	--text-default: #{colors.$crystal-black};
 	--text-accent: #{colors.$light-gray};
+
+	--link-default : #{colors.$academic-blue};
 }
 
 /* DARK MODE */
@@ -16,4 +18,6 @@
 
 	--text-default: #{colors.$crystal-white};
 	--text-accent: #{colors.$crystal-white};
+
+	--link-default : #{colors.$dark-yellow};
 }
