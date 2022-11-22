@@ -13,7 +13,6 @@ export class DragAndDropImageInputComponent implements OnInit {
 	@Output() image = new EventEmitter<File | null>();
 
 	files: File[] = [];
-	isImageLoaded = false;
 	readonly _maxFileSizeMB: number = 10 * 1024 * 1024;
 	readonly _allowedImageType =
 		'image/png,image/jpg,image/jpeg,image/svg,image/svg+xml';
@@ -25,7 +24,7 @@ export class DragAndDropImageInputComponent implements OnInit {
 			this.backgroundImage = `./../../../../../assets/images/${this.backgroundImage}`;
 		}
 
-		if (this.initImageSrc) {
+		if (this.initImageSrc)
 			this.getImageFromUrl(this.initImageSrc).then((result) => {
 				if (result) {
 					const fileData = this.getBase64AndTypeFromImage(result as string);
@@ -42,14 +41,9 @@ export class DragAndDropImageInputComponent implements OnInit {
 							`Błąd podczas ładowania ${errorMsg}`,
 							'Błąd'
 						);
-					} finally {
-						this.isImageLoaded = true;
 					}
 				}
 			});
-		} else {
-			this.isImageLoaded = true;
-		}
 	}
 
 	onSelect(event: any) {

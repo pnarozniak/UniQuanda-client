@@ -1,5 +1,4 @@
 <ngx-dropzone
-	*ngIf="isImageLoaded"
 	class="custom-dropzone h-100 w-100"
 	[multiple]="false"
 	[accept]="_allowedImageType"
@@ -24,4 +23,3 @@
 		(removed)="onRemove(f)">
 	</app-custom-dropzone-preview>
 </ngx-dropzone>
-<div *ngIf="!isImageLoaded" [appLoading]="true" class="w-100 h-100"></div>
