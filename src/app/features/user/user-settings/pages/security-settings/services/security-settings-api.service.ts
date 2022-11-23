@@ -42,7 +42,7 @@ export class SecuritySettingsApiService {
 	/**
 	 * Send a request to add new extra email
 	 * @param body DTO with new extra email and password
-	 * @returns Observable<HttpResponse<IGetUserEmailsReponseDTO>> object with status code of request and status of add
+	 * @returns Observable<HttpResponse<IAddExtraEmailResponseDTO>> object with status code of request and status of add
 	 */
 	public addExtraEmail(
 		body: IAddExtraEmailRequestDTO
@@ -56,7 +56,7 @@ export class SecuritySettingsApiService {
 	/**
 	 * Send a request to delete an extra email
 	 * @param body DTO with id of extra email and password
-	 * @returns Observable<HttpResponse<IGetUserEmailsReponseDTO>> object with status code of request and status of delete
+	 * @returns Observable<HttpResponse<IDeleteExtraEmailResponseDTO>> object with status code of request and status of delete
 	 */
 	public deleteExtraEmail(
 		body: IDeleteExtraEmailRequestDTO
@@ -70,7 +70,7 @@ export class SecuritySettingsApiService {
 	/**
 	 * Send a request to update user password
 	 * @param body DTO with new and old password
-	 * @returns Observable<HttpResponse<IGetUserEmailsReponseDTO>> object with status code of request and status of update
+	 * @returns Observable<HttpResponse<IUpdatePasswordResponseDTO>> object with status code of request and status of update
 	 */
 	public updateUserPassword(
 		body: IUpdatePasswordRequestDTO
@@ -89,7 +89,7 @@ export class SecuritySettingsApiService {
 	/**
 	 * Send a request to update main email user
 	 * @param body DTO with new main email and password
-	 * @returns Observable<HttpResponse<IAuthConflictResponseDTO>> object with status code of request and status of update
+	 * @returns Observable<HttpResponse<IUpdateUserMainEmailResponseDTO>> object with status code of request and status of update
 	 */
 	public updateUserMainEmail(
 		body: IUpdateUserMainEmailRequestDTO
@@ -107,7 +107,7 @@ export class SecuritySettingsApiService {
 
 	/**
 	 * Send a request to resend link to activate email
-	 * @returns Observable<HttpResponse<IAuthConflictResponseDTO>> object with status code of request and status of resend link
+	 * @returns Observable<HttpResponse<any>> object with status code of request and status of resend link
 	 */
 	public resendConfirmationEmail(): Observable<HttpResponse<any>> {
 		return this._apiService.post<any, null>(
@@ -119,7 +119,7 @@ export class SecuritySettingsApiService {
 
 	/**
 	 * Send a request to cancel email confirmation
-	 * @returns Observable<HttpResponse<IAuthConflictResponseDTO>> object with status code of request and status of cancelation email
+	 * @returns Observable<HttpResponse<IDeleteExtraEmailResponseDTO>> object with status code of request and status of cancelation email
 	 */
 	public cancelConfirmationEmail(): Observable<
 		HttpResponse<IDeleteExtraEmailResponseDTO>

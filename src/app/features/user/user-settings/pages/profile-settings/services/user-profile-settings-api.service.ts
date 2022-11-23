@@ -14,7 +14,7 @@ export class UserProfileSettingsApiService {
 
 	/**
 	 * Send request to get data for update of user profile settings
-	 * @returns Observable<HttpResponse<UserSettingsDataResponseDTO>> object with status code of request
+	 * @returns Observable<HttpResponse<IUserSettingsDataResponseDTO>> object with status code of request
 	 * and information with UserData for edit profile
 	 */
 	public getUserDataForEditProfileSettings(): Observable<
@@ -28,7 +28,7 @@ export class UserProfileSettingsApiService {
 
 	/**
 	 * Sends request to update user profile settings
-	 * @returns Observable<HttpResponse<any>> object with status code of request
+	 * @returns Observable<HttpResponse<IUpdateAppUserProfileResponseDTO>> object with status code of request
 	 * and if it is successful return new avatar url
 	 */
 	public updateUser(
@@ -40,6 +40,12 @@ export class UserProfileSettingsApiService {
 		);
 	}
 
+	/**
+	 * Sends request to get user avatar or banner blob
+	 * @param imageUrl User avatar or banner url
+	 * @returns Observable<HttpResponse<IUpdateAppUserProfileResponseDTO>> object with status code of request
+	 * and if it is successful return new avatar or banner blob
+	 */
 	public getImage(imageUrl: string): Observable<HttpResponse<Blob>> {
 		return this._http.get(imageUrl, {
 			responseType: 'blob',
