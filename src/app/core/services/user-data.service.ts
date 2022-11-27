@@ -12,6 +12,7 @@ export class UserDataService {
 	private readonly _rolesKey =
 		'http://schemas.microsoft.com/ws/2008/06/identity/claims/role';
 	private readonly _user$ = new BehaviorSubject<IUserClaims | null>(null);
+	public tempAccessToken: string | null = null;
 
 	constructor(private readonly _storageService: StorageService) {
 		this.loadInitialState();
@@ -24,22 +25,22 @@ export class UserDataService {
 	 * @param accessToken user accessToken
 	 * @param refreshToken user refreshToken
 	 */
-	setUserData(
-		nickname: string,
-		avatar: string,
-		accessToken: string,
-		refreshToken: string
-	): void {
-		const decoded = this.decodeAccessToken(accessToken);
-		const userData = {
+	setUserData(userData: {
+		nickname: string;
+		avatar: string;
+		accessToken: string;
+		refreshToken: string;
+	}): void {
+		const decoded = this.decodeAccessToken(userData.accessToken);
+		const fullUserData = {
 			id: decoded.id,
 			roles: decoded.roles,
-			nickname,
-			avatar,
-			accessToken,
-			refreshToken,
+			nickname: userData.nickname,
+			avatar: userData.avatar,
+			accessToken: userData.accessToken,
+			refreshToken: userData.refreshToken,
 		};
-		this._user$.next(userData);
+		this._user$.next(fullUserData);
 		this._storageService.save(this._userStorageKey, userData);
 	}
 

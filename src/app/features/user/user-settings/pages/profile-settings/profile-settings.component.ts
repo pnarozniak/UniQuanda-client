@@ -1,4 +1,3 @@
-import { AppUserProfileUpdateStatusEnum } from './enums/app-user-profile-update-status.enum';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -158,10 +157,7 @@ export class ProfileSettingsComponent implements OnInit {
 						this._toastrService.error('Błąd', 'Podany zasób nie istnieje');
 						this._router.navigate(['/page-not-found']);
 					} else if (res.status === 409) {
-						if (
-							res.error.appUserUpdateStatus ===
-							AppUserProfileUpdateStatusEnum.NickNameIsUsed
-						) {
+						if (res.error.appUserUpdateStatus === 3) {
 							this.form.get('nickName')?.setErrors({ nicknameExists: true });
 						} else {
 							this._toastrService.error('Błąd', 'Błąd aktualizacji danych');

@@ -2,13 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ConfirmRegistrationComponent } from './confirm-registration/confirm-registration.component';
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
 import { RegisterSecondStepComponent } from './register/pages//register-second-step/register-second-step.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
 	{ path: 'home', component: HomeComponent, data: { title: 'Strona główna' } },
-	{ path: 'login', component: LoginComponent, data: { title: 'Zaloguj się' } },
+	{
+		path: 'login',
+		loadChildren: () =>
+			import('./login/login.module').then((m) => m.LoginModule),
+		data: { title: 'Zaloguj się' },
+	},
 	{
 		path: 'register',
 		component: RegisterComponent,
