@@ -8,7 +8,7 @@ export const environment = {
 		...common.oauth,
 		google: {
 			...common.oauth.google,
-			redirectUrl: 'https://uniquanda.pl:2002/api/Auth/login-by-google',
+			redirectUrl: 'https://dev.uniquanda.pl:2002/api/Auth/login-by-google',
 		},
 	},
 };

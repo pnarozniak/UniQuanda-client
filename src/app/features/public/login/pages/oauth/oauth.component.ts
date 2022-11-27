@@ -112,7 +112,7 @@ export class OAuthComponent implements OnInit {
 					});
 					this._router.navigate(['/public/home']);
 					this._toastr.success(
-						'Zostałeś zalogwany',
+						'Zostałeś zalogowany',
 						`Witamy ${userInfo.nickname}`
 					);
 				},

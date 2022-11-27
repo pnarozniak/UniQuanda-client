@@ -69,7 +69,7 @@ export class LoginComponent {
 						});
 						this._router.navigate([this.redirectUrl || '/public/home']);
 						this._toastrService.success(
-							'Zostałeś zalogwany',
+							'Zostałeś zalogowany',
 							`Witamy ${res.body.nickname}`
 						);
 					}

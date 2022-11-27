@@ -70,7 +70,7 @@ export class LoginApiService {
 	}
 
 	/**
-	 * Performs api call in order to check wether nickname is available
+	 * Performs api call in order to check whether nickname is available
 	 * @param nickname Nickname to be checked
 	 * @returns True if nickname is available, otherwise false
 	 */
