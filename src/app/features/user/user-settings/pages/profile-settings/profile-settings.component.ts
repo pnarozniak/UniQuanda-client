@@ -157,7 +157,7 @@ export class ProfileSettingsComponent implements OnInit {
 						this._toastrService.error('Błąd', 'Podany zasób nie istnieje');
 						this._router.navigate(['/page-not-found']);
 					} else if (res.status === 409) {
-						if (res.error.appUserUpdateStatus === 3) {
+						if (res.error.appUserUpdateStatus === 0) {
 							this.form.get('nickName')?.setErrors({ nicknameExists: true });
 						} else {
 							this._toastrService.error('Błąd', 'Błąd aktualizacji danych');

@@ -71,10 +71,9 @@ export class RegisterSecondStepComponent implements OnInit {
 			.pipe(finalize(() => this._loader.hide()))
 			.subscribe({
 				next: () => {
-					this._router.navigate([
-						'/public/confirm-registration',
-						{ email: this.email },
-					]);
+					this._router.navigate(['/public/confirm-registration'], {
+						queryParams: { email: this.email },
+					});
 				},
 				error: (error) => {
 					if (error.status === 409) {
