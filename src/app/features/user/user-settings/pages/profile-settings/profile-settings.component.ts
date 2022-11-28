@@ -148,9 +148,11 @@ export class ProfileSettingsComponent implements OnInit {
 							'Sukces',
 							'Twoje zmiany zostały zapisane'
 						);
-						this._userdataService.updateUserData({
-							avatar: res.body?.avatarUrl,
-						});
+						if (this.isNewAvatar) {
+							this._userdataService.updateUserData({
+								avatar: res.body?.avatarUrl,
+							});
+						}
 					}
 				},
 				error: (res) => {
