@@ -3,10 +3,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserDataService } from 'src/app/core/services/user-data.service';
-import { LoginApiService } from './services/login-api.service';
-import { LoginRequestDTO, LoginResponseStatus } from './models/login.dto';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { finalize } from 'rxjs';
+import { LoginApiService } from '../../services/login-api.service';
+import { LoginResponseStatus } from '../../models/login.dto';
 
 @Component({
 	selector: 'app-login',
@@ -46,7 +46,7 @@ export class LoginComponent {
 		this._loader.show();
 		const formValue = this.form.value;
 		this._loginApiService
-			.login(new LoginRequestDTO(formValue.email, formValue.password))
+			.login(formValue.email, formValue.password)
 			.pipe(finalize(() => this._loader.hide()))
 			.subscribe({
 				next: (res) => {
@@ -58,14 +58,20 @@ export class LoginComponent {
 						this._router.navigate(['/public/confirm-registration'], {
 							queryParams: { email: this.form.value.email },
 						});
-					} else if (res.body?.status === LoginResponseStatus.Success) {
-						this._userDataService.setUserData(
-							res.body.nickname ?? '',
-							res.body.avatar ?? '',
-							res.body.accessToken ?? '',
-							res.body.refreshToken ?? ''
-						);
+						return;
+					}
+					if (res.body?.status === LoginResponseStatus.Success) {
+						this._userDataService.setUserData({
+							nickname: res.body.nickname ?? '',
+							avatar: res.body.avatar ?? '',
+							accessToken: res.body.accessToken ?? '',
+							refreshToken: res.body.refreshToken ?? '',
+						});
 						this._router.navigate([this.redirectUrl || '/public/home']);
+						this._toastrService.success(
+							'Zostałeś zalogowany',
+							`Witamy ${res.body.nickname}`
+						);
 					}
 				},
 				error: (error) => {
@@ -77,5 +83,9 @@ export class LoginComponent {
 					}
 				},
 			});
+	}
+
+	handleLoginByProvider(provider: 'Google') {
+		this._router.navigate([`/public/login/oauth/${provider}`]);
 	}
 }
