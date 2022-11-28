@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserSettingsComponent } from './user-settings.component';
 import AuthGuardService from 'src/app/core/guards/auth-guard.service';
+import { Role } from 'src/app/core/enums/role.enum';
 
 const routes: Routes = [
 	{
@@ -19,7 +20,7 @@ const routes: Routes = [
 				path: 'security',
 				component: SecuritySettingsComponent,
 				canActivate: [AuthGuardService],
-				data: { title: 'Bezpieczeństwo', expectedRole: 'uniquanda_user' },
+				data: { title: 'Bezpieczeństwo', expectedRole: Role.UNIQUANDA_ACCOUNT },
 			},
 		],
 	},
