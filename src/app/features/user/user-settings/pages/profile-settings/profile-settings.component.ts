@@ -153,6 +153,9 @@ export class ProfileSettingsComponent implements OnInit {
 								avatar: res.body?.avatarUrl,
 							});
 						}
+						this._router.navigate([
+							`/public/profile/${this._userdataService.getUserData()?.id}`,
+						]);
 					}
 				},
 				error: (res) => {
