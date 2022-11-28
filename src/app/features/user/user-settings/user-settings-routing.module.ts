@@ -1,10 +1,6 @@
-import { SecuritySettingsComponent } from './pages/security-settings/security-settings.component';
-import { ProfileSettingsComponent } from './pages/profile-settings/profile-settings.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserSettingsComponent } from './user-settings.component';
-import AuthGuardService from 'src/app/core/guards/auth-guard.service';
-import { Role } from 'src/app/core/enums/role.enum';
 
 const routes: Routes = [
 	{
@@ -13,14 +9,17 @@ const routes: Routes = [
 		children: [
 			{
 				path: 'profile',
-				component: ProfileSettingsComponent,
-				data: { title: 'Edycja profilu' },
+				loadChildren: () =>
+					import('./pages/profile-settings/profile-settings.module').then(
+						(m) => m.ProfileSettingsModule
+					),
 			},
 			{
 				path: 'security',
-				component: SecuritySettingsComponent,
-				canActivate: [AuthGuardService],
-				data: { title: 'Bezpieczeństwo', expectedRole: Role.UNIQUANDA_ACCOUNT },
+				loadChildren: () =>
+					import('./pages/security-settings/security-settings.module').then(
+						(m) => m.SecuritySettingsModule
+					),
 			},
 		],
 	},

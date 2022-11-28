@@ -7,7 +7,7 @@ const routes: Routes = [
 		loadChildren: () =>
 			import('./user-settings/user-settings.module').then(
 				(m) => m.UserSettingsModule
-			)
+			),
 	},
 ];
 @NgModule({
