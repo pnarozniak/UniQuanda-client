@@ -21,7 +21,7 @@ export default class AuthGuardService implements CanActivate {
 			return false;
 		}
 
-		const canActivate = claims?.roles?.includes(expectedRole);
+		const canActivate = claims.roles.includes(expectedRole);
 		if (!canActivate) {
 			/* Propably in future should be changed to BuyPremiumDialogComponent */
 			this.displayUnauthorized();

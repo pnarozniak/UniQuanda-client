@@ -41,7 +41,7 @@ export class UserDataService {
 			refreshToken: userData.refreshToken,
 		};
 		this._user$.next(fullUserData);
-		this._storageService.save(this._userStorageKey, userData);
+		this._storageService.save(this._userStorageKey, fullUserData);
 	}
 
 	/**
