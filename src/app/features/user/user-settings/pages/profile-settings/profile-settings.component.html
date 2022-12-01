@@ -140,7 +140,10 @@
 				</app-textarea>
 			</div>
 			<div class="submit-row d-flex mb-sm-4 mb-3">
-				<app-button mode="submit" class="submit-btn px-4 py-2"
+				<app-button
+					mode="submit"
+					class="submit-btn px-4 py-2"
+					[disabled]="form.invalid"
 					>Zapisz zmiany</app-button
 				>
 			</div>

@@ -36,6 +36,10 @@
 	}
 
 	.dark {
+		.mat-input-element {
+			caret-color: colors.$dark-yellow;
+		}
+
 		&.mat-form-field.mat-focused:not(.mat-form-field-invalid) {
 			::ng-deep .mat-form-field-label {
 				color: colors.$dark-yellow;

@@ -1,6 +1,6 @@
 import { DialogService } from './../../../../../../../core/services/dialog.service';
 import { Router } from '@angular/router';
-import { ConflictResponseStatus } from './../../enums/conflict-response-status.enum';
+import { AppUserSecurityActionResult } from '../../enums/app-user-security-action-result.enum';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, Input } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
@@ -80,29 +80,32 @@ export class AddExtraEmailFormComponent {
 					});
 				},
 				error: (req) => {
-					if (req.status === 409) {
-						this.handleConflictRespone(req.error.status);
+					if (req.status === 404) {
+						this._toastrService.error('Błąd', 'Zasób nie istnieje');
+						this._router.navigate(['/page-not-found']);
+					} else if (req.status === 409) {
+						this.handleConflictRespone(req.error.actionResult);
 					}
 				},
 			});
 	}
 
-	handleConflictRespone(status: ConflictResponseStatus) {
-		if (status === ConflictResponseStatus.InvalidPassword) {
+	handleConflictRespone(status: AppUserSecurityActionResult) {
+		if (status === AppUserSecurityActionResult.InvalidPassword) {
 			this.form.get('password')?.setErrors({ invalidPassword: true });
-		} else if (status === ConflictResponseStatus.DbConflict) {
+		} else if (status === AppUserSecurityActionResult.UnSuccessful) {
 			this._toastrService.error('Błąd przetwarzania danych', 'Błąd');
-		} else if (status === ConflictResponseStatus.OverLimitOfExtraEmails) {
+		} else if (status === AppUserSecurityActionResult.OverLimitOfExtraEmails) {
 			this._toastrService.error(
 				'Konto może posiadać maksymalnie 3 dodatkowe e-maile',
 				'Błąd'
 			);
-		} else if (status === ConflictResponseStatus.UserHasActionToConfirm) {
+		} else if (status === AppUserSecurityActionResult.UserHasActionToConfirm) {
 			this._toastrService.error(
 				'Potwierdź najpierw inne akcje związane z twoim kontem',
 				'Błąd'
 			);
-		} else if (status === ConflictResponseStatus.EmailNotAvailable) {
+		} else if (status === AppUserSecurityActionResult.EmailNotAvailable) {
 			this.form.get('email')?.setErrors({ emailNotAvailable: true });
 		}
 	}

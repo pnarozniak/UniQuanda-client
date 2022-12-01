@@ -3,12 +3,20 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ProfileSettingsComponent } from './profile-settings.component';
 import { CustomDropzonePreviewComponent } from './components/custom-dropzone-preview/custom-dropzone-preview.component';
 import { DragAndDropImageInputComponent } from './components/drag-and-drop-image-input/drag-and-drop-image-input.component';
 import { UserProfileSettingsApiService } from './services/user-profile-settings-api.service';
+
+const routes: Routes = [
+	{
+		path: '',
+		component: ProfileSettingsComponent,
+		data: { title: 'Edycja profilu' },
+	},
+];
 
 @NgModule({
 	declarations: [
@@ -17,6 +25,7 @@ import { UserProfileSettingsApiService } from './services/user-profile-settings-
 		CustomDropzonePreviewComponent,
 	],
 	imports: [
+		RouterModule.forChild(routes),
 		CommonModule,
 		RouterModule,
 		ReactiveFormsModule,
