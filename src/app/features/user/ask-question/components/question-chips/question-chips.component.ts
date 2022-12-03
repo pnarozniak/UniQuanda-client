@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { TagsService } from '../../services/tags.service';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormControl } from '@angular/forms';
 import { tap, Observable, of, map } from 'rxjs';
 import { GetTagsRequestDto, ITag } from '../../models/get-tags.dto';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
 	selector: 'app-question-chips',
@@ -13,14 +15,16 @@ import { GetTagsRequestDto, ITag } from '../../models/get-tags.dto';
 export class QuestionChipsComponent {
 	separatorKeysCodes: number[] = [ENTER, COMMA];
 	tagCtrl = new FormControl('');
-	suggestedTags: Observable<string[]> = of([]);
+	suggestedTags: Observable<ITag[]> = of([]);
 	selectedTags: ITag[] = [];
 	possibleTags: ITag[] = [];
+
+	@ViewChild('tagInput') tagInput!: ElementRef<HTMLInputElement>;
 
 	constructor(private readonly _tagService: TagsService) {
 		this.tagCtrl.valueChanges.subscribe((keyword: string | null) => {
 			if (keyword) {
-				this._tagService
+				this.suggestedTags = this._tagService
 					.getTags(new GetTagsRequestDto(keyword))
 					.pipe(
 						tap((response) => {
@@ -31,16 +35,34 @@ export class QuestionChipsComponent {
 							});
 						})
 					)
-					.pipe(
-						map((response) => {
-							return response.tags.map((tag) => tag.name);
-						})
-					);
+					.pipe(map((response) => response.tags));
 			} else {
-				this.suggestedTags = of(
-					this.possibleTags.slice(0, 10).map((tag) => tag.name)
-				);
+				this.suggestedTags = of(this.possibleTags.slice(0, 10));
 			}
 		});
+	}
+
+	removeTag(tag: ITag) {
+		this.selectedTags = this.selectedTags.filter((t) => t.id !== tag.id);
+	}
+
+	addTag(event: MatChipInputEvent) {
+		const value = (event.value || '').trim();
+		if (value) {
+			const tag = this.possibleTags.find((t) => t.name === value);
+			if (tag && !this.selectedTags.some((t) => t.id === tag.id)) {
+				this.selectedTags.push(tag);
+				this.tagInput.nativeElement.value = '';
+			}
+		}
+	}
+
+	selected(event: MatAutocompleteSelectedEvent): void {
+		const tag = this.possibleTags.find((t) => t.id === event.option.value);
+		if (tag && !this.selectedTags.some((t) => t.id === tag.id)) {
+			this.selectedTags.push(tag);
+		}
+		this.tagCtrl.setValue(null);
+		this.tagInput.nativeElement.value = '';
 	}
 }

@@ -6,6 +6,7 @@ import { AskQuestionComponent } from './ask-question.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { QuestionChipsComponent } from './components/question-chips/question-chips.component';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
 	imports: [
@@ -15,6 +16,7 @@ import { MatChipsModule } from '@angular/material/chips';
 		FormsModule,
 		ReactiveFormsModule,
 		MatChipsModule,
+		MatAutocompleteModule,
 	],
 	declarations: [AskQuestionComponent, QuestionChipsComponent],
 })

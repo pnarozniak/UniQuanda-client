@@ -1,23 +1,31 @@
-<mat-chip-list #chipList aria-label="Fruit selection">
-	<mat-chip
-		*ngFor="let tag of selectedTags.map(t => t.name)"
-		(removed)="remove(fruit)">
-		{{ fruit }}
-		<button matChipRemove>
-			<mat-icon>cancel</mat-icon>
-		</button>
-	</mat-chip>
-	<input
-		placeholder="New fruit..."
-		#fruitInput
-		[formControl]="fruitCtrl"
-		[matAutocomplete]="auto"
-		[matChipInputFor]="chipList"
-		[matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-		(matChipInputTokenEnd)="add($event)" />
-</mat-chip-list>
-<mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-	<mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
-		{{ fruit }}
-	</mat-option>
-</mat-autocomplete>
+<div class="d-flex flex-column" appTheme>
+	<h4>Wybierz tagi pytania</h4>
+	<span class="small-text">Do pytania możesz dodać maksymalnie 5 tagów</span>
+	<mat-chip-list
+		#chipList
+		aria-label="Wybieranie tagów"
+		class="chiplist my-3 px-3">
+		<mat-chip *ngFor="let tag of selectedTags" (removed)="removeTag(tag)">
+			{{ tag.name }}
+			<button matChipRemove>
+				<app-icon icon="close"></app-icon>
+			</button>
+		</mat-chip>
+		<input
+			placeholder="Wyszukaj tag..."
+			#tagInput
+			class="py-2"
+			[formControl]="tagCtrl"
+			[matAutocomplete]="auto"
+			[matChipInputFor]="chipList"
+			[matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+			(matChipInputTokenEnd)="addTag($event)" />
+	</mat-chip-list>
+	<mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+		<mat-option
+			*ngFor="let suggestedTag of suggestedTags | async"
+			[value]="suggestedTag.id">
+			{{ suggestedTag.name }}
+		</mat-option>
+	</mat-autocomplete>
+</div>
