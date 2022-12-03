@@ -2,7 +2,21 @@
 
 :host {
 	width: 100%;
-	
+	::ng-deep {
+		.mat-focused .mat-form-field-required-marker {
+			color: colors.$academic-blue;
+		}
+		.dark  {
+			&.mat-focused .mat-form-field-required-marker {
+				color: colors.$dark-yellow;
+			}
+			&.mat-form-field-invalid {
+				&.mat-focused .mat-form-field-required-marker {
+					color: colors.$validation-red;
+				}
+			}
+		}
+	}
 	::ng-deep mat-form-field {
 		width: 100%;
 		font-family: Ubuntu, sans-serif !important;

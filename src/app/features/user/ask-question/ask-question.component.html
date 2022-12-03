@@ -1,0 +1,40 @@
+<div class="d-flex">
+	<div class="w-75 d-flex flex-column px-5">
+		<h1 class="mx-3 mt-5">Dodaj pytanie</h1>
+		<app-input
+			label="Tytuł pytania"
+			class="px-3 mt-3"
+			[control]="title"
+			[showRequiredMarker]="true"
+			[errors]="[
+				{
+					name: 'required',
+					message: 'Treść pytania jest wymagana.'
+				}
+			]"></app-input>
+		<app-question-chips class="mx-3"></app-question-chips>
+		<app-content-form
+			[model]="content"
+			(modelChange)="setContent($event)"></app-content-form>
+		<app-checkbox
+			class="mx-3 mt-3"
+			[control]="confirmation"
+			[showRequiredMarker]="true"
+			[label]="
+				'Upewniłem/łam się że, takie pytanie nie pojawiło się już na stronie.'
+			"
+			[errors]="[
+				{
+					name: 'required',
+					message:
+						'Potwierdź że upewniłeś/łaś się, że pytanie nie zostało już zadane.'
+				}
+			]"></app-checkbox>
+		<app-button class="px-3 py-2 mt-3 mx-3 ask-button" (click)="handleAsk()"
+			>Zadaj pytanie</app-button
+		>
+	</div>
+	<div autofocus class="w-25" style="border: 1px solid red; min-height: 800px">
+		Prawe menu (implementowane oddzielnie)
+	</div>
+</div>

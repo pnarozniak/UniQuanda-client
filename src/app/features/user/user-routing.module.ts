@@ -14,6 +14,17 @@ const routes: Routes = [
 			expectedRole: 'user',
 		},
 	},
+	{
+		path: 'ask-question',
+		loadChildren: () =>
+			import('./ask-question/ask-question.module').then(
+				(m) => m.AskQuestionModule
+			),
+		canActivate: [AuthGuardService],
+		data: {
+			expectedRole: 'user',
+		},
+	},
 ];
 @NgModule({
 	imports: [RouterModule.forChild(routes)],
