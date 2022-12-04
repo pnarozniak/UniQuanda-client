@@ -24,7 +24,7 @@ export default class QuestionApiService {
 			.pipe(
 				map(
 					(response: HttpResponse<IAddQuestionResponseDTO>) =>
-						response.body?.questionid ?? 0
+						response.body?.questionId ?? 0
 				),
 				catchError(() => {
 					this._toastrService.error('Chwilowo nie można zadać pytania', 'Błąd');

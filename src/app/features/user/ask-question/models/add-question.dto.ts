@@ -9,5 +9,5 @@ export default class AddQuestionRequestDTO implements IContent {
 	) {}
 }
 export interface IAddQuestionResponseDTO {
-	questionid: number;
+	questionId: number;
 }
