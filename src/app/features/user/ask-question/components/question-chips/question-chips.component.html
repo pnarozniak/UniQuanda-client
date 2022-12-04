@@ -15,9 +15,7 @@
 					<app-icon icon="close" class="remove-button"></app-icon>
 				</button>
 			</mat-chip>
-			<fieldset
-				[disabled]="isDisabled"
-				[ngClass]="{ 'placeholder-fix': isDisabled }">
+			<fieldset [disabled]="isDisabled" class="w-100">
 				<input
 					[placeholder]="
 						selectedTags.length === maxTagsAmount

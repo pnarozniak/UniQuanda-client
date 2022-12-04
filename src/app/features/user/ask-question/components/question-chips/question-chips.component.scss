@@ -1,5 +1,4 @@
 @use 'colors' as colors;
-@use 'breakpoints' as breakpoint;
 .text-input {
 	width: 100%;
 	color: var(--text-default);
@@ -10,14 +9,6 @@
 		&::placeholder {
 			color: var(--text-default);
 		}
-	}
-}
-.placeholder-fix {
-	min-width: 353px;
-}
-@media screen and (max-width: breakpoint.$sm) {
-	.placeholder-fix {
-		min-width: fit-content;
 	}
 }
 .mat-chip {

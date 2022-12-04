@@ -27,6 +27,7 @@ export class QuestionChipsComponent implements OnInit, OnDestroy {
 	selectedTags: ITag[] = [];
 	possibleTags: ITag[] = [];
 	maxTagsAmount = 5;
+	maxCharacters = 30;
 	private subscription = new Subscription();
 
 	@Input() tagCtrl!: FormControl;
@@ -37,7 +38,7 @@ export class QuestionChipsComponent implements OnInit, OnDestroy {
 		return this.selectedTags.length >= this.maxTagsAmount;
 	}
 
-	showError = false;
+	public showError = false;
 
 	@ViewChild('tagInput') tagInput!: ElementRef<HTMLInputElement>;
 
@@ -50,6 +51,14 @@ export class QuestionChipsComponent implements OnInit, OnDestroy {
 			this.tagCtrl.valueChanges.subscribe((keyword: string | null) => {
 				this.showError = false;
 				if (keyword) {
+					if (keyword.length > this.maxCharacters) {
+						this.tagCtrl.setValue(keyword.substring(0, this.maxCharacters));
+						this.tagInput.nativeElement.value = keyword.substring(
+							0,
+							this.maxCharacters
+						);
+						return;
+					}
 					this.suggestedTags = this._tagApiService
 						.getTags(new GetTagsRequestDto(keyword))
 						.pipe(

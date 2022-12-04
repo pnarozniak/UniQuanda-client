@@ -44,6 +44,7 @@ export class TagsComponent implements OnInit, OnDestroy {
 	public searchControl = new FormControl('');
 	public pageBehavior = new BehaviorSubject<number | null>(null);
 	private blockKeywordSearch = false;
+	private maxLength = 30;
 
 	constructor(
 		private readonly _tagsApiService: TagsApiService,
@@ -55,6 +56,10 @@ export class TagsComponent implements OnInit, OnDestroy {
 	ngOnInit(): void {
 		this.subscriptionInputValue.add(
 			this.searchControl.valueChanges.subscribe((value) => {
+				if (value.length > this.maxLength) {
+					this.searchControl.setValue(value.substring(0, this.maxLength));
+					return;
+				}
 				if (value !== this.keyword && !this.blockKeywordSearch) {
 					this.page = 1;
 					this.pageBehavior.next(this.page);

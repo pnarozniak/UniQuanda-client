@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import AddQuestionRequestDTO from './models/add-question.dto';
 import { ITag } from './models/get-tags.dto';
+import QuestionApiService from './services/question.service';
 
 @Component({
 	selector: 'app-ask-question',
@@ -14,6 +18,12 @@ export class AskQuestionComponent {
 		confirmation: new FormControl(false, [Validators.requiredTrue]),
 	});
 
+	public constructor(
+		private readonly _questionsApiService: QuestionApiService,
+		private readonly _router: Router,
+		private readonly _toastrService: ToastrService
+	) {}
+
 	public tagInput = new FormControl('');
 	public tags: ITag[] = [];
 
@@ -24,16 +34,20 @@ export class AskQuestionComponent {
 		this.tagInput.updateValueAndValidity();
 		if (this.tags.length === 0) {
 			this.tagInput.setErrors({ requiredTags: true });
-			console.log(this.tagInput);
 			return;
 		}
-		console.log(this.tagInput);
-
 		if (this.form.invalid) return;
-		console.log('tytuł', this.form.get('title'));
-		console.log('confirmation', this.form.get('confirmation'));
-		console.log('tags', this.tags);
-		console.log('content', this.form.get('content'));
+		const value = this.form.value;
+		const request = new AddQuestionRequestDTO(
+			value.content,
+			this.tags.map((t) => t.id),
+			value.title,
+			value.confirmation
+		);
+		this._questionsApiService.addQuestion(request).subscribe((questionId) => {
+			this._toastrService.success('Dodano pytanie');
+			this._router.navigate(['public/question-details', questionId]);
+		});
 	}
 
 	public setTags(tags: ITag[]) {

@@ -86,12 +86,15 @@
 		<div
 			*ngIf="tags !== null; else loadingTags"
 			class="d-flex flex-wrap justify-content-center">
-			<ng-container *ngFor="let tag of tags.tags">
-				<app-tag-on-list
-					[tag]="tag"
-					[parentTagId]="this.parentTagId ?? null"
-					(tagClick)="loadSubTag($event)"></app-tag-on-list>
+			<ng-container *ngIf="tags.tags.length > 0; else notags">
+				<ng-container *ngFor="let tag of tags.tags">
+					<app-tag-on-list
+						[tag]="tag"
+						[parentTagId]="this.parentTagId ?? null"
+						(tagClick)="loadSubTag($event)"></app-tag-on-list>
+				</ng-container>
 			</ng-container>
+			<ng-template #notags><i>Nie znaleziono żadnych tagów</i></ng-template>
 		</div>
 		<ng-template #loadingTags>
 			<div class="d-flex flex-wrap justify-content-center">
