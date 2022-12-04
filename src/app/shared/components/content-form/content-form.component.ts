@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AbstractControl, FormControl } from '@angular/forms';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
 import * as Editor from 'ckeditor5-custom-build/build/ckeditor';
 
@@ -7,7 +8,10 @@ import * as Editor from 'ckeditor5-custom-build/build/ckeditor';
 	templateUrl: './content-form.component.html',
 	styleUrls: ['./content-form.component.scss'],
 })
-export class ContentFormComponent {
+export class ContentFormComponent implements OnInit {
+	ngOnInit(): void {
+		this.model = this.control.value;
+	}
 	public editor = Editor;
 	public config = {
 		toolbar: {
@@ -15,13 +19,12 @@ export class ContentFormComponent {
 		},
 	};
 
-	@Input()
 	public model = '';
 
-	@Output()
-	public modelChange = new EventEmitter<string>();
+	@Input()
+	public control!: AbstractControl;
 
-	public emitChange({ editor }: ChangeEvent) {
-		this.modelChange.emit(editor.getData());
+	public setValue({ editor }: ChangeEvent) {
+		this.control.setValue(editor.getData());
 	}
 }

@@ -1,5 +1,5 @@
 <div class="w-100 d-flex flex-lg-row flex-column">
-	<div class="d-flex flex-column w-100 w-lg-75 p-sm-5 p-2 py-4">
+	<div class="d-flex flex-column left-menu p-sm-5 p-2 py-4">
 		<h1>{{ parentTag ? parentTag.name : 'Tagi' }}</h1>
 		<div *ngIf="parentTag" class="mb-3 d-flex flex-column">
 			<span class="tag-description">{{ parentTag.description }}</span>
@@ -110,7 +110,10 @@
 			(pageChange)="pageChange($event)"
 			[showInput]="true"></app-paginator>
 	</div>
-	<div autofocus class="w-25" style="border: 1px solid red; min-height: 800px">
+	<div
+		autofocus
+		class="right-menu"
+		style="border: 1px solid red; min-height: 800px">
 		Prawe menu (implementowane oddzielnie)
 	</div>
 </div>

@@ -1,31 +1,52 @@
 <div class="d-flex flex-column" appTheme>
-	<h4>Wybierz tagi pytania</h4>
-	<span class="small-text">Do pytania możesz dodać maksymalnie 5 tagów</span>
-	<mat-chip-list
-		#chipList
-		aria-label="Wybieranie tagów"
-		class="chiplist my-3 px-3">
-		<mat-chip *ngFor="let tag of selectedTags" (removed)="removeTag(tag)">
-			{{ tag.name }}
-			<button matChipRemove>
-				<app-icon icon="close"></app-icon>
-			</button>
-		</mat-chip>
-		<input
-			placeholder="Wyszukaj tag..."
-			#tagInput
-			class="py-2"
-			[formControl]="tagCtrl"
-			[matAutocomplete]="auto"
-			[matChipInputFor]="chipList"
-			[matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-			(matChipInputTokenEnd)="addTag($event)" />
-	</mat-chip-list>
-	<mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-		<mat-option
-			*ngFor="let suggestedTag of suggestedTags | async"
-			[value]="suggestedTag.id">
-			{{ suggestedTag.name }}
-		</mat-option>
-	</mat-autocomplete>
+	<h4 class="mt-3">Wybierz tagi pytania</h4>
+	<span class="small-text"
+		>Do pytania możesz dodać maksymalnie {{ maxTagsAmount }} tagów</span
+	>
+	<mat-form-field
+		[ngClass]="{ 'mat-form-field-invalid': tagCtrl.invalid || showError }"
+		class="example-chip-list me-3"
+		appearance="fill"
+		appTheme>
+		<mat-chip-list #chipList aria-label="Wybieranie tagów" class="my-3">
+			<mat-chip *ngFor="let tag of selectedTags" (removed)="removeTag(tag)">
+				{{ tag.name }}
+				<button matChipRemove>
+					<app-icon icon="close" class="remove-button"></app-icon>
+				</button>
+			</mat-chip>
+			<fieldset
+				[disabled]="isDisabled"
+				[ngClass]="{ 'placeholder-fix': isDisabled }">
+				<input
+					[placeholder]="
+						selectedTags.length === maxTagsAmount
+							? 'Wybrano maksymalną ilość tagów'
+							: 'Wybierz tag'
+					"
+					#tagInput
+					class="text-input"
+					[formControl]="tagCtrl"
+					[matAutocomplete]="auto"
+					[matChipInputFor]="chipList"
+					[matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+					(matChipInputTokenEnd)="addTag($event)" />
+			</fieldset>
+		</mat-chip-list>
+		<mat-autocomplete
+			#auto="matAutocomplete"
+			(optionSelected)="selected($event)">
+			<mat-option
+				*ngFor="let suggestedTag of suggestedTags | async"
+				[value]="suggestedTag.id">
+				{{ suggestedTag.name }}
+			</mat-option>
+		</mat-autocomplete>
+	</mat-form-field>
+	<mat-error class="error-text" *ngIf="showError"
+		>Przykro nam, ale nie ma takiego tagu</mat-error
+	>
+	<mat-error class="error-text" *ngIf="!showError && tagCtrl.invalid"
+		>Musisz wybrać co najmniej 1 tag</mat-error
+	>
 </div>

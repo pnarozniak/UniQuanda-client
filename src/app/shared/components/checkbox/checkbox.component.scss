@@ -47,3 +47,9 @@ label {
 		color: col.$crystal-black;
 	}
 }
+.invalid-checkmark {
+	border: 1px solid col.$validation-red;
+}
+.ng-invalid {
+	border-color: col.$validation-red;
+}

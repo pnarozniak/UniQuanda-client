@@ -1,6 +1,10 @@
 <label appTheme class="d-flex">
 	<input type="checkbox" [formControl]="formControl" (click)="handleClick()" />
-	<span class="checkmark me-2"></span>
+	<span
+		class="checkmark me-2"
+		[ngClass]="{
+			'invalid-checkmark': !control.valid && control.touched
+		}"></span>
 	<div class="d-flex flex-column my-auto">
 		<div class="flex-row">
 			<span>{{ label }}</span>

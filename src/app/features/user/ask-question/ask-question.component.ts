@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ITag } from './models/get-tags.dto';
 
 @Component({
 	selector: 'app-ask-question',
@@ -7,22 +8,35 @@ import { FormControl, Validators } from '@angular/forms';
 	styleUrls: ['./ask-question.component.scss'],
 })
 export class AskQuestionComponent {
-	public title = new FormControl('', [Validators.required]);
-	public confirmation = new FormControl(false, [Validators.requiredTrue]);
-	public tags = [];
-	public content = '';
+	public form = new FormGroup({
+		title: new FormControl('', [Validators.required]),
+		content: new FormControl('', [Validators.required]),
+		confirmation: new FormControl(false, [Validators.requiredTrue]),
+	});
+
+	public tagInput = new FormControl('');
+	public tags: ITag[] = [];
 
 	public handleAsk() {
-		this.title.markAllAsTouched();
-		this.confirmation.markAllAsTouched();
-		console.log('tytuł', this.title.value);
-		console.log('confirmation', this.confirmation.value);
+		this.form.markAllAsTouched();
+		this.tagInput.markAsTouched();
+		this.tagInput.setErrors({ requiredTags: null });
+		this.tagInput.updateValueAndValidity();
+		if (this.tags.length === 0) {
+			this.tagInput.setErrors({ requiredTags: true });
+			console.log(this.tagInput);
+			return;
+		}
+		console.log(this.tagInput);
+
+		if (this.form.invalid) return;
+		console.log('tytuł', this.form.get('title'));
+		console.log('confirmation', this.form.get('confirmation'));
 		console.log('tags', this.tags);
-		console.log('content', this.content);
-		console.log('errors', this.confirmation.errors);
+		console.log('content', this.form.get('content'));
 	}
 
-	public setContent(content: string) {
-		this.content = content;
+	public setTags(tags: ITag[]) {
+		this.tags = tags;
 	}
 }
