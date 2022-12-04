@@ -6,7 +6,7 @@ import GetTagsRequestDto, {
 	IGetTagsResponseDto,
 	ITag,
 } from './models/get-tags.dto';
-import { TagsService } from './services/tags.service';
+import { TagsApiService } from './services/tags-api.service';
 import { HttpParams } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { OrderDirection } from 'src/app/shared/enums/order-direction.enum';
@@ -46,7 +46,7 @@ export class TagsComponent implements OnInit, OnDestroy {
 	private blockKeywordSearch = false;
 
 	constructor(
-		private readonly _tagsService: TagsService,
+		private readonly _tagsApiService: TagsApiService,
 		private readonly _route: ActivatedRoute,
 		private readonly _router: Router,
 		private readonly _toastrService: ToastrService,
@@ -94,7 +94,7 @@ export class TagsComponent implements OnInit, OnDestroy {
 	 * Downloads data from server
 	 */
 	getTags(): void {
-		this._tagsService
+		this._tagsApiService
 			.getTags(
 				new GetTagsRequestDto(
 					this.loadTotalCount,

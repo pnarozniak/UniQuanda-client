@@ -8,7 +8,7 @@ import {
 	Output,
 	ViewChild,
 } from '@angular/core';
-import { TagsService } from '../../services/tags.service';
+import { TagsApiService } from '../../services/tags-api.service';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormControl } from '@angular/forms';
 import { tap, Observable, of, map, Subscription } from 'rxjs';
@@ -41,7 +41,7 @@ export class QuestionChipsComponent implements OnInit, OnDestroy {
 
 	@ViewChild('tagInput') tagInput!: ElementRef<HTMLInputElement>;
 
-	constructor(private readonly _tagService: TagsService) {}
+	constructor(private readonly _tagApiService: TagsApiService) {}
 	ngOnDestroy(): void {
 		this.subscription.unsubscribe();
 	}
@@ -50,7 +50,7 @@ export class QuestionChipsComponent implements OnInit, OnDestroy {
 			this.tagCtrl.valueChanges.subscribe((keyword: string | null) => {
 				this.showError = false;
 				if (keyword) {
-					this.suggestedTags = this._tagService
+					this.suggestedTags = this._tagApiService
 						.getTags(new GetTagsRequestDto(keyword))
 						.pipe(
 							tap((response) => {
