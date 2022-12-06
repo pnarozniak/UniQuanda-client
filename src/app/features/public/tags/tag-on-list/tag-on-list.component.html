@@ -6,7 +6,7 @@
 		<span *ngIf="tag.description">{{ tag.description }}</span>
 		<a
 			[routerLink]="['/public/home']"
-			[queryParams]="{ tagId: tag.id }"
+			[queryParams]="{ tags: [tag.id] }"
 			class="mt-auto all-tags-text mb-2"
 			>Przejdź do wszystkich pytań w tagu ></a
 		>
@@ -24,7 +24,7 @@
 			<h4 class="text-container">{{ tag.name }}</h4>
 			<app-button
 				[routerLink]="['/public/home']"
-				[queryParams]="{ tagId: tag.id }"
+				[queryParams]="{ tags: [tag.id] }"
 				class="all-tags-button px-3 py-1"
 				>Pokaż pytania w podtagu ></app-button
 			>

@@ -17,6 +17,7 @@ header {
 .img-logo {
 	content: url('./../../../../assets/images/core/header/logo_blue.svg');
 	height: 40px;
+	cursor: pointer;
 }
 
 .a-btn {
@@ -102,9 +103,9 @@ header {
 		margin-right: 0.25rem;
 	}
 	.header-height {
-		height: calc(dim.$header-height - dim.$header-footer-height);	
+		height: calc(dim.$header-height - dim.$header-footer-height);
 	}
-	
+
 	.img-logo {
 		height: 25px;
 	}

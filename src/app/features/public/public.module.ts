@@ -7,6 +7,7 @@ import { RegisterModule } from './register/register.module';
 import { ConfirmRegistrationModule } from './confirm-registration/confirm-registration.module';
 import { UserProfileModule } from './user-profile/user-profile.module';
 import { ConfirmEmailModule } from './confirm-email/confirm-email.module';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
 	imports: [
@@ -17,6 +18,7 @@ import { ConfirmEmailModule } from './confirm-email/confirm-email.module';
 		ConfirmRegistrationModule,
 		UserProfileModule,
 		ConfirmEmailModule,
+		HomeModule,
 	],
 	declarations: [PublicComponent],
 })

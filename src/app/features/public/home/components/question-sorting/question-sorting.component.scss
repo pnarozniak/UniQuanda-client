@@ -1,0 +1,8 @@
+@use 'colors' as col;
+.active-arrow {
+	color: var(--link-default)
+}
+.order-arrows {
+	cursor: pointer;
+	color: col.$bordered-gray;
+}

@@ -1,0 +1,32 @@
+<div class="d-flex flex-row">
+	<app-button
+		class="ms-auto me-2 px-4 py-1"
+		[color]="questionSortingBy === sortingBy.PublicationDate ? 'blue' : 'gray'"
+		(click)="handleSortingByChanged(sortingBy.PublicationDate)"
+		>Data publikacji</app-button
+	>
+	<app-button
+		class="me-2 px-4 py-1"
+		[color]="questionSortingBy === sortingBy.Views ? 'blue' : 'gray'"
+		(click)="handleSortingByChanged(sortingBy.Views)"
+		>Ilość wyświetleń</app-button
+	>
+	<app-button
+		class="me-2 px-4 py-1"
+		[color]="questionSortingBy === sortingBy.Answers ? 'blue' : 'gray'"
+		(click)="handleSortingByChanged(sortingBy.Answers)"
+		>Ilość odpowiedzi</app-button
+	>
+	<div class="my-auto order-arrows" (click)="handleOrderDirectionChanged()">
+		<app-icon
+			icon="arrow_up me-1"
+			[ngClass]="{
+				'active-arrow': orderDirection === orderDir.Ascending
+			}"></app-icon>
+		<app-icon
+			icon="arrow_down"
+			[ngClass]="{
+				'active-arrow': orderDirection === orderDir.Descending
+			}"></app-icon>
+	</div>
+</div>

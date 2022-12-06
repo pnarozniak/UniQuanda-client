@@ -1,1 +1,16 @@
-<p>home works!</p>
+<div class="d-flex flex-row mx-5">
+	<div class="d-flex flex-column w-100 mx-2">
+		<h1 class="mt-5">Pytania</h1>
+		<app-question-sorting
+			class="w-100"
+			(changedSortingBy)="handleSortingChange($event)"
+			(changedOrderDirection)="
+				handleOrderDirectionChange($event)
+			"></app-question-sorting>
+		<span class="mt-3">Sortuj tagami</span>
+		<div style="padding: 5px; background: #969696" class="mt-1">
+			Po merge https://github.com/xlegodroit/UniQuanda-client/pull/47
+		</div>
+	</div>
+	<div>TuBedziePraweMenu</div>
+</div>
