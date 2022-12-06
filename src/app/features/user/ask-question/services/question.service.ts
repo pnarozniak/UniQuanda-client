@@ -18,7 +18,7 @@ export default class QuestionApiService {
 	addQuestion(requestData: AddQuestionRequestDTO): Observable<number> {
 		return this._apiService
 			.post<IAddQuestionResponseDTO, AddQuestionRequestDTO>(
-				'Questions',
+				'Question',
 				requestData
 			)
 			.pipe(

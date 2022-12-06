@@ -25,6 +25,8 @@ export class ContentFormComponent implements OnInit {
 	public control!: AbstractControl;
 
 	public setValue({ editor }: ChangeEvent) {
-		this.control.setValue(editor.getData());
+		try {
+			this.control.setValue(editor.getData());
+		} catch {} // oh no, I'm so sorry
 	}
 }
