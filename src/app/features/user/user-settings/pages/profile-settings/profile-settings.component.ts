@@ -1,3 +1,4 @@
+import { AppUserProfileUpdateResult } from './enums/app-user-profile-update-result.enum';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -147,17 +148,25 @@ export class ProfileSettingsComponent implements OnInit {
 							'Sukces',
 							'Twoje zmiany zostały zapisane'
 						);
-						this._userdataService.updateUserData({
-							avatar: res.body?.avatarUrl,
-						});
+						if (this.isNewAvatar) {
+							this._userdataService.updateUserData({
+								avatar: res.body?.avatarUrl,
+							});
+						}
+						this._router.navigate([
+							`/public/profile/${this._userdataService.getUserData()?.id}`,
+						]);
 					}
 				},
 				error: (res) => {
 					if (res.status === 404) {
-						this._toastrService.error('Błąd', 'Podany zasób nie istnieje');
+						this._toastrService.error('Błąd', 'Zasób nie istnieje');
 						this._router.navigate(['/page-not-found']);
 					} else if (res.status === 409) {
-						if (res.error.appUserUpdateStatus === 0) {
+						if (
+							res.error.appUserUpdateStatus ===
+							AppUserProfileUpdateResult.NickNameIsUsed
+						) {
 							this.form.get('nickName')?.setErrors({ nicknameExists: true });
 						} else {
 							this._toastrService.error('Błąd', 'Błąd aktualizacji danych');

@@ -16,18 +16,17 @@ export class AccessTokenInterceptor implements HttpInterceptor {
 		req: HttpRequest<unknown>,
 		next: HttpHandler
 	): Observable<HttpEvent<unknown>> {
-		const user = this.userDataService.getUserData();
-		if (!user) {
-			return next.handle(req);
-		}
+		let accessToken = this.userDataService.tempAccessToken;
 
-		const token = user.accessToken;
-		if (!token) {
-			return next.handle(req);
+		if (!accessToken) {
+			accessToken = this.userDataService.getUserData()?.accessToken ?? null;
+			if (!accessToken) {
+				return next.handle(req);
+			}
 		}
 
 		req = req.clone({
-			headers: req.headers.append('authorization', `Bearer ${token}`),
+			headers: req.headers.append('authorization', `Bearer ${accessToken}`),
 		});
 		return next.handle(req);
 	}

@@ -1,0 +1,101 @@
+<div class="w-100 h-100 d-flex flex-column align-items-center">
+	<div class="register-card my-auto py-3 py-sm-5 px-4 px-sm-0">
+		<form
+			*ngIf="confirmationCode"
+			[formGroup]="form"
+			(ngSubmit)="handleConfirmOAuthRegister()"
+			class="register-form d-flex flex-column p-sm-5">
+			<h1 class="header mx-auto mt-4 mt-sm-0 mb-2 mb-sm-3">
+				Dokończ rejestrację
+			</h1>
+			<app-input
+				label="Nazwa użytkownika"
+				[showRequiredMarker]="true"
+				[control]="this.form.controls['nickname']"
+				[errors]="[
+					{ name: 'required', message: 'Nazwa użytkownika jest wymagana.' },
+					{
+						name: 'minlength',
+						message: 'Nazwa użytkownika musi mieć min. 3 znaki.'
+					},
+					{
+						name: 'maxlength',
+						message: 'Nazwa użytkownika może mieć max. 30 znaków.'
+					},
+					{
+						name: 'nicknameExists',
+						message: 'Nazwa użytkownika jest już zajęta.'
+					}
+				]">
+			</app-input>
+			<h5 class="text-nowrap text-center mt-2 mb-0 divider">
+				Informacje opcjonalne
+			</h5>
+			<app-input
+				label="Imię"
+				[control]="this.form.controls['firstName']"
+				[errors]="[
+					{
+						name: 'maxlength',
+						message:
+							'Sprawdzaliśmy w bazie imion polskich i nie znaleźliśmy dłuższych niż 35
+				znaków. Jeśli jednak masz dłuższe imie - daj nam o tym znać :)'
+					}
+				]">
+			</app-input>
+			<app-input
+				label="Nazwisko"
+				[control]="this.form.controls['lastName']"
+				[errors]="[
+					{
+						name: 'maxlength',
+						message:
+							'Sprawdzaliśmy w bazie nazwisk polskich i nie znaleźliśmy dłuższych niż 35
+		znaków. Jeśli jednak masz dłuższe imie - daj nam o tym znać :)'
+					}
+				]">
+			</app-input>
+			<app-date-picker
+				type="date"
+				label="Data urodzenia"
+				[control]="this.form.controls['birthdate']"
+				[disableFutureDates]="true"
+				[errors]="[
+					{
+						name: 'before',
+						message: 'Nie możliwe byś urodził się w przyszłości.'
+					}
+				]">
+			</app-date-picker>
+			<app-input
+				label="Numer telefonu"
+				[control]="this.form.controls['phoneNumber']"
+				[errors]="[
+					{
+						name: 'maxlength',
+						message: 'Maksymalna długość numeru telefonu 22 znaki.'
+					}
+				]">
+			</app-input>
+			<app-input
+				label="Miasto"
+				[control]="this.form.controls['city']"
+				[errors]="[
+					{
+						name: 'maxlength',
+						message:
+							'Za długa nazwa miasta. Najdłuższa miejscowość jaką znamy to
+						Taumatawhakatangihangakoauauotamateapokaiwhenuakitanatahu w Nowej Zelandii
+						(57 znaków).'
+					}
+				]">
+			</app-input>
+			<app-button mode="submit" class="mt-2 mt-sm-3 p-3">
+				Zarejestruj
+			</app-button>
+			<hr />
+			<app-recaptcha-terms></app-recaptcha-terms>
+		</form>
+	</div>
+	<div class="footer-decoration"></div>
+</div>

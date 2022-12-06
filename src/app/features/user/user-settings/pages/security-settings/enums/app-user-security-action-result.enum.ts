@@ -1,7 +1,9 @@
-export enum ConflictResponseStatus {
+export enum AppUserSecurityActionResult {
 	InvalidPassword,
-	DbConflict,
 	EmailNotAvailable,
 	OverLimitOfExtraEmails,
 	UserHasActionToConfirm,
+	ContentNotExist,
+	UnSuccessful,
+	Successful,
 }

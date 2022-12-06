@@ -2,7 +2,7 @@ import { EmailsContentComponent } from './components/emails-content/emails-conte
 import { SharedModule } from 'src/app/shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { MainEmailContentComponent } from './components/main-email-content/main-email-content.component';
 import { SecuritySettingsComponent } from './security-settings.component';
 import { SecuritySettingsApiService } from './services/security-settings-api.service';
@@ -14,6 +14,17 @@ import { DeleteExtraEmailFormComponent } from './components/delete-extra-email-f
 import { ReactiveFormsModule } from '@angular/forms';
 import { ConfirmEmailInfoDialogComponent } from './components/confirm-email-info-dialog/confirm-email-info-dialog.component';
 import { EmailTextComponent } from './components/email-text/email-text.component';
+import { Role } from 'src/app/core/enums/role.enum';
+import AuthGuardService from 'src/app/core/guards/auth-guard.service';
+
+const routes: Routes = [
+	{
+		path: '',
+		component: SecuritySettingsComponent,
+		canActivate: [AuthGuardService],
+		data: { title: 'Bezpieczeństwo', expectedRole: Role.UNIQUANDA_ACCOUNT },
+	},
+];
 
 @NgModule({
 	declarations: [
@@ -28,7 +39,13 @@ import { EmailTextComponent } from './components/email-text/email-text.component
 		ConfirmEmailInfoDialogComponent,
 		EmailTextComponent,
 	],
-	imports: [CommonModule, RouterModule, SharedModule, ReactiveFormsModule],
+	imports: [
+		RouterModule.forChild(routes),
+		CommonModule,
+		RouterModule,
+		SharedModule,
+		ReactiveFormsModule,
+	],
 	providers: [SecuritySettingsApiService],
 })
 export class SecuritySettingsModule {}

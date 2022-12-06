@@ -16,4 +16,6 @@ export enum RecaptchaAction {
 	UPDATE_USER_PASSWORD = 'update_user_password',
 	UPDATE_USER_MAIN_EMAIL = 'update_user_main_email',
 	CANCEL_CONFIRMATION_EMAIL = 'cancel_confirmation_email',
+	CONFIRM_OAUTH_REGISTER = 'confirm_oauth_register',
+	GET_OAUTH_USER_INFO = 'get_oauth_user_info',
 }
