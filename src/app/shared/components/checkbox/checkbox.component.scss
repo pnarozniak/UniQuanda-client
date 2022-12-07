@@ -1,0 +1,55 @@
+
+@use 'colors' as col;
+label {
+	padding: 5px;
+	display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+	user-select: none;
+	input {
+		display: none;
+	}
+	.checkmark {
+		position: absolute;
+		left: 0;
+		height: 25px;
+		width: 25px;
+		background-color: var(--bg-accent);
+	}
+	&:hover input ~ .checkmark {
+		opacity: 0.8;
+	}
+	input:checked ~ .checkmark {
+		background-color: var(--link-default);
+	}
+	.checkmark:after {
+		content: "";
+		position: absolute;
+		display: none;
+	}
+	input:checked ~ .checkmark:after {
+		display: block;
+	}
+	.checkmark:after {
+		left: 5px;
+		color: col.$crystal-white;
+		content: "\e906";
+		font-family: 'Uniquanda'
+	}
+	.mat-error {
+		font-size: 12px;
+	}
+}
+.dark {
+	& .checkmark:after {
+		color: col.$crystal-black;
+	}
+}
+.invalid-checkmark {
+	border: 1px solid col.$validation-red;
+}
+.ng-invalid {
+	border-color: col.$validation-red;
+}

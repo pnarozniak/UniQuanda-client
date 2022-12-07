@@ -1,3 +1,5 @@
+@use 'dimensions' as dim;
+@use 'breakpoints' as breakpoint;
 .label {
 	font-weight: bold;
 }
@@ -34,4 +36,20 @@
 .loading-div {
 	width: 273px;
 	height: 208px;
+}
+
+.left-menu {
+	width: calc(100% - dim.$right-menu-width);
+}
+.right-menu {
+	width: dim.$right-menu-width;
+}
+
+@media screen and (max-width: breakpoint.$lg) {
+	.left-menu {
+		width: 100%;
+	}
+	.right-menu {
+		width: 100%;
+	}
 }

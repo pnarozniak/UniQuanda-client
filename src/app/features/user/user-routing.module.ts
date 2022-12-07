@@ -9,6 +9,13 @@ const routes: Routes = [
 				(m) => m.UserSettingsModule
 			),
 	},
+	{
+		path: 'ask-question',
+		loadChildren: () =>
+			import('./ask-question/ask-question.module').then(
+				(m) => m.AskQuestionModule
+			),
+	},
 ];
 @NgModule({
 	imports: [RouterModule.forChild(routes)],

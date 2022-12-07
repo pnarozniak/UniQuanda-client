@@ -9,7 +9,7 @@ import GetTagsRequestDto, { IGetTagsResponseDto } from '../models/get-tags.dto';
 @Injectable({
 	providedIn: 'root',
 })
-export class TagsService {
+export class TagsApiService {
 	constructor(
 		private readonly _apiService: ApiService,
 		private readonly _toastrService: ToastrService,

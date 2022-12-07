@@ -15,6 +15,7 @@ export class ThemeDirective {
 	listenForThemeChange(): void {
 		this._themeService.isDark$().subscribe((isDark) => {
 			this.elementClass = isDark ? Theme.DARK : Theme.LIGHT;
+			window.document.body.classList.toggle(Theme.DARK, isDark); // This line is needed for ckeditor to work properly
 		});
 	}
 }

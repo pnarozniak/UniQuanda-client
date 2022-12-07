@@ -1,11 +1,13 @@
 <header dropdown appTheme>
 	<div class="d-flex flex-row header-height align-items-center px-sm-3 px-2">
-		<a routerLink="/public/home">
+    <a routerLink="/public/home">
 			<img class="img-logo mb-sm-2" alt="UniQuanda-Logo" />
 		</a>
 		<div class="d-flex flex-row mx-lg-5 w-100">
 			<label class="d-flex ms-auto">
-				<app-icon icon="search" class="search-bar btn-search border-0 ps-lg-3">
+				<app-icon
+					icon="search"
+					class="search-bar btn-search border-0 ps-lg-3 pe-2 pe-sm-0">
 				</app-icon>
 			</label>
 			<input
@@ -13,6 +15,19 @@
 				class="search-bar d-lg-flex d-none w-100 border-0 px-1" />
 		</div>
 		<ng-container *ngIf="user$ | async as user; else GuestItems">
+			<app-button
+				class="px-5 me-2 ask-question-button d-sm-flex d-none"
+				routerLink="/user/ask-question"
+				>Zadaj pytanie</app-button
+			>
+			<app-icon
+				icon="mail"
+				class="me-2 icon-header"
+				appNotImplemented></app-icon>
+			<app-icon
+				icon="notification"
+				class="me-2 icon-header"
+				appNotImplemented></app-icon>
 			<img
 				[matMenuTriggerFor]="menu"
 				src="{{

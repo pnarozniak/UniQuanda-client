@@ -1,0 +1,34 @@
+.ck.ck-math-form {
+	display: flex;
+	align-items: flex-start;
+	flex-direction: row;
+	flex-wrap: nowrap;
+
+	@media screen and (max-width: 600px) {
+		flex-wrap: wrap;
+
+		& .ck-math-view {
+			flex-basis: 100%;
+
+			& .ck-labeled-input {
+				flex-basis: 100%;
+			}
+
+			& .ck-label {
+				flex-basis: 100%;
+			}
+		}
+
+		& .ck-button {
+			flex-basis: 50%;
+		}
+	}
+}
+
+.ck-math-tex.ck-placeholder::before {
+	display: none !important;
+}
+
+.ck.ck-toolbar-container {
+	z-index: calc(var(--ck-z-modal) + 2);
+}
