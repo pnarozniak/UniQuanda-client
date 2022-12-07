@@ -20,10 +20,6 @@ const routes: Routes = [
 			import('./ask-question/ask-question.module').then(
 				(m) => m.AskQuestionModule
 			),
-		canActivate: [AuthGuardService],
-		data: {
-			expectedRole: 'user',
-		},
 	},
 ];
 @NgModule({
