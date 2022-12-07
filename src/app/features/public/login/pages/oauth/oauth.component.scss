@@ -1,0 +1,29 @@
+@use 'colors' as colors;
+@use 'breakpoints' as breakpoints;
+
+.register-card {
+	width: 520px;
+
+	.register-form {
+		border: 1px solid colors.$bordered-gray;
+
+		.header {
+			white-space: nowrap;
+		}
+
+		.divider {
+			font-size: 15px;
+			color: colors.$academic-blue;
+		}
+	}
+}
+
+@media all and (max-width: breakpoints.$sm) {
+	.register-card {
+		width: 100%;
+
+		.register-form {
+			border: none !important;
+		}
+	}
+}

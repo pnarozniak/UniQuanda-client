@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import AuthGuardService from 'src/app/core/guards/auth-guard.service';
 
 const routes: Routes = [
 	{
@@ -9,10 +8,6 @@ const routes: Routes = [
 			import('./user-settings/user-settings.module').then(
 				(m) => m.UserSettingsModule
 			),
-		canActivate: [AuthGuardService],
-		data: {
-			expectedRole: 'user',
-		},
 	},
 	{
 		path: 'ask-question',
