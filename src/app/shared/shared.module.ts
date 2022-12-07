@@ -36,6 +36,10 @@ import { ReportDialogStep1Component } from './components/dialogs/report-dialog/c
 import { ReportDialogStep2Component } from './components/dialogs/report-dialog/components/report-dialog-step-2/report-dialog-step-2.component';
 import { ReportDialogApiService } from './components/dialogs/report-dialog/services/report-dialog-api.service';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { ContentFormComponent } from './components/content-form/content-form.component';
+import { CheckboxComponent } from './components/checkbox/checkbox.component';
+// import { KatexModule } from 'ng-katex';
 
 const sharedComponents = [
 	InputComponent,
@@ -51,6 +55,8 @@ const sharedComponents = [
 	CreateAnAccountDialogComponent,
 	AutoCompleteComponent,
 	DialogBaseComponent,
+	ContentFormComponent,
+	CheckboxComponent,
 ];
 
 const privateComponents = [
@@ -80,6 +86,7 @@ const sharedDirectives = [
 		MatRippleModule,
 		RouterModule,
 		MatAutocompleteModule,
+		CKEditorModule,
 	],
 	declarations: [sharedDirectives, sharedComponents, privateComponents],
 	exports: [sharedDirectives, sharedModules, sharedComponents],

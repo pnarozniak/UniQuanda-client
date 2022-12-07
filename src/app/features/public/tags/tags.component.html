@@ -1,5 +1,5 @@
 <div class="w-100 d-flex flex-lg-row flex-column">
-	<div class="d-flex flex-column w-100 w-lg-75 p-sm-5 p-2 py-4">
+	<div class="d-flex flex-column left-menu p-sm-5 p-2 py-4">
 		<h1>{{ parentTag ? parentTag.name : 'Tagi' }}</h1>
 		<div *ngIf="parentTag" class="mb-3 d-flex flex-column">
 			<span class="tag-description">{{ parentTag.description }}</span>
@@ -86,12 +86,15 @@
 		<div
 			*ngIf="tags !== null; else loadingTags"
 			class="d-flex flex-wrap justify-content-center">
-			<ng-container *ngFor="let tag of tags.tags">
-				<app-tag-on-list
-					[tag]="tag"
-					[parentTagId]="this.parentTagId ?? null"
-					(tagClick)="loadSubTag($event)"></app-tag-on-list>
+			<ng-container *ngIf="tags.tags.length > 0; else notags">
+				<ng-container *ngFor="let tag of tags.tags">
+					<app-tag-on-list
+						[tag]="tag"
+						[parentTagId]="this.parentTagId ?? null"
+						(tagClick)="loadSubTag($event)"></app-tag-on-list>
+				</ng-container>
 			</ng-container>
+			<ng-template #notags><i>Nie znaleziono żadnych tagów</i></ng-template>
 		</div>
 		<ng-template #loadingTags>
 			<div class="d-flex flex-wrap justify-content-center">
@@ -110,7 +113,10 @@
 			(pageChange)="pageChange($event)"
 			[showInput]="true"></app-paginator>
 	</div>
-	<div autofocus class="w-25" style="border: 1px solid red; min-height: 800px">
+	<div
+		autofocus
+		class="right-menu"
+		style="border: 1px solid red; min-height: 800px">
 		Prawe menu (implementowane oddzielnie)
 	</div>
 </div>
