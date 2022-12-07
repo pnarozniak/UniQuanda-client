@@ -39,6 +39,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { ContentFormComponent } from './components/content-form/content-form.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { TagChipsComponent } from './components/tag-chips/tag-chips.component';
 // import { KatexModule } from 'ng-katex';
 
 const sharedComponents = [
@@ -57,6 +60,7 @@ const sharedComponents = [
 	DialogBaseComponent,
 	ContentFormComponent,
 	CheckboxComponent,
+	TagChipsComponent,
 ];
 
 const privateComponents = [
@@ -86,6 +90,8 @@ const sharedDirectives = [
 		MatRippleModule,
 		RouterModule,
 		MatAutocompleteModule,
+		MatChipsModule,
+		MatFormFieldModule,
 		CKEditorModule,
 	],
 	declarations: [sharedDirectives, sharedComponents, privateComponents],

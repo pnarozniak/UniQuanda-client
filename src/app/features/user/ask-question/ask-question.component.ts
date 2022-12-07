@@ -3,8 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoaderService } from 'src/app/core/services/loader.service';
+import { ITag } from 'src/app/shared/models/tag.model';
 import AddQuestionRequestDTO from './models/add-question.dto';
-import { ITag } from './models/get-tags.dto';
 import QuestionApiService from './services/question.service';
 
 @Component({

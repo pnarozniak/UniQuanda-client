@@ -16,10 +16,10 @@
 						message: 'Treść pytania jest wymagana.'
 					}
 				]"></app-input>
-			<app-question-chips
+			<app-tag-chips
 				class="mx-3 mb-3"
 				[tagCtrl]="tagInput"
-				(selectedTagsEmitter)="setTags($event)"></app-question-chips>
+				(selectedTagsEmitter)="setTags($event)"></app-tag-chips>
 			<app-content-form [control]="form.controls['content']"></app-content-form>
 			<mat-error
 				class="error-text mx-3 mt-1"
