@@ -33,6 +33,11 @@
 	color: colors.$crystal-white;
 }
 
+.active-premium {
+	background-color: colors.$dark-yellow;
+	color: colors.$crystal-white;
+}
+
 @media all and (max-width: breakpoints.$sm) {
 	.item {
 		padding: 6px 13px 6px 13px;

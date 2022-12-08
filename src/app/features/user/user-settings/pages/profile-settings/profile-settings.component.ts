@@ -89,6 +89,7 @@ export class ProfileSettingsComponent implements OnInit {
 				}),
 				catchError((req) => {
 					if (req.status === 404) {
+						this._toastrService.error('Błąd', 'Zasób nie istnieje');
 						this._router.navigate(['/page-not-found']);
 					}
 					return of();

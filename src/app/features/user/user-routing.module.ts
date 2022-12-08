@@ -9,6 +9,11 @@ const routes: Routes = [
 				(m) => m.UserSettingsModule
 			),
 	},
+	{
+		path: 'premium',
+		loadChildren: () =>
+			import('./premium/premium.module').then((m) => m.PremiumModule),
+	},
 ];
 @NgModule({
 	imports: [RouterModule.forChild(routes)],

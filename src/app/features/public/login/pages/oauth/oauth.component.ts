@@ -127,7 +127,6 @@ export class OAuthComponent implements OnInit {
 	}
 
 	handleConfirmOAuthRegister() {
-		console.log(this.form.get('nickname')?.pending);
 		if (this.form.invalid || this.form.get('nickname')?.pending) return;
 
 		this._loader.show();

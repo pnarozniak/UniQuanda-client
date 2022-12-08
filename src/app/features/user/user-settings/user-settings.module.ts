@@ -1,3 +1,4 @@
+import { PremiumModule } from './../../premium/premium.module';
 import { ProfileSettingsModule } from './pages/profile-settings/profile-settings.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -17,6 +18,7 @@ import { UserSettingsComponent } from './user-settings.component';
 		ProfileSettingsModule,
 		SharedModule,
 		SecuritySettingsModule,
+		PremiumModule,
 	],
 	declarations: [SettingsNavigationComponent, UserSettingsComponent],
 })
