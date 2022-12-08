@@ -42,7 +42,7 @@ import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TagChipsComponent } from './components/tag-chips/tag-chips.component';
-// import { KatexModule } from 'ng-katex';
+import { ContentDisplayComponent } from './components/content-display/content-display.component';
 
 const sharedComponents = [
 	InputComponent,
@@ -61,6 +61,7 @@ const sharedComponents = [
 	ContentFormComponent,
 	CheckboxComponent,
 	TagChipsComponent,
+	ContentDisplayComponent,
 ];
 
 const privateComponents = [

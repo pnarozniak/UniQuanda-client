@@ -9,6 +9,9 @@ import { QuestionsSerive } from './services/questions.service';
 import { Location } from '@angular/common';
 import { HttpParams } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { FormControl } from '@angular/forms';
+import { ITag } from 'src/app/shared/models/tag.model';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
 	selector: 'app-home',
@@ -24,6 +27,9 @@ export class HomeComponent implements OnInit {
 	public sortingBy = QuestionSortingBy.PublicationDate;
 	public orderDirection = OrderDirection.Ascending;
 
+	public tagControl = new FormControl('');
+	public pageBehavior = new BehaviorSubject<number>(this.page);
+
 	public isLoading = true;
 
 	constructor(
@@ -33,25 +39,31 @@ export class HomeComponent implements OnInit {
 	) {}
 	ngOnInit(): void {
 		this.page = this._route.snapshot.queryParams['page'] ?? 1;
+		this.pageBehavior = new BehaviorSubject<number>(this.page);
 		this.sortingBy =
 			this._route.snapshot.queryParams['sortingBy'] ??
 			QuestionSortingBy.PublicationDate;
 		this.orderDirection =
 			this._route.snapshot.queryParams['orderDirection'] ??
 			OrderDirection.Ascending;
-		this.tags = this._route.snapshot.queryParams['tags']?.split(',') ?? [];
+
+		const requestTags = this._route.snapshot.queryParams['tags'];
+		if (requestTags !== '' && requestTags !== undefined)
+			this.tags = requestTags.split(',');
 		this.getQuestions(true);
 	}
 
 	public handleSortingChange(sortingBy: QuestionSortingBy) {
 		this.sortingBy = sortingBy;
 		this.page = 1;
+		this.pageBehavior.next(this.page);
 		this.getQuestions();
 	}
 
 	public handleOrderDirectionChange(orderDirection: OrderDirection) {
 		this.orderDirection = orderDirection;
 		this.page = 1;
+		this.pageBehavior.next(this.page);
 		this.getQuestions();
 	}
 
@@ -87,9 +99,10 @@ export class HomeComponent implements OnInit {
 		this.getQuestions();
 	}
 
-	// public handleTagsChanged(tags: ITag[]) {
-	// 	this.tags = tags.map((t) => t.id);
-	// 	this.page = 1;
-	// 	this.getQuestions();
-	// }
+	public handleTagsChanged(tags: ITag[]) {
+		this.tags = tags.map((t) => t.id);
+		this.page = 1;
+		this.pageBehavior.next(this.page);
+		this.getQuestions();
+	}
 }

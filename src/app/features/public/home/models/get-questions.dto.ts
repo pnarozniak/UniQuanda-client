@@ -20,19 +20,15 @@ export interface IGetQuestionsResponseDtoQuestion {
 	header: string;
 	html: string;
 	views: number;
-	answers: number;
+	answersCount: number;
 	creationDate: Date;
 	isPopular: boolean;
 	hasCorrectAnswer: boolean;
+	tagNames: string[];
 	user: IGetQuestionsResponseDtoQuestionUser;
-	tags: IGetQuestionsResponseDtoQuestionTag[];
 }
 export interface IGetQuestionsResponseDtoQuestionUser {
 	id: number;
 	name: string;
-	profilePictureUrl: string | null;
-}
-export interface IGetQuestionsResponseDtoQuestionTag {
-	id: number;
-	name: string;
+	profilePictureURL: string | null;
 }

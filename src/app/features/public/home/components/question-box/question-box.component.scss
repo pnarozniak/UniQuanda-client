@@ -1,0 +1,30 @@
+@use 'colors' as col;
+.line {
+	height: 2px;
+}
+.box {
+	border: 1px solid col.$bordered-gray;
+	border-bottom: 0;
+}
+.popular {
+	color: col.$crystal-black;
+	background-color: col.$dark-yellow;
+	border-radius: 5px;
+}
+.right-text {
+	text-align: end;
+}
+.correct-answer {
+	color: col.$crystal-white;
+	background-color: col.$blue-laguna;
+	border-radius: 5px;
+}
+.right-menu {
+	border-left: 1px solid col.$bordered-gray;
+}
+.left-menu {
+	min-width: 190px !important;
+}
+.user-box {
+	border-right: 1px solid col.$bordered-gray;
+}

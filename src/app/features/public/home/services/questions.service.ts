@@ -16,16 +16,20 @@ export class QuestionsSerive {
 	getQuestions(
 		request: GetQuestionsRequestDto
 	): Observable<IGetQuestionsResponseDto> {
-		const params = new HttpParams()
+		let params = new HttpParams()
 			.append('page', request.page)
 			.append('pageSize', request.pageSize)
 			.append('sortBy', request.sortBy)
 			.append('orderDirection', request.orderBy)
-			.append('addCount', request.addCount)
-			.append('tags', request.tags.join(','));
+			.append('addCount', request.addCount);
+		if (request.tags.length > 0) {
+			request.tags.forEach((tag) => {
+				params = params.append('tags', tag);
+			});
+		}
 
 		return this._apiService
-			.get<IGetQuestionsResponseDto>('Questions', params)
+			.get<IGetQuestionsResponseDto>('Question', params)
 			.pipe(
 				map(
 					(response: HttpResponse<IGetQuestionsResponseDto>) =>

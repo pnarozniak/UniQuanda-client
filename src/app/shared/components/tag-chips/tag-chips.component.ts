@@ -27,10 +27,10 @@ export class TagChipsComponent implements OnInit, OnDestroy {
 	suggestedTags: Observable<ITag[]> = of([]);
 	selectedTags: ITag[] = [];
 	possibleTags: ITag[] = [];
-	maxTagsAmount = 5;
 	maxCharacters = 30;
 	private subscription = new Subscription();
 
+	@Input() maxTagsAmount = 5;
 	@Input() tagCtrl!: FormControl;
 
 	@Output() selectedTagsEmitter = new EventEmitter<ITag[]>();

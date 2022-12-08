@@ -1,1 +1,56 @@
-<p>question-box works!</p>
+<div
+	class="d-flex flex-column w-100"
+	routerLink="/public/question-details/{{ question.id }}">
+	<div class="d-flex flex-row box py-3">
+		<div class="flex-column ps-4 pe-2 my-auto left-menu">
+			<div class="d-flex popular px-2 py-1 mb-2" *ngIf="question.isPopular">
+				<app-icon icon="popular" class="icon my-auto ms-auto"></app-icon>
+				<span class="ms-2 my-auto me-auto">Popularne</span>
+			</div>
+			<div class="right-text mb-2">
+				{{ creationDate }}
+			</div>
+			<div
+				class="px-2 py-1 correct-answer mb-2"
+				*ngIf="question.hasCorrectAnswer; else noCorrectAnswer">
+				<app-icon icon="check"></app-icon>
+				<span class="ms-2">{{ genereateAnswersCountText() }}</span>
+			</div>
+			<ng-template #noCorrectAnswer>
+				<div class="right-text mb-2">{{ genereateAnswersCountText() }}</div>
+			</ng-template>
+			<div class="right-text">{{ generateViewsConutText() }}</div>
+		</div>
+		<div class="ps-4 pe-2 ms-3 right-menu">
+			<h2 class="title">
+				{{ question.header }}
+			</h2>
+			<div class="d-flex">
+				<div
+					class="user-box"
+					routerLink="/public/profile/{{ question.user.id }}">
+					<img
+						alt="profile picture of asking person"
+						width="35px"
+						height="35px"
+						src="{{
+							question.user.profilePictureURL
+								? question.user.profilePictureURL
+								: 'assets/images/common/default_avatar.svg'
+						}}" />
+					<span class="my-auto ms-2 me-3">{{ question.user.name }}</span>
+				</div>
+				<div class="ms-3 d-flex">
+					<ng-container *ngFor="let tagName of question.tagNames">
+						<app-tag [name]="tagName" class="my-auto me-2 d-flex"></app-tag>
+					</ng-container>
+				</div>
+			</div>
+			<app-content-display
+				class="mt-3 d-flex"
+				[htmlContent]="question.html"
+				[showBlocks]="false"></app-content-display>
+		</div>
+	</div>
+	<app-uniquanda-line class="line w-100"></app-uniquanda-line>
+</div>
