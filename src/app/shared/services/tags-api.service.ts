@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, map, Observable, of } from 'rxjs';
 import ApiService from 'src/app/core/services/api.service';
-import GetTagsRequestDto, { IGetTagsResponseDto } from '../models/get-tags.dto';
+import GetTagsRequestDto, { IGetTagsResponseDto } from '../models/tag.model';
 
 @Injectable({
 	providedIn: 'root',

@@ -3,8 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoaderService } from 'src/app/core/services/loader.service';
+import { ITag } from 'src/app/shared/models/tag.model';
 import AddQuestionRequestDTO from './models/add-question.dto';
-import { ITag } from './models/get-tags.dto';
 import QuestionApiService from './services/question.service';
 
 @Component({
@@ -18,6 +18,7 @@ export class AskQuestionComponent {
 		content: new FormControl('', [Validators.required]),
 		confirmation: new FormControl(false, [Validators.requiredTrue]),
 	});
+	public maxTagsAmount = 5;
 
 	public constructor(
 		private readonly _questionsApiService: QuestionApiService,
@@ -48,7 +49,7 @@ export class AskQuestionComponent {
 			value.confirmation
 		);
 		this._questionsApiService.addQuestion(request).subscribe((questionId) => {
-			this._toastrService.success('Dodano pytanie');
+			this._toastrService.success('Pomyślnie zadano pytanie', 'Dodano pytanie');
 			this._loaderService.hide();
 			this._router.navigate(['public/question-details', questionId]);
 		});

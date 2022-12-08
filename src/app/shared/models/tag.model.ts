@@ -1,10 +1,5 @@
-import { OrderDirection } from 'src/app/shared/enums/order-direction.enum';
+import { OrderDirection } from '../enums/order-direction.enum';
 
-export interface IGetTagsResponseDto {
-	tags: ITag[];
-	parentTag?: ITag;
-	totalCount?: number;
-}
 export interface ITag {
 	id: number;
 	name: string;
@@ -35,4 +30,10 @@ export default class GetTagsRequestDto {
 			addParentTagData = undefined;
 		}
 	}
+}
+
+export interface IGetTagsResponseDto {
+	tags: ITag[];
+	parentTag?: ITag;
+	totalCount?: number;
 }

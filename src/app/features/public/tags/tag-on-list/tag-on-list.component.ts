@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ITag } from '../models/get-tags.dto';
+import { ITag } from 'src/app/shared/models/tag.model';
 
 @Component({
 	selector: 'app-tag-on-list',

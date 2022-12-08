@@ -12,25 +12,28 @@ import { TagsApiService } from '../../services/tags-api.service';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormControl } from '@angular/forms';
 import { tap, Observable, of, map, Subscription } from 'rxjs';
-import { GetTagsRequestDto, ITag } from '../../models/get-tags.dto';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
+import GetTagsRequestDto, { ITag } from '../../models/tag.model';
+import { OrderDirection } from '../../enums/order-direction.enum';
 
 @Component({
-	selector: 'app-question-chips',
-	templateUrl: './question-chips.component.html',
-	styleUrls: ['./question-chips.component.scss'],
+	selector: 'app-tag-chips',
+	templateUrl: './tag-chips.component.html',
+	styleUrls: ['./tag-chips.component.scss'],
 })
-export class QuestionChipsComponent implements OnInit, OnDestroy {
+export class TagChipsComponent implements OnInit, OnDestroy {
 	separatorKeysCodes: number[] = [ENTER, COMMA];
 	suggestedTags: Observable<ITag[]> = of([]);
 	selectedTags: ITag[] = [];
 	possibleTags: ITag[] = [];
-	maxTagsAmount = 5;
 	maxCharacters = 30;
 	private subscription = new Subscription();
+	private incomingTagsSubscription = new Subscription();
 
+	@Input() maxTagsAmount = 5;
 	@Input() tagCtrl!: FormControl;
+	@Input() initialTags: Observable<ITag[]> | null = null;
 
 	@Output() selectedTagsEmitter = new EventEmitter<ITag[]>();
 
@@ -45,6 +48,9 @@ export class QuestionChipsComponent implements OnInit, OnDestroy {
 	constructor(private readonly _tagApiService: TagsApiService) {}
 	ngOnDestroy(): void {
 		this.subscription.unsubscribe();
+		if (this.initialTags) {
+			this.incomingTagsSubscription.unsubscribe();
+		}
 	}
 	ngOnInit(): void {
 		this.subscription.add(
@@ -60,7 +66,17 @@ export class QuestionChipsComponent implements OnInit, OnDestroy {
 						return;
 					}
 					this.suggestedTags = this._tagApiService
-						.getTags(new GetTagsRequestDto(keyword))
+						.getTags(
+							new GetTagsRequestDto(
+								false,
+								1,
+								10,
+								OrderDirection.Ascending,
+								false,
+								undefined,
+								keyword
+							)
+						)
 						.pipe(
 							tap((response) => {
 								response.tags.forEach((tag) => {
@@ -88,6 +104,13 @@ export class QuestionChipsComponent implements OnInit, OnDestroy {
 				}
 			})
 		);
+		if (this.initialTags) {
+			this.incomingTagsSubscription.add(
+				this.initialTags.subscribe((tags) => {
+					this.selectedTags = tags;
+				})
+			);
+		}
 	}
 
 	removeTag(tag: ITag) {

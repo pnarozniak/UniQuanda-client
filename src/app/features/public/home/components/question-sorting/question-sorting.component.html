@@ -1,0 +1,59 @@
+<div class="d-flex flex-row">
+	<app-button
+		class="ms-auto d-md-flex d-none me-2 px-4 py-1"
+		[color]="questionSortingBy === sortingBy.PublicationDate ? 'blue' : 'gray'"
+		(click)="handleSortingByChanged(sortingBy.PublicationDate)"
+		>Data publikacji</app-button
+	>
+	<app-button
+		class="me-2 d-md-flex d-none px-4 py-1"
+		[color]="questionSortingBy === sortingBy.Views ? 'blue' : 'gray'"
+		(click)="handleSortingByChanged(sortingBy.Views)"
+		>Ilość wyświetleń</app-button
+	>
+	<app-button
+		class="me-2 d-md-flex d-none px-4 py-1"
+		[color]="questionSortingBy === sortingBy.Answers ? 'blue' : 'gray'"
+		(click)="handleSortingByChanged(sortingBy.Answers)"
+		>Ilość odpowiedzi</app-button
+	>
+	<div class="pe-2 extend-box me-2 d-md-none d-flex" [matMenuTriggerFor]="menu">
+		<app-button
+			class="me-2 px-4 py-1 mobile"
+			color="blue"
+			(click)="handleSortingByChanged(sortingBy.Answers)">
+			{{
+				questionSortingBy === sortingBy.Answers
+					? 'Ilość odpowiedzi'
+					: questionSortingBy === sortingBy.Views
+					? 'Ilość wyświetleń'
+					: 'Data publikacji'
+			}}
+		</app-button>
+	</div>
+	<mat-menu #menu="matMenu" appTheme>
+		<button
+			mat-menu-item
+			(click)="handleSortingByChanged(sortingBy.PublicationDate)">
+			<span>Data publikacji</span>
+		</button>
+		<button mat-menu-item (click)="handleSortingByChanged(sortingBy.Views)">
+			<span>Ilość wyświetleń</span>
+		</button>
+		<button mat-menu-item (click)="handleSortingByChanged(sortingBy.Answers)">
+			<span>Ilość odpowiedzi</span>
+		</button>
+	</mat-menu>
+	<div class="my-auto order-arrows" (click)="handleOrderDirectionChanged()">
+		<app-icon
+			icon="arrow_up me-1"
+			[ngClass]="{
+				'active-arrow': orderDirection === orderDir.Ascending
+			}"></app-icon>
+		<app-icon
+			icon="arrow_down"
+			[ngClass]="{
+				'active-arrow': orderDirection === orderDir.Descending
+			}"></app-icon>
+	</div>
+</div>

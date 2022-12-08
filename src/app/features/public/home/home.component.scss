@@ -1,14 +1,39 @@
 @use 'breakpoints' as bp;
-
-.app-right-menu {
-	margin-top: 120px;
+@use 'dimensions' as dim;
+@use 'colors' as col;
+.question-box {
+	cursor: pointer;
 }
-
-@media screen and (max-width: bp.$lg) {
-	.app-right-menu {
+.loading-box {
+	height: 180px;
+}
+.app-right-menu {
+	margin-top: 106px;
+}
+.left-menu {
+	width: calc(100% - dim.$right-menu-width);
+}
+.line {
+	background-color: col.$bordered-gray;
+	opacity: 1;
+}
+// @media screen and (max-width: bp.$lg) {
+// 	.app-right-menu {
+// 		width: 100%;
+// 		height: auto;
+// 		margin: 0;
+// 		padding: 50px 20px;
+// 	}
+// }
+@media screen and (max-width: bp.$xl) {
+	.left-menu {
 		width: 100%;
-		height: auto;
+	}
+	.loading-box {
+		width: 100%;
+	}
+	.right-menu {
+		width: 100%;
 		margin: 0;
-		padding: 50px 20px;
 	}
 }
