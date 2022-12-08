@@ -17,7 +17,7 @@
 		>{{ getValue(payment?.paymentStatus!) }}</span
 	>
 	<a
-		routerLink="payment?.paymentUrl"
+		[href]="payment?.paymentUrl"
 		class="w-25 link"
 		*ngIf="isPaymentStatusNew(payment?.paymentStatus!)"
 		>Opłać <app-icon icon="linkv2"></app-icon
@@ -51,7 +51,7 @@
 	>
 	<span *ngIf="isPaymentStatusNew(payment?.paymentStatus!)" class="item">
 		Status płatności:
-		<a routerLink="payment?.paymentUrl" class="link"
+		<a [href]="payment?.paymentUrl" class="link"
 			>Opłać <app-icon icon="linkv2"></app-icon
 		></a>
 	</span>
