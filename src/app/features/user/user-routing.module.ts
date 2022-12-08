@@ -10,6 +10,13 @@ const routes: Routes = [
 			),
 	},
 	{
+		path: 'ask-question',
+		loadChildren: () =>
+			import('./ask-question/ask-question.module').then(
+				(m) => m.AskQuestionModule
+			),
+	},
+	{
 		path: 'premium',
 		loadChildren: () =>
 			import('./premium/premium.module').then((m) => m.PremiumModule),

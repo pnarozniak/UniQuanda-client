@@ -1,0 +1,9 @@
+<div class="d-flex flex-column px-3">
+	<ckeditor
+		[editor]="editor"
+		[(ngModel)]="model"
+		[config]="config"
+		class="editor"
+		(change)="setValue($event)"
+		appTheme></ckeditor>
+</div>

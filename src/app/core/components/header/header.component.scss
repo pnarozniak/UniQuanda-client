@@ -17,6 +17,7 @@ header {
 .img-logo {
 	content: url('./../../../../assets/images/core/header/logo_blue.svg');
 	height: 40px;
+	cursor: pointer;
 }
 
 .a-btn {
@@ -102,9 +103,9 @@ header {
 		margin-right: 0.25rem;
 	}
 	.header-height {
-		height: calc(dim.$header-height - dim.$header-footer-height);	
+		height: calc(dim.$header-height - dim.$header-footer-height);
 	}
-	
+
 	.img-logo {
 		height: 25px;
 	}
@@ -123,10 +124,28 @@ header {
 		width: 25px;
 		height: 25px;
 	}
+
+	.icon-header {
+		min-width: 25px !important;
+		max-width: 25px !important;
+		height: 25px !important;
+		font-size: 16px !important;
+	}
 }
 
 .dark {
 	.img-logo {
 		content: url('./../../../../assets/images/core/header/logo_white.svg');
 	}
+}
+.ask-question-button {
+	height: 35px;
+}
+.icon-header {
+	color: var(--text-accent);
+	background-color: var(--bg-accent);
+	min-width: 35px;
+	max-width: 35px;
+	height: 35px;
+	font-size: 18px;
 }

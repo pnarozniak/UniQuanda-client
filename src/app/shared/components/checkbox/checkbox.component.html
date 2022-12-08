@@ -1,0 +1,19 @@
+<label appTheme class="d-flex">
+	<input type="checkbox" [formControl]="formControl" (click)="handleClick()" />
+	<span
+		class="checkmark me-2"
+		[ngClass]="{
+			'invalid-checkmark': !control.valid && control.touched
+		}"></span>
+	<div class="d-flex flex-column my-auto">
+		<div class="flex-row">
+			<span>{{ label }}</span>
+			<span class="ms-1" *ngIf="showRequiredMarker">*</span>
+		</div>
+		<mat-error *ngFor="let error of errors">
+			<ng-container *ngIf="error.name && formControl.touched">
+				{{ formControl.hasError(error.name) ? error.message : '' }}
+			</ng-container>
+		</mat-error>
+	</div>
+</label>
