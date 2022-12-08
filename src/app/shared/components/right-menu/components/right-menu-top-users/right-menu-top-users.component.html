@@ -1,0 +1,32 @@
+<div class="box p-4" appTheme *ngIf="{ top5Users: top5Users$ | async } as ctx">
+	<h5 class="mb-2">Top użytkownicy</h5>
+	<div
+		*ngFor="let user of ctx.top5Users; let i = index"
+		class="user-in-ranking pos-{{ i + 1 }}"
+		[routerLink]="['/public/profile', user.id]">
+		<span class="position">{{ i + 1 }}</span>
+		<img
+			class="avatar"
+			src="{{
+				user.avatar ? user.avatar : 'assets/images/common/default_avatar.svg'
+			}}" />
+		<span class="nickname">{{ user.nickname }}</span>
+		<span class="points">{{ user.points }} pkt.</span>
+	</div>
+	<ng-container *ngIf="ctx.top5Users?.length === 5">
+		<hr class="mt-2" />
+		<app-button
+			color="none"
+			class="show-more mt-1"
+			routerLink="/public/ranking">
+			Pokaż więcej
+		</app-button>
+	</ng-container>
+	<ng-container *ngIf="!ctx.top5Users">
+		<div [appLoading]="true" class="user-in-ranking"></div>
+		<div [appLoading]="true" class="user-in-ranking"></div>
+		<div [appLoading]="true" class="user-in-ranking"></div>
+		<div [appLoading]="true" class="user-in-ranking"></div>
+		<div [appLoading]="true" class="user-in-ranking"></div>
+	</ng-container>
+</div>

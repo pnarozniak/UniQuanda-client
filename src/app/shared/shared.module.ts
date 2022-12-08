@@ -39,6 +39,13 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { ContentFormComponent } from './components/content-form/content-form.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { RightMenuComponent } from './components/right-menu/right-menu.component';
+import { RightMenuAboutComponent } from './components/right-menu/components/right-menu-about/right-menu-about.component';
+import { RightMenuCreateAnAccountComponent } from './components/right-menu/components/right-menu-create-an-account/right-menu-create-an-account.component';
+import { RightMenuBuyPremiumComponent } from './components/right-menu/components/right-menu-buy-premium/right-menu-buy-premium.component';
+import { RightMenuTopUsersComponent } from './components/right-menu/components/right-menu-top-users/right-menu-top-users.component';
+import { RightMenuGenerateTestComponent } from './components/right-menu/components/right-menu-generate-test/right-menu-generate-test.component';
+// import { KatexModule } from 'ng-katex';
 
 const sharedComponents = [
 	InputComponent,
@@ -56,11 +63,17 @@ const sharedComponents = [
 	DialogBaseComponent,
 	ContentFormComponent,
 	CheckboxComponent,
+	RightMenuComponent,
 ];
 
 const privateComponents = [
 	ReportDialogStep1Component,
 	ReportDialogStep2Component,
+	RightMenuAboutComponent,
+	RightMenuCreateAnAccountComponent,
+	RightMenuBuyPremiumComponent,
+	RightMenuTopUsersComponent,
+	RightMenuGenerateTestComponent,
 ];
 
 const sharedModules = [CommonModule];

@@ -1,5 +1,5 @@
-<div class="d-flex flex-xl-row flex-column">
-	<div class="left-menu d-flex flex-column px-xl-5 px-2">
+<div class="d-flex flex-lg-row flex-column">
+	<div class="left-menu d-flex flex-column ps-lg-5 ps-2">
 		<h1 class="mx-3 mt-5">Dodaj pytanie</h1>
 		<form
 			[formGroup]="form"
@@ -48,10 +48,5 @@
 			>
 		</form>
 	</div>
-	<div
-		autofocus
-		class="right-menu"
-		style="border: 1px solid red; min-height: 800px">
-		Prawe menu (implementowane oddzielnie)
-	</div>
+	<app-right-menu [options]="['buy-premium', 'top-users']"> </app-right-menu>
 </div>
