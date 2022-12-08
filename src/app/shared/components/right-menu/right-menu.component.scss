@@ -1,0 +1,12 @@
+@use 'dimensions' as dim;
+
+:host {
+	width: dim.$right-menu-width;
+	margin: 0 50px;
+	height: 100%;
+	padding-bottom: 50px;
+
+	.content {
+		gap: 13px;
+	}
+}
