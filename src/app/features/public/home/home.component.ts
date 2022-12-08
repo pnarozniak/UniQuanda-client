@@ -52,7 +52,6 @@ export class HomeComponent implements OnInit {
 			OrderDirection.Ascending;
 
 		const requestTags = this._route.snapshot.queryParams['tags'];
-		console.log(requestTags);
 		if (requestTags !== '' && requestTags !== undefined) {
 			this.tags = requestTags.split(',');
 			this.hasInitialTags = true;
