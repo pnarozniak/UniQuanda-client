@@ -113,10 +113,6 @@
 			(pageChange)="pageChange($event)"
 			[showInput]="true"></app-paginator>
 	</div>
-	<div
-		autofocus
-		class="right-menu"
-		style="border: 1px solid red; min-height: 800px">
-		Prawe menu (implementowane oddzielnie)
-	</div>
+	<app-right-menu [options]="['create-an-account', 'top-users', 'buy-premium']">
+	</app-right-menu>
 </div>
