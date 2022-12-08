@@ -18,6 +18,10 @@
 	color: colors.$crystal-white;
 }
 
+hr {
+	margin-top: 0.5rem !important;
+}
+
 @media all and (max-width: breakpoints.$sm) {
 	.margin-text {
 		margin-bottom: 16px;
