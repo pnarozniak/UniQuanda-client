@@ -33,7 +33,9 @@
 				<app-icon icon="calendar" class="small-text"></app-icon>
 				<div class="d-flex flex-column ms-1 small-text">
 					<span>{{
-						_moment(user?.userData.birthdate).lang('pl').format('DD MMM YYYY ')
+						_moment(user?.userData.birthdate)
+							.locale('pl')
+							.format('DD MMM YYYY ')
 					}}</span>
 				</div>
 			</div>

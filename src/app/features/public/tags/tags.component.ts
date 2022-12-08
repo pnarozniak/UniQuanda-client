@@ -56,6 +56,7 @@ export class TagsComponent implements OnInit, OnDestroy {
 	ngOnInit(): void {
 		this.subscriptionInputValue.add(
 			this.searchControl.valueChanges.subscribe((value) => {
+				if (!value) return;
 				if (value.length > this.maxLength) {
 					this.searchControl.setValue(value.substring(0, this.maxLength));
 					return;
