@@ -10,4 +10,5 @@ export interface IUserData {
 	city?: string;
 	phoneNumber?: string;
 	semanticScholarProfile?: string;
+	hasPremium: boolean;
 }

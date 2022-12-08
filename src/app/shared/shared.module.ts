@@ -39,7 +39,6 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { ContentFormComponent } from './components/content-form/content-form.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
-// import { KatexModule } from 'ng-katex';
 
 const sharedComponents = [
 	InputComponent,

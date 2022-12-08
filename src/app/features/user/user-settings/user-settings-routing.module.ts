@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserSettingsComponent } from './user-settings.component';
-import AuthGuardService from 'src/app/core/guards/auth-guard.service';
 
 const routes: Routes = [
 	{
@@ -20,6 +19,13 @@ const routes: Routes = [
 				loadChildren: () =>
 					import('./pages/security-settings/security-settings.module').then(
 						(m) => m.SecuritySettingsModule
+					),
+			},
+			{
+				path: 'premium',
+				loadChildren: () =>
+					import('./pages/premium-settings/premium-settings.module').then(
+						(m) => m.PremiumSettingsModule
 					),
 			},
 		],
