@@ -18,4 +18,7 @@ export enum RecaptchaAction {
 	CANCEL_CONFIRMATION_EMAIL = 'cancel_confirmation_email',
 	CONFIRM_OAUTH_REGISTER = 'confirm_oauth_register',
 	GET_OAUTH_USER_INFO = 'get_oauth_user_info',
+	GET_PREMIUM_PAYMENTS = 'get_premium_payments',
+	CREATE_PREMIUM_PAYMENT = 'create_premium_payment',
+	HANDLE_PREMIUM_PAYMENT = 'handle_premium_payment',
 }

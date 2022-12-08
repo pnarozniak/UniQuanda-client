@@ -1,0 +1,86 @@
+<div
+	*ngIf="
+		!premiumInfo?.hasPremiumUntil ||
+			!isDateBiggerThanNowPlusXMonths(0, premiumInfo?.hasPremiumUntil!);
+		else hasPremium
+	"
+	class="d-flex flex-column align-items-start main-container">
+	<h4 [appLoading]="!premiumInfo">Kup premium!</h4>
+	<span class="mb-2" [appLoading]="!premiumInfo">
+		Kupując premium otrzymasz:
+	</span>
+	<span class="mb-2" [appLoading]="!premiumInfo">
+		<app-icon
+			*ngIf="premiumInfo"
+			class="rounded-circle check-icon p-1"
+			icon="check"></app-icon
+		>&nbsp;<span class="medium-bold">Brak</span>&nbsp;reklam!</span
+	>
+	<span class="mb-2" [appLoading]="!premiumInfo">
+		<app-icon
+			*ngIf="premiumInfo"
+			class="rounded-circle check-icon p-1"
+			icon="check"></app-icon
+		>&nbsp;<span class="medium-bold">Nielimitowane</span>&nbsp;zadawanie pytań!
+	</span>
+	<span class="mb-3"
+		><b class="medium-bold" [appLoading]="!premiumInfo"
+			>Subskrypcja premium:&nbsp;</b
+		>
+		<i [appLoading]="!premiumInfo"
+			>{{ premiumInfo?.premiumPrice | number: '1.2-2' }}&nbsp;zł/miesiąc</i
+		></span
+	>
+	<app-button
+		[appLoading]="!premiumInfo"
+		class="buy-btn px-sm-4 px-3 py-sm-2 py-1 fw-bold my-2"
+		(click)="callForPaymentUrl(false)">
+		Aktywuj premium
+	</app-button>
+	<hr class="w-100" />
+</div>
+<ng-template #hasPremium>
+	<div class="d-flex flex-column main-container">
+		<span [appLoading]="!premiumInfo"
+			>Cześć, <b class="medium-bold">{{ premiumInfo?.nickname }}</b></span
+		>
+		<span class="mb-2" [appLoading]="!premiumInfo"
+			>Dziękujemy Ci za subsktrypcje Premium!</span
+		>
+		<div
+			class="d-flex flex-md-row flex-column justify-content-md-between align-items-start align-items-md-center flex-wrap">
+			<span class="d-flex flex-row flex-nowrap" [appLoading]="!premiumInfo">
+				<b class="medium-bold text-nowrap"
+					>Data wygaśnięcia subskrybcji:&nbsp;</b
+				>
+				<i class="text-nowrap">{{
+					premiumInfo?.hasPremiumUntil | date: 'dd LLL yyyy HH:mm':'+0200':'pl'
+				}}</i></span
+			>
+			<app-button
+				*ngIf="
+					premiumInfo?.hasPremiumUntil &&
+					isDateBiggerThanNowPlusXMonths(0, premiumInfo?.hasPremiumUntil!) &&
+					!isDateBiggerThanNowPlusXMonths(1, premiumInfo?.hasPremiumUntil!)
+				"
+				class="extend-btn px-sm-4 px-3 py-sm-2 py-1 fw-bold my-2"
+				(click)="callForPaymentUrl(true)"
+				>Przedłuż swoją subsktrypcje premium</app-button
+			>
+		</div>
+		<hr class="w-100" />
+		<span class="mb-2"
+			><b class="medium-bold" [appLoading]="!premiumInfo"
+				>Subskrypcja premium:&nbsp;</b
+			>
+			<i [appLoading]="!premiumInfo"
+				>{{ premiumInfo?.premiumPrice | number: '1.2-2' }}&nbsp;zł/miesiąc</i
+			></span
+		>
+		<span [appLoading]="!premiumInfo"
+			>Miej dostęp do dodatkowych korzyści, odnawiając subskrybcję
+			Premium!</span
+		>
+		<hr />
+	</div>
+</ng-template>

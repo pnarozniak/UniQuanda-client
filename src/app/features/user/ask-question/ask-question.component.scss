@@ -1,23 +1,27 @@
 @use 'dimensions' as dim;
-@use 'breakpoints' as breakpoint;
+@use 'breakpoints' as bp;
+
 .ask-button {
 	width: fit-content;
 }
 .left-menu {
 	width: calc(100% - dim.$right-menu-width);
 }
-.right-menu {
-	width: dim.$right-menu-width;
+.app-right-menu {
+	margin-top: 140px;
 }
 .error-text {
 	font-size: 12px;
 }
 
-@media screen and (max-width: breakpoint.$xl) {
+@media screen and (max-width: bp.$lg) {
 	.left-menu {
 		width: 100%;
 	}
-	.right-menu {
+	.app-right-menu {
 		width: 100%;
+		height: auto;
+		margin: 0;
+		padding: 50px 20px;
 	}
 }

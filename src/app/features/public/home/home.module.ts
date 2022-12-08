@@ -6,7 +6,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { QuestionBoxComponent } from './components/question-box/question-box.component';
 import { RouterModule } from '@angular/router';
-
 @NgModule({
 	imports: [CommonModule, SharedModule, FormsModule, RouterModule],
 	declarations: [HomeComponent, QuestionSortingComponent, QuestionBoxComponent],

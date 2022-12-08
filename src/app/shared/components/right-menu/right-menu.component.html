@@ -1,0 +1,18 @@
+<div class="d-flex flex-column content" *ngIf="{ user: user$ | async } as ctx">
+	<ng-container *ngFor="let opt of options" [ngSwitch]="opt">
+		<app-right-menu-about *ngSwitchCase="'about'"></app-right-menu-about>
+		<app-right-menu-top-users *ngSwitchCase="'top-users'">
+		</app-right-menu-top-users>
+		<app-right-menu-generate-test *ngSwitchCase="'generate-test'">
+		</app-right-menu-generate-test>
+		<ng-container *ngIf="!ctx.user?.roles?.includes(roleEnum.PREMIUM)">
+			<app-right-menu-buy-premium *ngSwitchCase="'buy-premium'">
+			</app-right-menu-buy-premium>
+		</ng-container>
+		<ng-container *ngIf="!ctx.user">
+			<app-right-menu-create-an-account *ngSwitchCase="'create-an-account'">
+			</app-right-menu-create-an-account>
+		</ng-container>
+	</ng-container>
+	<ng-content></ng-content>
+</div>

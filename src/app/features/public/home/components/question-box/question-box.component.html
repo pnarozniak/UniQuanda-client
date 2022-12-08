@@ -27,17 +27,20 @@
 			</h2>
 			<div class="d-flex">
 				<div
-					class="user-box"
+					class="user-box d-flex flex-row"
 					routerLink="/public/profile/{{ question.user.id }}">
-					<img
-						alt="profile picture of asking person"
-						width="35px"
-						height="35px"
-						src="{{
-							question.user.profilePictureURL
-								? question.user.profilePictureURL
-								: 'assets/images/common/default_avatar.svg'
-						}}" />
+					<div [appLoading]="isProfilePictureLoading" class="user-logo d-flex">
+						<img
+							alt="profile picture of asking person"
+							width="35px"
+							height="35px"
+							src="{{
+								question.user.profilePictureURL
+									? question.user.profilePictureURL
+									: 'assets/images/common/default_avatar.svg'
+							}}"
+							(load)="isProfilePictureLoading = false" />
+					</div>
 					<span class="my-auto ms-2 me-3">{{ question.user.name }}</span>
 				</div>
 				<div class="ms-3 d-flex">

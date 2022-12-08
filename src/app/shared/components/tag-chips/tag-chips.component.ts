@@ -29,9 +29,11 @@ export class TagChipsComponent implements OnInit, OnDestroy {
 	possibleTags: ITag[] = [];
 	maxCharacters = 30;
 	private subscription = new Subscription();
+	private incomingTagsSubscription = new Subscription();
 
 	@Input() maxTagsAmount = 5;
 	@Input() tagCtrl!: FormControl;
+	@Input() initialTags: Observable<ITag[]> | null = null;
 
 	@Output() selectedTagsEmitter = new EventEmitter<ITag[]>();
 
@@ -46,6 +48,9 @@ export class TagChipsComponent implements OnInit, OnDestroy {
 	constructor(private readonly _tagApiService: TagsApiService) {}
 	ngOnDestroy(): void {
 		this.subscription.unsubscribe();
+		if (this.initialTags) {
+			this.incomingTagsSubscription.unsubscribe();
+		}
 	}
 	ngOnInit(): void {
 		this.subscription.add(
@@ -99,6 +104,13 @@ export class TagChipsComponent implements OnInit, OnDestroy {
 				}
 			})
 		);
+		if (this.initialTags) {
+			this.incomingTagsSubscription.add(
+				this.initialTags.subscribe((tags) => {
+					this.selectedTags = tags;
+				})
+			);
+		}
 	}
 
 	removeTag(tag: ITag) {

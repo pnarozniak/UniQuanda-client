@@ -1,3 +1,4 @@
+import { NoopScrollStrategy } from '@angular/cdk/overlay';
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ComponentType } from 'ngx-toastr';
@@ -8,6 +9,7 @@ import { ComponentType } from 'ngx-toastr';
 export class DialogService {
 	private readonly _baseConfig: MatDialogConfig = {
 		backdropClass: 'dialog-base-backdrop',
+		scrollStrategy: new NoopScrollStrategy(),
 	};
 
 	constructor(private readonly _dialog: MatDialog) {}

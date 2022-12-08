@@ -15,6 +15,8 @@ export class QuestionBoxComponent implements OnInit {
 	}
 	public creationDate = '';
 
+	public isProfilePictureLoading = true;
+
 	@Input() public question!: IGetQuestionsResponseDtoQuestion;
 
 	public genereateAnswersCountText(): string {

@@ -1,6 +1,6 @@
 import { HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import ApiService from 'src/app/core/services/api.service';
 import {
 	GetQuestionsRequestDto,

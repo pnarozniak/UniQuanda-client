@@ -1,0 +1,26 @@
+<div class="d-flex flex-column align-items-center py-sm-5 py-3" appTheme>
+	<div class="main-container">
+		<div></div>
+		<img
+			*ngIf="isDarkMode !== null && premiumInfo !== null"
+			src="assets/images/public/premium/premium_{{
+				isDarkMode ? 'dark' : 'light'
+			}}_mode.svg"
+			class="logo" />
+		<div
+			*ngIf="isDarkMode === null || premiumInfo === null"
+			[appLoading]="true"
+			class="logo"></div>
+		<app-premium-info [premiumInfo]="premiumInfo"></app-premium-info>
+		<app-premium-payments-list
+			[payments]="premiumInfo?.payments!"></app-premium-payments-list>
+		<app-button
+			*ngIf="displayBtnLoadMore"
+			color="none"
+			class="d-flex flex-row justify-content-end mt-sm-3 mt-2 more-btn"
+			(click)="getAllPayments()"
+			[appLoading]="!premiumInfo"
+			><i>pokaż więcej...</i></app-button
+		>
+	</div>
+</div>

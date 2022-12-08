@@ -31,7 +31,9 @@
 						class="loading-badge mb-1"
 						[appLoading]="user === null"
 						*ngIf="user === null"></div>
-					<div *ngFor="let title of user?.academicTitles" class="me-1">
+					<div
+						*ngFor="let title of user?.academicTitles"
+						class="me-1 tag-container">
 						<b
 							class="p-2 title-badge"
 							[ngStyle]="{
@@ -42,145 +44,158 @@
 							{{ title.name }}</b
 						>
 					</div>
-				</div>
-				<div class="d-flex flex-row w-100">
 					<div
-						class="loading-nick"
-						[appLoading]="user === null"
-						*ngIf="user === null"></div>
-					<div
-						class="d-flex flex-xl-row flex-column"
-						*ngIf="
-							user?.userData?.firstName && user?.userData?.lastName;
-							else onlyNick
-						">
-						<b class="nickname mt-2 mt-sm-0"
-							>{{ user?.userData?.firstName }} {{ user?.userData?.lastName }}</b
-						>
-						<span class="mt-auto mb-2 ms-2"
-							>({{ user?.userData?.nickname }})</span
-						>
+						*ngIf="user?.userData?.hasPremium"
+						class="premium-icon-container me-1">
+						<app-icon
+							class="premium-icon p-2 title-badge"
+							icon="premium"></app-icon>
 					</div>
-					<ng-template #onlyNick>
-						<b class="nickname mt-2 mt-sm-0">{{ user?.userData?.nickname }}</b>
-					</ng-template>
-					<app-button
-						*ngIf="
-							userClaims?.id === user?.userData?.id &&
-								user?.userData?.id !== null;
-							else otherProfileMobile
-						"
-						color="gray"
-						shape="rect"
-						routerLink="/user/settings/profile"
-						class="p-2 ms-auto my-auto me-4 d-lg-none">
-						<app-icon icon="edit"></app-icon>
-					</app-button>
-					<ng-template #otherProfileMobile>
+					<div class="d-flex flex-row w-100">
 						<div
-							*ngIf="user?.userData?.id"
-							dropdown
-							[insideClick]="true"
-							container="body"
-							class="ms-auto me-4 my-auto d-flex d-lg-none">
-							<app-button color="gray" shape="rect" dropdownToggle>
-								<app-icon icon="dots" class="p-2"></app-icon>
-							</app-button>
-							<div
-								*dropdownMenu
-								class="dropdown-content d-flex flex-column py-2 d-lg-none"
-								appTheme>
-								<a
-									appNotImplemented
-									[routerLink]="['/premium/messages/new', user?.userData?.id]"
-									*ngIf="'hasPremium' === 'hasPremium'"
-									class="mx-4 mt-1 d-flex justify-content-center py-1">
-									<app-icon icon="mail" class="me-2 my-auto"></app-icon>
-									Wyślij wiadomość </a
-								><!--TODO: dodać poprawny warunek sprawdzania premium-->
-								<hr class="mx-4 hrline my-2" />
-								<a
-									(click)="reportUser(user.userData.id)"
-									class="mx-4 d-flex justify-content-center py-1">
-									<app-icon icon="report" class="me-2 my-auto"></app-icon>
-									Zgłoś użytkownika
-								</a>
-							</div>
-						</div>
-						<div
-							class="icon-loading ms-auto me-4 my-auto d-flex d-lg-none"
+							class="loading-nick"
 							[appLoading]="user === null"
 							*ngIf="user === null"></div>
-					</ng-template>
+						<div
+							class="d-flex flex-xl-row flex-column"
+							*ngIf="
+								user?.userData?.firstName && user?.userData?.lastName;
+								else onlyNick
+							">
+							<b class="nickname mt-2 mt-sm-0"
+								>{{ user?.userData?.firstName }}
+								{{ user?.userData?.lastName }}</b
+							>
+							<span class="mt-auto mb-2 ms-2"
+								>({{ user?.userData?.nickname }})</span
+							>
+						</div>
+						<ng-template #onlyNick>
+							<b class="nickname mt-2 mt-sm-0">{{
+								user?.userData?.nickname
+							}}</b>
+						</ng-template>
+						<app-button
+							*ngIf="
+								userClaims?.id === user?.userData?.id &&
+									user?.userData?.id !== null;
+								else otherProfileMobile
+							"
+							color="gray"
+							shape="rect"
+							routerLink="/user/settings/profile"
+							class="p-2 ms-auto my-auto me-4 d-lg-none">
+							<app-icon icon="edit"></app-icon>
+						</app-button>
+						<ng-template #otherProfileMobile>
+							<div
+								*ngIf="user?.userData?.id"
+								dropdown
+								[insideClick]="true"
+								container="body"
+								class="ms-auto me-4 my-auto d-flex d-lg-none">
+								<app-button color="gray" shape="rect" dropdownToggle>
+									<app-icon icon="dots" class="p-2"></app-icon>
+								</app-button>
+								<div
+									*dropdownMenu
+									class="dropdown-content d-flex flex-column py-2 d-lg-none"
+									appTheme>
+									<a
+										appNotImplemented
+										[routerLink]="['/premium/messages/new', user?.userData?.id]"
+										*ngIf="'hasPremium' === 'hasPremium'"
+										class="mx-4 mt-1 d-flex justify-content-center py-1">
+										<app-icon icon="mail" class="me-2 my-auto"></app-icon>
+										Wyślij wiadomość </a
+									><!--TODO: dodać poprawny warunek sprawdzania premium-->
+									<hr class="mx-4 hrline my-2" />
+									<a
+										(click)="reportUser(user.userData.id)"
+										class="mx-4 d-flex justify-content-center py-1">
+										<app-icon icon="report" class="me-2 my-auto"></app-icon>
+										Zgłoś użytkownika
+									</a>
+								</div>
+							</div>
+							<div
+								class="icon-loading ms-auto me-4 my-auto d-flex d-lg-none"
+								[appLoading]="user === null"
+								*ngIf="user === null"></div>
+						</ng-template>
+					</div>
 				</div>
+				<app-user-profile-header-stats
+					[headerStatistics]="user?.headerStatistics"
+					class="my-auto ms-auto me-3 d-lg-flex d-none flex-row"></app-user-profile-header-stats>
+			</div>
+			<div class="d-flex flex-column universities mt-3 mt-xl-4">
+				<div
+					*ngFor="let university of user?.universities"
+					class="d-flex flex-row university">
+					<a [routerLink]="['/public/university', university.id]">
+						<img
+							[src]="university.logo"
+							alt="Logo placówki edukacyjnjej"
+							class="university-logo" />
+						{{ university.name }}
+						<app-icon icon="linkv2" class="ms-1"></app-icon>
+					</a>
+				</div>
+				<div
+					class="university-loading w-75"
+					[appLoading]="user === null"
+					*ngIf="user === null"></div>
+				<div
+					class="university-loading w-75 mt-1"
+					[appLoading]="user === null"
+					*ngIf="user === null"></div>
 			</div>
 			<app-user-profile-header-stats
 				[headerStatistics]="user?.headerStatistics"
-				class="my-auto ms-auto me-3 d-lg-flex d-none flex-row"></app-user-profile-header-stats>
-		</div>
-		<div class="d-flex flex-column universities mt-3 mt-xl-4">
-			<div
-				*ngFor="let university of user?.universities"
-				class="d-flex flex-row university">
-				<a [routerLink]="['/public/university', university.id]">
-					<img
-						[src]="university.logo"
-						alt="Logo placówki edukacyjnjej"
-						class="university-logo" />
-					{{ university.name }}
-					<app-icon icon="linkv2" class="ms-1"></app-icon>
-				</a>
-			</div>
-			<div
-				class="university-loading w-75"
-				[appLoading]="user === null"
-				*ngIf="user === null"></div>
-			<div
-				class="university-loading w-75 mt-1"
-				[appLoading]="user === null"
-				*ngIf="user === null"></div>
-		</div>
-		<app-user-profile-header-stats
-			[headerStatistics]="user?.headerStatistics"
-			class="d-lg-none d-flex flex-row mx-auto mt-3"></app-user-profile-header-stats>
-		<hr class="mx-4 hrline d-lg-block d-none" />
-		<div
-			class="d-lg-flex d-none flex-row mx-auto me-5 mt-lg-0 mt-3"
-			*ngIf="
-				userClaims?.id === user?.userData?.id && user?.userData?.id !== null;
-				else otherProfile
-			">
-			<app-button color="none" class="p-2" routerLink="/user/settings/profile">
-				<app-icon icon="edit" class="me-1"></app-icon>
-				Edytuj profil
-			</app-button>
-		</div>
-		<ng-template #otherProfile>
+				class="d-lg-none d-flex flex-row mx-auto mt-3"></app-user-profile-header-stats>
+			<hr class="mx-4 hrline d-lg-block d-none" />
 			<div
 				class="d-lg-flex d-none flex-row mx-auto me-5 mt-lg-0 mt-3"
-				*ngIf="user?.userData?.id !== null">
+				*ngIf="
+					userClaims?.id === user?.userData?.id && user?.userData?.id !== null;
+					else otherProfile
+				">
 				<app-button
-					(click)="reportUser(user.userData.id)"
 					color="none"
-					class="p-2">
-					<app-icon icon="report" class="me-1"></app-icon>
-					Zgłoś użytkownika
+					class="p-2"
+					routerLink="/user/settings/profile">
+					<app-icon icon="edit" class="me-1"></app-icon>
+					Edytuj profil
 				</app-button>
-				<app-button
-					appNotImplemented
-					color="gray"
-					shape="rect"
-					[routerLink]="['/premium/message/create', user?.userData?.id]"
-					*ngIf="'hasPremium' === 'hasPremium'"
-					class="ms-2 p-2 sendMessage">
-					<app-icon icon="mail" class="me-1"></app-icon>
-					Wyślij wiadomość
-				</app-button>
-				<!--TODO: dodać poprawny warunek sprawdzania premium-->
 			</div>
-			<div
-				class="action-button-loading d-lg-flex d-none mx-auto me-5 mt-lg-0 mt-3"
-				[appLoading]="user === null"></div>
-		</ng-template>
+			<ng-template #otherProfile>
+				<div
+					class="d-lg-flex d-none flex-row mx-auto me-5 mt-lg-0 mt-3"
+					*ngIf="user?.userData?.id !== null">
+					<app-button
+						(click)="reportUser(user.userData.id)"
+						color="none"
+						class="p-2">
+						<app-icon icon="report" class="me-1"></app-icon>
+						Zgłoś użytkownika
+					</app-button>
+					<app-button
+						appNotImplemented
+						color="gray"
+						shape="rect"
+						[routerLink]="['/premium/message/create', user?.userData?.id]"
+						*ngIf="'hasPremium' === 'hasPremium'"
+						class="ms-2 p-2 sendMessage">
+						<app-icon icon="mail" class="me-1"></app-icon>
+						Wyślij wiadomość
+					</app-button>
+					<!--TODO: dodać poprawny warunek sprawdzania premium-->
+				</div>
+				<div
+					class="action-button-loading d-lg-flex d-none mx-auto me-5 mt-lg-0 mt-3"
+					[appLoading]="user === null"></div>
+			</ng-template>
+		</div>
 	</div>
 </div>

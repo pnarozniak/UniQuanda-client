@@ -1,5 +1,5 @@
-<div class="d-flex flex-row mx-5">
-	<div class="d-flex flex-column w-100 mx-2">
+<div class="d-flex flex-row w-100">
+	<div class="d-flex flex-column ms-5 ps-2 left-menu">
 		<h1 class="mt-5">Pytania</h1>
 		<app-question-sorting
 			class="w-100"
@@ -11,9 +11,9 @@
 		<app-tag-chips
 			class="mb-3"
 			[tagCtrl]="tagControl"
+			[initialTags]="hasInitialTags ? tagBehavior.asObservable() : null"
 			(selectedTagsEmitter)="handleTagsChanged($event)"></app-tag-chips>
-		<ng-container
-			*ngIf="!isLoading && questions.length !== 0; else noQuestions">
+		<ng-container *ngIf="questions.length !== 0; else noQuestions">
 			<ng-container *ngFor="let question of questions">
 				<app-question-box
 					class="mb-4 question-box"
@@ -21,7 +21,15 @@
 			</ng-container>
 		</ng-container>
 		<ng-template #noQuestions>
-			<div class="mx-auto">Brak pytań spełniających podane kryteria</div>
+			<ng-container *ngIf="isLoading; else notFound">
+				<div
+					*ngFor="let i of [].constructor(4)"
+					[appLoading]="isLoading"
+					class="loading-box w-100 mb-3"></div>
+			</ng-container>
+			<ng-template #notFound>
+				<div class="mx-auto">Brak pytań spełniających podane kryteria</div>
+			</ng-template>
 		</ng-template>
 		<app-paginator
 			*ngIf="questions !== null"
@@ -32,5 +40,13 @@
 			(pageChange)="handlePageChanged($event)"
 			[showInput]="true"></app-paginator>
 	</div>
-	<div>TuBedziePraweMenu</div>
+	<app-right-menu
+		[options]="[
+			'about',
+			'create-an-account',
+			'generate-test',
+			'top-users',
+			'buy-premium'
+		]">
+	</app-right-menu>
 </div>

@@ -16,6 +16,11 @@ const routes: Routes = [
 				(m) => m.AskQuestionModule
 			),
 	},
+	{
+		path: 'premium',
+		loadChildren: () =>
+			import('./premium/premium.module').then((m) => m.PremiumModule),
+	},
 ];
 @NgModule({
 	imports: [RouterModule.forChild(routes)],

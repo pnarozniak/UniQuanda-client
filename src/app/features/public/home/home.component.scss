@@ -1,3 +1,22 @@
+@use 'breakpoints' as bp;
+@use 'dimensions' as dim;
 .question-box {
 	cursor: pointer;
+}
+.loading-box {
+	height: 180px;
+}
+.app-right-menu {
+	margin-top: 106px;
+}
+.left-menu {
+	width: calc(100% - dim.$right-menu-width);
+}
+@media screen and (max-width: bp.$lg) {
+	.app-right-menu {
+		width: 100%;
+		height: auto;
+		margin: 0;
+		padding: 50px 20px;
+	}
 }

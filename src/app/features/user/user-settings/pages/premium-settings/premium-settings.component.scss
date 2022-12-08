@@ -1,0 +1,29 @@
+@use 'breakpoints' as breakpoints;
+
+.logo {
+	width: 130px;
+	height: 40px;
+	margin-bottom: 36px;
+}
+
+.main-container {
+	width: 89%;
+}
+
+@media all and (max-width: breakpoints.$sm) {
+	.main-container {
+		width: 100%;
+		padding-left: 16px;
+		padding-right: 16px;
+		margin-bottom: 18px;
+	}
+	
+	.logo {
+		width: 100px;
+		height: 30px;
+	}
+
+	.more-btn {
+		font-size: 12px;
+	}
+}

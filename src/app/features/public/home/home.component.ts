@@ -11,7 +11,8 @@ import { HttpParams } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { ITag } from 'src/app/shared/models/tag.model';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { TagNamesSerive } from './services/tag-names.service';
 
 @Component({
 	selector: 'app-home',
@@ -29,11 +30,14 @@ export class HomeComponent implements OnInit {
 
 	public tagControl = new FormControl('');
 	public pageBehavior = new BehaviorSubject<number>(this.page);
+	public tagBehavior = new Subject<ITag[]>();
 
 	public isLoading = true;
+	public hasInitialTags = false;
 
 	constructor(
 		private readonly _questionsService: QuestionsSerive,
+		private readonly _tagNamesService: TagNamesSerive,
 		private readonly _location: Location,
 		private readonly _route: ActivatedRoute
 	) {}
@@ -48,8 +52,13 @@ export class HomeComponent implements OnInit {
 			OrderDirection.Ascending;
 
 		const requestTags = this._route.snapshot.queryParams['tags'];
-		if (requestTags !== '' && requestTags !== undefined)
+		if (requestTags !== '' && requestTags !== undefined) {
 			this.tags = requestTags.split(',');
+			this.hasInitialTags = true;
+			this._tagNamesService.getTagNames(this.tags).subscribe((tags) => {
+				this.tagBehavior.next(tags);
+			});
+		}
 		this.getQuestions(true);
 	}
 

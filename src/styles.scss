@@ -69,6 +69,10 @@ bs-dropdown-container {
   border-right-color: colors.$academic-blue;
 }
 
+.medium-bold {
+  font-weight: 500 !important;
+}
+
 @media all and (max-width: 575px) {
   .height-header {
     min-height: calc(100vh - dim.$header-height);

@@ -23,10 +23,10 @@ export class SecuritySettingsComponent implements OnInit {
 			next: (req) => {
 				this.userEmails = req.body;
 			},
-			error: (err) => {
-				if (err.status === 404) {
-					this._toastrService.error('Błąd ładowania danych', 'Błąd');
-					this._router.navigate(['/public/home']);
+			error: (req) => {
+				if (req.status === 404) {
+					this._toastrService.error('Błąd', 'Zasób nie istnieje');
+					this._router.navigate(['/page-not-found']);
 				}
 			},
 		});
