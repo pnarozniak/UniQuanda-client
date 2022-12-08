@@ -40,7 +40,7 @@ export class PremiumPaymentUpdateComponent implements OnInit {
 							if (isError) {
 								this._router.navigate(['/user/settings/premium']);
 								this._toastrService.error(
-									'Nie udało się opłacić płatności',
+									'Nie udało się dokonać płatności',
 									'Niepowodzenie'
 								);
 								return;
