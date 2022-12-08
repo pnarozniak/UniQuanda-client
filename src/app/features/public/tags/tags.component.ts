@@ -2,15 +2,15 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import GetTagsRequestDto, {
-	IGetTagsResponseDto,
-	ITag,
-} from './models/get-tags.dto';
-import { TagsApiService } from './services/tags-api.service';
 import { HttpParams } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { OrderDirection } from 'src/app/shared/enums/order-direction.enum';
 import { Location } from '@angular/common';
+import GetTagsRequestDto, {
+	IGetTagsResponseDto,
+	ITag,
+} from 'src/app/shared/models/tag.model';
+import { TagsApiService } from 'src/app/shared/services/tags-api.service';
 
 @Component({
 	selector: 'app-tags',

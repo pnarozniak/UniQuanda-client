@@ -6,7 +6,7 @@
 		<span *ngIf="tag.description">{{ tag.description }}</span>
 		<a
 			[routerLink]="['/public/home']"
-			[queryParams]="{ tagId: tag.id }"
+			[queryParams]="{ tags: [tag.id] }"
 			class="mt-auto all-tags-text mb-2"
 			>Przejdź do wszystkich pytań w tagu ></a
 		>
@@ -24,16 +24,13 @@
 			<h4 class="text-container">{{ tag.name }}</h4>
 			<app-button
 				[routerLink]="['/public/home']"
-				[queryParams]="{ tagId: tag.id }"
+				[queryParams]="{ tags: [tag.id] }"
 				class="all-tags-button px-3 py-1"
 				>Pokaż pytania w podtagu ></app-button
 			>
-			<!-- TODO: Podmienić na faktyczny link po zebraniu zdjęć przez Kamę	-->
 			<div [appLoading]="isLoading" class="tag-logo">
 				<img
-					[src]="
-						'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1280px-Image_created_with_a_mobile_phone.png'
-					"
+					[src]="tag.imageUrl"
 					(load)="isLoading = false"
 					alt="tag logo"
 					class="tag-logo" />

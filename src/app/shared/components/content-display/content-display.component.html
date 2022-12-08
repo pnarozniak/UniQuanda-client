@@ -1,0 +1,9 @@
+<div class="d-flex flex-column">
+	<ckeditor
+		[editor]="editor"
+		[(ngModel)]="htmlContent"
+		[disabled]="true"
+		class="editor w-100"
+		[ngClass]="{ 'no-blocks': !showBlocks }"
+		appTheme></ckeditor>
+</div>
