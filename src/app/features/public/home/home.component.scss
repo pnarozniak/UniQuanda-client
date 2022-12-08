@@ -1,0 +1,14 @@
+@use 'breakpoints' as bp;
+
+.app-right-menu {
+	margin-top: 120px;
+}
+
+@media screen and (max-width: bp.$lg) {
+	.app-right-menu {
+		width: 100%;
+		height: auto;
+		margin: 0;
+		padding: 50px 20px;
+	}
+}
