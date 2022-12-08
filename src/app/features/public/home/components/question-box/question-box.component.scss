@@ -1,4 +1,5 @@
 @use 'colors' as col;
+@use 'breakpoints' as bp;
 .line {
 	height: 2px;
 }
@@ -23,7 +24,8 @@
 	border-left: 1px solid col.$bordered-gray;
 }
 .left-menu {
-	min-width: 190px !important;
+	font-size: 14px;
+	white-space: nowrap;
 }
 .user-box {
 	border-right: 1px solid col.$bordered-gray;
@@ -31,4 +33,28 @@
 .user-logo {
 	width: 35px;
 	height: 35px;
+}
+
+@media screen and (max-width: bp.$md) {
+	.right-menu {
+		border-left: none;
+	}
+	.popular {
+		width: fit-content;
+	}
+}
+::ng-deep {
+  .app-header-dropdown-overlay +* {
+    margin-top: 15px;
+
+    .mat-menu-content {
+      padding: 0 !important;
+    }
+
+    .mat-menu-panel {
+      max-width: none !important;
+      border-radius: 0 !important;
+      overflow: visible !important;
+    }
+  }
 }

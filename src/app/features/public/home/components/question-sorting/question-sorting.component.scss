@@ -1,4 +1,5 @@
 @use 'colors' as col;
+@use 'breakpoints' as bp;
 .active-arrow {
 	color: var(--link-default)
 }
@@ -7,3 +8,29 @@
 	color: col.$bordered-gray;
 	min-width: fit-content;
 }
+.extend-box {
+	background-color: var(--bg-accent);
+	border-radius: 7px;
+}
+@media screen and (max-width: bp.$md) {
+	.app-button-gray {
+		display: none !important;
+	}
+}
+::ng-deep {
+	.mat-menu-content {
+		border: 1px solid col.$bordered-gray !important;
+		background-color: var(--bg-default) !important;
+	}
+	.mat-menu-item {
+		color: var(--text-default) !important;
+	}
+	.mat-menu-panel {
+		border-radius: 0px !important;
+		min-width: 180px !important;
+	}
+}
+.extend-box {
+	cursor: pointer;
+}
+
