@@ -55,6 +55,14 @@
 		height: 35px;
 		width: 200px;
 	}
+
+	& .tag-container {
+		margin-top: 2px;
+	}
+
+	& .premium-icon {
+		background-color: colors.$dark-yellow;
+	}
 }
 
 .universities {
@@ -170,6 +178,7 @@
 		margin-left: 2.7142857142857144vw;
 	}
 }
+
 @media all and (max-width: breakpoints.$sm) {
 	.banner {
 		height: 82px !important;

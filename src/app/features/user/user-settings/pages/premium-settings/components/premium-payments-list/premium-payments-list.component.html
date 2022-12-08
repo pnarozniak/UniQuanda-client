@@ -1,0 +1,29 @@
+<div class="d-flex flex-column" *ngIf="payments && payments.length > 0">
+	<span class="title medium-bold mb-sm-3 mb-2">Historia płatności</span>
+	<div
+		class="d-flex flex-row header-list ps-4 py-2 pe-4 w-100"
+		*ngIf="!isMobileView">
+		<span class="w-25">Data</span>
+		<span class="w-25 text-nowrap">Id płatności</span>
+		<span class="w-25">Kwota</span>
+		<span class="w-25 text-nowrap">Status płatności</span>
+	</div>
+	<div
+		*ngFor="let payment of payments; let i = index"
+		[ngClass]="{ 'ps-2': isMobileView }">
+		<app-single-premium-payment
+			[payment]="payment"
+			[isMobileView]="isMobileView"
+			[isOddRow]="i % 2 !== 0"></app-single-premium-payment>
+	</div>
+</div>
+<div class="d-flex flex-column" *ngIf="!payments">
+	<span class="title medium-bold mb-sm-3 mb-2" [appLoading]="true"></span>
+	<div
+		class="d-flex flex-row header-list ps-4 py-2 pe-4 w-100"
+		*ngIf="!isMobileView"
+		[appLoading]="true"></div>
+	<div *ngFor="let _ of [].constructor(3)" [ngClass]="{ 'ps-2': isMobileView }">
+		<div class="w-100 mb-3 mock-item" [appLoading]="true"></div>
+	</div>
+</div>

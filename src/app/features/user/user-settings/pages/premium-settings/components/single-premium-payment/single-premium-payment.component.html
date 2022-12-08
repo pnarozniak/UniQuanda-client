@@ -1,0 +1,58 @@
+<div
+	class="d-flex flex-row item-container ps-4 py-2 pe-4 w-100"
+	*ngIf="!isMobileView"
+	[ngClass]="{ 'odd-row': isOddRow }"
+	appTheme>
+	<span class="w-25">{{
+		(payment?.paymentDate | date: 'dd LLL yyyy HH:mm':'+0200':'pl') ?? '-'
+	}}</span>
+	<span class="w-25">{{
+		payment?.idTransaction ? '#' + payment?.idTransaction : '-'
+	}}</span>
+	<span class="w-25">{{ payment?.price | number: '1.2-2' }}&nbsp;zł</span>
+	<span
+		class="w-25"
+		*ngIf="!isPaymentStatusNew(payment?.paymentStatus!)"
+		[ngClass]="{ canceled: isPaymentStatusCanceled(payment?.paymentStatus!) }"
+		>{{ getValue(payment?.paymentStatus!) }}</span
+	>
+	<a
+		routerLink="payment?.paymentUrl"
+		class="w-25 link"
+		*ngIf="isPaymentStatusNew(payment?.paymentStatus!)"
+		>Opłać <app-icon icon="linkv2"></app-icon
+	></a>
+</div>
+<div
+	*ngIf="isMobileView"
+	class="d-flex flex-column item-container mb-3 pb-2"
+	appTheme
+	[ngClass]="{ 'odd-row': isOddRow }">
+	<b class="item-title py-2 mb-3">
+		Id płatności:
+		{{ payment?.idTransaction ? '#' + payment?.idTransaction : '-' }}
+	</b>
+	<span class="mb-2 item"
+		>Data:
+		{{
+			(payment?.paymentDate | date: 'dd LLL yyyy HH:mm':'+0200':'pl') ?? '-'
+		}}</span
+	>
+	<span class="mb-2 item"
+		>Kwota: {{ payment?.price | number: '1.2-2' }}&nbsp;zł</span
+	>
+	<span
+		class="d-flex flex-row item"
+		*ngIf="!isPaymentStatusNew(payment?.paymentStatus!)"
+		>Status płatności:&nbsp;<span
+			[ngClass]="{ canceled: isPaymentStatusCanceled(payment?.paymentStatus!) }"
+			>{{ getValue(payment?.paymentStatus!) }}</span
+		></span
+	>
+	<span *ngIf="isPaymentStatusNew(payment?.paymentStatus!)" class="item">
+		Status płatności:
+		<a routerLink="payment?.paymentUrl" class="link"
+			>Opłać <app-icon icon="linkv2"></app-icon
+		></a>
+	</span>
+</div>
