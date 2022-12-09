@@ -10,7 +10,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { HeaderDropdownComponent } from './components/header-dropdown/header-dropdown.component';
+import { HeaderDropdownComponent } from './components/header/components/header-dropdown/header-dropdown.component';
 import { SharedModule } from '../shared/shared.module';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LoaderComponent } from './components/loader/loader.component';
@@ -23,6 +23,7 @@ import { ErrorHandlerInterceptor } from './interceptors/error-handler.intercepto
 import { AccessTokenInterceptor } from './interceptors/access-token.interceptor';
 import { RefreshTokenService } from './services/refresh-token.service';
 import { MatDialogModule } from '@angular/material/dialog';
+import { HeaderSearchComponent } from './components/header/components/header-search/header-search.component';
 
 @NgModule({
 	providers: [
@@ -56,6 +57,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 		HeaderDropdownComponent,
 		NotFoundComponent,
 		LoaderComponent,
+		HeaderSearchComponent,
 	],
 	imports: [
 		RouterModule,

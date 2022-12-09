@@ -1,0 +1,57 @@
+<app-icon
+	*ngIf="expanded"
+	icon="arrow_up"
+	class="collapse-icon me-2 me-sm-3"
+	(click)="expandCollapse(true)">
+</app-icon>
+<app-icon
+	*ngIf="!expanded"
+	icon="search"
+	class="search-icon border-0 ps-lg-3 px-1 px-sm-0 ms-auto me-1 me-sm-2 me-lg-0"
+	(click)="expandCollapse()">
+</app-icon>
+<div
+	class="search-input-wrapper d-lg-flex w-100"
+	[ngClass]="{ 'd-none': !expanded }">
+	<input
+		placeholder="Szukaj"
+		class="search-input w-100 border-0 px-1"
+		(click)="dropdownExpanded = true"
+		(focus)="dropdownExpanded = true"
+		(blur)="dropdownExpanded = false"
+		[ngClass]="{ 'px-2': expanded }" />
+	<div
+		appTheme
+		*ngIf="dropdownExpanded"
+		class="search-results-dropdown position-absolute mt-1 px-2 py-2"
+		[class.input-expanded]="expanded">
+		<div class="result d-flex align-items-center py-1 my-1 px-1">
+			<app-icon icon="search" class="ms-1 me-2"></app-icon>
+			<span class="type me-2">[Uzytkownik]</span>
+			<span class="text">Ventan</span>
+		</div>
+		<hr />
+		<div class="result d-flex align-items-center py-1 my-1 px-1">
+			<app-icon icon="search" class="ms-1 me-2"></app-icon>
+			<span class="type me-2">[Uzytkownik]</span>
+			<span class="text">Ventan</span>
+		</div>
+		<hr />
+		<div class="result d-flex align-items-center py-1 my-1 px-1">
+			<app-icon icon="search" class="ms-1 me-2"></app-icon>
+			<span class="type me-2">[Uzytkownik]</span>
+			<span class="text">Ventan</span>
+		</div>
+		<hr />
+		<div class="result d-flex align-items-center py-1 my-1 px-1">
+			<app-icon icon="search" class="ms-1 me-2"></app-icon>
+			<span class="type me-2">[Uzytkownik]</span>
+			<span class="text">Ventan</span>
+		</div>
+		<hr />
+		<div class="result show-more d-flex align-items-center py-1 my-1 px-1">
+			<app-icon icon="search" class="p-1 me-2"></app-icon>
+			<span>Wyszukaj <span class="bold">"ventan"</span></span>
+		</div>
+	</div>
+</div>
