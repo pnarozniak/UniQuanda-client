@@ -9,7 +9,7 @@ import { QuestionSortingBy } from '../../enums/question-sorting-by.enum';
 })
 export class QuestionSortingComponent {
 	public questionSortingBy = QuestionSortingBy.PublicationDate;
-	public orderDirection = OrderDirection.Ascending;
+	public orderDirection = OrderDirection.Descending;
 
 	@Output() changedSortingBy = new EventEmitter<QuestionSortingBy>();
 	@Output() changedOrderDirection = new EventEmitter<OrderDirection>();

@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
 	public questions: IGetQuestionsResponseDtoQuestion[] = [];
 	public tags: number[] = [];
 	public sortingBy = QuestionSortingBy.PublicationDate;
-	public orderDirection = OrderDirection.Ascending;
+	public orderDirection = OrderDirection.Descending;
 
 	public tagControl = new FormControl('');
 	public pageBehavior = new BehaviorSubject<number>(this.page);
@@ -42,14 +42,14 @@ export class HomeComponent implements OnInit {
 		private readonly _route: ActivatedRoute
 	) {}
 	ngOnInit(): void {
-		this.page = this._route.snapshot.queryParams['page'] ?? 1;
-		this.pageBehavior = new BehaviorSubject<number>(this.page);
+		this.page = Number.parseInt(this._route.snapshot.queryParams['page'] ?? 1);
+		this.pageBehavior.next(this.page);
 		this.sortingBy =
 			this._route.snapshot.queryParams['sortingBy'] ??
 			QuestionSortingBy.PublicationDate;
 		this.orderDirection =
 			this._route.snapshot.queryParams['orderDirection'] ??
-			OrderDirection.Ascending;
+			OrderDirection.Descending;
 
 		const requestTags = this._route.snapshot.queryParams['tags'];
 		if (requestTags !== '' && requestTags !== undefined) {
@@ -90,7 +90,7 @@ export class HomeComponent implements OnInit {
 			this.isLoading = false;
 			this._location.replaceState('/public/home', this.getParamsAsString());
 			this.questions = response.questions;
-			if (addCount) this.totalCount = response.totalCount ?? 0;
+			if (addCount) this.totalCount = response.count ?? 0;
 		});
 	}
 
@@ -112,6 +112,6 @@ export class HomeComponent implements OnInit {
 		this.tags = tags.map((t) => t.id);
 		this.page = 1;
 		this.pageBehavior.next(this.page);
-		this.getQuestions();
+		this.getQuestions(true);
 	}
 }

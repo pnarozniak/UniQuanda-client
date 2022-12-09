@@ -20,8 +20,10 @@ export class QuestionsSerive {
 			.append('page', request.page)
 			.append('pageSize', request.pageSize)
 			.append('sortBy', request.sortBy)
-			.append('orderDirection', request.orderBy)
+			.append('orderBy', request.orderBy)
 			.append('addCount', request.addCount);
+
+		console.log(request.orderBy);
 		if (request.tags.length > 0) {
 			request.tags.forEach((tag) => {
 				params = params.append('tags', tag);
