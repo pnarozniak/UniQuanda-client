@@ -42,6 +42,15 @@
 							{{ title.name }}</b
 						>
 					</div>
+					<div
+						*ngIf="user?.userData?.hasPremium"
+						class=""
+						matTooltip="Użytkownik premium"
+						matTooltipPosition="above">
+						<app-icon
+							icon="premium"
+							class="p-2 title-badge premium-badge"></app-icon>
+					</div>
 				</div>
 				<div class="d-flex flex-row w-100">
 					<div

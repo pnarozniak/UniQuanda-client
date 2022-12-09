@@ -35,6 +35,11 @@
 		color: colors.$crystal-white;
 	}
 
+	& .premium-badge {
+		background-color: colors.$dark-yellow;
+		color: colors.$crystal-white;
+	}
+
 	& .loading-badge {
 		height: 35px;
 		width: 70px;
@@ -154,6 +159,7 @@
 		& .title-badge {
 			font-size: 14px;
 			white-space: nowrap;
+			display: inline;
 		}
 
 		& .loading-badge {
