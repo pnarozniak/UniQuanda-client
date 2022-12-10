@@ -2,10 +2,16 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subscription, take } from 'rxjs';
+import { map, Observable, of, Subscription, take, tap } from 'rxjs';
+import {
+	GetQuestionsRequestDTO,
+	IGetQuestionsResponseDTO,
+	IGetQuestionsResponseDTOQuestion,
+} from '../../models/get-questions.dto';
 import { ProfileSubpageEnum } from '../../models/profile-subpage.enum';
 import { ISemanticScholarPaperDTO } from '../../models/semantic-scholar-paper.dto';
 import { IUserProfileResponseDTO } from '../../models/user-profile.dto';
+import { UserProfileApiService } from '../../services/user-profile-api.service';
 
 @Component({
 	selector: 'app-profile-navigation',
@@ -24,16 +30,27 @@ export class ProfileNavigationComponent implements OnInit, OnDestroy {
 		ProfileSubpageEnum.Tests,
 	];
 	public activeTab: ProfileSubpageEnum = this.allTabs[0];
+	private userId = 0;
+
+	public itemsOnTab = 6;
+
+	// questions data
+	private questionPages = new Map<number, IGetQuestionsResponseDTOQuestion[]>();
+	public questionsRequest$ = new Observable<IGetQuestionsResponseDTO>();
+	private isFirstQuestionsLoad = true;
+	private totalQuestions = 0;
 
 	private readonly _paramSubscription = new Subscription();
 
 	constructor(
 		private readonly _route: ActivatedRoute,
 		private readonly _router: Router,
-		private readonly _titleService: Title
+		private readonly _titleService: Title,
+		private readonly _userProfileService: UserProfileApiService
 	) {}
 
 	ngOnInit(): void {
+		this.userId = this._route.snapshot.params['id'];
 		this._paramSubscription.add(
 			this._route.queryParams.subscribe((params) => {
 				const subpage = params['subpage'];
@@ -43,6 +60,9 @@ export class ProfileNavigationComponent implements OnInit, OnDestroy {
 						this.activePage = tab;
 					}
 				});
+				if (this.activePage === ProfileSubpageEnum.Questions) {
+					this.loadQuestions(1);
+				}
 			})
 		);
 	}
@@ -82,5 +102,43 @@ export class ProfileNavigationComponent implements OnInit, OnDestroy {
 			window.innerWidth > breakpoint
 			? 1
 			: index;
+	}
+
+	loadQuestions(page: number) {
+		if (this.questionPages.has(page)) {
+			this.questionsRequest$ = of(<IGetQuestionsResponseDTO>{
+				questions: this.questionPages.get(page) ?? [],
+				totalCount: this.totalQuestions,
+			});
+		} else {
+			const loadTotalCount = this.isFirstQuestionsLoad;
+			this.isFirstQuestionsLoad = false;
+			this.questionsRequest$ = this._userProfileService
+				.getQuestions(
+					new GetQuestionsRequestDTO(
+						this.userId,
+						page,
+						this.itemsOnTab,
+						loadTotalCount
+					)
+				)
+				.pipe(
+					map((response: IGetQuestionsResponseDTO) => {
+						if (loadTotalCount) {
+							this.totalQuestions = response.totalCount ?? 0;
+						}
+						return <IGetQuestionsResponseDTO>{
+							questions: response.questions ?? [],
+							totalCount: this.totalQuestions,
+						};
+					})
+				)
+				.pipe(
+					tap((response) => {
+						console.log(response.totalCount);
+						this.questionPages.set(page, response.questions);
+					})
+				);
+		}
 	}
 }

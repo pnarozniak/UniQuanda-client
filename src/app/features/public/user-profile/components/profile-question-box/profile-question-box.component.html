@@ -1,0 +1,42 @@
+<div
+	class="d-flex flex-column w-100"
+	routerLink="/public/question-details/{{ question.id }}">
+	<div class="d-flex flex-md-row flex-column box py-3">
+		<div class="d-flex flex-column ps-4 pe-2 my-auto left-menu">
+			<div class="d-flex flex-row flex-md-column flex-wrap w-100">
+				<div class="right-text mb-md-2 my-auto ms-3 ms-md-0">
+					{{ creationDate }}
+				</div>
+				<div
+					class="px-2 py-1 correct-answer mb-2 my-auto ms-3 mx-md-0"
+					*ngIf="question.hasCorrectAnswer; else noCorrectAnswer">
+					<app-icon icon="check"></app-icon>
+					<span class="ms-2">{{ genereateAnswersCountText() }}</span>
+				</div>
+				<ng-template #noCorrectAnswer>
+					<div class="right-text ms-md-0 mb-md-2 ms-3 my-auto">
+						{{ genereateAnswersCountText() }}
+					</div>
+				</ng-template>
+				<div class="right-text ms-3 me-auto">
+					{{ generateViewsConutText() }}
+				</div>
+			</div>
+		</div>
+		<div class="ps-4 pe-2 ms-3 right-menu d-flex flex-column">
+			<h2 class="title">
+				{{ question.header }}
+			</h2>
+			<div class="d-flex flex-wrap mt-2">
+				<ng-container *ngFor="let tagName of question.tagNames">
+					<app-tag [name]="tagName" class="my-auto me-2 d-flex mb-2"></app-tag>
+				</ng-container>
+			</div>
+			<app-content-display
+				class="d-flex"
+				[htmlContent]="question.html"
+				[showBlocks]="false"></app-content-display>
+		</div>
+	</div>
+	<app-uniquanda-line class="line w-100"></app-uniquanda-line>
+</div>

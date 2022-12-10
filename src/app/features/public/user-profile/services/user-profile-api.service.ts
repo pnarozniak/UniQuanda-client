@@ -2,6 +2,10 @@ import { HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import ApiService from 'src/app/core/services/api.service';
+import {
+	GetQuestionsRequestDTO,
+	IGetQuestionsResponseDTO,
+} from '../models/get-questions.dto';
 import { IUserProfileResponseDTO } from '../models/user-profile.dto';
 
 @Injectable({
@@ -28,5 +32,19 @@ export class UserProfileApiService {
 					return user;
 				})
 			);
+	}
+
+	public getQuestions(
+		request: GetQuestionsRequestDTO
+	): Observable<IGetQuestionsResponseDTO> {
+		const params = new HttpParams()
+			.append('page', request.page)
+			.append('pageSize', request.pageSize)
+			.append('userId', request.userId)
+			.append('addCount', request.addCount);
+
+		return this._apiService
+			.get<IGetQuestionsResponseDTO>('AppUserProfile/questions', params)
+			.pipe(map((response) => response.body as IGetQuestionsResponseDTO));
 	}
 }

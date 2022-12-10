@@ -13,6 +13,11 @@ import {
 export class QuestionsSerive {
 	constructor(private readonly _apiService: ApiService) {}
 
+	/**
+	 * Gets questions from api
+	 * @param request request data
+	 * @returns questions and total count if addCount is true
+	 */
 	getQuestions(
 		request: GetQuestionsRequestDto
 	): Observable<IGetQuestionsResponseDto> {
@@ -22,8 +27,6 @@ export class QuestionsSerive {
 			.append('sortBy', request.sortBy)
 			.append('orderBy', request.orderBy)
 			.append('addCount', request.addCount);
-
-		console.log(request.orderBy);
 		if (request.tags.length > 0) {
 			request.tags.forEach((tag) => {
 				params = params.append('tags', tag);

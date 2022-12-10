@@ -1,0 +1,57 @@
+@use 'colors' as col;
+@use 'breakpoints' as bp;
+.line {
+	height: 2px;
+}
+.box {
+	border: 1px solid col.$bordered-gray;
+	border-bottom: 0;
+}
+.popular {
+	color: col.$crystal-black;
+	background-color: col.$dark-yellow;
+	border-radius: 5px;
+}
+.right-text {
+	text-align: end;
+}
+.correct-answer {
+	color: col.$crystal-white;
+	background-color: col.$blue-laguna;
+	border-radius: 5px;
+}
+.right-menu {
+	border-left: 1px solid col.$bordered-gray;
+}
+.left-menu {
+	font-size: 14px;
+	white-space: nowrap;
+}
+.user-box {
+	border-right: 1px solid col.$bordered-gray;
+}
+.user-logo {
+	width: 35px;
+	height: 35px;
+}
+
+@media screen and (max-width: bp.$md) {
+	.right-menu {
+		border-left: none;
+	}
+}
+::ng-deep {
+  .app-header-dropdown-overlay +* {
+    margin-top: 15px;
+
+    .mat-menu-content {
+      padding: 0 !important;
+    }
+
+    .mat-menu-panel {
+      max-width: none !important;
+      border-radius: 0 !important;
+      overflow: visible !important;
+    }
+  }
+}

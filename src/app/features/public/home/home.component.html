@@ -4,6 +4,8 @@
 		<h1 class="mt-5">Pytania</h1>
 		<app-question-sorting
 			class="w-100"
+			[questionSortingBy]="this.sortingBy"
+			[orderDirection]="this.orderDirection"
 			(changedSortingBy)="handleSortingChange($event)"
 			(changedOrderDirection)="
 				handleOrderDirectionChange($event)

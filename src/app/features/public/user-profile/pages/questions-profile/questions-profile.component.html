@@ -1,2 +1,20 @@
-<hr class="divider mx-3" />
-<p>questions-profile works!</p>
+<hr class="divider ms-lg-0 mx-3" />
+<div class="d-flex w-100 flex-column">
+	<ng-container *appContext="let response of questionsResponse | async">
+		<ng-container *ngIf="response">
+			<ng-container *ngFor="let question of response.questions">
+				<app-profile-question-box
+					[question]="question"
+					class="ms-3 ms-lg-0 me-3 mb-3"></app-profile-question-box>
+			</ng-container>
+			<app-paginator
+				*ngIf="response.totalCount > questionsOnPage"
+				class="ms-auto me-3 mb-3 mb-xxl-5"
+				[totalSize]="response.totalCount"
+				[pageSize]="questionsOnPage"
+				[page]="page$.asObservable()"
+				(pageChange)="handlePageChanged($event)"
+				[showInput]="true"></app-paginator>
+		</ng-container>
+	</ng-container>
+</div>

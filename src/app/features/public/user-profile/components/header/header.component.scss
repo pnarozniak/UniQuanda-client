@@ -60,6 +60,12 @@
 		height: 35px;
 		width: 200px;
 	}
+
+	& .title-badge {
+		font-size: 14px;
+		white-space: nowrap;
+		display: inline;
+	}
 }
 
 .universities {
@@ -154,12 +160,6 @@
 
 		& .nickname {
 			font-size: 28px;
-		}
-
-		& .title-badge {
-			font-size: 14px;
-			white-space: nowrap;
-			display: inline;
 		}
 
 		& .loading-badge {

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { OrderDirection } from 'src/app/shared/enums/order-direction.enum';
 import { QuestionSortingBy } from '../../enums/question-sorting-by.enum';
 
@@ -8,8 +8,8 @@ import { QuestionSortingBy } from '../../enums/question-sorting-by.enum';
 	styleUrls: ['./question-sorting.component.scss'],
 })
 export class QuestionSortingComponent {
-	public questionSortingBy = QuestionSortingBy.PublicationDate;
-	public orderDirection = OrderDirection.Descending;
+	@Input() public questionSortingBy = QuestionSortingBy.PublicationDate;
+	@Input() public orderDirection = OrderDirection.Descending;
 
 	@Output() changedSortingBy = new EventEmitter<QuestionSortingBy>();
 	@Output() changedOrderDirection = new EventEmitter<OrderDirection>();

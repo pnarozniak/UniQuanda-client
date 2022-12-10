@@ -25,6 +25,9 @@ export class HeaderComponent {
 	@Input()
 	public userClaims: IUserClaims | null = null;
 
+	public profilePictureLoading = true;
+	public bannerPictureLoading = true;
+
 	constructor(private readonly _dialogService: DialogService) {}
 
 	getAcademicTitleTypeColor(type: AcademicTitleType) {

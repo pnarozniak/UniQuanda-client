@@ -1,23 +1,25 @@
 <div *appContext="let user of profile$ | async">
 	<div class="w-100 banner">
-		<div [appLoading]="user === null" class="w-100 banner-image">
+		<div [appLoading]="bannerPictureLoading" class="w-100 banner-image">
 			<img
 				[src]="
 					user?.userData?.banner
 						? user?.userData?.banner
 						: 'assets/images/common/default_users_background.svg'
 				"
+				(load)="bannerPictureLoading = false"
 				alt="banner" />
 		</div>
 	</div>
 	<div class="w-100 d-flex flex-column">
-		<div class="profile-picture" [appLoading]="user === null">
+		<div class="profile-picture" [appLoading]="profilePictureLoading">
 			<img
 				[src]="
 					user?.userData?.avatar
 						? user?.userData?.avatar
 						: 'assets/images/common/default_avatar.svg'
 				"
+				(load)="profilePictureLoading = false"
 				alt="profile-picture" />
 		</div>
 		<div class="header-content d-flex mt-sm-3 mt-2">
