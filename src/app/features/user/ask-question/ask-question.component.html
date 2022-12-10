@@ -25,7 +25,10 @@
 				[tagCtrl]="tagInput"
 				[maxTagsAmount]="maxTagsAmount"
 				(selectedTagsEmitter)="setTags($event)"></app-tag-chips>
-			<app-content-form [control]="form.controls['content']"></app-content-form>
+			<app-content-form
+				[control]="form.controls['content']"
+				[isEditMode]="true"
+				[showBlocks]="true"></app-content-form>
 			<mat-error
 				class="error-text mx-3 mt-1"
 				*ngIf="

@@ -1,8 +1,10 @@
-<div class="d-flex flex-column px-3">
+<div class="d-flex flex-column" [ngClass]="{ 'px-3': editMode }">
 	<ckeditor
 		[editor]="editor"
 		[(ngModel)]="model"
 		[config]="config"
+		[disabled]="!editMode"
+		[ngClass]="{ 'no-blocks': !blockEnabled, 'no-header': !editMode }"
 		class="editor"
 		(change)="setValue($event)"
 		appTheme></ckeditor>
