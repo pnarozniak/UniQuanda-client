@@ -80,7 +80,10 @@ export class ContentFormComponent {
 		)
 			return 'Wejdź w szczegóły pytania aby zapoznać się z treścią';
 		if (!secondChildText || secondChildText === '' || secondChildText === ' ')
-			return `${firstChildText}...`;
-		return `${firstChildText}<br/>${secondChildText}...`;
+			return `${firstChildText?.substring(0, 120)}...`;
+		return `${firstChildText?.substring(
+			0,
+			120
+		)}<br/>${secondChildText?.substring(0, 120)}...`;
 	}
 }
