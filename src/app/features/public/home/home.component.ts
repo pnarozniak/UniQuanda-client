@@ -13,7 +13,6 @@ import { FormControl } from '@angular/forms';
 import { ITag } from 'src/app/shared/models/tag.model';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { TagNamesSerive } from './services/tag-names.service';
-import { ToastrService } from 'ngx-toastr';
 @Component({
 	selector: 'app-home',
 	templateUrl: './home.component.html',
@@ -41,8 +40,7 @@ export class HomeComponent implements OnInit {
 		private readonly _questionsService: QuestionsSerive,
 		private readonly _tagNamesService: TagNamesSerive,
 		private readonly _location: Location,
-		private readonly _route: ActivatedRoute,
-		private readonly _toastrService: ToastrService
+		private readonly _route: ActivatedRoute
 	) {}
 	ngOnInit(): void {
 		this.page = Number.parseInt(this._route.snapshot.queryParams['page'] ?? 1);

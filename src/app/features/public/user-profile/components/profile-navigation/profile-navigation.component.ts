@@ -135,7 +135,6 @@ export class ProfileNavigationComponent implements OnInit, OnDestroy {
 				)
 				.pipe(
 					tap((response) => {
-						console.log(response.totalCount);
 						this.questionPages.set(page, response.questions);
 					})
 				);

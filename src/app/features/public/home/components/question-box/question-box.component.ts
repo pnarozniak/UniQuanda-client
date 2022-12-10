@@ -11,7 +11,6 @@ import { IGetQuestionsResponseDtoQuestion } from '../../models/get-questions.dto
 export class QuestionBoxComponent {
 	@Input() public set question(question: IGetQuestionsResponseDtoQuestion) {
 		this.questionObj = question;
-		console.log(question.id);
 		this.creationDate = moment(question.creationDate).locale('pl').format('ll');
 		this.htmlControl.setValue(question.html);
 	}
