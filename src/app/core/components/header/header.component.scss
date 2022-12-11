@@ -34,35 +34,6 @@ header {
 	}
 }
 
-
-.search-bar {
-	height: 35px;
-	background-color: var(--bg-accent);
-	color: var(--text-accent);
-	outline: 0;
-
-	@mixin placeholder {
-		font-weight: 500;
-		color: var(--text-accent);
-	}
-
-	&::placeholder {
-		@include placeholder;
-	}
-	&:-ms-input-placeholder {
-		@include placeholder;
-	}
-	&::-ms-input-placeholder {
-		@include placeholder;
-	}
-}
-
-.btn-search {
-	color: var(--text-accent);
-	font-size: 20px;
-	font-weight: 500;
-}
-
 .btn-avatar {
 	cursor: pointer;
 	border: 1px solid var(--bg-accent);
@@ -80,17 +51,6 @@ header {
 	height: dim.$header-footer-height;
 }
 
-@media all and (max-width: breakpoints.$lg) {
-	.search-bar {
-		background-color: var(--bg-accent);
-		margin-right: 0.5rem;
-	}
-
-	.btn-search {
-		background: none;
-	}
-}
-
 @media all and (max-width: breakpoints.$md) {
 	.a-btn{
 		padding-left: 27px;
@@ -99,9 +59,6 @@ header {
 }
 
 @media all and (max-width: breakpoints.$sm) {
-	.search-bar {
-		margin-right: 0.25rem;
-	}
 	.header-height {
 		height: calc(dim.$header-height - dim.$header-footer-height);
 	}
