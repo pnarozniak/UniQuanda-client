@@ -1,15 +1,14 @@
 import { OrderDirection } from 'src/app/shared/enums/order-direction.enum';
 import { QuestionSortingBy } from '../enums/question-sorting-by.enum';
 
-export class GetQuestionsRequestDto {
-	constructor(
-		public readonly page: number,
-		public readonly pageSize: number,
-		public readonly sortBy: QuestionSortingBy,
-		public readonly orderBy: OrderDirection,
-		public readonly addCount: boolean,
-		public readonly tags: number[]
-	) {}
+export interface IGetQuestionsRequestDto {
+	page: number;
+	pageSize: number;
+	sortBy: QuestionSortingBy;
+	orderBy: OrderDirection;
+	addCount: boolean;
+	tags: number[];
+	searchText: string;
 }
 export interface IGetQuestionsResponseDto {
 	questions: IGetQuestionsResponseDtoQuestion[];

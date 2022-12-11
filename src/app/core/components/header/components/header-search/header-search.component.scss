@@ -56,6 +56,12 @@
 	top: 35px;
 	left: -35px;
 	width: calc(100% + 35px);
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+	.scrollable-content {
+		max-height: 189px;
+		overflow-y: auto;
+	}
 
 	&.input-expanded {
 		width: 100%;
@@ -91,11 +97,17 @@
 				background-color: colors.$academic-blue;
 			}
 		}
+
+		&.info:hover {
+			background-color: var(--bg-default) !important;
+			cursor: default !important;
+		}
 	}
 
 	hr {
 		margin: 0;
 		padding: 0;
+		color: colors.$bordered-gray;
 	}
 
 	&.dark {
@@ -128,11 +140,13 @@
 	.search-input {
 		height: 28px;
 	}
+	.scrollable-content {
+		max-height: calc(100vh - calc(dim.$header-height + 50px)) !important;
+	}
 	.search-results-dropdown {
 		top: 55px;
 		border: none;
 		height: calc(100vh - dim.$header-height);
-		overflow-y: hidden;
 	}
 	.search-icon {
 		font-size: 15px;

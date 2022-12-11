@@ -24,6 +24,7 @@ import { AccessTokenInterceptor } from './interceptors/access-token.interceptor'
 import { RefreshTokenService } from './services/refresh-token.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HeaderSearchComponent } from './components/header/components/header-search/header-search.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
 	providers: [
@@ -77,6 +78,7 @@ import { HeaderSearchComponent } from './components/header/components/header-sea
 		RecaptchaV3Module,
 		MatMenuModule,
 		MatDialogModule,
+		FormsModule,
 	],
 	exports: [HeaderComponent, NavBarComponent],
 })
