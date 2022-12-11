@@ -19,9 +19,10 @@
 		<app-question-details-info
 			[question]="question"></app-question-details-info>
 	</div>
-	<app-content-display
-		class="w-100 description-container"
-		[htmlContent]="question.content"
-		[showBlocks]="true"></app-content-display>
+	<app-content-form
+		class="d-flex description-container"
+		[control]="htmlControl"
+		[showBlocks]="true"
+		[isEditMode]="false"></app-content-form>
 	<hr class="my-0" />
 </div>

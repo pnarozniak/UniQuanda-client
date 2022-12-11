@@ -1,7 +1,7 @@
 <div
 	class="d-flex flex-column w-100"
 	*ngIf="questionObj"
-	routerLink="/public/question/{{ questionObj.id }}">
+	routerLink="/public/questions/{{ questionObj.id }}">
 	<div class="d-flex flex-md-row flex-column box py-3">
 		<div class="d-flex flex-column ps-4 pe-2 my-auto left-menu ms-2">
 			<div
@@ -44,8 +44,8 @@
 							width="35px"
 							height="35px"
 							src="{{
-								question.user.profilePictureURL
-									? question.user.profilePictureURL
+								questionObj.user.profilePictureURL
+									? questionObj.user.profilePictureURL
 									: 'assets/images/common/default_avatar.svg'
 							}}"
 							(load)="isProfilePictureLoading = false" />

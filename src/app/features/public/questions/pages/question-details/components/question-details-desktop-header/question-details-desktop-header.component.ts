@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { StaticImageSrc } from 'src/app/shared/enums/static-image-src.enum';
 import { IQuestionDetailsEntity } from '../../models/question-details.dto';
 
@@ -7,9 +8,14 @@ import { IQuestionDetailsEntity } from '../../models/question-details.dto';
 	templateUrl: './question-details-desktop-header.component.html',
 	styleUrls: ['./question-details-desktop-header.component.scss'],
 })
-export class QuestionDetailsDesktopHeaderComponent {
+export class QuestionDetailsDesktopHeaderComponent implements OnInit {
 	@Input() question!: IQuestionDetailsEntity;
 	@Input() idLoggedUser: number | null = null;
 
 	public staticImageSrc = StaticImageSrc;
+	public htmlControl = new FormControl('');
+
+	ngOnInit(): void {
+		this.htmlControl.setValue(this.question?.content);
+	}
 }

@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import * as moment from 'moment';
 import 'moment/locale/pl';
-import { StaticImageSrc } from 'src/app/shared/enums/static-image-src.enum';
 import { IGetQuestionsResponseDtoQuestion } from '../../models/get-questions.dto';
 @Component({
 	selector: 'app-question-box',
@@ -12,12 +11,10 @@ import { IGetQuestionsResponseDtoQuestion } from '../../models/get-questions.dto
 export class QuestionBoxComponent {
 	@Input() public set question(question: IGetQuestionsResponseDtoQuestion) {
 		this.questionObj = question;
-		console.log(question.id);
 		this.creationDate = moment(question.creationDate).locale('pl').format('ll');
 		this.htmlControl.setValue(question.html);
 	}
 
-	public staticImageSrc = StaticImageSrc;
 	public creationDate = '';
 	public htmlControl = new FormControl('');
 	public isProfilePictureLoading = true;

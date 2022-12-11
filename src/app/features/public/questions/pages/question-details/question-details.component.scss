@@ -19,7 +19,8 @@
 	border: 1px solid colors.$bordered-gray;
 	padding-left: 32px;
 	padding-right: 32px;
-	padding-top: 32px
+	padding-top: 32px;
+	padding-bottom: 32px;
 }
 
 .line {
@@ -52,6 +53,7 @@
 		padding-right: 0;
 		padding-top: 0;
 		padding-top: 0;
+		padding-bottom: 0;
 		border: 0;
 	}
 }
