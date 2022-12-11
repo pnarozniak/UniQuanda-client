@@ -1,0 +1,17 @@
+<div
+	class="d-flex flex-row align-items-center flex-wrap gap-2 h-100 info-container">
+	<span>{{ question.publishDate | date: 'dd LLL yyyy' }}</span>
+	<span [ngClass]="{ 'correct-answer px-3 px-2': question.hasCorrectAnswer }"
+		><app-icon *ngIf="question.amountOfAnswers > 0" class="check"></app-icon
+		>{{
+			question.amountOfAnswers > 0
+				? question.amountOfAnswers +
+				  (question.amountOfAnswers === 1 ? ' odpowiedź' : '
+		odpowiedzi')
+				: 'Brak odpowiedzi'
+		}}</span
+	>
+	<span>{{
+		question.views > 0 ? question.views + ' wyświetleń' : 'Brak wyświetleń'
+	}}</span>
+</div>

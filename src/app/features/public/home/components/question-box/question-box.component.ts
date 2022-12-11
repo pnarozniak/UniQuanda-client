@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import 'moment/locale/pl';
+import { StaticImageSrc } from 'src/app/shared/enums/static-image-src.enum';
 import { IGetQuestionsResponseDtoQuestion } from '../../models/get-questions.dto';
 @Component({
 	selector: 'app-question-box',
@@ -8,6 +9,8 @@ import { IGetQuestionsResponseDtoQuestion } from '../../models/get-questions.dto
 	styleUrls: ['./question-box.component.scss'],
 })
 export class QuestionBoxComponent implements OnInit {
+	public staticImageSrc = StaticImageSrc;
+
 	ngOnInit(): void {
 		this.creationDate = moment(this.question.creationDate)
 			.locale('pl')

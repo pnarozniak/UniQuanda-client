@@ -1,0 +1,26 @@
+<div
+	class="d-flex flex-xl-row flex-column me-xl-0 me-sm-5 me-3 pe-xl-0 pe-sm-5 pe-2 main-container">
+	<div class="d-flex flex-column ms-sm-5 left-menu ms-2 w-100">
+		<app-question-details-desktop-header
+			*ngIf="question"
+			[question]="question"
+			[idLoggedUser]="user?.id ?? null"></app-question-details-desktop-header>
+		<div
+			*ngIf="!question"
+			class="w-100 question-details-loading"
+			[appLoading]="!question"></div>
+	</div>
+	<div class="ms-sm-5 ms-2 ps-2 w-100 mb-3 mt-3 d-flex d-xl-none">
+		<hr class="line w-100" />
+	</div>
+	<app-right-menu
+		[options]="[
+			'about',
+			'create-an-account',
+			'generate-test',
+			'top-users',
+			'buy-premium'
+		]"
+		class="right-menu ms-2 ms-sm-5 ps-2 ms-xl-unset ps-xl-unset">
+	</app-right-menu>
+</div>

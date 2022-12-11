@@ -1,0 +1,51 @@
+<div class="d-flex flex-row">
+	<app-button
+		*ngIf="!isQuestionOwner"
+		(click)="followQuestion(question.id)"
+		[color]="question.isQuestionFollowed ? 'purple' : 'blue'"
+		class="px-sm-4 px-3 py-sm-2 py-1 follow-btn me-2"
+		><app-icon
+			[icon]="question.isQuestionFollowed ? 'check' : 'plus'"
+			class="me-2"></app-icon
+		>{{
+			this.question.isQuestionFollowed
+				? 'Obserwujesz pytanie'
+				: 'Zaobserwuj pytanie'
+		}}</app-button
+	>
+	<div dropdown [insideClick]="true" container="body" class="d-flex">
+		<app-button color="gray" class="drop-icon" shape="rect" dropdownToggle>
+			<app-icon icon="dots" class="p-2"></app-icon>
+		</app-button>
+		<div
+			*dropdownMenu
+			class="dropdown-content d-flex flex-column py-3 px-2"
+			appTheme>
+			<a
+				*ngIf="isQuestionOwner && question.amountOfAnswers === 0"
+				routerLink="/user/ask-question"
+				[queryParams]="{ questionId: question.id }"
+				class="d-flex justify-content-center py-1">
+				<app-icon icon="edit" class="me-2 my-auto"></app-icon>
+				Edytuj pytanie
+			</a>
+			<hr
+				*ngIf="isQuestionOwner && question.amountOfAnswers === 0"
+				class="hrline my-2 w-100" />
+			<a
+				*ngIf="isQuestionOwner"
+				(click)="deleteQuestion(question.id)"
+				class="d-flex justify-content-center py-1">
+				<app-icon icon="delete" class="me-2 my-auto"></app-icon>
+				Usuń pytanie</a
+			>
+			<a
+				*ngIf="!isQuestionOwner"
+				(click)="reportQuestion(question.id)"
+				class="d-flex justify-content-center py-1">
+				<app-icon icon="report" class="me-2 my-auto"></app-icon>
+				Zgłoś pytanie
+			</a>
+		</div>
+	</div>
+</div>

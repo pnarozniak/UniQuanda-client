@@ -1,0 +1,31 @@
+@use 'colors' as colors;
+@use 'breakpoints' as breakpoints;
+
+.title {
+	font-size: 35px;
+}
+
+.author-avatar {
+	height: 35px;
+	width: 35px;
+}
+
+.nickname {
+	color: colors.$bordered-gray;
+	font-size: 13px;
+}
+
+.description-container {
+	position:relative;
+	left: -9.6px;
+}
+
+.app-content-display .ck.ck-editor__editable_inline > *:first-child {
+	margin-top: 0 !important;
+}
+
+@media screen and (max-width: breakpoints.$sm) {
+	.title {
+		font-size: 18px;
+	}
+}

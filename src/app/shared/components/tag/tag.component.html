@@ -1,1 +1,8 @@
-<span class="px-3 py-2" appTheme>{{ name }}</span>
+<span *ngIf="!tagId" class="px-3 py-2" appTheme>{{ name }}</span>
+<a
+	*ngIf="tagId"
+	routerLink="/public/home?tags={{ tagId }}"
+	class="px-2 py-1 h-100"
+	appTheme>
+	{{ name }}
+</a>

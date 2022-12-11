@@ -1,0 +1,58 @@
+@use 'breakpoints' as breakpoints;
+@use 'dimensions' as dimensions;
+@use 'colors' as colors;
+
+.main-container {
+	margin-top: 64px;
+}
+
+.question-box {
+	cursor: pointer;
+}
+
+.app-right-menu {
+	margin-top: 42px;
+}
+
+.left-menu {
+	width: calc(100% - dimensions.$right-menu-width);
+	border: 1px solid colors.$bordered-gray;
+	padding-left: 32px;
+	padding-right: 32px;
+	padding-top: 32px
+}
+
+.line {
+	background-color: colors.$bordered-gray;
+	opacity: 1;
+}
+
+.question-details-loading {
+	height: 250px;
+}
+
+@media screen and (max-width: breakpoints.$xl) {
+	.left-menu {
+		width: 100%;
+	}
+
+	.right-menu {
+		width: 100%;
+		margin: 0;
+	}
+}
+
+@media screen and (max-width: breakpoints.$sm) {
+	.main-container {
+		margin-top: 32px;
+	}
+
+	.left-menu {
+		padding-left: 8px;
+		padding-right: 0;
+		padding-top: 0;
+		padding-top: 0;
+		border: 0;
+	}
+}
+
