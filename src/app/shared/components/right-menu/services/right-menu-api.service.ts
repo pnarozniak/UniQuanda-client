@@ -18,6 +18,6 @@ export class RightMenuApiService {
 		return this._api
 			.get<IGetTop5UsersResponseDTO>('ranking/top-5-users')
 			.pipe(map((res) => res.body!.top5Users))
-			.pipe(map((top5Users) => top5Users.sort((user) => user.points)));
+			.pipe(map((top5Users) => top5Users.sort((a, b) => b.points - a.points)));
 	}
 }

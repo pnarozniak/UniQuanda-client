@@ -42,13 +42,13 @@ import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TagChipsComponent } from './components/tag-chips/tag-chips.component';
-import { ContentDisplayComponent } from './components/content-display/content-display.component';
 import { RightMenuComponent } from './components/right-menu/right-menu.component';
 import { RightMenuAboutComponent } from './components/right-menu/components/right-menu-about/right-menu-about.component';
 import { RightMenuCreateAnAccountComponent } from './components/right-menu/components/right-menu-create-an-account/right-menu-create-an-account.component';
 import { RightMenuBuyPremiumComponent } from './components/right-menu/components/right-menu-buy-premium/right-menu-buy-premium.component';
 import { RightMenuTopUsersComponent } from './components/right-menu/components/right-menu-top-users/right-menu-top-users.component';
 import { RightMenuGenerateTestComponent } from './components/right-menu/components/right-menu-generate-test/right-menu-generate-test.component';
+import { ClickOutsideDirective } from './directives/click-outside.directive';
 
 const sharedComponents = [
 	InputComponent,
@@ -67,7 +67,6 @@ const sharedComponents = [
 	ContentFormComponent,
 	CheckboxComponent,
 	TagChipsComponent,
-	ContentDisplayComponent,
 	RightMenuComponent,
 ];
 
@@ -88,6 +87,7 @@ const sharedDirectives = [
 	LoadingDirective,
 	ContextDirective,
 	NotImplementedDirective,
+	ClickOutsideDirective,
 ];
 
 @NgModule({

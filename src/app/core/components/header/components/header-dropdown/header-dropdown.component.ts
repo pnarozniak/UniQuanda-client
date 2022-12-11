@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IUserClaims } from '../../models/user-claims.model';
-import { ThemeService } from '../../services/theme.service';
-import { UserDataService } from '../../services/user-data.service';
+import { IUserClaims } from '../../../../models/user-claims.model';
+import { ThemeService } from '../../../../services/theme.service';
+import { UserDataService } from '../../../../services/user-data.service';
 
 @Component({
 	selector: 'app-header-dropdown',
