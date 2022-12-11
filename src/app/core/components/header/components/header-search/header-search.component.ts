@@ -1,5 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { catchError } from 'rxjs';
+import {
+	Component,
+	EventEmitter,
+	Input,
+	OnDestroy,
+	OnInit,
+	Output,
+} from '@angular/core';
+import { catchError, skip, Subscription } from 'rxjs';
 import { HeaderApiService } from '../../services/header-api.service';
 import { HeaderStateService } from '../../services/header-state.service';
 
@@ -8,17 +15,29 @@ import { HeaderStateService } from '../../services/header-state.service';
 	templateUrl: './header-search.component.html',
 	styleUrls: ['./header-search.component.scss'],
 })
-export class HeaderSearchComponent {
+export class HeaderSearchComponent implements OnInit, OnDestroy {
+	subscription = new Subscription();
 	@Input() expanded = false;
 	@Output() expandedChange = new EventEmitter<boolean>();
 	dropdownExpanded = false;
 	searchResults: ISearchResult[] = [];
 
-	/* Initialize search text from query params */
 	constructor(
 		private readonly _headerApiService: HeaderApiService,
 		public headerState: HeaderStateService
 	) {}
+
+	ngOnInit(): void {
+		this.subscription.add(
+			this.headerState.searchForResults$.pipe(skip(1)).subscribe(() => {
+				this.searchForResults();
+			})
+		);
+	}
+
+	ngOnDestroy(): void {
+		this.subscription.unsubscribe();
+	}
 
 	expandCollapse(newState: boolean = this.expanded) {
 		this.expanded = !newState;

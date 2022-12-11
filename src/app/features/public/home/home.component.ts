@@ -57,6 +57,7 @@ export class HomeComponent implements OnInit {
 		if (this.searchText) {
 			this._headerState.searchText = this.searchText;
 			this._headerState.searchTextSubmit$.next(this.searchText);
+			this._headerState.searchForResults$.next(null);
 		} else {
 			this.searchText = this._headerState.searchText;
 			this._headerState.searchTextSubmit$.next(this.searchText);

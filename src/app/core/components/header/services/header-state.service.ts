@@ -7,4 +7,5 @@ import { BehaviorSubject } from 'rxjs';
 export class HeaderStateService {
 	searchText = '';
 	searchTextSubmit$ = new BehaviorSubject<string>('');
+	searchForResults$ = new BehaviorSubject<null>(null);
 }
