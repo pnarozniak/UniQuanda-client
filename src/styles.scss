@@ -86,3 +86,17 @@ bs-dropdown-container {
     visibility: hidden;
   }
 }
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--bg-default);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: colors.$bordered-gray;
+  border-radius: 20px;
+  border: 2px solid var(--bg-default);
+}
