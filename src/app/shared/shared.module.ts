@@ -48,6 +48,7 @@ import { RightMenuCreateAnAccountComponent } from './components/right-menu/compo
 import { RightMenuBuyPremiumComponent } from './components/right-menu/components/right-menu-buy-premium/right-menu-buy-premium.component';
 import { RightMenuTopUsersComponent } from './components/right-menu/components/right-menu-top-users/right-menu-top-users.component';
 import { RightMenuGenerateTestComponent } from './components/right-menu/components/right-menu-generate-test/right-menu-generate-test.component';
+import { RightMenuRankingAboutComponent } from './components/right-menu/components/right-menu-ranking-about/right-menu-ranking-about.component';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
 
 const sharedComponents = [
@@ -78,6 +79,7 @@ const privateComponents = [
 	RightMenuBuyPremiumComponent,
 	RightMenuTopUsersComponent,
 	RightMenuGenerateTestComponent,
+	RightMenuRankingAboutComponent,
 ];
 
 const sharedModules = [CommonModule];
