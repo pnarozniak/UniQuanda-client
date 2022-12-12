@@ -18,6 +18,9 @@ body {
   margin: 0;
   font-family: Ubuntu, sans-serif !important;
 }
+.dark {
+  background-color: var(--bg-default);
+}
 
 .height-header {
   min-height: calc(100vh - dim.$header-height-sm);

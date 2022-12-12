@@ -1,6 +1,8 @@
 <div class="d-flex flex-column content" *ngIf="{ user: user$ | async } as ctx">
 	<ng-container *ngFor="let opt of options" [ngSwitch]="opt">
 		<app-right-menu-about *ngSwitchCase="'about'"></app-right-menu-about>
+		<app-right-menu-ranking-about
+			*ngSwitchCase="'ranking'"></app-right-menu-ranking-about>
 		<app-right-menu-top-users *ngSwitchCase="'top-users'">
 		</app-right-menu-top-users>
 		<app-right-menu-generate-test *ngSwitchCase="'generate-test'">
