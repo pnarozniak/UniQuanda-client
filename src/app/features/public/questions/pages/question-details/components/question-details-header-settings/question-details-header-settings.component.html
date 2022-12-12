@@ -24,7 +24,7 @@
 			<a
 				*ngIf="isQuestionOwner && question.amountOfAnswers === 0"
 				routerLink="/user/ask-question"
-				[queryParams]="{ questionId: question.id }"
+				[queryParams]="{ idQuestion: question.id }"
 				class="d-flex justify-content-center py-1">
 				<app-icon icon="edit" class="me-2 my-auto"></app-icon>
 				Edytuj pytanie

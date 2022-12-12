@@ -6,6 +6,8 @@ import ApiService from 'src/app/core/services/api.service';
 import AddQuestionRequestDTO, {
 	IAddQuestionResponseDTO,
 } from '../models/add-question.dto';
+import { IGetQuestionDetailsForUpdateResponseDTO } from '../models/get-question-details-for-update.dto';
+import UpdateQuestionRequestDTO from '../models/update-question.dto';
 
 @Injectable({
 	providedIn: 'root',
@@ -15,6 +17,7 @@ export default class AskQuestionApiService {
 		private readonly _apiService: ApiService,
 		private readonly _toastrService: ToastrService
 	) {}
+
 	addQuestion(requestData: AddQuestionRequestDTO): Observable<number> {
 		return this._apiService
 			.post<IAddQuestionResponseDTO, AddQuestionRequestDTO>(
@@ -31,5 +34,17 @@ export default class AskQuestionApiService {
 					return of(0);
 				})
 			);
+	}
+
+	getQuestionDetailsForUpdate(
+		idQuestion: number
+	): Observable<HttpResponse<IGetQuestionDetailsForUpdateResponseDTO>> {
+		return this._apiService.get(`Question/update/${idQuestion}`);
+	}
+
+	updateQuestion(
+		body: UpdateQuestionRequestDTO
+	): Observable<HttpResponse<null>> {
+		return this._apiService.put('Question', body);
 	}
 }
