@@ -10,7 +10,7 @@ import AddQuestionRequestDTO, {
 @Injectable({
 	providedIn: 'root',
 })
-export default class QuestionApiService {
+export default class AskQuestionApiService {
 	constructor(
 		private readonly _apiService: ApiService,
 		private readonly _toastrService: ToastrService

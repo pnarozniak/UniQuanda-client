@@ -4,3 +4,16 @@
 	border-bottom: 2px solid colors.$bordered-gray;
 	opacity: 1;
 }
+.no-questions {
+	color: var(--text-default);
+	background-color: var(--bg-accent);
+}
+.information-icon {
+	border: 1px solid colors.$bordered-gray;
+	border-radius: 100%;
+	padding: 1px;
+	padding-left: 11px;
+	padding-right: 11px;
+	max-width: 28px;
+	max-height: 28px;
+}

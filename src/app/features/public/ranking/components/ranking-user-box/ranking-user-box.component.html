@@ -1,0 +1,40 @@
+<div
+	class="d-flex flex-row ranking-box"
+	[ngClass]="{
+		'first-place': user.place === 1,
+		'second-place': user.place === 2,
+		'third-place': user.place === 3
+	}">
+	<div class="w-100 d-flex px-3 py-2 flex-wrap user-row">
+		<b class="my-auto text-val">{{ user.place }}</b>
+		<div
+			[appLoading]="isImageLoading"
+			class="d-flex my-auto loading-image ms-3">
+			<img
+				[src]="
+					user.avatar ? user.avatar : 'assets/images/common/default_avatar.svg'
+				"
+				(load)="isImageLoading = false"
+				alt="user profile picture"
+				width="35px"
+				height="35px" />
+		</div>
+		<ng-container *ngFor="let title of user.titles">
+			<b
+				class="title-badge d-flex ms-2 my-auto px-2 py-1"
+				[ngStyle]="{
+					'background-color': getAcademicTitleTypeColor(title.academicTitleType)
+				}">
+				{{ title.name }}
+			</b>
+		</ng-container>
+		<b class="my-auto ms-2 me-2 nickname text-val">{{ user.nickname }}</b>
+		<span class="my-auto points ps-2 text-val">{{
+			generatePointsText(user.points)
+		}}</span>
+	</div>
+	<app-icon
+		icon="mail"
+		class="ms-auto my-auto mail-icon py-2 px-2 my-auto me-2"
+		[matTooltip]="generateMessageText()"></app-icon>
+</div>

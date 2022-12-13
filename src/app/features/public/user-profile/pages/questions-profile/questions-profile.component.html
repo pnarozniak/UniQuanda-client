@@ -7,6 +7,12 @@
 					[question]="question"
 					class="ms-3 ms-lg-0 me-3 mb-3"></app-profile-question-box>
 			</ng-container>
+			<div
+				*ngIf="response.totalCount === 0"
+				class="mx-auto d-flex px-3 py-2 no-questions">
+				<span class="information-icon">i</span
+				><i class="my-auto ms-2">Użytkownik nie zadał jeszcze pytań</i>
+			</div>
 			<app-paginator
 				*ngIf="response.totalCount > questionsOnPage"
 				class="ms-auto me-3 mb-3 mb-xxl-5"

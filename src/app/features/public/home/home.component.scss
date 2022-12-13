@@ -7,6 +7,9 @@
 .loading-box {
 	height: 180px;
 }
+.search-text {
+	font-size: 14px;
+}
 .app-right-menu {
 	margin-top: 106px;
 }
@@ -16,6 +19,9 @@
 .line {
 	background-color: col.$bordered-gray;
 	opacity: 1;
+}
+.sort-label {
+	font-size: 15px;
 }
 @media screen and (max-width: bp.$xl) {
 	.left-menu {

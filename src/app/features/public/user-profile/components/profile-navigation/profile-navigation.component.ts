@@ -41,6 +41,7 @@ export class ProfileNavigationComponent implements OnInit, OnDestroy {
 	private totalQuestions = 0;
 
 	private readonly _paramSubscription = new Subscription();
+	private readonly _urlSubscription = new Subscription();
 
 	constructor(
 		private readonly _route: ActivatedRoute,
@@ -61,6 +62,17 @@ export class ProfileNavigationComponent implements OnInit, OnDestroy {
 					}
 				});
 				if (this.activePage === ProfileSubpageEnum.Questions) {
+					this.loadQuestions(1);
+				}
+			})
+		);
+		this._urlSubscription.add(
+			this._route.paramMap.subscribe((params) => {
+				const profileId = params.get('id');
+				if (profileId) {
+					this.userId = Number(profileId);
+					this.questionPages.clear();
+					this.isFirstQuestionsLoad = true;
 					this.loadQuestions(1);
 				}
 			})

@@ -2,32 +2,40 @@ import { Component, OnInit } from '@angular/core';
 import { OrderDirection } from 'src/app/shared/enums/order-direction.enum';
 import { QuestionSortingBy } from './enums/question-sorting-by.enum';
 import {
-	GetQuestionsRequestDto,
+	IGetQuestionsRequestDto,
 	IGetQuestionsResponseDtoQuestion,
 } from './models/get-questions.dto';
-import { QuestionsSerive } from './services/questions.service';
 import { Location } from '@angular/common';
 import { HttpParams } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { ITag } from 'src/app/shared/models/tag.model';
-import { BehaviorSubject, Subject } from 'rxjs';
-import { TagNamesSerive } from './services/tag-names.service';
+import { BehaviorSubject, Subject, tap } from 'rxjs';
+import { HomeApiService } from './services/home-api.service';
+import { HeaderStateService } from 'src/app/core/components/header/services/header-state.service';
+
 @Component({
 	selector: 'app-home',
 	templateUrl: './home.component.html',
 	styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+	searchTextSubmit$ = this._headerState.searchTextSubmit$.pipe(
+		tap((searchText) => {
+			if (this.searchText !== searchText) {
+				this.searchText = searchText;
+				this.getQuestions();
+			}
+		})
+	);
+	searchText = '';
 	public page = 1;
 	public pageSize = 10;
 	public totalCount = 0;
 	public questions: IGetQuestionsResponseDtoQuestion[] = [];
 	public tags: number[] = [];
-	// if user wants to load previous page, we don't want to make another request
-	public prevQuestions = new Map<number, IGetQuestionsResponseDtoQuestion[]>();
 	public sortingBy = QuestionSortingBy.PublicationDate;
-	public orderDirection = OrderDirection.Descending;
+	public orderDirection = OrderDirection.Ascending;
 
 	public tagControl = new FormControl('');
 	public pageBehavior = new BehaviorSubject<number>(this.page);
@@ -37,136 +45,82 @@ export class HomeComponent implements OnInit {
 	public hasInitialTags = false;
 
 	constructor(
-		private readonly _questionsService: QuestionsSerive,
-		private readonly _tagNamesService: TagNamesSerive,
+		private readonly _homeApiService: HomeApiService,
 		private readonly _location: Location,
-		private readonly _route: ActivatedRoute
+		private readonly _route: ActivatedRoute,
+		private readonly _headerState: HeaderStateService
 	) {}
+
 	ngOnInit(): void {
-		this.page = Number.parseInt(this._route.snapshot.queryParams['page'] ?? 1);
-		this.pageBehavior.next(this.page);
-
-		const paramsSortingBy = this._route.snapshot.queryParams['sortingBy'];
-		if (paramsSortingBy !== undefined) {
-			switch (paramsSortingBy) {
-				case 'publicationDate':
-					this.sortingBy = QuestionSortingBy.PublicationDate;
-					break;
-				case 'answersCount':
-					this.sortingBy = QuestionSortingBy.Answers;
-					break;
-				case 'viewsCount':
-					this.sortingBy = QuestionSortingBy.Views;
-					break;
-				default:
-					this.sortingBy = QuestionSortingBy.PublicationDate;
-			}
+		const queryParams = this._route.snapshot.queryParams;
+		this.searchText = queryParams['searchText'];
+		if (this.searchText) {
+			this._headerState.searchText = this.searchText;
+			this._headerState.searchTextSubmit$.next(this.searchText);
+			this._headerState.searchForResults$.next(null);
 		} else {
-			this.sortingBy = QuestionSortingBy.PublicationDate;
+			this.searchText = this._headerState.searchText;
+			this._headerState.searchTextSubmit$.next(this.searchText);
 		}
 
-		const paramsOrderDirection =
-			this._route.snapshot.queryParams['orderDirection'];
-		if (paramsOrderDirection !== undefined) {
-			switch (paramsOrderDirection) {
-				case 'ascending':
-					this.orderDirection = OrderDirection.Ascending;
-					break;
-				case 'descending':
-					this.orderDirection = OrderDirection.Descending;
-					break;
-				default:
-					this.orderDirection = OrderDirection.Descending;
-			}
-		} else {
-			this.orderDirection = OrderDirection.Descending;
-		}
-
-		const requestTags = this._route.snapshot.queryParams['tags'];
+		this.page = queryParams['page'] ?? 1;
+		this.pageBehavior = new BehaviorSubject<number>(this.page);
+		this.sortingBy =
+			queryParams['sortingBy'] ?? QuestionSortingBy.PublicationDate;
+		this.orderDirection =
+			queryParams['orderDirection'] ?? OrderDirection.Ascending;
+		const requestTags = queryParams['tags'];
 		if (requestTags !== '' && requestTags !== undefined) {
 			this.tags = requestTags.split(',');
 			this.hasInitialTags = true;
-			this._tagNamesService.getTagNames(this.tags).subscribe((tags) => {
+			this._homeApiService.getTagNames(this.tags).subscribe((tags) => {
 				this.tagBehavior.next(tags);
 			});
 		}
-		this.getQuestions(true, true);
+
+		this.getQuestions(true);
 	}
 
 	public handleSortingChange(sortingBy: QuestionSortingBy) {
 		this.sortingBy = sortingBy;
 		this.page = 1;
 		this.pageBehavior.next(this.page);
-		this.getQuestions(true);
+		this.getQuestions();
 	}
 
 	public handleOrderDirectionChange(orderDirection: OrderDirection) {
 		this.orderDirection = orderDirection;
 		this.page = 1;
 		this.pageBehavior.next(this.page);
-		this.getQuestions(true);
+		this.getQuestions();
 	}
 
-	/**
-	 *	Sends request to server to get questions
-	 * @param sendRequest If set to true, it will disable caching and send request to server
-	 * @param addCount If set to true, it will add count of questions to response
-	 * @returns void
-	 */
-	private getQuestions(sendRequest = false, addCount = false) {
-		if (!sendRequest && this.prevQuestions.has(this.page)) {
-			this.questions = this.prevQuestions.get(this.page) ?? [];
-			this._location.replaceState('/public/home', this.getParamsAsString());
-			this.isLoading = false;
-			return;
-		}
-		if (sendRequest) this.prevQuestions.clear();
-		const request = new GetQuestionsRequestDto(
-			this.page,
-			this.pageSize,
-			this.sortingBy,
-			this.orderDirection,
-			addCount,
-			this.tags
-		);
+	private getQuestions(addCount = false) {
+		const request: IGetQuestionsRequestDto = {
+			page: this.page,
+			pageSize: this.pageSize,
+			sortBy: this.sortingBy,
+			orderBy: this.orderDirection,
+			addCount: addCount,
+			tags: this.tags,
+			searchText: this.searchText,
+		};
 		this.isLoading = true;
-		this._questionsService.getQuestions(request).subscribe((response) => {
+		this._homeApiService.getQuestions(request).subscribe((response) => {
 			this.isLoading = false;
 			this._location.replaceState('/public/home', this.getParamsAsString());
 			this.questions = response.questions;
-			this.prevQuestions.set(this.page, response.questions);
 			if (addCount) this.totalCount = response.count ?? 0;
 		});
 	}
 
 	private getParamsAsString(): string {
-		let params = new HttpParams()
+		const params = new HttpParams()
 			.append('page', this.page)
-			.append('tags', this.tags.join(','));
-		switch (this.sortingBy) {
-			case QuestionSortingBy.PublicationDate:
-				params = params.append('sortingBy', 'publicationDate');
-				break;
-			case QuestionSortingBy.Answers:
-				params = params.append('sortingBy', 'answersCount');
-				break;
-			case QuestionSortingBy.Views:
-				params = params.append('sortingBy', 'viewsCount');
-				break;
-			default:
-				params = params.append('sortingBy', 'publicationDate');
-		}
-
-		switch (this.orderDirection) {
-			case OrderDirection.Ascending:
-				params = params.append('orderDirection', 'ascending');
-				break;
-			case OrderDirection.Descending:
-				params = params.append('orderDirection', 'descending');
-				break;
-			default:
-				params = params.append('orderDirection', 'descending');
-		}
+			.append('sortingBy', this.sortingBy)
+			.append('orderDirection', this.orderDirection)
+			.append('tags', this.tags.join(','))
+			.append('searchText', this.searchText ?? '');
 		return params.toString();
 	}
 
@@ -179,6 +133,6 @@ export class HomeComponent implements OnInit {
 		this.tags = tags.map((t) => t.id);
 		this.page = 1;
 		this.pageBehavior.next(this.page);
-		this.getQuestions(true, true);
+		this.getQuestions();
 	}
 }

@@ -2,15 +2,16 @@ import { HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import ApiService from 'src/app/core/services/api.service';
+import { ITag } from 'src/app/shared/models/tag.model';
 import {
-	GetQuestionsRequestDto,
+	IGetQuestionsRequestDto,
 	IGetQuestionsResponseDto,
 } from '../models/get-questions.dto';
 
 @Injectable({
 	providedIn: 'root',
 })
-export class QuestionsSerive {
+export class HomeApiService {
 	constructor(private readonly _apiService: ApiService) {}
 
 	/**
@@ -19,14 +20,15 @@ export class QuestionsSerive {
 	 * @returns questions and total count if addCount is true
 	 */
 	getQuestions(
-		request: GetQuestionsRequestDto
+		request: IGetQuestionsRequestDto
 	): Observable<IGetQuestionsResponseDto> {
 		let params = new HttpParams()
 			.append('page', request.page)
 			.append('pageSize', request.pageSize)
 			.append('sortBy', request.sortBy)
 			.append('orderBy', request.orderBy)
-			.append('addCount', request.addCount);
+			.append('addCount', request.addCount)
+			.append('searchText', request.searchText);
 		if (request.tags.length > 0) {
 			request.tags.forEach((tag) => {
 				params = params.append('tags', tag);
@@ -41,5 +43,16 @@ export class QuestionsSerive {
 						response.body as IGetQuestionsResponseDto
 				)
 			);
+	}
+
+	getTagNames(tagIds: number[]): Observable<ITag[]> {
+		let params = new HttpParams();
+		tagIds.forEach((tag) => {
+			params = params.append('ids', tag);
+		});
+
+		return this._apiService
+			.get<ITag[]>('Tags/names-by-ids', params)
+			.pipe(map((response: HttpResponse<ITag[]>) => response.body as ITag[]));
 	}
 }

@@ -7,7 +7,7 @@ import { ITag } from 'src/app/shared/models/tag.model';
 @Injectable({
 	providedIn: 'root',
 })
-export class TagNamesSerive {
+export class TagNamesApiSerive {
 	constructor(private readonly _apiService: ApiService) {}
 
 	/**

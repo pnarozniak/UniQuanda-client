@@ -34,6 +34,9 @@
 	width: 35px;
 	height: 35px;
 }
+.question {
+	cursor: pointer;
+}
 
 @media screen and (max-width: bp.$md) {
 	.right-menu {
