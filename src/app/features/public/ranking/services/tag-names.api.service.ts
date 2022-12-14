@@ -10,6 +10,11 @@ import { ITag } from 'src/app/shared/models/tag.model';
 export class TagNamesApiSerive {
 	constructor(private readonly _apiService: ApiService) {}
 
+	/**
+	 * Gets tag names by ids
+	 * @param tagIds Tag ids to get names for
+	 * @returns List of tags with names and id
+	 */
 	getTagNames(tagIds: number[]): Observable<ITag[]> {
 		let params = new HttpParams();
 		tagIds.forEach((tag) => {

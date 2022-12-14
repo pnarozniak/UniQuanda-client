@@ -136,7 +136,7 @@ export class TagsComponent implements OnInit, OnDestroy {
 			});
 	}
 
-	loadSubTag(tag: any) {
+	loadSubTag(tag: ITag) {
 		this.page = 1;
 		this.keyword = '';
 		this.searchControl.setValue(this.keyword);

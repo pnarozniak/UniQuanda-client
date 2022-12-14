@@ -2,7 +2,7 @@
 @use 'breakpoints' as breakpoints;
 @use 'dimensions' as dim;
 
-::ng-deep {
+.ranking-group ::ng-deep {
 	.mat-tab-label {
 		color: var(--text-default);
 		opacity: 1 !important;

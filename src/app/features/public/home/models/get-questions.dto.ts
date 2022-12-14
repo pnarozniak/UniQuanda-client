@@ -12,7 +12,7 @@ export interface IGetQuestionsRequestDto {
 }
 export interface IGetQuestionsResponseDto {
 	questions: IGetQuestionsResponseDtoQuestion[];
-	totalCount: number | null;
+	count: number | null;
 }
 export interface IGetQuestionsResponseDtoQuestion {
 	id: number;

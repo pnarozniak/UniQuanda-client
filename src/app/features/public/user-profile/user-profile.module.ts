@@ -14,6 +14,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { QuestionsProfileComponent } from './pages/questions-profile/questions-profile.component';
 import { AnswersProfileComponent } from './pages/answers-profile/answers-profile.component';
 import { LeftDataProfileComponent } from './pages/left-data-profile/left-data-profile.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { ProfileQuestionBoxComponent } from './components/profile-question-box/profile-question-box.component';
+import { ProfileAnswerBoxComponent } from './components/profile-answer-box/profile-answer-box.component';
 
 @NgModule({
 	imports: [
@@ -21,6 +24,7 @@ import { LeftDataProfileComponent } from './pages/left-data-profile/left-data-pr
 		RouterModule,
 		UserProfileRoutingModule,
 		SharedModule,
+		MatTooltipModule,
 		ToastrModule.forRoot(),
 		BsDropdownModule.forRoot(),
 		MatTabsModule,
@@ -34,6 +38,8 @@ import { LeftDataProfileComponent } from './pages/left-data-profile/left-data-pr
 		QuestionsProfileComponent,
 		AnswersProfileComponent,
 		LeftDataProfileComponent,
+		ProfileQuestionBoxComponent,
+		ProfileAnswerBoxComponent,
 	],
 })
 export class UserProfileModule {}

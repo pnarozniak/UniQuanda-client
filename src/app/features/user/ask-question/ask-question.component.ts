@@ -48,10 +48,15 @@ export class AskQuestionComponent {
 			value.title,
 			value.confirmation
 		);
-		this._askQuestionApiService.addQuestion(request).subscribe((questionId) => {
-			this._toastrService.success('Pomyślnie zadano pytanie', 'Dodano pytanie');
-			this._loaderService.hide();
-			this._router.navigate(['public/question/details', questionId]);
+		this._askQuestionApiService.addQuestion(request).subscribe({
+			next: (questionId) => {
+				this._toastrService.success(
+					'Pomyślnie zadano pytanie',
+					'Dodano pytanie'
+				);
+				this._loaderService.hide();
+				this._router.navigate(['public/question/details', questionId]);
+			},
 		});
 	}
 

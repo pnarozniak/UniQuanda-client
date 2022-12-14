@@ -1,32 +1,31 @@
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import * as moment from 'moment';
-import { IGetQuestionsResponseDtoQuestion } from '../../models/get-questions.dto';
+import { IGetQuestionsResponseDTOQuestion } from '../../models/get-questions.dto';
+
 @Component({
-	selector: 'app-question-box',
-	templateUrl: './question-box.component.html',
-	styleUrls: ['./question-box.component.scss'],
+	selector: 'app-profile-question-box',
+	templateUrl: './profile-question-box.component.html',
+	styleUrls: ['./profile-question-box.component.scss'],
 })
-export class QuestionBoxComponent {
-	@Input() public set question(question: IGetQuestionsResponseDtoQuestion) {
+export class ProfileQuestionBoxComponent {
+	public htmlControl = new FormControl('');
+	@Input() public set question(question: IGetQuestionsResponseDTOQuestion) {
 		this.questionObj = question;
-		this.creationDate = moment(question.creationDate).locale('pl').format('ll');
+		this.creationDate = moment(question.createdAt).locale('pl').format('ll');
 		this.htmlControl.setValue(question.html);
 	}
 
 	public creationDate = '';
-	public htmlControl = new FormControl('');
-	public isProfilePictureLoading = true;
-	public questionObj!: IGetQuestionsResponseDtoQuestion;
-
+	public questionObj!: IGetQuestionsResponseDTOQuestion;
 	public genereateAnswersCountText(): string {
-		if (this.questionObj.answersCount === 0) {
+		if (this.questionObj.answers === 0) {
 			return 'Brak odpowiedzi';
 		}
-		if (this.questionObj.answersCount === 1) {
+		if (this.questionObj.answers === 1) {
 			return '1 odpowiedź';
 		}
-		return `${this.questionObj.answersCount} odpowiedzi`;
+		return `${this.questionObj.answers} odpowiedzi`;
 	}
 
 	public generateViewsConutText(): string {

@@ -14,6 +14,11 @@ import {
 export class HomeApiService {
 	constructor(private readonly _apiService: ApiService) {}
 
+	/**
+	 * Gets questions from api
+	 * @param request request data
+	 * @returns questions and total count if addCount is true
+	 */
 	getQuestions(
 		request: IGetQuestionsRequestDto
 	): Observable<IGetQuestionsResponseDto> {
@@ -21,7 +26,7 @@ export class HomeApiService {
 			.append('page', request.page)
 			.append('pageSize', request.pageSize)
 			.append('sortBy', request.sortBy)
-			.append('orderDirection', request.orderBy)
+			.append('orderBy', request.orderBy)
 			.append('addCount', request.addCount)
 			.append('searchText', request.searchText);
 		if (request.tags.length > 0) {

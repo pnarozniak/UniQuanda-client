@@ -69,9 +69,9 @@
 				class="d-flex flex-column">
 				<div class="d-flex flex-row">
 					<app-tag [name]="tag.name" class="me-auto tag"></app-tag>
-					<span class="ms-2 small-text"
-						>{{ tag.points }} {{ generatePointsSuffix(tag.points) }}</span
-					>
+					<span class="ms-2 small-text my-auto">{{
+						generatePointsSuffix(tag.points)
+					}}</span>
 				</div>
 				<hr class="w-100 divider" *ngIf="i !== user?.pointsInTags.length - 1" />
 			</div>
