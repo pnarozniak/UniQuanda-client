@@ -1,0 +1,68 @@
+<app-icon
+	*ngIf="expanded"
+	icon="back"
+	class="collapse-icon me-2 me-sm-3"
+	(click)="expandCollapse(true)">
+</app-icon>
+<app-icon
+	*ngIf="!expanded"
+	icon="search"
+	class="search-icon border-0 ps-lg-3 px-1 px-sm-0 ms-auto me-1 me-sm-2 me-lg-0"
+	(click)="expandCollapse()">
+</app-icon>
+<div
+	appClickOutside
+	(clickOutside)="dropdownExpanded = false"
+	class="search-input-wrapper d-lg-flex w-100"
+	[ngClass]="{ 'd-none': !expanded }">
+	<input
+		placeholder="Szukaj"
+		class="search-input w-100 border-0 px-1"
+		[(ngModel)]="headerState.searchText"
+		(ngModelChange)="searchForResults()"
+		(click)="dropdownExpanded = true"
+		(focus)="dropdownExpanded = true"
+		[ngClass]="{ 'px-2': expanded }" />
+	<div
+		appTheme
+		*ngIf="dropdownExpanded && headerState.searchText"
+		class="search-results-dropdown position-absolute mt-1 px-2 py-2"
+		[class.input-expanded]="expanded">
+		<div class="scrollable-content">
+			<ng-container *ngFor="let searchResult of searchResults; let last = last">
+				<div
+					class="result d-flex align-items-center py-1 my-1 px-1"
+					[routerLink]="searchResult.url"
+					(click)="afterResultClick()">
+					<app-icon icon="search" class="ms-1 me-1"></app-icon>
+					<span class="type me-2">[{{ searchResult.type }}]</span>
+					<span class="text" [innerHtml]="searchResult.formattedText"></span>
+				</div>
+				<hr *ngIf="!last" />
+			</ng-container>
+		</div>
+
+		<ng-container *ngIf="headerState.searchText.length >= 3">
+			<hr class="" *ngIf="searchResults.length > 0" />
+			<div
+				class="result show-more d-flex align-items-center py-1 my-1 px-1"
+				[routerLink]="['/public/home']"
+				[queryParams]="{ searchText: headerState.searchText }"
+				queryParamsHandling="merge"
+				(click)="dropdownExpanded = false; showMoreQuestions()">
+				<app-icon icon="search" class="p-1 me-1"></app-icon>
+				<span>
+					Wyszukaj więcej pytań:
+					<span class="bold">"{{ headerState.searchText }}"</span>
+				</span>
+			</div>
+		</ng-container>
+
+		<div
+			*ngIf="headerState.searchText.length < 3"
+			class="result info d-flex align-items-center py-1 my-1 px-1">
+			<app-icon icon="help" class="p-1 me-1"></app-icon>
+			<span>Wpisz przynajmniej 3 znaki</span>
+		</div>
+	</div>
+</div>

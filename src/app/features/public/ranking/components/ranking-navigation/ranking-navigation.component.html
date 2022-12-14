@@ -1,0 +1,23 @@
+<mat-tab-group
+	class="mt-3 d-flex ranking-group"
+	[selectedIndex]="allTabs.indexOf(activePage)"
+	(selectedTabChange)="handleTabChanged($event.index)"
+	mat-align-tabs="left"
+	preserveContent>
+	<mat-tab label="Ranking globalny">
+		<ng-template matTabContent>
+			<app-ranking-global
+				[response$]="displayedUsers$"
+				(pageChangedEvent)="getRankingMap($event)"></app-ranking-global>
+		</ng-template>
+	</mat-tab>
+	<mat-tab label="Ranking w tagach">
+		<ng-template matTabContent>
+			<app-ranking-tag
+				[response$]="displayedUsers$"
+				(pageChangedEvent)="getRankingMap($event)"
+				[initalTagId]="tagId"
+				(tagChangedEvent)="handleTagSelected($event)"></app-ranking-tag>
+		</ng-template>
+	</mat-tab>
+</mat-tab-group>

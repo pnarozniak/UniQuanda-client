@@ -1,19 +1,28 @@
 <div
 	class="d-flex flex-xl-row flex-column me-xl-0 me-sm-5 me-3 pe-xl-0 pe-sm-5 pe-2">
 	<div class="d-flex flex-column ms-sm-5 ps-2 left-menu ms-2">
-		<h1 class="mt-5">Pytania</h1>
+		<h1 class="mt-5 mb-0">Pytania</h1>
+		<span
+			class="search-text mb-1"
+			*ngIf="searchTextSubmit$ | async as searchText">
+			Wyszukiwana fraza:
+			<strong>"{{ searchText }}"</strong>
+		</span>
 		<app-question-sorting
 			class="w-100"
+			[questionSortingBy]="this.sortingBy"
+			[orderDirection]="this.orderDirection"
 			(changedSortingBy)="handleSortingChange($event)"
 			(changedOrderDirection)="
 				handleOrderDirectionChange($event)
 			"></app-question-sorting>
-		<span class="mt-3">Sortuj tagami</span>
+		<span class="mt-2 sort-label">Sortuj tagami:</span>
 		<app-tag-chips
 			class="mb-3"
 			[tagCtrl]="tagControl"
 			[initialTags]="hasInitialTags ? tagBehavior.asObservable() : null"
-			(selectedTagsEmitter)="handleTagsChanged($event)"></app-tag-chips>
+			(selectedTagsEmitter)="handleTagsChanged($event)">
+		</app-tag-chips>
 		<ng-container *ngIf="questions.length !== 0; else noQuestions">
 			<ng-container *ngFor="let question of questions">
 				<app-question-box
@@ -34,7 +43,7 @@
 		</ng-template>
 		<app-paginator
 			*ngIf="questions !== null"
-			class="ms-auto me-lg-0 mx-auto"
+			class="ms-auto me-lg-0 mx-auto mb-xl-5"
 			[totalSize]="totalCount"
 			[pageSize]="pageSize"
 			[page]="pageBehavior.asObservable()"

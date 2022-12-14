@@ -1,0 +1,18 @@
+<hr class="divider" />
+<div class="d-flex flex-column">
+	<ng-container *appContext="let response of response$ | async">
+		<ng-container *ngIf="response">
+			<ng-container *ngFor="let user of response.rankingPage">
+				<app-ranking-user-box [user]="user" class="mb-3"></app-ranking-user-box>
+			</ng-container>
+			<app-paginator
+				*ngIf="response.rankingPage !== null"
+				class="ms-auto"
+				[totalSize]="response.pagesCount * _pageSize"
+				[pageSize]="_pageSize"
+				[page]="page$.asObservable()"
+				(pageChange)="handlePageChanged($event)"
+				[showInput]="true"></app-paginator>
+		</ng-container>
+	</ng-container>
+</div>

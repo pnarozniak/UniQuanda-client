@@ -2,10 +2,21 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subscription, take } from 'rxjs';
+import { map, Observable, of, Subscription, take, tap } from 'rxjs';
+import {
+	GetAnswersRequestDto,
+	IGetAnswersResponseDto,
+	IGetAnswersResponseDtoAnswer,
+} from '../../models/get-answers.dto';
+import {
+	GetQuestionsRequestDTO,
+	IGetQuestionsResponseDTO,
+	IGetQuestionsResponseDTOQuestion,
+} from '../../models/get-questions.dto';
 import { ProfileSubpageEnum } from '../../models/profile-subpage.enum';
 import { ISemanticScholarPaperDTO } from '../../models/semantic-scholar-paper.dto';
 import { IUserProfileResponseDTO } from '../../models/user-profile.dto';
+import { UserProfileApiService } from '../../services/user-profile-api.service';
 
 @Component({
 	selector: 'app-profile-navigation',
@@ -24,13 +35,30 @@ export class ProfileNavigationComponent implements OnInit, OnDestroy {
 		ProfileSubpageEnum.Tests,
 	];
 	public activeTab: ProfileSubpageEnum = this.allTabs[0];
+	private userId = 0;
+
+	public itemsOnTab = 6;
+
+	// questions data
+	private questionPages = new Map<number, IGetQuestionsResponseDTOQuestion[]>();
+	public questionsRequest$ = new Observable<IGetQuestionsResponseDTO>();
+	private isFirstQuestionsLoad = true;
+	private totalQuestions = 0;
+
+	// answers data
+	private answerPages = new Map<number, IGetAnswersResponseDtoAnswer[]>();
+	public answersRequest$ = new Observable<IGetAnswersResponseDto>();
+	private isFirstAnswersLoad = true;
+	private totalAnswers = 0;
 
 	private readonly _paramSubscription = new Subscription();
+	private readonly _urlSubscription = new Subscription();
 
 	constructor(
 		private readonly _route: ActivatedRoute,
 		private readonly _router: Router,
-		private readonly _titleService: Title
+		private readonly _titleService: Title,
+		private readonly _userProfileService: UserProfileApiService
 	) {}
 
 	ngOnInit(): void {
@@ -43,12 +71,35 @@ export class ProfileNavigationComponent implements OnInit, OnDestroy {
 						this.activePage = tab;
 					}
 				});
+				if (this.userId) {
+					if (this.activePage === ProfileSubpageEnum.Questions) {
+						this.loadQuestions(1);
+					} else if (this.activePage === ProfileSubpageEnum.Answers) {
+						this.loadAnswers(1);
+					}
+				}
+			})
+		);
+		this._urlSubscription.add(
+			this._route.paramMap.subscribe((params) => {
+				const profileId = params.get('id');
+				if (profileId && Number(profileId) !== this.userId) {
+					this.userId = Number(profileId);
+					this.questionPages.clear();
+					this.isFirstQuestionsLoad = true;
+					if (this.activePage === ProfileSubpageEnum.Questions) {
+						this.loadQuestions(1);
+					} else if (this.activePage === ProfileSubpageEnum.Answers) {
+						this.loadAnswers(1);
+					}
+				}
 			})
 		);
 	}
 
 	ngOnDestroy(): void {
 		this._paramSubscription.unsubscribe();
+		this._urlSubscription.unsubscribe();
 	}
 
 	setActivePage(event: MatTabChangeEvent) {
@@ -82,5 +133,79 @@ export class ProfileNavigationComponent implements OnInit, OnDestroy {
 			window.innerWidth > breakpoint
 			? 1
 			: index;
+	}
+
+	loadQuestions(page: number) {
+		if (this.questionPages.has(page)) {
+			this.questionsRequest$ = of(<IGetQuestionsResponseDTO>{
+				questions: this.questionPages.get(page) ?? [],
+				totalCount: this.totalQuestions,
+			});
+		} else {
+			const loadTotalCount = this.isFirstQuestionsLoad;
+			this.isFirstQuestionsLoad = false;
+			this.questionsRequest$ = this._userProfileService
+				.getQuestions(
+					new GetQuestionsRequestDTO(
+						this.userId,
+						page,
+						this.itemsOnTab,
+						loadTotalCount
+					)
+				)
+				.pipe(
+					map((response: IGetQuestionsResponseDTO) => {
+						if (loadTotalCount) {
+							this.totalQuestions = response.totalCount ?? 0;
+						}
+						return <IGetQuestionsResponseDTO>{
+							questions: response.questions ?? [],
+							totalCount: this.totalQuestions,
+						};
+					})
+				)
+				.pipe(
+					tap((response) => {
+						this.questionPages.set(page, response.questions);
+					})
+				);
+		}
+	}
+
+	loadAnswers(page: number) {
+		if (this.answerPages.has(page)) {
+			this.answersRequest$ = of(<IGetAnswersResponseDto>{
+				answers: this.answerPages.get(page) ?? [],
+				totalCount: this.totalAnswers,
+			});
+		} else {
+			const loadTotalCount = this.isFirstAnswersLoad;
+			this.isFirstAnswersLoad = false;
+			this.answersRequest$ = this._userProfileService
+				.getAnswers(
+					new GetAnswersRequestDto(
+						this.userId,
+						page,
+						this.itemsOnTab,
+						loadTotalCount
+					)
+				)
+				.pipe(
+					map((response: IGetAnswersResponseDto) => {
+						if (loadTotalCount) {
+							this.totalAnswers = response.totalCount ?? 0;
+						}
+						return <IGetAnswersResponseDto>{
+							answers: response.answers ?? [],
+							totalCount: this.totalAnswers,
+						};
+					})
+				)
+				.pipe(
+					tap((response) => {
+						this.answerPages.set(page, response.answers);
+					})
+				);
+		}
 	}
 }

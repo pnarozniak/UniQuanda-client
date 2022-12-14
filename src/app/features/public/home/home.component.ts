@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { OrderDirection } from 'src/app/shared/enums/order-direction.enum';
 import { QuestionSortingBy } from './enums/question-sorting-by.enum';
 import {
-	GetQuestionsRequestDto,
+	IGetQuestionsRequestDto,
 	IGetQuestionsResponseDtoQuestion,
 } from './models/get-questions.dto';
-import { QuestionsSerive } from './services/questions.service';
 import { Location } from '@angular/common';
 import { HttpParams } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { ITag } from 'src/app/shared/models/tag.model';
-import { BehaviorSubject, Subject } from 'rxjs';
-import { TagNamesSerive } from './services/tag-names.service';
+import { BehaviorSubject, Subject, tap } from 'rxjs';
+import { HomeApiService } from './services/home-api.service';
+import { HeaderStateService } from 'src/app/core/components/header/services/header-state.service';
 
 @Component({
 	selector: 'app-home',
@@ -20,13 +20,22 @@ import { TagNamesSerive } from './services/tag-names.service';
 	styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+	searchTextSubmit$ = this._headerState.searchTextSubmit$.pipe(
+		tap((searchText) => {
+			if (this.searchText !== searchText) {
+				this.searchText = searchText;
+				this.getQuestions();
+			}
+		})
+	);
+	searchText = '';
 	public page = 1;
 	public pageSize = 10;
 	public totalCount = 0;
 	public questions: IGetQuestionsResponseDtoQuestion[] = [];
 	public tags: number[] = [];
 	public sortingBy = QuestionSortingBy.PublicationDate;
-	public orderDirection = OrderDirection.Ascending;
+	public orderDirection = OrderDirection.Descending;
 
 	public tagControl = new FormControl('');
 	public pageBehavior = new BehaviorSubject<number>(this.page);
@@ -36,30 +45,43 @@ export class HomeComponent implements OnInit {
 	public hasInitialTags = false;
 
 	constructor(
-		private readonly _questionsService: QuestionsSerive,
-		private readonly _tagNamesService: TagNamesSerive,
+		private readonly _homeApiService: HomeApiService,
 		private readonly _location: Location,
-		private readonly _route: ActivatedRoute
+		private readonly _route: ActivatedRoute,
+		private readonly _headerState: HeaderStateService
 	) {}
-	ngOnInit(): void {
-		this.page = this._route.snapshot.queryParams['page'] ?? 1;
-		this.pageBehavior = new BehaviorSubject<number>(this.page);
-		this.sortingBy =
-			this._route.snapshot.queryParams['sortingBy'] ??
-			QuestionSortingBy.PublicationDate;
-		this.orderDirection =
-			this._route.snapshot.queryParams['orderDirection'] ??
-			OrderDirection.Ascending;
 
-		const requestTags = this._route.snapshot.queryParams['tags'];
-		console.log(requestTags);
+	ngOnInit(): void {
+		const queryParams = this._route.snapshot.queryParams;
+		this.searchText = queryParams['searchText'];
+		if (this.searchText) {
+			this._headerState.searchText = this.searchText;
+			this._headerState.searchTextSubmit$.next(this.searchText);
+			this._headerState.searchForResults$.next(null);
+		} else {
+			this.searchText = this._headerState.searchText;
+			this._headerState.searchTextSubmit$.next(this.searchText);
+		}
+
+		this.page = queryParams['page'] ?? 1;
+		this.pageBehavior = new BehaviorSubject<number>(this.page);
+		const sortingByParam = queryParams['sortingBy'];
+		this.sortingBy = sortingByParam
+			? this.convertStringToSortingBy(sortingByParam)
+			: QuestionSortingBy.PublicationDate;
+		const orderDirectionParam = queryParams['orderDirection'];
+		this.orderDirection = orderDirectionParam
+			? this.convertStringToOrderDirection(orderDirectionParam)
+			: OrderDirection.Descending;
+		const requestTags = queryParams['tags'];
 		if (requestTags !== '' && requestTags !== undefined) {
 			this.tags = requestTags.split(',');
 			this.hasInitialTags = true;
-			this._tagNamesService.getTagNames(this.tags).subscribe((tags) => {
+			this._homeApiService.getTagNames(this.tags).subscribe((tags) => {
 				this.tagBehavior.next(tags);
 			});
 		}
+
 		this.getQuestions(true);
 	}
 
@@ -78,29 +100,31 @@ export class HomeComponent implements OnInit {
 	}
 
 	private getQuestions(addCount = false) {
-		const request = new GetQuestionsRequestDto(
-			this.page,
-			this.pageSize,
-			this.sortingBy,
-			this.orderDirection,
-			addCount,
-			this.tags
-		);
+		const request: IGetQuestionsRequestDto = {
+			page: this.page,
+			pageSize: this.pageSize,
+			sortBy: this.sortingBy,
+			orderBy: this.orderDirection,
+			addCount: addCount,
+			tags: this.tags,
+			searchText: this.searchText,
+		};
 		this.isLoading = true;
-		this._questionsService.getQuestions(request).subscribe((response) => {
+		this._homeApiService.getQuestions(request).subscribe((response) => {
 			this.isLoading = false;
 			this._location.replaceState('/public/home', this.getParamsAsString());
 			this.questions = response.questions;
-			if (addCount) this.totalCount = response.totalCount ?? 0;
+			if (addCount) this.totalCount = response.count ?? 0;
 		});
 	}
 
 	private getParamsAsString(): string {
 		const params = new HttpParams()
 			.append('page', this.page)
-			.append('sortingBy', this.sortingBy)
-			.append('orderDirection', this.orderDirection)
-			.append('tags', this.tags.join(','));
+			.append('sortingBy', this.convertSortingByToString())
+			.append('orderDirection', this.convertOrderDirectionToString())
+			.append('tags', this.tags.join(','))
+			.append('searchText', this.searchText ?? '');
 		return params.toString();
 	}
 
@@ -114,5 +138,53 @@ export class HomeComponent implements OnInit {
 		this.page = 1;
 		this.pageBehavior.next(this.page);
 		this.getQuestions();
+	}
+
+	convertOrderDirectionToString(): string {
+		switch (this.orderDirection) {
+			case OrderDirection.Ascending:
+				return 'asc';
+			case OrderDirection.Descending:
+				return 'desc';
+			default:
+				return 'asc';
+		}
+	}
+
+	convertSortingByToString(): string {
+		switch (this.sortingBy) {
+			case QuestionSortingBy.PublicationDate:
+				return 'publicationDate';
+			case QuestionSortingBy.Answers:
+				return 'answers';
+			case QuestionSortingBy.Views:
+				return 'views';
+			default:
+				return 'publicationDate';
+		}
+	}
+
+	convertStringToOrderDirection(orderDirection: string): OrderDirection {
+		switch (orderDirection) {
+			case 'asc':
+				return OrderDirection.Ascending;
+			case 'desc':
+				return OrderDirection.Descending;
+			default:
+				return OrderDirection.Descending;
+		}
+	}
+
+	convertStringToSortingBy(sortingBy: string): QuestionSortingBy {
+		switch (sortingBy) {
+			case 'publicationDate':
+				return QuestionSortingBy.PublicationDate;
+			case 'answers':
+				return QuestionSortingBy.Answers;
+			case 'views':
+				return QuestionSortingBy.Views;
+			default:
+				return QuestionSortingBy.PublicationDate;
+		}
 	}
 }

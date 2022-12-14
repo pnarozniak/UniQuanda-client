@@ -1,0 +1,18 @@
+@use 'colors' as colors;
+
+.box {
+	border: 1px solid colors.$bordered-gray;
+
+	&.dark .title {
+		color: colors.$dark-yellow;
+	}
+
+	span, p {
+		font-size: 14px;
+	}
+
+	.title {
+		color: colors.$academic-blue;
+	}
+}
+

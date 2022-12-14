@@ -10,6 +10,7 @@ import { UserDataService } from '../../services/user-data.service';
 })
 export class HeaderComponent {
 	user$: Observable<IUserClaims | null>;
+	inputExpanded = false;
 
 	constructor(userDataService: UserDataService) {
 		this.user$ = userDataService.getUserData$();

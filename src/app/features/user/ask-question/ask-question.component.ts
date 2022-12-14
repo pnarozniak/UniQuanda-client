@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { ITag } from 'src/app/shared/models/tag.model';
 import AddQuestionRequestDTO from './models/add-question.dto';
-import QuestionApiService from './services/question.service';
+import AskQuestionApiService from './services/ask-question-api.service';
 
 @Component({
 	selector: 'app-ask-question',
@@ -21,7 +21,7 @@ export class AskQuestionComponent {
 	public maxTagsAmount = 5;
 
 	public constructor(
-		private readonly _questionsApiService: QuestionApiService,
+		private readonly _askQuestionApiService: AskQuestionApiService,
 		private readonly _router: Router,
 		private readonly _toastrService: ToastrService,
 		private readonly _loaderService: LoaderService
@@ -48,10 +48,15 @@ export class AskQuestionComponent {
 			value.title,
 			value.confirmation
 		);
-		this._questionsApiService.addQuestion(request).subscribe((questionId) => {
-			this._toastrService.success('Pomyślnie zadano pytanie', 'Dodano pytanie');
-			this._loaderService.hide();
-			this._router.navigate(['public/question-details', questionId]);
+		this._askQuestionApiService.addQuestion(request).subscribe({
+			next: (questionId) => {
+				this._toastrService.success(
+					'Pomyślnie zadano pytanie',
+					'Dodano pytanie'
+				);
+				this._loaderService.hide();
+				this._router.navigate(['public/question/details', questionId]);
+			},
 		});
 	}
 

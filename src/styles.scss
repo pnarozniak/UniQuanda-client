@@ -19,6 +19,10 @@ body {
   font-family: Ubuntu, sans-serif !important;
 }
 
+.dark {
+  background-color: var(--bg-default);
+}
+
 .height-header {
   min-height: calc(100vh - dim.$header-height-sm);
 }
@@ -81,4 +85,18 @@ bs-dropdown-container {
   .tooltip {
     visibility: hidden;
   }
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--bg-default);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: colors.$bordered-gray;
+  border-radius: 20px;
+  border: 2px solid var(--bg-default);
 }

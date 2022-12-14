@@ -1,47 +1,47 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import * as moment from 'moment';
-import 'moment/locale/pl';
 import { IGetQuestionsResponseDtoQuestion } from '../../models/get-questions.dto';
 @Component({
 	selector: 'app-question-box',
 	templateUrl: './question-box.component.html',
 	styleUrls: ['./question-box.component.scss'],
 })
-export class QuestionBoxComponent implements OnInit {
-	ngOnInit(): void {
-		this.creationDate = moment(this.question.creationDate)
-			.locale('pl')
-			.format('ll');
+export class QuestionBoxComponent {
+	@Input() public set question(question: IGetQuestionsResponseDtoQuestion) {
+		this.questionObj = question;
+		this.creationDate = moment(question.creationDate).locale('pl').format('ll');
+		this.htmlControl.setValue(question.html);
 	}
+
 	public creationDate = '';
-
+	public htmlControl = new FormControl('');
 	public isProfilePictureLoading = true;
-
-	@Input() public question!: IGetQuestionsResponseDtoQuestion;
+	public questionObj!: IGetQuestionsResponseDtoQuestion;
 
 	public genereateAnswersCountText(): string {
-		if (this.question.answersCount === 0) {
+		if (this.questionObj.answersCount === 0) {
 			return 'Brak odpowiedzi';
 		}
-		if (this.question.answersCount === 1) {
+		if (this.questionObj.answersCount === 1) {
 			return '1 odpowiedź';
 		}
-		return `${this.question.answersCount} odpowiedzi`;
+		return `${this.questionObj.answersCount} odpowiedzi`;
 	}
 
 	public generateViewsConutText(): string {
-		if (this.question.views === 0) {
+		if (this.questionObj.views === 0) {
 			return 'Brak wyświetleń';
 		}
-		if (this.question.views === 1) {
+		if (this.questionObj.views === 1) {
 			return '1 wyświetlenie';
 		}
 		if (
-			this.question.views % 10 === 2 ||
-			this.question.views % 10 === 3 ||
-			this.question.views % 10 === 4
+			this.questionObj.views % 10 === 2 ||
+			this.questionObj.views % 10 === 3 ||
+			this.questionObj.views % 10 === 4
 		)
-			return `${this.question.views} wyświetlenia`;
-		return `${this.question.views} wyświetleń`;
+			return `${this.questionObj.views} wyświetlenia`;
+		return `${this.questionObj.views} wyświetleń`;
 	}
 }
