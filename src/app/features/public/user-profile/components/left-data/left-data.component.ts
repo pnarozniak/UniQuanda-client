@@ -19,14 +19,14 @@ export class ProfileLeftDataComponent {
 	public readonly _moment = moment;
 
 	generatePointsSuffix(points: number): string {
+		if (points === 0) return 'Brak punktów';
 		if (points === 1) {
-			return 'punkt';
+			return `${points} punkt`;
+		} else if (points % 100 >= 12 && points % 100 <= 14) {
+			return `${points} punktów`;
+		} else if (points % 10 > 1 && points % 10 < 5) {
+			return `${points} punkty`;
 		}
-		const pointsAsString = points.toString();
-		const lastDigit = parseInt(pointsAsString[pointsAsString.length - 1]);
-		if (lastDigit === 2 || lastDigit === 3 || lastDigit === 4) {
-			return 'punkty';
-		}
-		return 'punktów';
+		return `${points} punktów`;
 	}
 }

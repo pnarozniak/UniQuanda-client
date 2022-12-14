@@ -3,6 +3,10 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import ApiService from 'src/app/core/services/api.service';
 import {
+	GetAnswersRequestDto,
+	IGetAnswersResponseDto,
+} from '../models/get-answers.dto';
+import {
 	GetQuestionsRequestDTO,
 	IGetQuestionsResponseDTO,
 } from '../models/get-questions.dto';
@@ -34,6 +38,11 @@ export class UserProfileApiService {
 			);
 	}
 
+	/**
+	 * Gets questions in user profile
+	 * @param request request data
+	 * @returns Observable<IGetQuestionsResponseDTO> object with data needed for questions in user profile
+	 */
 	public getQuestions(
 		request: GetQuestionsRequestDTO
 	): Observable<IGetQuestionsResponseDTO> {
@@ -46,5 +55,24 @@ export class UserProfileApiService {
 		return this._apiService
 			.get<IGetQuestionsResponseDTO>('AppUserProfile/questions', params)
 			.pipe(map((response) => response.body as IGetQuestionsResponseDTO));
+	}
+
+	/**
+	 * Gets questions in user profile
+	 * @param request request data
+	 * @returns Observable<IGetQuestionsResponseDTO> object with data needed for questions in user profile
+	 */
+	public getAnswers(
+		request: GetAnswersRequestDto
+	): Observable<IGetAnswersResponseDto> {
+		const params = new HttpParams()
+			.append('page', request.page)
+			.append('pageSize', request.pageSize)
+			.append('userId', request.userId)
+			.append('addCount', request.addCount);
+
+		return this._apiService
+			.get<IGetAnswersResponseDto>('AppUserProfile/answers', params)
+			.pipe(map((response) => response.body as IGetAnswersResponseDto));
 	}
 }

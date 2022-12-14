@@ -1,2 +1,28 @@
-<hr class="divider ms-lg-0 ms-3" />
-<p>answers-profile works!</p>
+<hr class="divider ms-lg-0 mx-3" />
+<div class="d-flex w-100 flex-column">
+	<ng-container *appContext="let response of answersResponse | async">
+		<ng-container *ngIf="response">
+			<ng-container *ngFor="let answer of response.answers">
+				<app-profile-answer-box
+					[answer]="answer"
+					class="ms-3 ms-lg-0 me-3 mb-3"></app-profile-answer-box>
+			</ng-container>
+			<div
+				*ngIf="response.totalCount === 0"
+				class="mx-auto d-flex px-3 py-2 no-answers">
+				<app-icon icon="info" class="information-icon"></app-icon>
+				<i class="my-auto ms-2"
+					>Użytkownik nie odpowiedział jeszcze na żadne pytanie</i
+				>
+			</div>
+			<app-paginator
+				*ngIf="response.totalCount > answersOnPage"
+				class="ms-auto me-3 mb-3 mb-xxl-5"
+				[totalSize]="response.totalCount"
+				[pageSize]="answersOnPage"
+				[page]="page$.asObservable()"
+				(pageChange)="handlePageChanged($event)"
+				[showInput]="true"></app-paginator>
+		</ng-container>
+	</ng-container>
+</div>

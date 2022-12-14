@@ -16,6 +16,7 @@ import { AnswersProfileComponent } from './pages/answers-profile/answers-profile
 import { LeftDataProfileComponent } from './pages/left-data-profile/left-data-profile.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ProfileQuestionBoxComponent } from './components/profile-question-box/profile-question-box.component';
+import { ProfileAnswerBoxComponent } from './components/profile-answer-box/profile-answer-box.component';
 
 @NgModule({
 	imports: [
@@ -38,6 +39,7 @@ import { ProfileQuestionBoxComponent } from './components/profile-question-box/p
 		AnswersProfileComponent,
 		LeftDataProfileComponent,
 		ProfileQuestionBoxComponent,
+		ProfileAnswerBoxComponent,
 	],
 })
 export class UserProfileModule {}

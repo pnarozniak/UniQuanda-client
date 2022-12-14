@@ -10,8 +10,8 @@
 			<div
 				*ngIf="response.totalCount === 0"
 				class="mx-auto d-flex px-3 py-2 no-questions">
-				<span class="information-icon">i</span
-				><i class="my-auto ms-2">Użytkownik nie zadał jeszcze pytań</i>
+				<app-icon icon="info" class="information-icon"></app-icon>
+				<i class="my-auto ms-2">Użytkownik nie zadał jeszcze pytań</i>
 			</div>
 			<app-paginator
 				*ngIf="response.totalCount > questionsOnPage"

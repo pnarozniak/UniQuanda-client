@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import * as moment from 'moment';
-import 'moment/locale/pl';
 import { IGetQuestionsResponseDtoQuestion } from '../../models/get-questions.dto';
 @Component({
 	selector: 'app-question-box',

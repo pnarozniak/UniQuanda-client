@@ -1,5 +1,5 @@
 <mat-tab-group
-	class="mt-3 mx-auto ms-lg-2 d-flex ps-xl-5"
+	class="mt-3 mx-auto ms-lg-2 d-flex ps-lg-5 profile-group"
 	[selectedIndex]="getActiveTabId()"
 	(selectedTabChange)="setActivePage($event)"
 	mat-align-tabs="center"
@@ -25,7 +25,11 @@
 	</mat-tab>
 	<mat-tab label="Odpowiedzi">
 		<ng-template matTabContent>
-			<app-answers-profile class="mt-2"></app-answers-profile>
+			<app-answers-profile
+				[answersOnPage]="itemsOnTab"
+				[answersResponse]="answersRequest$"
+				(pageChangedEvent)="loadAnswers($event)"
+				class="w-100"></app-answers-profile>
 		</ng-template>
 	</mat-tab>
 	<mat-tab>

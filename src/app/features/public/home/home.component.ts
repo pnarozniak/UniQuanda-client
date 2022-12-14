@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
 	public questions: IGetQuestionsResponseDtoQuestion[] = [];
 	public tags: number[] = [];
 	public sortingBy = QuestionSortingBy.PublicationDate;
-	public orderDirection = OrderDirection.Ascending;
+	public orderDirection = OrderDirection.Descending;
 
 	public tagControl = new FormControl('');
 	public pageBehavior = new BehaviorSubject<number>(this.page);
@@ -65,10 +65,14 @@ export class HomeComponent implements OnInit {
 
 		this.page = queryParams['page'] ?? 1;
 		this.pageBehavior = new BehaviorSubject<number>(this.page);
-		this.sortingBy =
-			queryParams['sortingBy'] ?? QuestionSortingBy.PublicationDate;
-		this.orderDirection =
-			queryParams['orderDirection'] ?? OrderDirection.Ascending;
+		const sortingByParam = queryParams['sortingBy'];
+		this.sortingBy = sortingByParam
+			? this.convertStringToSortingBy(sortingByParam)
+			: QuestionSortingBy.PublicationDate;
+		const orderDirectionParam = queryParams['orderDirection'];
+		this.orderDirection = orderDirectionParam
+			? this.convertStringToOrderDirection(orderDirectionParam)
+			: OrderDirection.Descending;
 		const requestTags = queryParams['tags'];
 		if (requestTags !== '' && requestTags !== undefined) {
 			this.tags = requestTags.split(',');
@@ -117,8 +121,8 @@ export class HomeComponent implements OnInit {
 	private getParamsAsString(): string {
 		const params = new HttpParams()
 			.append('page', this.page)
-			.append('sortingBy', this.sortingBy)
-			.append('orderDirection', this.orderDirection)
+			.append('sortingBy', this.convertSortingByToString())
+			.append('orderDirection', this.convertOrderDirectionToString())
 			.append('tags', this.tags.join(','))
 			.append('searchText', this.searchText ?? '');
 		return params.toString();
@@ -134,5 +138,53 @@ export class HomeComponent implements OnInit {
 		this.page = 1;
 		this.pageBehavior.next(this.page);
 		this.getQuestions();
+	}
+
+	convertOrderDirectionToString(): string {
+		switch (this.orderDirection) {
+			case OrderDirection.Ascending:
+				return 'asc';
+			case OrderDirection.Descending:
+				return 'desc';
+			default:
+				return 'asc';
+		}
+	}
+
+	convertSortingByToString(): string {
+		switch (this.sortingBy) {
+			case QuestionSortingBy.PublicationDate:
+				return 'publicationDate';
+			case QuestionSortingBy.Answers:
+				return 'answers';
+			case QuestionSortingBy.Views:
+				return 'views';
+			default:
+				return 'publicationDate';
+		}
+	}
+
+	convertStringToOrderDirection(orderDirection: string): OrderDirection {
+		switch (orderDirection) {
+			case 'asc':
+				return OrderDirection.Ascending;
+			case 'desc':
+				return OrderDirection.Descending;
+			default:
+				return OrderDirection.Descending;
+		}
+	}
+
+	convertStringToSortingBy(sortingBy: string): QuestionSortingBy {
+		switch (sortingBy) {
+			case 'publicationDate':
+				return QuestionSortingBy.PublicationDate;
+			case 'answers':
+				return QuestionSortingBy.Answers;
+			case 'views':
+				return QuestionSortingBy.Views;
+			default:
+				return QuestionSortingBy.PublicationDate;
+		}
 	}
 }

@@ -4,6 +4,11 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, Observable, of, Subscription, take, tap } from 'rxjs';
 import {
+	GetAnswersRequestDto,
+	IGetAnswersResponseDto,
+	IGetAnswersResponseDtoAnswer,
+} from '../../models/get-answers.dto';
+import {
 	GetQuestionsRequestDTO,
 	IGetQuestionsResponseDTO,
 	IGetQuestionsResponseDTOQuestion,
@@ -40,6 +45,12 @@ export class ProfileNavigationComponent implements OnInit, OnDestroy {
 	private isFirstQuestionsLoad = true;
 	private totalQuestions = 0;
 
+	// answers data
+	private answerPages = new Map<number, IGetAnswersResponseDtoAnswer[]>();
+	public answersRequest$ = new Observable<IGetAnswersResponseDto>();
+	private isFirstAnswersLoad = true;
+	private totalAnswers = 0;
+
 	private readonly _paramSubscription = new Subscription();
 	private readonly _urlSubscription = new Subscription();
 
@@ -51,7 +62,6 @@ export class ProfileNavigationComponent implements OnInit, OnDestroy {
 	) {}
 
 	ngOnInit(): void {
-		this.userId = this._route.snapshot.params['id'];
 		this._paramSubscription.add(
 			this._route.queryParams.subscribe((params) => {
 				const subpage = params['subpage'];
@@ -61,19 +71,27 @@ export class ProfileNavigationComponent implements OnInit, OnDestroy {
 						this.activePage = tab;
 					}
 				});
-				if (this.activePage === ProfileSubpageEnum.Questions) {
-					this.loadQuestions(1);
+				if (this.userId) {
+					if (this.activePage === ProfileSubpageEnum.Questions) {
+						this.loadQuestions(1);
+					} else if (this.activePage === ProfileSubpageEnum.Answers) {
+						this.loadAnswers(1);
+					}
 				}
 			})
 		);
 		this._urlSubscription.add(
 			this._route.paramMap.subscribe((params) => {
 				const profileId = params.get('id');
-				if (profileId) {
+				if (profileId && Number(profileId) !== this.userId) {
 					this.userId = Number(profileId);
 					this.questionPages.clear();
 					this.isFirstQuestionsLoad = true;
-					this.loadQuestions(1);
+					if (this.activePage === ProfileSubpageEnum.Questions) {
+						this.loadQuestions(1);
+					} else if (this.activePage === ProfileSubpageEnum.Answers) {
+						this.loadAnswers(1);
+					}
 				}
 			})
 		);
@@ -81,6 +99,7 @@ export class ProfileNavigationComponent implements OnInit, OnDestroy {
 
 	ngOnDestroy(): void {
 		this._paramSubscription.unsubscribe();
+		this._urlSubscription.unsubscribe();
 	}
 
 	setActivePage(event: MatTabChangeEvent) {
@@ -148,6 +167,43 @@ export class ProfileNavigationComponent implements OnInit, OnDestroy {
 				.pipe(
 					tap((response) => {
 						this.questionPages.set(page, response.questions);
+					})
+				);
+		}
+	}
+
+	loadAnswers(page: number) {
+		if (this.answerPages.has(page)) {
+			this.answersRequest$ = of(<IGetAnswersResponseDto>{
+				answers: this.answerPages.get(page) ?? [],
+				totalCount: this.totalAnswers,
+			});
+		} else {
+			const loadTotalCount = this.isFirstAnswersLoad;
+			this.isFirstAnswersLoad = false;
+			this.answersRequest$ = this._userProfileService
+				.getAnswers(
+					new GetAnswersRequestDto(
+						this.userId,
+						page,
+						this.itemsOnTab,
+						loadTotalCount
+					)
+				)
+				.pipe(
+					map((response: IGetAnswersResponseDto) => {
+						if (loadTotalCount) {
+							this.totalAnswers = response.totalCount ?? 0;
+						}
+						return <IGetAnswersResponseDto>{
+							answers: response.answers ?? [],
+							totalCount: this.totalAnswers,
+						};
+					})
+				)
+				.pipe(
+					tap((response) => {
+						this.answerPages.set(page, response.answers);
 					})
 				);
 		}

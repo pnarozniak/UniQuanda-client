@@ -34,7 +34,7 @@
 		}
 	}
 }
-::ng-deep {
+.profile-group ::ng-deep {
 	.mat-tab-label {
 		color: var(--text-default);
 		opacity: 1 !important;

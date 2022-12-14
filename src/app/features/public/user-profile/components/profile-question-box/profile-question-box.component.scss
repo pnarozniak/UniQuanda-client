@@ -7,11 +7,6 @@
 	border: 1px solid col.$bordered-gray;
 	border-bottom: 0;
 }
-.popular {
-	color: col.$crystal-black;
-	background-color: col.$dark-yellow;
-	border-radius: 5px;
-}
 .right-text {
 	text-align: end;
 }
@@ -27,13 +22,7 @@
 	font-size: 14px;
 	white-space: nowrap;
 }
-.user-box {
-	border-right: 1px solid col.$bordered-gray;
-}
-.user-logo {
-	width: 35px;
-	height: 35px;
-}
+
 .question {
 	cursor: pointer;
 }
