@@ -1,0 +1,16 @@
+<ng-container *appContext="let universityData of university | async">
+	<div class="d-flex flex-row" *ngIf="universityData">
+		<div [appLoading]="logoLoading" class="university-logo">
+			<img
+				[src]="universityData.logo"
+				(load)="logoLoading = false"
+				alt="Logo uczelni"
+				width="200px"
+				height="200px" />
+		</div>
+		<div class="d-flex flex-column my-auto ms-4">
+			<h3>{{ universityData.name }}</h3>
+			<span>{{ universityData.contact }}</span>
+		</div>
+	</div>
+</ng-container>

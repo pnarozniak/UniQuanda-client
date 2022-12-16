@@ -6,7 +6,7 @@ export class RegisterRequestDTO {
 		public firstName: string | null,
 		public lastName: string | null,
 		public birthdate: Date | null,
-		public phoneNumber: string | null,
+		public contact: string | null,
 		public city: string | null
 	) {}
 }

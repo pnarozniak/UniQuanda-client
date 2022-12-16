@@ -1,0 +1,11 @@
+@use 'colors' as colors;
+.no-questions {
+	color: var(--text-default);
+	background-color: var(--bg-accent);
+}
+.information-icon {
+	color: colors.$bordered-gray;
+}
+.question-box {
+	cursor: pointer;
+}
