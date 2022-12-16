@@ -31,7 +31,7 @@ export class OAuthComponent implements OnInit {
 			birthdate: new FormControl('', [
 				this._formsValidationService.checkIfDateBeforeNow,
 			]),
-			phoneNumber: new FormControl('', [Validators.maxLength(22)]),
+			contact: new FormControl('', [Validators.maxLength(22)]),
 			city: new FormControl('', [Validators.maxLength(57)]),
 		},
 		this._oauthFormValidationService.checkNicknameAvailability

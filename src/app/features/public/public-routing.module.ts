@@ -72,6 +72,12 @@ const routes: Routes = [
 			import('./ranking/ranking.module').then((m) => m.RankingModule),
 		data: { title: 'Ranking użytkowników' },
 	},
+	{
+		path: 'university',
+		loadChildren: () =>
+			import('./university/university.module').then((m) => m.UniversityModule),
+		data: { title: 'Ładowanie...' },
+	},
 ];
 @NgModule({
 	imports: [RouterModule.forChild(routes)],

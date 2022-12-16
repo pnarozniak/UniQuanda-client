@@ -20,7 +20,7 @@ export class RegisterSecondStepComponent implements OnInit {
 		birthdate: new FormControl('', [
 			this._formsValidationService.checkIfDateBeforeNow,
 		]),
-		phoneNumber: new FormControl('', [Validators.maxLength(22)]),
+		contact: new FormControl('', [Validators.maxLength(22)]),
 		city: new FormControl('', [Validators.maxLength(57)]),
 	});
 	public nickname = '';
@@ -64,7 +64,7 @@ export class RegisterSecondStepComponent implements OnInit {
 					this.form.value.firstName,
 					this.form.value.lastName,
 					this.form.value.birthdate,
-					this.form.value.phoneNumber,
+					this.form.value.contact,
 					this.form.value.city
 				)
 			)
