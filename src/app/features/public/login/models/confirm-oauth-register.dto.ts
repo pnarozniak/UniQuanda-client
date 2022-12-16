@@ -4,7 +4,7 @@ export interface IConfirmOAuthRegisterRequestDTO {
 	firstName: string | null;
 	lastName: string | null;
 	birthdate: Date | null;
-	phoneNumber: string | null;
+	contact: string | null;
 	city: string | null;
 }
 

@@ -1,0 +1,11 @@
+@use 'breakpoints' as bp;
+.university-logo {
+	min-width: 200px;
+	min-height: 200px;
+}
+@media screen and (max-width: bp.$md) {
+	.university-logo {
+		min-width: 100px;
+		min-height: 100px;
+	}
+}

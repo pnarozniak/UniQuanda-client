@@ -99,12 +99,12 @@
 				</div>
 				<div class="d-flex flex-column w-100">
 					<app-input
-						label="Numer telefonu"
-						[control]="this.form.controls['phoneNumber']"
+						label="Kontakt"
+						[control]="this.form.controls['contact']"
 						[errors]="[
 							{
 								name: 'maxlength',
-								message: 'Maksymalna długość numeru telefonu 22 znaki.'
+								message: 'Maksymalna długość pola kontakt to 22 znaki.'
 							}
 						]">
 					</app-input>

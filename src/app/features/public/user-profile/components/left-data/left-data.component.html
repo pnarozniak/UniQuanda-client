@@ -13,7 +13,7 @@
 				user?.userData.firstName ||
 					user?.userData.lastName ||
 					user?.userData.birthdate ||
-					user.userData.phoneNumber;
+					user.userData.contact;
 				else noUserData
 			">
 			<div
@@ -45,10 +45,10 @@
 					<span class="small-text">{{ user?.userData.city }}</span>
 				</div>
 			</div>
-			<div class="d-flex my-1" *ngIf="user?.userData.phoneNumber">
+			<div class="d-flex my-1" *ngIf="user?.userData.contact">
 				<app-icon icon="phone"></app-icon>
 				<div class="d-flex flex-column ms-1 small-text">
-					<span>{{ user?.userData.phoneNumber }}</span>
+					<span>{{ user?.userData.contact }}</span>
 				</div>
 			</div>
 		</div>
