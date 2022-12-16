@@ -14,14 +14,30 @@
 			*ngIf="premiumInfo"
 			class="rounded-circle check-icon p-1"
 			icon="check"></app-icon
-		>&nbsp;<span class="medium-bold">Brak</span>&nbsp;reklam!</span
-	>
+		>&nbsp;<span class="medium-bold">Nielimitowane</span>&nbsp;zadawanie pytań!
+	</span>
 	<span class="mb-2" [appLoading]="!premiumInfo">
 		<app-icon
 			*ngIf="premiumInfo"
 			class="rounded-circle check-icon p-1"
 			icon="check"></app-icon
-		>&nbsp;<span class="medium-bold">Nielimitowane</span>&nbsp;zadawanie pytań!
+		>&nbsp;<span class="medium-bold">Nielimitowany</span>&nbsp;dostęp do kursów!
+	</span>
+	<span class="mb-2" [appLoading]="!premiumInfo">
+		<app-icon
+			*ngIf="premiumInfo"
+			class="rounded-circle check-icon p-1"
+			icon="check"></app-icon
+		>&nbsp;<span class="medium-bold">Nielimitowane</span>&nbsp;generowanie
+		testów!
+	</span>
+	<span class="mb-2" [appLoading]="!premiumInfo">
+		<app-icon
+			*ngIf="premiumInfo"
+			class="rounded-circle check-icon p-1"
+			icon="check"></app-icon
+		>&nbsp;Możliwość&nbsp;<span class="medium-bold">Wysyłania wiadomości</span
+		>&nbsp;prywatnych do innych użytkowników!
 	</span>
 	<span class="mb-3"
 		><b class="medium-bold" [appLoading]="!premiumInfo"
