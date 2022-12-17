@@ -23,8 +23,10 @@ import { DeleteQuestionResultEnum } from '../../enums/delete-question-result.enu
 export class QuestionDetailsHeaderSettingsComponent implements OnInit {
 	@Input() question!: IQuestionDetailsEntity;
 	@Input() idLoggedUser: number | null = null;
+	@Input() isQuestionAuthor = false;
 
-	isQuestionOwner = false;
+	public isEditQuestionPossible = false;
+	public isDeleteQuestionPossible = false;
 
 	constructor(
 		private readonly _dialogService: DialogService,
@@ -34,7 +36,10 @@ export class QuestionDetailsHeaderSettingsComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		this.isQuestionOwner = this.question.author.id === this.idLoggedUser;
+		this.isEditQuestionPossible =
+			this.isQuestionAuthor && this.question.amountOfAnswers === 0;
+		this.isDeleteQuestionPossible =
+			this.isQuestionAuthor && this.question.amountOfAnswers === 0;
 	}
 
 	followQuestion(questionId: number) {

@@ -32,6 +32,18 @@
 	height: 250px;
 }
 
+.answer-details-loading {
+	height: 150px;
+}
+
+.add-answer-btn {
+	color: colors.$bordered-gray;
+}
+
+.btn {
+	font-size: 13px;
+}
+
 @media screen and (max-width: breakpoints.$xl) {
 	.left-menu {
 		width: 100%;
@@ -55,6 +67,10 @@
 		padding-top: 0;
 		padding-bottom: 0;
 		border: 0;
+	}
+
+	.btn {
+		font-size: 10px;
 	}
 }
 

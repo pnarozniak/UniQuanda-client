@@ -1,0 +1,16 @@
+@use 'colors' as colors;
+
+.single-row {
+	position: relative; 
+	left: -0.5rem;
+}
+
+.even-row {
+	background-color: colors.$calm-gray;
+}
+
+.dark {
+	&.even-row {
+		background-color: colors.$zebra-gray;
+	}
+}

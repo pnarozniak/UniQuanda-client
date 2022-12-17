@@ -4,13 +4,48 @@
 		<app-question-details-desktop-header
 			*ngIf="question"
 			[question]="question"
-			[idLoggedUser]="user?.id ?? null"></app-question-details-desktop-header>
+			[idLoggedUser]="user?.id ?? null"
+			[isQuestionAuthor]="
+				question.author.id === user?.id
+			"></app-question-details-desktop-header>
 		<div
 			*ngIf="!question"
 			class="w-100 question-details-loading"
 			[appLoading]="!question"></div>
+		<div class="d-flex flex-column align-items-start mt-4 mb-4">
+			<app-button
+				[appLoading]="!question"
+				class="btn mb-4 px-3 py-1"
+				(click)="showAnswerForm()"
+				>{{
+					isAnswerFormVisible
+						? 'Schowaj formularz odpowiedzi'
+						: 'Dodaj odpowiedź...'
+				}}</app-button
+			>
+			<app-answer-form
+				*ngIf="isAnswerFormVisible && question"
+				[idQuestion]="question.id"
+				[isEditMode]="isAnswerFormVisible"
+				[answerEditFormMode]="answerFormMode.CreateMode"
+				class="w-100 mb-2"></app-answer-form>
+		</div>
+		<app-question-answers
+			*ngIf="question && answers"
+			[answers]="answers"
+			[question]="question"
+			[idLoggedUser]="user?.id ?? null"
+			[isQuestionAuthor]="
+				question.author.id === user?.id
+			"></app-question-answers>
+		<div class="d-flex flex-column" *ngIf="!answers || !question">
+			<div
+				*ngFor="let temp of [].constructor(3)"
+				class="w-100 answer-details-loading mb-5"
+				[appLoading]="!question || !answers"></div>
+		</div>
 	</div>
-	<hr class="line w-100 d-flex d-xl-none mt-xl-0 mt-5" />
+	<hr class="line w-100 d-flex d-xl-none mt-xl-0 mt-4" />
 	<app-right-menu
 		[options]="[
 			'about',

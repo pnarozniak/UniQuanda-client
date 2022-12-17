@@ -6,7 +6,7 @@ import { Observable, of, finalize } from 'rxjs';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { ITag } from 'src/app/shared/models/tag.model';
 import AddQuestionRequestDTO from './models/add-question.dto';
-import UpdateQuestionRequestDTO from './models/update-question.dto';
+import { IUpdateQuestionRequestDTO } from './models/update-question.dto';
 import AskQuestionApiService from './services/ask-question-api.service';
 
 @Component({
@@ -83,13 +83,14 @@ export class AskQuestionComponent implements OnInit {
 
 		this._loaderService.show();
 		const value = this.form.value;
-		const request = new UpdateQuestionRequestDTO(
-			this.idQuestion!,
-			value.content,
-			this.tags.map((t) => t.id),
-			value.title,
-			value.confirmation
-		);
+		const request: IUpdateQuestionRequestDTO = {
+			idQuestion: this.idQuestion!,
+			rawText: value.content,
+			tagIds: this.tags.map((t) => t.id),
+			title: value.title,
+			confirmation: value.confirmation,
+		};
+
 		this._askQuestionApiService
 			.updateQuestion(request)
 			.pipe(finalize(() => this._loaderService.hide()))

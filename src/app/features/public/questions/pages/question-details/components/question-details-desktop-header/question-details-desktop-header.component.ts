@@ -11,6 +11,7 @@ import { IQuestionDetailsEntity } from '../../models/question-details.dto';
 export class QuestionDetailsDesktopHeaderComponent implements OnInit {
 	@Input() question!: IQuestionDetailsEntity;
 	@Input() idLoggedUser: number | null = null;
+	@Input() isQuestionAuthor = false;
 
 	public staticImageSrc = StaticImageSrc;
 	public htmlControl = new FormControl('');

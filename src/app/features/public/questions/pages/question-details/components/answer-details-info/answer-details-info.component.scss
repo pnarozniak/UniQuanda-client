@@ -1,0 +1,33 @@
+@use 'breakpoints' as breakpoints;
+@use 'colors' as colors;
+
+.active-vote-up {
+	color: colors.$blue-laguna;
+}
+
+.active-vote-down { 
+	color: colors.$light-red;
+}
+
+.arrow-btn {
+	background-color: transparent !important;
+	color: colors.$bordered-gray;
+}
+
+.left-container {
+	font-size: 15px;
+} 
+
+.right-container {
+	font-size: 11px;
+}
+
+@media screen and (max-width: breakpoints.$sm) {
+	.left-container {
+		font-size: 11px;
+	}
+
+	.right-container {
+		font-size: 11px;
+	}
+}

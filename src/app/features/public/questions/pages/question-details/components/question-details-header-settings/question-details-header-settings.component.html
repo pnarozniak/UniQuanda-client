@@ -1,6 +1,6 @@
 <div class="d-flex flex-row">
 	<app-button
-		*ngIf="!isQuestionOwner"
+		*ngIf="!isQuestionAuthor"
 		(click)="followQuestion(question.id)"
 		[color]="question.isQuestionFollowed ? 'purple' : 'blue'"
 		class="px-sm-4 px-3 py-sm-2 py-1 follow-btn me-2"
@@ -13,7 +13,14 @@
 				: 'Zaobserwuj pytanie'
 		}}</app-button
 	>
-	<div dropdown [insideClick]="true" container="body" class="d-flex">
+	<div
+		dropdown
+		[insideClick]="true"
+		container="body"
+		class="d-flex"
+		*ngIf="
+			isEditQuestionPossible || isDeleteQuestionPossible || !isQuestionAuthor
+		">
 		<app-button color="gray" class="drop-icon" shape="rect" dropdownToggle>
 			<app-icon icon="dots" class="p-2"></app-icon>
 		</app-button>
@@ -22,25 +29,23 @@
 			class="dropdown-content d-flex flex-column py-3 px-2"
 			appTheme>
 			<a
-				*ngIf="isQuestionOwner && question.amountOfAnswers === 0"
+				*ngIf="isEditQuestionPossible"
 				routerLink="/user/ask-question"
 				[queryParams]="{ idQuestion: question.id }"
 				class="d-flex justify-content-center py-1">
 				<app-icon icon="edit" class="me-2 my-auto"></app-icon>
 				Edytuj pytanie
 			</a>
-			<hr
-				*ngIf="isQuestionOwner && question.amountOfAnswers === 0"
-				class="hrline my-2 w-100" />
+			<hr *ngIf="isDeleteQuestionPossible" class="hrline my-2 w-100" />
 			<a
-				*ngIf="isQuestionOwner"
+				*ngIf="isDeleteQuestionPossible"
 				(click)="deleteQuestion(question.id)"
 				class="d-flex justify-content-center py-1">
 				<app-icon icon="delete" class="me-2 my-auto"></app-icon>
 				Usuń pytanie</a
 			>
 			<a
-				*ngIf="!isQuestionOwner"
+				*ngIf="!isQuestionAuthor"
 				(click)="reportQuestion(question.id)"
 				class="d-flex justify-content-center py-1">
 				<app-icon icon="report" class="me-2 my-auto"></app-icon>

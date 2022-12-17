@@ -20,7 +20,7 @@ export class QuestionBoxComponent {
 	public isProfilePictureLoading = true;
 	public questionObj!: IGetQuestionsResponseDtoQuestion;
 
-	public genereateAnswersCountText(): string {
+	public generateAnswersCountText(): string {
 		if (this.questionObj.answersCount === 0) {
 			return 'Brak odpowiedzi';
 		}

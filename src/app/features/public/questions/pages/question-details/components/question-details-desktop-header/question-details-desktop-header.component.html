@@ -10,7 +10,10 @@
 		</a>
 		<app-question-details-header-settings
 			[question]="question"
-			[idLoggedUser]="idLoggedUser"></app-question-details-header-settings>
+			[idLoggedUser]="idLoggedUser"
+			[isQuestionAuthor]="
+				isQuestionAuthor
+			"></app-question-details-header-settings>
 	</div>
 	<h1 class="title medium-bold mb-2">{{ question.header }}</h1>
 	<div class="d-flex flex-row flex-wrap mb-3 gap-2">
@@ -20,7 +23,7 @@
 			[question]="question"></app-question-details-info>
 	</div>
 	<app-content-form
-		class="d-flex description-container"
+		class="d-flex"
 		[control]="htmlControl"
 		[showBlocks]="true"
 		[isEditMode]="false"></app-content-form>

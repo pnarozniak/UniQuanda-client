@@ -18,11 +18,11 @@
 					class="px-2 py-1 correct-answer mb-2 my-auto ms-3 mx-md-0"
 					*ngIf="questionObj.hasCorrectAnswer; else noCorrectAnswer">
 					<app-icon icon="check"></app-icon>
-					<span class="ms-2">{{ genereateAnswersCountText() }}</span>
+					<span class="ms-2">{{ generateAnswersCountText() }}</span>
 				</div>
 				<ng-template #noCorrectAnswer>
 					<div class="right-text ms-md-0 mb-md-2 ms-3 my-auto">
-						{{ genereateAnswersCountText() }}
+						{{ generateAnswersCountText() }}
 					</div>
 				</ng-template>
 				<div class="right-text ms-3 my-auto">

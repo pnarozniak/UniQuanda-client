@@ -7,7 +7,7 @@ import AddQuestionRequestDTO, {
 	IAddQuestionResponseDTO,
 } from '../models/add-question.dto';
 import { IGetQuestionDetailsForUpdateResponseDTO } from '../models/get-question-details-for-update.dto';
-import UpdateQuestionRequestDTO from '../models/update-question.dto';
+import { IUpdateQuestionRequestDTO } from '../models/update-question.dto';
 
 @Injectable({
 	providedIn: 'root',
@@ -43,7 +43,7 @@ export default class AskQuestionApiService {
 	}
 
 	updateQuestion(
-		body: UpdateQuestionRequestDTO
+		body: IUpdateQuestionRequestDTO
 	): Observable<HttpResponse<null>> {
 		return this._apiService.put('Question', body);
 	}

@@ -10,6 +10,10 @@
 	border-radius: 5px;
 }
 
+.info-text {
+	color: colors.$crystal-white;
+}
+
 @media screen and (max-width: breakpoints.$sm) {
 	.info-container {
 		font-size: 10px;
