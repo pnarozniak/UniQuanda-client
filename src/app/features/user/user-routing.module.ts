@@ -21,6 +21,10 @@ const routes: Routes = [
 		loadChildren: () =>
 			import('./premium/premium.module').then((m) => m.PremiumModule),
 	},
+	{
+		path: 'test',
+		loadChildren: () => import('./test/test.module').then((m) => m.TestModule),
+	},
 ];
 @NgModule({
 	imports: [RouterModule.forChild(routes)],

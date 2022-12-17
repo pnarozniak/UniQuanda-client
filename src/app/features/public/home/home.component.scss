@@ -10,12 +10,6 @@
 .search-text {
 	font-size: 14px;
 }
-.app-right-menu {
-	margin-top: 106px;
-}
-.left-menu {
-	width: calc(100% - dim.$right-menu-width);
-}
 .line {
 	background-color: col.$bordered-gray;
 	opacity: 1;
@@ -24,14 +18,7 @@
 	font-size: 15px;
 }
 @media screen and (max-width: bp.$xl) {
-	.left-menu {
-		width: 100%;
-	}
 	.loading-box {
 		width: 100%;
-	}
-	.right-menu {
-		width: 100%;
-		margin: 0;
 	}
 }
