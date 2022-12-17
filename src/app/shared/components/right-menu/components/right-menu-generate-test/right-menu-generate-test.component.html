@@ -6,6 +6,8 @@
 	<span class="d-block mt-3">
 		<span class="bold">Wpisz interesujące cię tagi:</span>
 	</span>
-	<input placeholder="Wpisz tagi które cię interesują..." class="mt-1" />
-	<app-button class="p-2 mt-3">Wygeneruj test</app-button>
+	<app-tag-chips
+		[tagCtrl]="control"
+		(selectedTagsEmitter)="selectedTags = $event"></app-tag-chips>
+	<app-button class="p-2" (click)="generateTest()">Wygeneruj test</app-button>
 </div>

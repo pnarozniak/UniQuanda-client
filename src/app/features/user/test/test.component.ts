@@ -4,21 +4,21 @@ import { Router } from '@angular/router';
 import { ITag } from 'src/app/shared/models/tag.model';
 
 @Component({
-	selector: 'app-right-menu-generate-test',
-	templateUrl: './right-menu-generate-test.component.html',
-	styleUrls: ['./right-menu-generate-test.component.scss'],
+	selector: 'app-test',
+	templateUrl: './test.component.html',
+	styleUrls: ['./test.component.scss'],
 })
-export class RightMenuGenerateTestComponent {
-	control = new FormControl('');
+export class TestComponent {
+	tagsControl = new FormControl('');
 	selectedTags: ITag[] = [];
 
 	constructor(private router: Router) {}
 
 	generateTest() {
-		this.control.setErrors(
+		this.tagsControl.setErrors(
 			this.selectedTags.length === 0 ? { required: true } : null
 		);
-		if (this.control.invalid) return;
+		if (this.tagsControl.invalid) return;
 
 		this.router.navigate(['/user/test/automatic']);
 	}

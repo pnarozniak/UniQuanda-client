@@ -1,3 +1,4 @@
+<hr class="d-block d-xl-none my-5" />
 <div class="d-flex flex-column content" *ngIf="{ user: user$ | async } as ctx">
 	<ng-container *ngFor="let opt of options" [ngSwitch]="opt">
 		<app-right-menu-about *ngSwitchCase="'about'"></app-right-menu-about>

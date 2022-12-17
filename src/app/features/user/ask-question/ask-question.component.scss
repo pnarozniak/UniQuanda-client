@@ -4,24 +4,6 @@
 .ask-button {
 	width: fit-content;
 }
-.left-menu {
-	width: calc(100% - dim.$right-menu-width);
-}
-.app-right-menu {
-	margin-top: 140px;
-}
 .error-text {
 	font-size: 12px;
-}
-
-@media screen and (max-width: bp.$lg) {
-	.left-menu {
-		width: 100%;
-	}
-	.app-right-menu {
-		width: 100%;
-		height: auto;
-		margin: 0;
-		padding: 50px 20px;
-	}
 }
