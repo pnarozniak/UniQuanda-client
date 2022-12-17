@@ -1,13 +1,13 @@
-<div class="d-flex flex-lg-row flex-column">
-	<div class="left-menu d-flex flex-column ps-lg-5 ps-2">
-		<h1 class="mx-3 mt-5">Dodaj pytanie</h1>
+<div class="d-flex flex-xl-row flex-column w-100 px-lg-5 px-3">
+	<div class="d-flex flex-column w-100 me-lg-5">
+		<h1 class="mt-sm-5 mt-3 mb-1">Dodaj pytanie</h1>
 		<form
 			[formGroup]="form"
 			class="d-flex flex-column"
 			(ngSubmit)="handleAsk()">
 			<app-input
 				label="Tytuł pytania"
-				class="px-3 mt-3"
+				class="mt-3"
 				[control]="form.controls['title']"
 				[showRequiredMarker]="true"
 				[errors]="[
@@ -16,12 +16,12 @@
 						message: 'Treść pytania jest wymagana.'
 					}
 				]"></app-input>
-			<h4 class="mt-3 mx-3">Wybierz tagi pytania</h4>
-			<span class="small-text mx-3"
+			<h4 class="mt-3">Wybierz tagi pytania</h4>
+			<span class="small-text"
 				>Do pytania możesz dodać maksymalnie {{ maxTagsAmount }} tagów</span
 			>
 			<app-tag-chips
-				class="mx-3 mb-3"
+				class="mb-3"
 				[tagCtrl]="tagInput"
 				[maxTagsAmount]="maxTagsAmount"
 				(selectedTagsEmitter)="setTags($event)"></app-tag-chips>
@@ -30,7 +30,7 @@
 				[isEditMode]="true"
 				[showBlocks]="true"></app-content-form>
 			<mat-error
-				class="error-text mx-3 mt-1"
+				class="error-text mt-1"
 				*ngIf="
 					form.controls['content'].hasError('required') &&
 					form.controls['content'].touched
@@ -38,7 +38,7 @@
 				Treść pytania jest wymagana</mat-error
 			>
 			<app-checkbox
-				class="mx-3 mt-3"
+				class="mt-3"
 				[control]="form.controls['confirmation']"
 				[showRequiredMarker]="true"
 				[label]="
@@ -51,7 +51,7 @@
 							'Potwierdź że upewniłeś/łaś się, że pytanie nie zostało już zadane.'
 					}
 				]"></app-checkbox>
-			<app-button mode="submit" class="px-3 py-2 mt-3 mx-3 ask-button"
+			<app-button mode="submit" class="px-3 py-2 mt-3 ask-button"
 				>Zadaj pytanie</app-button
 			>
 		</form>

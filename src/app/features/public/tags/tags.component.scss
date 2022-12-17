@@ -38,22 +38,3 @@
 	width: 273px;
 	height: 208px;
 }
-
-.left-menu {
-	width: calc(100% - dim.$right-menu-width);
-}
-.app-right-menu {
-	margin-top: 140px;
-}
-
-@media screen and (max-width: bp.$lg) {
-	.left-menu {
-		width: 100%;
-	}
-	.app-right-menu {
-		width: 100%;
-		height: auto;
-		margin: 0;
-		padding: 50px 20px;
-	}
-}

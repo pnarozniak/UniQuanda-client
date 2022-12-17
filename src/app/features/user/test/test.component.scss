@@ -1,0 +1,10 @@
+@use 'breakpoints' as bp;
+@use 'dimensions' as dim;
+
+span {
+	font-size: 14px;
+
+	&.bold {
+		font-weight: 500;
+	}
+}
