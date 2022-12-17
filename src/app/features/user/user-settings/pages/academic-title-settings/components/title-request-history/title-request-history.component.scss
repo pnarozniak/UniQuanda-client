@@ -1,0 +1,56 @@
+@use 'colors' as col;
+@use 'breakpoints' as bp;
+.table-header {
+	background-color: col.$academic-blue;
+	color: col.$crystal-white;
+}
+.record {
+	color: var(--text-default);
+	background-color: col.$crystal-white;
+	border-bottom: 1px solid col.$bordered-gray;
+	&:nth-of-type(even) {
+		background-color: col.$calm-gray;
+	}
+	&:last-of-type {
+		border-bottom: unset;
+	}
+}
+.dark {
+	& .record {
+		background-color: col.$zebra-dark;
+		&:nth-of-type(even) {
+			background-color: col.$zebra-gray;
+		}
+	}
+}
+.status-badge {
+	border-radius: 7px;
+	width: fit-content;
+}
+.status-badge-red {
+	background-color: col.$light-red;
+	color: col.$crystal-white;
+}
+.status-badge-blue {
+	background-color: col.$tag-blue;
+	color: col.$academic-blue;
+}
+.status-badge-green {
+	background-color: col.$blue-laguna;
+	color: col.$crystal-white;
+}
+.status-badge-gray {
+	background-color: col.$bordered-gray;
+	color: col.$crystal-white;
+}
+
+// col def dark zebra-dark, sec: zebra-gray
+// white def crystal-white sec: calm-gray
+@media screen and(max-width: bp.$md) {
+	.table-header {
+		height: 40px;
+	}
+	.record {
+		border-bottom: unset;
+	}
+}

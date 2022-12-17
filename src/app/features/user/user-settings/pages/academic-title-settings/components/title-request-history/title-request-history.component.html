@@ -1,0 +1,68 @@
+<ng-container *appContext="let requestedTitlesList of requestedTitles | async">
+	<ng-container *ngIf="requestedTitlesList.lenght !== 0">
+		<hr class="line" />
+		<div class="table-header w-100 d-none d-md-flex py-2">
+			<b class="col-2 px-4">Tytuł naukowy</b>
+			<b class="col-2 px-4">Data prośby</b>
+			<b class="col-8 px-4">Status</b>
+		</div>
+		<div class="d-flex flex-column" appTheme>
+			<div
+				class="record d-flex mb-3 mb-md-0 py-0 py-md-3"
+				*ngFor="let request of requestedTitlesList">
+				<div class="w-100 d-flex d-md-none flex-column">
+					<div class="table-header w-100"></div>
+					<div class="d-flex flex-column p-2">
+						<div class="d-flex">
+							<b>Tytuł naukowy: </b>
+							<span class="ms-2">{{ request.title }}</span>
+						</div>
+						<div class="d-flex mt-2">
+							<b>Data prośby: </b>
+							<span class="ms-2">{{
+								_moment(request.requestDate).locale('pl').format('ll')
+							}}</span>
+						</div>
+						<div class="d-flex mt-2">
+							<b>Status: </b>
+							<i
+								class="px-3 ms-2 status-badge status-badge-{{
+									getStatusClass(request.status)
+								}} my-auto"
+								>{{ getStatusText(request.status) }}</i
+							>
+						</div>
+						<div
+							class="d-flex mt-3 mx-auto"
+							*ngIf="request.status === TitleStatus.ActionRequired"
+							appNotImplemented>
+							<span>Przejdź do konwersacji</span>
+							<app-icon icon="linkv2" class="ms-3"></app-icon>
+						</div>
+					</div>
+				</div>
+				<span class="col-2 px-4 d-none d-md-flex my-auto">{{
+					request.title
+				}}</span>
+				<span class="col-2 px-4 d-none d-md-flex my-auto">{{
+					_moment(request.requestDate).locale('pl').format('ll')
+				}}</span>
+				<div class="col-8 px-4 d-none d-md-flex">
+					<i
+						class="px-3 status-badge status-badge-{{
+							getStatusClass(request.status)
+						}} my-auto"
+						>{{ getStatusText(request.status) }}</i
+					>
+					<div
+						class="d-flex ms-3"
+						*ngIf="request.status === TitleStatus.ActionRequired"
+						appNotImplemented>
+						<span>Przejdź do konwersacji</span>
+						<app-icon icon="linkv2" class="ms-3"></app-icon>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ng-container>
+</ng-container>

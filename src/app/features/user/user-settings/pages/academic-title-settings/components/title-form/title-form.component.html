@@ -1,0 +1,86 @@
+<form
+	[formGroup]="form"
+	(ngSubmit)="handleSubmit()"
+	class="d-flex flex-column mt-4">
+	<div class="d-flex flex-row">
+		<b class="me-3 label-title">Tytuł naukowy:</b>
+		<mat-form-field appearance="fill" appTheme>
+			<mat-label>Wybierz swój tytuł...</mat-label>
+			<mat-select [formControl]="titleControl" required>
+				<mat-option
+					class="option"
+					*ngFor="let title of avilableTitles | async"
+					[value]="title.titleId">
+					{{ title.name }}
+				</mat-option>
+			</mat-select>
+			<mat-error
+				*ngIf="titleControl.hasError('required') && titleControl.touched"
+				>Tytuł jest wymagany</mat-error
+			>
+		</mat-form-field>
+	</div>
+	<ng-container *appContext="let userTitlesList of userTitles | async">
+		<ng-container
+			*appContext="let assignableTitlesList of avilableTitles | async">
+			<div
+				class="d-flex mt-3 mb-2 px-2 py-2 info-box"
+				*ngIf="showInfoBox(userTitlesList, assignableTitlesList)">
+				<span
+					>W przypadku pomyślnej weryfikacji, na Twoim profilu będziemy
+					pokazywać tytuł
+				</span>
+				<i class="ms-1">{{ titleControl.value }}</i>
+				<span class="ms-1"> na miejsce tytułu </span
+				><i class="ms-1">{{
+					getCurentTitleNameWithSameType(userTitlesList, assignableTitlesList)
+				}}</i>
+			</div>
+		</ng-container>
+	</ng-container>
+	<div class="d-flex flex-row mt-3">
+		<b class="mt-1 me-3 my-auto">Dyplom:</b>
+		<div class="d-flex flex-column">
+			<input
+				(change)="handleScanChange($event)"
+				type="file"
+				class="d-none"
+				#fileInput />
+			<div
+				class="fake-input d-flex flex-row px-3 py-2 my-auto"
+				[ngClass]="{ 'invalid-border': isScanInvalid }"
+				(click)="handleFakeFileClick()">
+				<app-icon icon="link" class="me-2"></app-icon>
+				<span class="me-2">Dodaj plik</span>
+			</div>
+			<div class="filename-placeholder mt-2 d-flex flex-row" *ngIf="scan">
+				<i class="me-3 ms-auto filename">{{ scan.name }}</i>
+				<app-icon
+					icon="close"
+					class="me-auto"
+					(click)="handleRemoveFile()"></app-icon>
+			</div>
+		</div>
+	</div>
+	<div class="error-text required-image-text mt-2" *ngIf="isScanInvalid">
+		Zdjęcie jest wymagane
+	</div>
+	<div class="d-flex flex-row mt-3 mb-2">
+		<b>Informacje dodatkowe</b>
+		<span class="ms-2">(opcjonalne)</span>
+	</div>
+	<div>
+		<textarea
+			appTheme
+			class="optional-info w-100 py-3 px-3"
+			[ngClass]="{ 'invalid-border': isAdditionalInfoInvalid }"
+			rows="3"
+			formControlName="additionalInfo"></textarea>
+		<div class="error-text mt-1 my-auto" *ngIf="isAdditionalInfoInvalid">
+			Maksymalna długość to 2000 znaków
+		</div>
+	</div>
+	<app-button class="d-flex px-3 py-2 send-btn mt-3" mode="submit"
+		>Wyślij prośbę o wyświetlaie tytułu</app-button
+	>
+</form>
