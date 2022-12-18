@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SecuritySettingsModule } from './pages/security-settings/security-settings.module';
 import { UserSettingsComponent } from './user-settings.component';
+import { AcademicTitleSettingsModule } from './pages/academic-title-settings/academic-title-settings.module';
 
 @NgModule({
 	imports: [
@@ -19,6 +20,7 @@ import { UserSettingsComponent } from './user-settings.component';
 		SharedModule,
 		SecuritySettingsModule,
 		PremiumModule,
+		AcademicTitleSettingsModule,
 	],
 	declarations: [SettingsNavigationComponent, UserSettingsComponent],
 })
