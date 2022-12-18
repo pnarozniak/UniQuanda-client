@@ -1,4 +1,3 @@
-import { E } from '@angular/cdk/keycodes';
 import {
 	Component,
 	ElementRef,
@@ -86,7 +85,7 @@ export class TitleFormComponent {
 		avilableTitles: IAcademicTitle[]
 	): boolean {
 		const selectedTitlteName = this.form.get('title')?.value;
-		const title = avilableTitles.find((t) => t.name === selectedTitlteName);
+		const title = avilableTitles.find((t) => t.titleId === selectedTitlteName);
 		if (!title) return false;
 		return userTitles.find((t) => t.type === title.type) !== undefined;
 	}
@@ -97,8 +96,12 @@ export class TitleFormComponent {
 	): string {
 		const selectedTitlteName = this.form.get('title')?.value;
 		const selectedTitle = avilableTitles.find(
-			(t) => t.name === selectedTitlteName
+			(t) => t.titleId === selectedTitlteName
 		);
 		return userTitles.find((t) => t.type === selectedTitle!.type)?.name ?? '';
+	}
+
+	public geTitleNameById(id: number, avilableTitles: IAcademicTitle[]): string {
+		return avilableTitles.find((t) => t.titleId === id)?.name ?? '';
 	}
 }

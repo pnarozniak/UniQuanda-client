@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ITitleRequest } from '../../models/title-request.dto';
 import * as moment from 'moment';
-import { AcademicTitleRequestStatusEnum } from '../../enums/academic-title-request-status.enum';
+import { AcademicTitleRequestStatusEnum } from 'src/app/shared/enums/academic-title-request-status.enum';
 
 @Component({
 	selector: 'app-title-request-history',

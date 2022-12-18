@@ -21,11 +21,14 @@
 			*ngIf="!showShowFormButton"
 			class="px-3"
 			[avilableTitles]="avilableTitles$.asObservable()"
+			[userTitles]="userTitles$.asObservable()"
 			(formData)="handleFormSubmit($event)"></app-title-form>
 		<app-title-request-history
 			class="px-3 mt-3"
 			[requestedTitles]="requests$.asObservable()"></app-title-request-history>
-		<app-title-order class="px-3"></app-title-order>
+		<app-title-order
+			class="px-3"
+			[userTitlesObservable]="userTitles$.asObservable()"></app-title-order>
 	</div>
 	<ng-template #loading>
 		<div

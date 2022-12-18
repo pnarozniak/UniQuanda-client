@@ -30,7 +30,9 @@
 					>W przypadku pomyślnej weryfikacji, na Twoim profilu będziemy
 					pokazywać tytuł
 				</span>
-				<i class="ms-1">{{ titleControl.value }}</i>
+				<i class="ms-1">{{
+					geTitleNameById(titleControl.value, assignableTitlesList)
+				}}</i>
 				<span class="ms-1"> na miejsce tytułu </span
 				><i class="ms-1">{{
 					getCurentTitleNameWithSameType(userTitlesList, assignableTitlesList)

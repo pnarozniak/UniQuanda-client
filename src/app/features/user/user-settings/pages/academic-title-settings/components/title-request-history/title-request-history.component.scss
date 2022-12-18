@@ -1,5 +1,10 @@
 @use 'colors' as col;
 @use 'breakpoints' as bp;
+.line {
+	background-color: col.$bordered-gray;
+	opacity: 1;
+}
+
 .table-header {
 	background-color: col.$academic-blue;
 	color: col.$crystal-white;
@@ -43,9 +48,6 @@
 	background-color: col.$bordered-gray;
 	color: col.$crystal-white;
 }
-
-// col def dark zebra-dark, sec: zebra-gray
-// white def crystal-white sec: calm-gray
 @media screen and(max-width: bp.$md) {
 	.table-header {
 		height: 40px;
