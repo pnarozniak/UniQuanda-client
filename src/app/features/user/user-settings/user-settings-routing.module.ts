@@ -28,6 +28,13 @@ const routes: Routes = [
 						(m) => m.PremiumSettingsModule
 					),
 			},
+			{
+				path: 'academic-title',
+				loadChildren: () =>
+					import(
+						'./pages/academic-title-settings/academic-title-settings.module'
+					).then((m) => m.AcademicTitleSettingsModule),
+			},
 		],
 	},
 ];

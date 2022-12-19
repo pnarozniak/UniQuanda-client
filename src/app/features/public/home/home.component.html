@@ -1,7 +1,6 @@
-<div
-	class="d-flex flex-xl-row flex-column me-xl-0 me-sm-5 me-3 pe-xl-0 pe-sm-5 pe-2">
-	<div class="d-flex flex-column ms-sm-5 ps-2 left-menu ms-2">
-		<h1 class="mt-5 mb-0">Pytania</h1>
+<div class="d-flex flex-xl-row flex-column w-100 px-lg-5 px-3">
+	<div class="d-flex flex-column w-100 me-lg-5">
+		<h1 class="mt-sm-5 mt-3 mb-1">Pytania</h1>
 		<span
 			class="search-text mb-1"
 			*ngIf="searchTextSubmit$ | async as searchText">
@@ -24,9 +23,10 @@
 			(selectedTagsEmitter)="handleTagsChanged($event)">
 		</app-tag-chips>
 		<ng-container *ngIf="questions.length !== 0; else noQuestions">
-			<ng-container *ngFor="let question of questions">
+			<ng-container *ngFor="let question of questions; let last = last">
 				<app-question-box
-					class="mb-4 question-box"
+					class="question-box"
+					[class.mb-4]="!last"
 					[question]="question"></app-question-box>
 			</ng-container>
 		</ng-container>
@@ -50,9 +50,6 @@
 			(pageChange)="handlePageChanged($event)"
 			[showInput]="true"></app-paginator>
 	</div>
-	<div class="ms-sm-5 ms-2 ps-2 w-100 mb-3 mt-3 d-flex d-xl-none">
-		<hr class="line w-100" />
-	</div>
 	<app-right-menu
 		[options]="[
 			'about',
@@ -60,7 +57,6 @@
 			'generate-test',
 			'top-users',
 			'buy-premium'
-		]"
-		class="right-menu ms-2 ms-sm-5 ps-2 ms-xl-unset ps-xl-unset">
+		]">
 	</app-right-menu>
 </div>

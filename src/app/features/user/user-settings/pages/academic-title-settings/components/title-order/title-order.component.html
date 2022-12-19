@@ -1,0 +1,38 @@
+<ng-container *ngIf="userTitles.length !== 0">
+	<hr class="line mt-4" />
+	<h3>Kolejność wyświetlania tytułów na profilu</h3>
+	<i
+		>Możesz ustalić kolejność wyświetlania twoich tytułów na profilu.
+		Przeciągnij ramkę z tytułem na odpowiednie miejsce.</i
+	>
+	<div class="d-flex flex-row mt-3">
+		<div class="left-box d-flex flex-column me-3">
+			<div class="place d-flex" *ngFor="let title of userTitles; let i = index">
+				<b class="my-auto">{{ i + 1 }}.</b>
+			</div>
+		</div>
+		<mat-chip-list
+			cdkDropList
+			class="mat-chip-list-stacked right-box"
+			(cdkDropListDropped)="drop($event)">
+			<mat-chip
+				class="chip {{ getClassByTitle(title) }}"
+				cdkDrag
+				*ngFor="let title of userTitles">
+				<app-icon icon="reorder" class="me-2"></app-icon>
+				{{ title.name }}
+			</mat-chip>
+		</mat-chip-list>
+	</div>
+	<div
+		class="save-btn"
+		matTooltip="Nie można zapisać, gdyż kolejność nie została zmieniona"
+		[matTooltipDisabled]="hasChanges">
+		<app-button
+			[disabled]="!hasChanges"
+			class="px-3 py-2 mt-3"
+			(click)="handleSaveOrder()"
+			>Zapisz</app-button
+		>
+	</div>
+</ng-container>

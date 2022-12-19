@@ -1,0 +1,30 @@
+@use 'colors' as col;
+.line {
+	background-color: col.$bordered-gray;
+	opacity: 1;
+}
+.chip {
+	border-radius: 0;
+	height: 32px;
+	min-width: 200px;
+}
+.place {
+	height: 32px;
+	margin-bottom: 8px;
+}
+.save-btn {
+	width: 120px;
+}
+
+.academic {
+	background-color: col.$light-red;
+	color: col.$crystal-white;
+}
+.engineer {
+	background-color: col.$blue-laguna;
+	color: col.$crystal-white;
+}
+.bachelor {
+	background-color: col.$academic-blue;
+	color: col.$crystal-white;
+}

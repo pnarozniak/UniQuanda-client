@@ -33,6 +33,7 @@
 			<mat-option
 				*ngFor="let suggestedTag of suggestedTags | async"
 				[value]="suggestedTag.id">
+				<app-icon icon="tag" class="me-1 tag-icon"></app-icon>
 				{{ suggestedTag.name }}
 			</mat-option>
 		</mat-autocomplete>

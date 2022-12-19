@@ -34,13 +34,18 @@ app-icon {
 }
 
 .test:hover,
-.text.active {
+.test.active {
 	background-color: colors.$pink;
 }
 
 .ranking:hover,
 .ranking.active {
 	background-color: colors.$light-red;
+}
+
+.admin:hover,
+.admin.active {
+	background-color: colors.$bordered-gray;
 }
 
 .logout:hover {
@@ -71,15 +76,15 @@ app-icon {
 	.home {
 		background-color: colors.$blue-laguna;
 	}
-	
+
 	.tag {
 		background-color: colors.$dark-yellow;
 	}
-	
+
 	.test {
 		background-color: colors.$pink;
 	}
-	
+
 	.ranking {
 		background-color: colors.$light-red;
 	}
@@ -93,10 +98,13 @@ app-icon {
 		color: colors.$crystal-white;
 		visibility: visible;
 		position: absolute;
-		left: 0; 
-		right: 0; 
+		left: 0;
+		right: 0;
 		height: 40px;
 		width: 40px;
 		bottom: calc(dim.$nav-bar-height/2);
+	}
+	.admin {
+		display: none;
 	}
 }

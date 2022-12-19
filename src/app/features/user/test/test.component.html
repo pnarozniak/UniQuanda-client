@@ -1,0 +1,19 @@
+<div class="d-flex flex-xl-row flex-column w-100 px-lg-5 px-3">
+	<div class="d-flex flex-column w-100 me-lg-5">
+		<h1 class="mt-sm-5 mt-3 mb-1">Testy</h1>
+		<span class="d-block mt-3">
+			Chcesz sprawdzić swoją wiedzę? Skorzystaj z naszego modułu testów.
+		</span>
+		<span class="d-block mt-3">
+			<span class="bold">Wpisz interesujące cię tagi:</span>
+		</span>
+		<app-tag-chips
+			[tagCtrl]="tagsControl"
+			(selectedTagsEmitter)="selectedTags = $event"></app-tag-chips>
+		<app-button class="p-2 px-3 me-auto" (click)="generateTest()">
+			Wygeneruj test
+		</app-button>
+	</div>
+	<app-right-menu [options]="['create-an-account', 'top-users', 'buy-premium']">
+	</app-right-menu>
+</div>

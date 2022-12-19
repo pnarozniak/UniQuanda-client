@@ -1,0 +1,36 @@
+<div
+	class="d-flex flex-row text-center"
+	[ngClass]="{ 'disabled-container': isDisabled }">
+	<div
+		class="col-2 my-auto nickname"
+		routerLink="/public/profile/{{ request.userId }}">
+		{{ request.userName }}
+	</div>
+	<div class="col-2 my-auto py-2">{{ request.titleName }}</div>
+	<a class="col-1 my-auto py-2" href="{{ request.scanUrl }}">URL</a>
+	<div class="col-4 my-auto py-2 additionalInfo">
+		{{ request.additionalInfo }}
+	</div>
+	<div class="col-3 my-auto py-2 d-flex flex-column">
+		<mat-form-field appearance="fill" class="mx-auto no-background" appTheme>
+			<mat-label>Wybierz akcje...</mat-label>
+			<mat-select
+				[disabled]="isDisabled"
+				[(value)]="selected"
+				(selectionChange)="handleSelected($event.value)">
+				<mat-option [value]="StatusEnum.Accepted" class="option"
+					>Zatwierdź</mat-option
+				>
+				<mat-option [value]="StatusEnum.Rejected" class="option"
+					>Odrzuć</mat-option
+				>
+			</mat-select>
+		</mat-form-field>
+		<app-button
+			class="px-3 py-2 mx-auto"
+			[disabled]="selected === null || isDisabled"
+			(click)="handleActionClick()"
+			>Zatwierdź</app-button
+		>
+	</div>
+</div>
