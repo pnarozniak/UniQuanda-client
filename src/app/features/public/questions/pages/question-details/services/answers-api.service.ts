@@ -8,7 +8,7 @@ import { IAddAnswerRequestDTO } from './../models/add-answer.dto';
 import { Injectable } from '@angular/core';
 import ApiService from 'src/app/core/services/api.service';
 import { RecaptchaAction } from 'src/app/core/enums/recaptcha-action.enum';
-import { HttpResponse } from '@angular/common/http';
+import { HttpParams, HttpResponse } from '@angular/common/http';
 import { IUpdateAnswerRequestDTO } from '../models/update-answer.dto';
 import { IGetAllCommentsResponseDTO } from '../models/get-all-comments.dto';
 
@@ -36,10 +36,13 @@ export class AnswersApiService {
 	}
 
 	getAnswers(
-		idQuestion: number
+		idQuestion: number,
+		page: number
 	): Observable<HttpResponse<IAnswerDetailsResponseDTO>> {
+		let params = new HttpParams().append('page', page);
 		return this._apiService.get<IAnswerDetailsResponseDTO>(
-			`Answers/question/${idQuestion}`
+			`Answers/question/${idQuestion}`,
+			params
 		);
 	}
 

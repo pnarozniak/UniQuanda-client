@@ -40,20 +40,21 @@
 			"></app-question-answers>
 		<div class="d-flex flex-column" *ngIf="!answers || !question">
 			<div
-				*ngFor="let temp of [].constructor(3)"
+				*ngFor="let temp of [].constructor(pageSize)"
 				class="w-100 answer-details-loading mb-5"
 				[appLoading]="!question || !answers"></div>
 		</div>
+		<app-paginator
+		*ngIf="question && question.amountOfAnswers > pageSize"
+		[totalSize]="question.amountOfAnswers"
+		[pageSize]="pageSize"
+		[page]="pageBehavior.asObservable()"
+		(pageChange)="handlePageChanged($event)">
+	</app-paginator>
 	</div>
 	<hr class="line w-100 d-flex d-xl-none mt-xl-0 mt-4" />
 	<app-right-menu
-		[options]="[
-			'about',
-			'create-an-account',
-			'generate-test',
-			'top-users',
-			'buy-premium'
-		]"
+		[options]="['create-an-account', 'buy-premium', 'top-users']"
 		class="right-menu px-xl-4 px-0">
 	</app-right-menu>
 </div>
