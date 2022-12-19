@@ -77,7 +77,7 @@ export class AskQuestionComponent implements OnInit {
 					'Dodano pytanie'
 				);
 				this._loaderService.hide();
-				this._router.navigate(['public/question/details', questionId]);
+				this._router.navigate(['public/questions', questionId]);
 			},
 		});
 	}

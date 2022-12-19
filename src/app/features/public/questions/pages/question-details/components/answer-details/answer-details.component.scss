@@ -6,11 +6,11 @@
 }
 
 .even-row {
-	background-color: colors.$calm-gray;
+	background-color: colors.$calm-gray !important;
 }
 
 .dark {
 	&.even-row {
-		background-color: colors.$zebra-gray;
+		background-color: colors.$zebra-gray !important;
 	}
 }

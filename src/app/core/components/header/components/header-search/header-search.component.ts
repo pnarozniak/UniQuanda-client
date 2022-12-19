@@ -71,7 +71,7 @@ export class HeaderSearchComponent implements OnInit, OnDestroy {
 					})),
 					...questions.map((q) => ({
 						type: SearchResultType.QUESTION,
-						url: `/public/question/details/${q.id}`,
+						url: `/public/questions/${q.id}`,
 						text: q.header,
 						formattedText: this.formatResultText(q.header),
 					})),
