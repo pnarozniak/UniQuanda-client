@@ -8,7 +8,11 @@ import { AutomaticTestNavComponent } from './components/automatic-test-nav/autom
 import { AutomaticTestQuestionComponent } from './components/automatic-test-question/automatic-test-question.component';
 
 @NgModule({
-	declarations: [AutomaticTestComponent, AutomaticTestNavComponent, AutomaticTestQuestionComponent],
+	declarations: [
+		AutomaticTestComponent,
+		AutomaticTestNavComponent,
+		AutomaticTestQuestionComponent,
+	],
 	imports: [CommonModule, AutomaticTestRoutingModule, SharedModule],
 })
 export class AutomaticTestModule {}
