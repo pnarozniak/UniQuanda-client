@@ -33,6 +33,15 @@
 			<app-icon icon="ranking"></app-icon>
 		</a>
 		<a
+			*ngIf="showAdminIcon(user$ | async)"
+			routerLinkActive="active"
+			class="admin item"
+			tooltip="Panel administracyjny"
+			placement="right"
+			routerLink="/admin">
+			<app-icon icon="admin"></app-icon>
+		</a>
+		<a
 			*ngIf="user$ | async"
 			class="logout item"
 			tooltip="Wyloguj"

@@ -1,4 +1,4 @@
-import { IAcademicTitle } from './acedemic-title';
+import { IAcademicTitle } from '../../../../shared/models/academic-title.model';
 import { IHeaderStatistics } from './header-statistics';
 import { IPointsInTag } from './points-in-tag';
 import { IUniversity } from './university';

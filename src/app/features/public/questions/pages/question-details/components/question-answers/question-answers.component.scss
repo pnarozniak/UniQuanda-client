@@ -1,0 +1,12 @@
+@use 'breakpoints' as breakpoints;
+
+.display-comments-btn {
+	color: var(--link-default);
+	font-size: 13px;
+}
+
+@media screen and (max-width: breakpoints.$sm) {
+	.display-comments-btn {
+		font-size: 11px;
+	}
+}

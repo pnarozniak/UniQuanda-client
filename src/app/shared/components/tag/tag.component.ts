@@ -7,4 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class TagComponent {
 	@Input() name = '';
+	@Input() tagId: number | null = null;
 }

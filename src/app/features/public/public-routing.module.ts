@@ -78,6 +78,11 @@ const routes: Routes = [
 			import('./university/university.module').then((m) => m.UniversityModule),
 		data: { title: 'Ładowanie...' },
 	},
+	{
+		path: 'questions',
+		loadChildren: () =>
+			import('./questions/questions.module').then((m) => m.QuestionsModule),
+	},
 ];
 @NgModule({
 	imports: [RouterModule.forChild(routes)],

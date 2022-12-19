@@ -1,0 +1,39 @@
+<div class="d-flex flex-column pt-5 px-2 px-sm-3 pb-5">
+	<div class="d-flex flex-column" *ngIf="isRequestsLoaded; else loading">
+		<div class="d-flex flex-sm-row flex-column">
+			<div class="d-flex flex-column px-3">
+				<h3>Wyślij prośbę o przyznanie tytułu naukowego</h3>
+				<i
+					>By na twoim profilu wyświetlał się tytuł naukowy, musisz pozwolić nam
+					to zweryfikować! Wyślij nam skan swojego dyplomu!</i
+				>
+			</div>
+			<div class="d-flex ms-3 ms-sm-auto me-auto me-sm-3">
+				<app-button
+					class="px-3 py-2 mt-3 mt-sm-auto mb-auto"
+					*ngIf="showShowFormButton"
+					(click)="handleShowFormClick()"
+					>Wyświetl formularz</app-button
+				>
+			</div>
+		</div>
+		<app-title-form
+			*ngIf="!showShowFormButton"
+			class="px-3"
+			[avilableTitles]="avilableTitles$.asObservable()"
+			[userTitles]="userTitles$.asObservable()"
+			(formData)="handleFormSubmit($event)"></app-title-form>
+		<app-title-request-history
+			class="px-3 mt-3"
+			[requestedTitles]="requests$.asObservable()"></app-title-request-history>
+		<app-title-order
+			class="px-3"
+			[userTitlesObservable]="userTitles$.asObservable()"></app-title-order>
+	</div>
+	<ng-template #loading>
+		<div
+			class="loading-box w-100 mb-3"
+			*ngFor="let i of [].constructor(3)"
+			[appLoading]="true"></div>
+	</ng-template>
+</div>

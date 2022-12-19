@@ -1,0 +1,123 @@
+@use 'colors' as colors;
+.additionalInfo{
+	word-break: break-word;
+}
+.nickname {
+	cursor: pointer;
+	&:hover {
+		text-decoration: underline;
+	}
+}
+.disabled-container {
+	opacity: 0.2;
+	cursor: not-allowed;
+}
+a {
+	color: var(--text-default);
+	&:hover {
+		text-decoration: underline;
+	}
+}
+.test {
+	width: fit-content;
+}
+.option {
+	color: var(--text-default);
+	font-family: Ubuntu, sans-serif !important;
+}
+.no-background {
+	background-color: unset !important;
+}
+:host {
+	::ng-deep {
+		.mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+			color: var(--link-default);
+		}
+		.mat-select-value-text {
+			color: var(--text-default);
+		}
+		.mat-focused .mat-form-field-required-marker {
+			color: colors.$academic-blue;
+		}
+		.dark {
+			&.mat-focused .mat-form-field-required-marker {
+				color: colors.$dark-yellow;
+			}
+			&.mat-form-field-invalid {
+				&.mat-focused .mat-form-field-required-marker {
+					color: colors.$validation-red;
+				}
+			}
+		}
+		.mat-select-panel {
+			background-color: var(--bg-default);
+			color: var(--text-default);
+		}
+	}
+
+	::ng-deep mat-form-field {
+		font-family: Ubuntu, sans-serif !important;
+
+		.mat-input-element {
+			color: var(--text-default);
+		}
+		.mat-form-field-underline::before {
+			background-color: colors.$bordered-gray;
+		}
+	}
+	.mat-form-field:not(.mat-form-field-invalid) {
+		::ng-deep .mat-form-field-underline {
+			.mat-form-field-ripple {
+				background-color: colors.$academic-blue;
+			}
+		}
+	}
+	::ng-deep {
+		.mat-form-field-appearance-fill .mat-form-field-flex {
+			background-color: var(--bg-accent) !important;
+			border-radius: 0;
+		}
+	}
+	.suffix {
+		color: colors.$light-gray;
+	}
+	.dark {
+		.mat-input-element {
+			caret-color: colors.$dark-yellow;
+		}
+
+		&.mat-form-field.mat-focused:not(.mat-form-field-invalid) {
+			::ng-deep .mat-form-field-label {
+				color: colors.$dark-yellow;
+			}
+		}
+
+		&.mat-form-field:not(.mat-form-field-invalid) {
+			::ng-deep .mat-form-field-underline {
+				.mat-form-field-ripple {
+					background-color: colors.$dark-yellow;
+				}
+			}
+		}
+
+		&.mat-form-field:not(.mat-focused) {
+			::ng-deep .mat-form-field-label {
+				color: colors.$bordered-gray !important;
+			}
+		}
+
+		&.mat-form-field {
+			::ng-deep .mat-hint {
+				color: colors.$light-gray;
+			}
+
+			::ng-deep .mat-icon-button {
+				color: colors.$bordered-gray;
+			}
+		}
+
+		.suffix {
+			color: colors.$bordered-gray;
+		}
+	}
+}
