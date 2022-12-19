@@ -1,0 +1,7 @@
+<div class="d-flex flex-row flex-wrap gap-2">
+	<app-tag
+		*ngFor="let tag of tags; let last = last"
+		[name]="tag.name"
+		[tagId]="tag.id"
+		[ngClass]="{ 'vertical-line': last }"></app-tag>
+</div>

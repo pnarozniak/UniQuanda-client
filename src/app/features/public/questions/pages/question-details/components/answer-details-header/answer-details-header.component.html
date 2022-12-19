@@ -1,0 +1,53 @@
+<div
+	class="d-flex flex-sm-row flex-column flex-sm-wrap justify-content-sm-between align-items-sm-center align-items-start gap-2">
+	<div class="d-flex flex-row header-container">
+		<a
+			routerLink="/public/profile/{{ answer.author.id }}"
+			class="author-avatar me-2">
+			<img [src]="answer.author.avatarUrl ?? staticImageSrc.Avatar" class="" />
+		</a>
+		<div class="d-flex flex-column gap-1">
+			<div class="d-flex flex-row align-items-center gap-2">
+				<b
+					*ngFor="let title of answer.author.academicTitles"
+					class="title-badge text-nowrap"
+					[ngStyle]="{
+						'background-color': getAcademicTitleTypeColor(
+							title.academicTitleType
+						)
+					}">
+					{{ title.name }}</b
+				>
+				<span class="author-nickname">
+					{{ answer.author.nickname }}
+				</span>
+			</div>
+			<div class="d-flex flex-row">
+				<span class="header-text">
+					{{ answer.publishDate | date: 'dd LLL yyyy' }}
+				</span>
+				<i *ngIf="answer.isModified" class="header-text">
+					(odpowiedź edytowana)
+				</i>
+			</div>
+		</div>
+	</div>
+	<app-button
+		*ngIf="isQuestionAuthor && !isContentOwner && !answer.parentId"
+		[ngClass]="{ 'correct-answer': answer.isCorrect }"
+		class="header-text px-3 py-1 mark-btn"
+		(click)="markAnswer()"
+		><app-icon icon="check" class="me-2"></app-icon>
+		{{
+			answer.isCorrect
+				? 'Odpowiedź uznana za poprawną'
+				: 'Oznacz odpowiedź jako poprawną'
+		}}</app-button
+	>
+	<app-button
+		[disabled]="true"
+		class="correct-answer header-text px-3 py-1 mark-btn"
+		*ngIf="!isQuestionAuthor && answer.isCorrect">
+		<app-icon icon="check" class="me-2"></app-icon>Odpowiedź uznana za poprawną
+	</app-button>
+</div>

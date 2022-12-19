@@ -1,0 +1,34 @@
+<div class="d-flex flex-column">
+	<app-content-form
+		[control]="contentControl"
+		[isEditMode]="isEditMode"
+		[showBlocks]="true"></app-content-form>
+	<mat-error
+		class="error-text mt-2"
+		*ngIf="contentControl.hasError('required') && contentControl.touched">
+		Treść odpowiedzi jest wymagana</mat-error
+	>
+	<div class="d-flex flex-row gap-2 mt-3" *ngIf="isEditMode">
+		<app-button
+			class="btn px-3 py-1"
+			(click)="
+				answerEditFormMode === enumAnswerFormMode.CreateMode
+					? addAnswer()
+					: updateAnswer()
+			"
+			>{{
+				answerEditFormMode === enumAnswerFormMode.CreateMode
+					? 'Dodaj odpowiedź'
+					: 'Zaktualizuj odpowiedź'
+			}}</app-button
+		>
+		<app-button
+			color="purple"
+			class="btn px-3 py-1"
+			(click)="changeIsEditMode()"
+			>{{
+				isEditMode ? 'Wyświetl podgląd odpowiedzi' : 'Wróć do edycji odpowiedzi'
+			}}</app-button
+		>
+	</div>
+</div>
