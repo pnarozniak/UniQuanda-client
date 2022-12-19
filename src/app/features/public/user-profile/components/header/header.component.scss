@@ -35,6 +35,11 @@
 		color: colors.$crystal-white;
 	}
 
+	& .premium-badge {
+		background-color: colors.$dark-yellow;
+		color: colors.$crystal-white;
+	}
+
 	& .loading-badge {
 		height: 35px;
 		width: 70px;
@@ -54,6 +59,12 @@
 	& .loading-nick {
 		height: 35px;
 		width: 200px;
+	}
+
+	& .title-badge {
+		font-size: 14px;
+		white-space: nowrap;
+		display: inline;
 	}
 }
 
@@ -149,11 +160,6 @@
 
 		& .nickname {
 			font-size: 28px;
-		}
-
-		& .title-badge {
-			font-size: 14px;
-			white-space: nowrap;
 		}
 
 		& .loading-badge {

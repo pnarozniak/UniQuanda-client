@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ConfirmRegistrationComponent } from './confirm-registration/confirm-registration.component';
-import { HomeComponent } from './home/home.component';
 import { RegisterSecondStepComponent } from './register/pages//register-second-step/register-second-step.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
-	{ path: 'home', component: HomeComponent, data: { title: 'Strona główna' } },
+	{
+		path: 'home',
+		loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
+		data: { title: 'Strona główna' },
+	},
 	{
 		path: 'login',
 		loadChildren: () =>
@@ -61,6 +64,18 @@ const routes: Routes = [
 			import('./confirm-email/confirm-email.module').then(
 				(m) => m.ConfirmEmailModule
 			),
+		data: { title: 'Ładowanie...' },
+	},
+	{
+		path: 'ranking',
+		loadChildren: () =>
+			import('./ranking/ranking.module').then((m) => m.RankingModule),
+		data: { title: 'Ranking użytkowników' },
+	},
+	{
+		path: 'university',
+		loadChildren: () =>
+			import('./university/university.module').then((m) => m.UniversityModule),
 		data: { title: 'Ładowanie...' },
 	},
 	{

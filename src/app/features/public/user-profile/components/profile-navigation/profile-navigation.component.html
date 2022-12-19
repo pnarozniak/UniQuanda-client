@@ -1,5 +1,5 @@
 <mat-tab-group
-	class="mt-3 mx-auto ms-lg-2 d-flex"
+	class="mt-3 mx-auto ms-lg-2 d-flex ps-lg-5 profile-group"
 	[selectedIndex]="getActiveTabId()"
 	(selectedTabChange)="setActivePage($event)"
 	mat-align-tabs="center"
@@ -16,19 +16,27 @@
 	</mat-tab>
 	<mat-tab label="Pytania">
 		<ng-template matTabContent>
-			<app-questions-profile class="w-100"></app-questions-profile>
+			<app-questions-profile
+				class="w-100"
+				[questionsResponse]="questionsRequest$"
+				[questionsOnPage]="itemsOnTab"
+				(pageChangedEvent)="loadQuestions($event)"></app-questions-profile>
 		</ng-template>
 	</mat-tab>
 	<mat-tab label="Odpowiedzi">
 		<ng-template matTabContent>
-			<app-answers-profile class="mt-2"></app-answers-profile>
+			<app-answers-profile
+				[answersOnPage]="itemsOnTab"
+				[answersResponse]="answersRequest$"
+				(pageChangedEvent)="loadAnswers($event)"
+				class="w-100"></app-answers-profile>
 		</ng-template>
 	</mat-tab>
 	<mat-tab>
 		<ng-template mat-tab-label appNotImplemented>
 			<span appNotImplemented>Testy</span>
 		</ng-template>
-		<hr class="divider mx-3" />
+		<hr class="divider ms-lg-0 ms-3" />
 		Testy dostępne w wersji 2.0
 	</mat-tab>
 </mat-tab-group>

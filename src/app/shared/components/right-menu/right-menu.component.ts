@@ -16,6 +16,7 @@ export class RightMenuComponent {
 		| 'buy-premium'
 		| 'top-users'
 		| 'generate-test'
+		| 'ranking'
 	)[] = [];
 
 	user$ = this._userData.getUserData$();

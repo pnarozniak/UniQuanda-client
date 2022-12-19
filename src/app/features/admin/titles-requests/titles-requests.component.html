@@ -1,0 +1,28 @@
+<div class="mx-5 d-flex flex-column mt-3" appTheme>
+	<h2>Lista zgłosznień użytkowników o przyznanie tytułu:</h2>
+	<div class="header d-flex flex-row w-100 text-center py-2 mt-3">
+		<b class="col-2 my-auto">Użytkownik</b>
+		<b class="col-2 my-auto">Tytuł</b>
+		<b class="col-1 my-auto">Zdjęcie</b>
+		<b class="col-4 my-auto">Dodatkowe informacje</b>
+		<b class="col-3 my-auto">Akcja</b>
+	</div>
+	<ng-container *appContext="let requests of requests$ | async">
+		<ng-container *ngFor="let request of requests">
+			<app-single-title-request
+				[request]="request"
+				class="record"></app-single-title-request>
+		</ng-container>
+		<div *ngIf="requests && requests.length === 0">
+			<h4 class="text-center mt-3">Brak zgłoszeń</h4>
+		</div>
+		<app-paginator
+			*ngIf="requests && requests.length !== 0"
+			class="ms-auto me-lg-0 mx-auto mb-xl-5"
+			[totalSize]="totalCount"
+			[pageSize]="pageSize"
+			[page]="pageBehavior$.asObservable()"
+			(pageChange)="handlePageChanged($event)"
+			[showInput]="true"></app-paginator>
+	</ng-container>
+</div>

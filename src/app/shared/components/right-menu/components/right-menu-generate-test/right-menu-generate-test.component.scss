@@ -10,19 +10,4 @@
 			font-weight: 500;
 		}
 	}
-
-	input {
-		height: 40px;
-		width: 100%;
-		padding: 0 8px;
-		font-size: 14px;
-		outline: none;
-		border: none;
-		background-color: colors.$elegant-gray;
-	}
-
-	&.dark input {
-		color: colors.$crystal-white;
-		background-color: colors.$light-gray;
-	}
 }

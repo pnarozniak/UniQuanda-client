@@ -48,7 +48,7 @@ export class ProfileSettingsComponent implements OnInit {
 		birthdate: new FormControl('', [
 			this._formsValidationService.checkIfDateBeforeNow,
 		]),
-		phoneNumber: new FormControl('', [Validators.maxLength(22)]),
+		contact: new FormControl('', [Validators.maxLength(22)]),
 		city: new FormControl('', [Validators.maxLength(57)]),
 		semanticScholarProfile: new FormControl('', [
 			Validators.pattern('^https://www.semanticscholar.org/author/.*/.*$'),
@@ -80,7 +80,7 @@ export class ProfileSettingsComponent implements OnInit {
 						firstName: this.user?.firstName,
 						lastName: this.user?.lastName,
 						birthdate: this.user?.birthdate,
-						phoneNumber: this.user?.phoneNumber,
+						contact: this.user?.contact,
 						city: this.user?.city,
 						semanticScholarProfile: this.user?.semanticScholarProfile,
 						aboutText: this.user?.aboutText,
@@ -124,10 +124,7 @@ export class ProfileSettingsComponent implements OnInit {
 					.utc(true)
 					.toISOString()
 			);
-		userFormData.append(
-			'PhoneNumber',
-			this.form.get('phoneNumber')?.value ?? ''
-		);
+		userFormData.append('Contact', this.form.get('contact')?.value ?? '');
 		userFormData.append('City', this.form.get('city')?.value ?? '');
 		userFormData.append(
 			'SemanticScholarProfile',

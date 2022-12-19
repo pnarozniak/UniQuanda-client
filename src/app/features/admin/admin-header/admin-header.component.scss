@@ -1,0 +1,8 @@
+@use 'colors' as col;
+.line {
+	height: 1px;
+	background-color: col.$bordered-gray;
+}
+.active {
+	background-color: col.$academic-blue;
+}

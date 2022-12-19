@@ -19,6 +19,10 @@ body {
   font-family: Ubuntu, sans-serif !important;
 }
 
+.dark {
+  background-color: var(--bg-default);
+}
+
 .height-header {
   min-height: calc(100vh - dim.$header-height-sm);
 }
@@ -71,6 +75,17 @@ bs-dropdown-container {
 
 .medium-bold {
   font-weight: 500 !important;
+}
+
+.mat-select-panel {
+  background-color: var(--bg-default) !important;
+  color: var(--text-default) !important;
+  border: 1px solid colors.$bordered-gray !important;
+  border-radius: 0 !important;
+}
+
+.mat-option.mat-selected:not(.mat-option-disabled) {
+  color: var(--link-default) !important;
 }
 
 @media all and (max-width: 575px) {

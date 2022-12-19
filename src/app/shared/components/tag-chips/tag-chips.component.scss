@@ -2,6 +2,7 @@
 .text-input {
 	width: 100%;
 	color: var(--text-default);
+
 	&::placeholder {
 		color: colors.$bordered-gray;
 	}
@@ -42,6 +43,13 @@
 		background: var(--bg-accent) !important;
 		& .mat-option-text {
 			color: var(--text-default) !important;
+		}
+	}
+	.mat-option {
+		height: 35px !important;
+
+		.tag-icon {
+			font-size: 14px;
 		}
 	}
 }

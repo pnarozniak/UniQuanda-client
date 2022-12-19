@@ -1,0 +1,9 @@
+<div class="d-flex flex-xl-row flex-column w-100 px-lg-5 px-3">
+	<div class="d-flex flex-column w-100 me-lg-5">
+		<h1 class="mt-sm-5 mt-3 mb-1">Ranking użytkowników</h1>
+		<p>Stan na: {{ moment().locale('pl').format('ll') }}</p>
+		<app-ranking-navigation></app-ranking-navigation>
+	</div>
+	<app-right-menu [options]="['ranking', 'create-an-account', 'buy-premium']">
+	</app-right-menu>
+</div>

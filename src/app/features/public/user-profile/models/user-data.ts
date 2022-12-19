@@ -8,7 +8,7 @@ export interface IUserData {
 	aboutText?: string;
 	birthdate?: Date;
 	city?: string;
-	phoneNumber?: string;
+	contact?: string;
 	semanticScholarProfile?: string;
 	hasPremium: boolean;
 }

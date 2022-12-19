@@ -1,0 +1,46 @@
+<div
+	class="d-flex flex-column w-100 question"
+	*ngIf="answerObj"
+	routerLink="/public/question/details/{{ answerObj.questionId }}"
+	[queryParams]="generateDetailsParams(answerObj)">
+	<div class="d-flex flex-md-row flex-column box py-3">
+		<div
+			class="d-flex flex-row flex-md-column left-menu ms-0 ms-md-5 pe-0 pe-md-3 flex-wrap">
+			<span class="right-text my-auto mt-auto ms-3 mb-md-0">
+				{{ creationDate }}
+			</span>
+			<span
+				class="likes-box right-text mb-auto mt-auto mt-md-3 me-auto ms-3 ms-md-0"
+				[ngClass]="{ 'disliked-answer': answerObj.likes < 0 }">
+				{{ generateLikeText(answerObj.likes) }}
+			</span>
+		</div>
+		<div class="d-flex flex-column right-menu px-3">
+			<div
+				*ngIf="answerObj.isCorrect"
+				class="d-flex correct-answer my-2 my-md-0">
+				<app-icon icon="check" class="me-2 ps-2 py-1 my-auto"></app-icon>
+				<span class="my-auto pe-2 py-1">Odpowiedź uznana za poprawną</span>
+			</div>
+			<span
+				>{{
+					answerObj.parentId !== null
+						? 'Komentarz do odpowiedzi w pytaniu'
+						: 'Odpowiedź do pytania'
+				}}:</span
+			>
+			<h2>{{ answerObj.header }}</h2>
+			<div class="d-flex flex-wrap mt-2">
+				<ng-container *ngFor="let tagName of answerObj.tagNames">
+					<app-tag [name]="tagName" class="my-auto d-flex mb-2 me-2"></app-tag>
+				</ng-container>
+			</div>
+			<app-content-form
+				class="d-flex"
+				[control]="htmlControl"
+				[showBlocks]="false"
+				[isEditMode]="false"></app-content-form>
+		</div>
+	</div>
+	<app-uniquanda-line class="line w-100"></app-uniquanda-line>
+</div>

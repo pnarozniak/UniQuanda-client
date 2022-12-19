@@ -1,0 +1,36 @@
+<div class="d-flex flex-column px-lg-5 mt-5 mx-2 mx-md-5">
+	<app-university-header
+		[university]="university$.asObservable()"></app-university-header>
+	<h1 class="mt-4 mb-4">Lista pytań użytkowników uczelni:</h1>
+
+	<ng-container *appContext="let questions of questions$ | async">
+		<ng-container *ngIf="questions && questions.length !== 0; else noQuestions">
+			<ng-container *ngFor="let question of questions">
+				<app-university-question-box
+					class="mb-4 question-box"
+					[question]="question"></app-university-question-box>
+			</ng-container>
+			<app-paginator
+				class="ms-auto me-0 mb-5"
+				[totalSize]="totalCount"
+				[pageSize]="pageSize"
+				[page]="pageBehavior.asObservable()"
+				(pageChange)="handlePageChange($event)"
+				[showInput]="true"></app-paginator>
+		</ng-container>
+		<ng-template #noQuestions>
+			<ng-container *ngIf="isLoading; else notFound">
+				<div
+					*ngFor="let i of [].constructor(4)"
+					[appLoading]="isLoading"
+					class="loading-box w-100 mb-3"></div>
+			</ng-container>
+			<ng-template #notFound>
+				<div class="mx-auto no-questions mt-2 d-flex p-2">
+					<app-icon icon="info" class="me-2"></app-icon>
+					Osoby powiązane z uczelnią nie zadały jeszcze pytań.
+				</div>
+			</ng-template>
+		</ng-template>
+	</ng-container>
+</div>

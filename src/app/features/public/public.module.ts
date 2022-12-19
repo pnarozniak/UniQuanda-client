@@ -8,6 +8,8 @@ import { ConfirmRegistrationModule } from './confirm-registration/confirm-regist
 import { UserProfileModule } from './user-profile/user-profile.module';
 import { ConfirmEmailModule } from './confirm-email/confirm-email.module';
 import { HomeModule } from './home/home.module';
+import { RankingModule } from './ranking/ranking.module';
+import { UniversityModule } from './university/university.module';
 
 @NgModule({
 	imports: [
@@ -19,6 +21,8 @@ import { HomeModule } from './home/home.module';
 		UserProfileModule,
 		ConfirmEmailModule,
 		HomeModule,
+		RankingModule,
+		UniversityModule,
 	],
 	declarations: [PublicComponent],
 })

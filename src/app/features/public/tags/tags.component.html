@@ -1,6 +1,6 @@
-<div class="w-100 d-flex flex-lg-row flex-column">
-	<div class="d-flex flex-column left-menu p-sm-5 p-2 py-4">
-		<h1>{{ parentTag ? parentTag.name : 'Tagi' }}</h1>
+<div class="d-flex flex-xl-row flex-column w-100 px-lg-5 px-3">
+	<div class="d-flex flex-column w-100 me-lg-5">
+		<h1 class="mt-sm-5 mt-3 mb-1">{{ parentTag ? parentTag.name : 'Tagi' }}</h1>
 		<div *ngIf="parentTag" class="mb-3 d-flex flex-column">
 			<span class="tag-description">{{ parentTag.description }}</span>
 			<a
