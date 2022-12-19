@@ -1,1 +1,33 @@
-<p>automatic-test works!</p>
+<div class="d-flex flex-xl-row flex-column w-100 px-lg-5 px-3">
+	<div class="d-flex flex-column w-100">
+		<h1 class="mt-sm-5 mt-3 mb-1">Test</h1>
+		<div class="d-flex flex-wrap mt-3">
+			<span class="me-2 info">
+				Test wygenerowany na podstawie pytań z tagów:
+			</span>
+			<app-tag
+				*ngFor="let tag of tags; let last = last"
+				[name]="tag.name"
+				[class.me-2]="!last">
+			</app-tag>
+		</div>
+		<div class="d-flex mt-3 w-100 flex-lg-row flex-column pb-5">
+			<app-automatic-test-nav
+				[test]="test"
+				[(activeQuestion)]="activeQuestion"
+				class="me-lg-5 mb-4 mb-xl-0">
+			</app-automatic-test-nav>
+			<div class="question-wrapper">
+				<app-automatic-test-question [activeQuestion]="activeQuestion">
+				</app-automatic-test-question>
+				<div
+					class="d-flex align-items-center justify-content-between w-100 mt-2">
+					<app-button class="py-2 px-3" color="purple">
+						<< Poprzednie pytanie
+					</app-button>
+					<app-button class="py-2 px-3">Następne pytanie >></app-button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

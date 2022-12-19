@@ -1,0 +1,39 @@
+<div class="question w-100 p-4">
+	<h4>{{ activeQuestion?.header }}</h4>
+	<div class="created-at ps-2">
+		{{ moment(activeQuestion?.createdAt).locale('pl').format('ll') }}
+	</div>
+	<app-content-form
+		*ngIf="questionHTMLControl"
+		class="d-flex"
+		[control]="questionHTMLControl"
+		[showBlocks]="false"
+		[isEditMode]="false">
+	</app-content-form>
+	<app-uniquanda-line></app-uniquanda-line>
+	<h6 class="mt-4 mb-2">Odpowiedź:</h6>
+	<div class="position-relative">
+		<app-button
+			*ngIf="!isAnswerVisible()"
+			(click)="showAnswer(activeQuestion!.id)"
+			class="px-3 py-2 show-answer-btn">
+			Pokaz odpowiedź >
+		</app-button>
+		<div class="answer p-3">
+			<ng-container *ngIf="isAnswerVisible(); else bluredAnswer"></ng-container>
+		</div>
+	</div>
+</div>
+
+<ng-template #bluredAnswer>
+	<div class="blur">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Metus senectus nec
+		at elementum sit ut varius lacus semper. Molestie nisi in nunc, mattis.
+		Dolor non nunc, tortor nulla vulputate auctor. Amet, sit sit nam et neque
+		sagittis. Donec quis cras scelerisque dictum nec enim mi adipiscing. Ut ac
+		condimentum velit mollis proin eget velit est massa. Sit morbi sociis nulla
+		cursus.
+		<hr class="my-2" />
+		<span>{{ moment().locale('pl').format('ll') }}</span>
+	</div>
+</ng-template>

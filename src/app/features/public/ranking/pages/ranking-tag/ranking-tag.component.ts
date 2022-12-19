@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ITag } from 'src/app/shared/models/tag.model';
 import { IGetRankingResponseDTO } from '../../models/get-ranking.model';
-import { TagNamesApiSerive } from '../../services/tag-names.api.service';
+import { RankingApiService } from '../../services/ranking-api.service';
 
 @Component({
 	selector: 'app-ranking-tag',
@@ -13,13 +13,13 @@ import { TagNamesApiSerive } from '../../services/tag-names.api.service';
 export class RankingTagComponent implements OnInit {
 	ngOnInit(): void {
 		if (this.initalTagId) {
-			this.initialTags$ = this._tagNamesApiService.getTagNames([
+			this.initialTags$ = this._rankingApiService.getTagNames([
 				this.initalTagId,
 			]);
 		}
 	}
 
-	constructor(private readonly _tagNamesApiService: TagNamesApiSerive) {}
+	constructor(private readonly _rankingApiService: RankingApiService) {}
 	@Input() public response$!: Observable<IGetRankingResponseDTO>;
 	@Input() public initalTagId: number | null = null;
 	@Output() public pageChangedEvent: EventEmitter<number> = new EventEmitter();

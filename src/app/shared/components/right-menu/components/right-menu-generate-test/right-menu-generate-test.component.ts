@@ -20,6 +20,8 @@ export class RightMenuGenerateTestComponent {
 		);
 		if (this.control.invalid) return;
 
-		this.router.navigate(['/user/test/automatic']);
+		this.router.navigate(['/user/test/automatic'], {
+			state: { tags: this.selectedTags },
+		});
 	}
 }

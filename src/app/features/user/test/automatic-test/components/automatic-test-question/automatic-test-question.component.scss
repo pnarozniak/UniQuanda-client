@@ -1,0 +1,54 @@
+@use 'colors' as colors;
+@use 'breakpoints' as bp;
+
+:host {
+	flex: 1;
+	min-width: 500px;
+
+	app-button {
+		font-weight: 400 !important;
+
+		&:hover {
+			opacity: .9;
+		}
+	}
+
+	.show-answer-btn {
+		background: colors.$blue-laguna;
+		z-index: 2;
+		position: absolute;
+    left: 50%;
+		top: 50%;
+    transform: translate(-50%, -50%);
+	}
+}
+
+.question {
+	border: 1px solid colors.$bordered-gray;
+
+	.created-at {
+		border-left: 1px solid colors.$bordered-gray;
+		font-size: 13px;
+		font-weight: 400;
+	}
+
+	.app-uniquanda-line {
+		height: 3px;
+	}
+
+	.answer {
+		background-color: colors.$very-light-gray;	
+		font-size: 14px;
+		border: 1px solid colors.$bordered-gray;
+
+		.blur {
+			filter: blur(3.5px);
+		}
+	}
+}
+
+@media screen and (max-width: bp.$lg) {
+	:host {
+		min-width: unset;
+	}
+}

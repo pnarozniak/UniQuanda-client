@@ -14,6 +14,14 @@
 					{
 						name: 'required',
 						message: 'Treść pytania jest wymagana.'
+					},
+					{
+						name: 'minlength',
+						message: 'Treść pytania musi mieć conajmniej 5 znaków.'
+					},
+					{
+						name: 'maxlength',
+						message: 'Treść pytania moze miec maksymalnie 100 znaków.'
 					}
 				]"></app-input>
 			<h4 class="mt-3">Wybierz tagi pytania</h4>
@@ -51,9 +59,9 @@
 							'Potwierdź że upewniłeś/łaś się, że pytanie nie zostało już zadane.'
 					}
 				]"></app-checkbox>
-			<app-button mode="submit" class="px-3 py-2 mt-3 ask-button"
-				>Zadaj pytanie</app-button
-			>
+			<app-button mode="submit" class="px-3 py-2 mt-3 ask-button">
+				Zadaj pytanie
+			</app-button>
 		</form>
 	</div>
 	<app-right-menu [options]="['buy-premium', 'top-users']"> </app-right-menu>

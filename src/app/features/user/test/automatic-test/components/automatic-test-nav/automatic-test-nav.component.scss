@@ -1,0 +1,40 @@
+@use 'colors' as colors;
+@use 'breakpoints' as bp;
+
+:host {
+	max-width: 350px;
+	flex: 1;
+}
+
+.header {
+	height: 45px;
+	background-color: colors.$academic-blue;
+	color: colors.$crystal-white;
+}
+
+.questions {
+	border: 1px solid colors.$bordered-gray;
+
+	.question {
+		font-weight: 400;
+		font-size: 14px;
+		cursor: pointer;
+
+		&.active {
+			color: colors.$academic-blue;
+			font-weight: 500;
+			background-color: inherit !important;
+			cursor: default;
+		}
+
+		&:hover {
+			background-color: var(--bg-accent);
+		}
+	}
+}
+
+@media screen and (max-width: bp.$lg) {
+	:host {
+		max-width: unset;
+	}
+}

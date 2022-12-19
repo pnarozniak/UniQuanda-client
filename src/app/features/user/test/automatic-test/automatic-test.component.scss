@@ -1,0 +1,20 @@
+:host {
+	.info {
+		font-size: 14px;
+		font-style: italic;
+	}
+
+	::ng-deep app-tag {
+		span {
+			padding: 2px 10px !important;
+		}
+	}
+
+	.question-wrapper {
+		flex: 1;
+	}
+
+	app-button {
+		font-weight: 400 !important;
+	}
+}
