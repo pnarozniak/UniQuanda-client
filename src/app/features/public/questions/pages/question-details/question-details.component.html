@@ -28,6 +28,8 @@
 				[idQuestion]="question.id"
 				[isEditMode]="isAnswerFormVisible"
 				[answerEditFormMode]="answerFormMode.CreateMode"
+				[idQuestion]="question.id"
+				[page]="page"
 				class="w-100 mb-2"></app-answer-form>
 		</div>
 		<app-question-answers
@@ -35,9 +37,9 @@
 			[answers]="answers"
 			[question]="question"
 			[idLoggedUser]="user?.id ?? null"
-			[isQuestionAuthor]="
-				question.author.id === user?.id
-			"></app-question-answers>
+			[isQuestionAuthor]="question.author.id === user?.id"
+			[itemToScroll]="itemToScroll"
+			[commentToScroll]="commentToScroll"></app-question-answers>
 		<div class="d-flex flex-column" *ngIf="!answers || !question">
 			<div
 				*ngFor="let temp of [].constructor(pageSize)"
@@ -45,12 +47,12 @@
 				[appLoading]="!question || !answers"></div>
 		</div>
 		<app-paginator
-		*ngIf="question && question.amountOfAnswers > pageSize"
-		[totalSize]="question.amountOfAnswers"
-		[pageSize]="pageSize"
-		[page]="pageBehavior.asObservable()"
-		(pageChange)="handlePageChanged($event)">
-	</app-paginator>
+			*ngIf="question && question.amountOfAnswers > pageSize"
+			[totalSize]="question.amountOfAnswers"
+			[pageSize]="pageSize"
+			[page]="pageBehavior.asObservable()"
+			(pageChange)="handlePageChanged($event)">
+		</app-paginator>
 	</div>
 	<hr class="line w-100 d-flex d-xl-none mt-xl-0 mt-4" />
 	<app-right-menu

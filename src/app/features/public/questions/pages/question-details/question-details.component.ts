@@ -26,6 +26,8 @@ export class QuestionDetailsComponent implements OnInit {
 	public page = 1;
 	public pageSize = 5;
 	public pageBehavior = new BehaviorSubject<number>(this.page);
+	public itemToScroll: number | null = null;
+	public commentToScroll: number | null = null;
 
 	constructor(
 		private readonly _questionDetailsApiService: QuestionDetailsApiService,
@@ -40,6 +42,8 @@ export class QuestionDetailsComponent implements OnInit {
 	ngOnInit(): void {
 		const queryParams = this._route.snapshot.queryParams;
 		this.page = queryParams['page'] ?? 1;
+		this.itemToScroll = queryParams['item'];
+		this.commentToScroll = queryParams['comment'];
 		this.pageBehavior = new BehaviorSubject<number>(this.page);
 		this.user = this._userDataService.getUserData();
 		this._route.paramMap.subscribe((params) => {
@@ -71,14 +75,20 @@ export class QuestionDetailsComponent implements OnInit {
 	}
 
 	getAnswers(idQuestion: number): void {
-		const params = new HttpParams().append('page', this.page);
+		let params = new HttpParams().append('page', this.page);
+		if (this.itemToScroll) params = params.append('item', this.itemToScroll);
+		if (this.commentToScroll)
+			params = params.append('comment', this.commentToScroll);
+
 		this._location.replaceState(
 			`/public/questions/${idQuestion}`,
 			params.toString()
 		);
 		this.answers = null;
 		this._answersApiService.getAnswers(idQuestion, this.page).subscribe({
-			next: (res) => (this.answers = res.body?.answers ?? []),
+			next: (res) => {
+				this.answers = res.body?.answers ?? [];
+			},
 		});
 	}
 

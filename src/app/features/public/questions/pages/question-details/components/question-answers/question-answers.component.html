@@ -1,4 +1,7 @@
-<div *ngFor="let answer of answers; let i = index" class="mb-4">
+<div
+	*ngFor="let answer of answers; let i = index"
+	class="mb-4"
+	id="item{{ answer.id }}">
 	<app-answer-details
 		[ngClass]="answer.parentId && answer.commentsAmount ? 'mb-3' : 'mb-4'"
 		[question]="question"
@@ -6,7 +9,10 @@
 		[answers]="answers"
 		[idLoggedUser]="idLoggedUser"
 		[isQuestionAuthor]="isQuestionAuthor"
-		[isEvenRow]="i % 2 === 1">
+		[isEvenRow]="i % 2 === 1"
+		[itemToScroll]="itemToScroll"
+		[commentToScroll]="commentToScroll"
+		(loadCommentsEvent)="answerToLoadComments($event)">
 	</app-answer-details>
 	<app-button
 		*ngIf="!answer.parentId && answer.commentsAmount > 0"
@@ -19,7 +25,10 @@
 		>
 	</app-button>
 	<div *ngIf="isCommentsDisabled" class="ps-4">
-		<div *ngFor="let comment of answer.comments; let j = index" class="mb-3">
+		<div
+			*ngFor="let comment of answer.comments; let j = index"
+			class="mb-3"
+			id="comment{{ comment.id }}">
 			<app-answer-details
 				[ngClass]="comment.parentId && comment.commentsAmount ? 'mb-3' : 'mb-4'"
 				[question]="question"
@@ -28,7 +37,8 @@
 				[idLoggedUser]="idLoggedUser"
 				[isQuestionAuthor]="isQuestionAuthor"
 				[parentId]="answer.id"
-				[isEvenRow]="j % 2 === 1"></app-answer-details>
+				[isEvenRow]="j % 2 === 1"
+				[commentToScroll]="commentToScroll"></app-answer-details>
 		</div>
 		<app-button
 			*ngIf="

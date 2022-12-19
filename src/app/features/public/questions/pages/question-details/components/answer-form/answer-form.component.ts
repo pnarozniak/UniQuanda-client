@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AnswersApiService } from '../../services/answers-api.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
@@ -20,6 +21,7 @@ export class AnswerFormComponent implements OnInit {
 	@Input() htmlContet = '';
 	@Input() answerEditFormMode: AnswerFormMode = AnswerFormMode.DisplayMode;
 	@Input() isEditMode!: boolean;
+	@Input() page = 1;
 
 	@Output() isEditModeChange = new EventEmitter<boolean>();
 
@@ -29,7 +31,8 @@ export class AnswerFormComponent implements OnInit {
 	constructor(
 		private readonly _answersApiService: AnswersApiService,
 		private readonly _toastr: ToastrService,
-		private readonly _loader: LoaderService
+		private readonly _loader: LoaderService,
+		private readonly _router: Router
 	) {}
 
 	ngOnInit(): void {
@@ -55,8 +58,39 @@ export class AnswerFormComponent implements OnInit {
 			.addAnswer(request)
 			.pipe(finalize(() => this._loader.hide()))
 			.subscribe({
-				next: () => {
+				next: (res) => {
 					this._toastr.success('Pomyślnie dodano odpowiedź', 'Sukces');
+					const pageAnswer = res.body?.page ?? 1;
+					if (pageAnswer === this.page) {
+						const currentUrl = this._router.url;
+						const splittedUrl = currentUrl.split('?');
+						this._router
+							.navigateByUrl('/', { skipLocationChange: true })
+							.then(() =>
+								this._router.navigate([splittedUrl[0]], {
+									queryParams: {
+										page: splittedUrl[1].split('=')[1],
+										item: res.body?.idAnswer,
+										comment: res.body?.idComment,
+									},
+								})
+							);
+					} else {
+						this._router
+							.navigateByUrl('/', { skipLocationChange: true })
+							.then(() => {
+								this._router.navigate(
+									[`/public/questions/${this.idQuestion}`],
+									{
+										queryParams: {
+											page: pageAnswer,
+											item: res.body?.idAnswer,
+											comment: res.body?.idComment,
+										},
+									}
+								);
+							});
+					}
 				},
 				error: (err) => {
 					if (err.status === 409)
@@ -79,6 +113,7 @@ export class AnswerFormComponent implements OnInit {
 			.pipe(finalize(() => this._loader.hide()))
 			.subscribe({
 				next: () => {
+					this.isEditModeChange.emit(false);
 					this._toastr.success('Pomyślnie dodano odpowiedź', 'Sukces');
 				},
 				error: (err) => {

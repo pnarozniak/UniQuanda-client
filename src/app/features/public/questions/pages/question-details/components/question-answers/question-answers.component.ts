@@ -8,11 +8,13 @@ import { AnswersApiService } from '../../services/answers-api.service';
 	templateUrl: './question-answers.component.html',
 	styleUrls: ['./question-answers.component.scss'],
 })
-export class QuestionAnswersComponent {
+export default class QuestionAnswersComponent {
 	@Input() idLoggedUser: number | null = null;
 	@Input() answers: IAnswerDetails[] = [];
 	@Input() isQuestionAuthor = false;
 	@Input() question!: IQuestionDetailsEntity;
+	@Input() itemToScroll: number | null = null;
+	@Input() commentToScroll: number | null = null;
 
 	public isCommentsDisabled = true;
 
@@ -35,5 +37,16 @@ export class QuestionAnswersComponent {
 				answer.comments = res.body!.comments;
 			},
 		});
+	}
+
+	answerToLoadComments(loadComments: boolean): void {
+		if (loadComments) {
+			const answerToLoadComments = this.answers.find(
+				(a) => a.id === Number(this.itemToScroll)
+			);
+			if (answerToLoadComments) {
+				this.getAllComments(answerToLoadComments);
+			}
+		}
 	}
 }

@@ -4,7 +4,10 @@ import {
 } from './../models/update-answer-like-value.dto';
 import { IAnswerDetailsResponseDTO } from './../models/answer-details.dto';
 import { Observable } from 'rxjs';
-import { IAddAnswerRequestDTO } from './../models/add-answer.dto';
+import {
+	IAddAnswerRequestDTO,
+	IAddAnswerResponseDTO,
+} from './../models/add-answer.dto';
 import { Injectable } from '@angular/core';
 import ApiService from 'src/app/core/services/api.service';
 import { RecaptchaAction } from 'src/app/core/enums/recaptcha-action.enum';
@@ -16,8 +19,10 @@ import { IGetAllCommentsResponseDTO } from '../models/get-all-comments.dto';
 export class AnswersApiService {
 	constructor(private readonly _apiService: ApiService) {}
 
-	addAnswer(requestData: IAddAnswerRequestDTO): Observable<HttpResponse<null>> {
-		return this._apiService.post<null, IAddAnswerRequestDTO>(
+	addAnswer(
+		requestData: IAddAnswerRequestDTO
+	): Observable<HttpResponse<IAddAnswerResponseDTO>> {
+		return this._apiService.post<IAddAnswerResponseDTO, IAddAnswerRequestDTO>(
 			'Answers',
 			requestData,
 			RecaptchaAction.ADD_ANSWER
@@ -39,7 +44,7 @@ export class AnswersApiService {
 		idQuestion: number,
 		page: number
 	): Observable<HttpResponse<IAnswerDetailsResponseDTO>> {
-		let params = new HttpParams().append('page', page);
+		const params = new HttpParams().append('page', page);
 		return this._apiService.get<IAnswerDetailsResponseDTO>(
 			`Answers/question/${idQuestion}`,
 			params

@@ -94,17 +94,27 @@ export class AnswerDetailsInfoComponent implements OnInit {
 				next: () => {
 					this._toastrService.success('Pomyślnie usunięto odpowiedź', 'Sukces');
 					const currentUrl = this._router.url;
+					const splittedUrl = currentUrl.split('?');
 					this._router
 						.navigateByUrl('/', { skipLocationChange: true })
-						.then(() => this._router.navigate([currentUrl]));
+						.then(() =>
+							this._router.navigate([splittedUrl[0]], {
+								queryParams: { page: splittedUrl[1].split('=')[1] },
+							})
+						);
 				},
 				error: (err) => {
 					if (err.status === 404) {
 						this._toastrService.error('Błąd', 'Zasób nie istnieje');
 						const currentUrl = this._router.url;
+						const splittedUrl = currentUrl.split('?');
 						this._router
 							.navigateByUrl('/', { skipLocationChange: true })
-							.then(() => this._router.navigate([currentUrl]));
+							.then(() =>
+								this._router.navigate([splittedUrl[0]], {
+									queryParams: { page: splittedUrl[1].split('=')[1] },
+								})
+							);
 					} else if (err.status === 409) {
 						this._toastrService.error('Błąd aktualizacji', 'Błąd');
 					}

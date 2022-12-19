@@ -15,7 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { AnswerDetailsComponent } from './components/answer-details/answer-details.component';
 import { AnswerDetailsHeaderComponent } from './components/answer-details-header/answer-details-header.component';
 import { AnswerDetailsInfoComponent } from './components/answer-details-info/answer-details-info.component';
-import { QuestionAnswersComponent } from './components/question-answers/question-answers.component';
+import QuestionAnswersComponent from './components/question-answers/question-answers.component';
 
 const routes: Routes = [
 	{
