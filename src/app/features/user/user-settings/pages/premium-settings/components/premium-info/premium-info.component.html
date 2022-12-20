@@ -76,8 +76,7 @@
 			<app-button
 				*ngIf="
 					premiumInfo?.hasPremiumUntil &&
-					isDateBiggerThanNowPlusXMonths(0, premiumInfo?.hasPremiumUntil!) &&
-					!isDateBiggerThanNowPlusXMonths(1, premiumInfo?.hasPremiumUntil!)
+					isDateBiggerThanNowPlusXMonths(0, premiumInfo?.hasPremiumUntil!)
 				"
 				class="extend-btn px-sm-4 px-3 py-sm-2 py-1 fw-bold my-2"
 				(click)="callForPaymentUrl(true)"
