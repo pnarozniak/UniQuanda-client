@@ -1,0 +1,72 @@
+<div class="d-flex flex-column">
+	<app-answer-form
+		[ngClass]="{ 'my-3': isVisibleEditAnswerForm }"
+		[htmlContet]="answer.content"
+		[(isEditMode)]="isVisibleEditAnswerForm"
+		[answerEditFormMode]="answerFormMode.EditMode"
+		[answerId]="answer.id"></app-answer-form>
+	<hr class="m-0 w-100 mb-2" />
+	<div
+		class="d-flex flex-row justify-content-between"
+		*ngIf="!isVisibleEditAnswerForm">
+		<div class="d-flex flex-row align-items-center gap-1 left-container">
+			<app-button
+				color="none"
+				class="arrow-btn"
+				[disabled]="isContentOwner && isLikeBtnClicked"
+				><app-icon
+					icon="arrow_down"
+					(click)="updateLikeValue(-1)"
+					[ngClass]="{
+						'active-vote-down': answer.userLikeValue === -1
+					}"></app-icon
+			></app-button>
+			<span class="medium-bold">{{
+				answer.likes > 0 ? '+' + answer.likes : answer.likes
+			}}</span>
+			<app-button
+				color="none"
+				class="arrow-btn"
+				[disabled]="isContentOwner && isLikeBtnClicked"
+				><app-icon
+					icon="arrow_up"
+					(click)="updateLikeValue(1)"
+					[ngClass]="{
+						'active-vote-up': answer.userLikeValue === 1
+					}"></app-icon
+			></app-button>
+			<app-button color="none" class="ms-2" (click)="addComment()">{{
+				isAddCommentVisible ? 'Ukryj formularz odpowiedzi' : 'Odpowiedz'
+			}}</app-button>
+		</div>
+		<div class="d-flex flex-row gap-sm-3 gap-1 right-container">
+			<app-button
+				*ngIf="isContentOwner && !answer.isCorrect"
+				(click)="changeVisibilityEditAnswerForm()"
+				color="none">
+				<app-icon icon="edit" class="me-1"></app-icon>
+				<span class="d-sm-block d-none">Edytuj odpowiedź</span>
+			</app-button>
+			<app-button
+				*ngIf="isContentOwner && !answer.isCorrect"
+				(click)="deleteAnswer()"
+				color="none"
+				class="delete-btn">
+				<app-icon icon="delete" class="me-1"></app-icon>
+				<span class="d-sm-block d-none">Usuń odpowiedź</span>
+			</app-button>
+			<app-button *ngIf="!isContentOwner" color="none" (click)="reportAnswer()">
+				<app-icon icon="report" class="me-1" *ngIf="!isContentOwner"></app-icon>
+				<span class="d-sm-block d-none">Zgłoś odpowiedź</span>
+			</app-button>
+		</div>
+	</div>
+	<app-answer-form
+		*ngIf="isAddCommentVisible"
+		[idQuestion]="question.id"
+		[parentAnswerId]="parentId ?? answer.id"
+		[isEditMode]="true"
+		[answerEditFormMode]="answerFormMode.CreateMode"
+		[ngClass]="{ 'ps-4': !answer.parentId }"
+		class="w-100 mb-2 mt-3"></app-answer-form>
+</div>

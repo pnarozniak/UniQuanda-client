@@ -1,0 +1,18 @@
+<div
+	class="d-flex flex-column p-2 single-row"
+	[ngClass]="{ 'even-row': isEvenRow }"
+	appTheme>
+	<app-answer-details-header
+		[answer]="answer"
+		[idLoggedUser]="idLoggedUser"
+		[answers]="answers"
+		[isContentOwner]="isContentOwner"
+		[isQuestionAuthor]="isQuestionAuthor"></app-answer-details-header>
+	<app-answer-details-info
+		[answer]="answer"
+		[idLoggedUser]="idLoggedUser"
+		[isContentOwner]="isContentOwner"
+		[isQuestionAuthor]="isQuestionAuthor"
+		[question]="question"
+		[parentId]="parentId"></app-answer-details-info>
+</div>

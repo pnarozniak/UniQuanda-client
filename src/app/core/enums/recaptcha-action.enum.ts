@@ -21,4 +21,7 @@ export enum RecaptchaAction {
 	GET_PREMIUM_PAYMENTS = 'get_premium_payments',
 	CREATE_PREMIUM_PAYMENT = 'create_premium_payment',
 	HANDLE_PREMIUM_PAYMENT = 'handle_premium_payment',
+	ADD_ANSWER = 'add_answer',
+	UPDATE_ANSWER_LIKE_VALUE = 'update_answer_like_value',
+	UPDATE_ANSWER = 'update_answer',
 }

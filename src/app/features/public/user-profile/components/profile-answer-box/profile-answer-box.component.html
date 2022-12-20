@@ -1,7 +1,7 @@
 <div
 	class="d-flex flex-column w-100 question"
 	*ngIf="answerObj"
-	routerLink="/public/question/details/{{ answerObj.questionId }}"
+	routerLink="/public/questions/{{ answerObj.questionId }}"
 	[queryParams]="generateDetailsParams(answerObj)">
 	<div class="d-flex flex-md-row flex-column box py-3">
 		<div
