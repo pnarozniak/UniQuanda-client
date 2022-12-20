@@ -19,6 +19,11 @@ import { IGetAllCommentsResponseDTO } from '../models/get-all-comments.dto';
 export class AnswersApiService {
 	constructor(private readonly _apiService: ApiService) {}
 
+	/**
+	 * Send request to add answer
+	 * @returns Observable<HttpResponse<IAddAnswerResponseDTO>> object with status code of request
+	 * and data of IAddAnswerResponseDTO
+	 */
 	addAnswer(
 		requestData: IAddAnswerRequestDTO
 	): Observable<HttpResponse<IAddAnswerResponseDTO>> {
@@ -29,6 +34,10 @@ export class AnswersApiService {
 		);
 	}
 
+	/**
+	 * Send request to update answer
+	 * @returns Observable<HttpResponse<null>> object with status code of request
+	 */
 	updateAnswer(
 		requestData: IUpdateAnswerRequestDTO
 	): Observable<HttpResponse<null>> {
@@ -40,6 +49,11 @@ export class AnswersApiService {
 		);
 	}
 
+	/**
+	 * Send request to get answers
+	 * @returns Observable<HttpResponse<IAnswerDetailsResponseDTO>> object with status code of request
+	 * and data of IAnswerDetailsResponseDTO
+	 */
 	getAnswers(
 		idQuestion: number,
 		page: number,
@@ -53,6 +67,11 @@ export class AnswersApiService {
 		);
 	}
 
+	/**
+	 * Send request to get comments
+	 * @returns Observable<HttpResponse<IGetAllCommentsResponseDTO>> object with status code of request
+	 * and data of IGetAllCommentsResponseDTO
+	 */
 	getAllComments(
 		idAnswerParent: number
 	): Observable<HttpResponse<IGetAllCommentsResponseDTO>> {
@@ -60,14 +79,22 @@ export class AnswersApiService {
 			`Answers/comments/${idAnswerParent}`
 		);
 	}
-
-	markAnswerAsCorrect(idAnswer: number): Observable<HttpResponse<null>> {
+	/**
+	 * Send request to update answer correctness
+	 * @returns Observable<HttpResponse<null>> object with status code of request
+	 */
+	updateAnswerCorrectness(idAnswer: number): Observable<HttpResponse<null>> {
 		return this._apiService.put<null, null>(
 			`Answers/correct/${idAnswer}`,
 			null
 		);
 	}
 
+	/**
+	 * Send request to update answer like value
+	 * @returns Observable<HttpResponse<IUpdateAnswerLikeValueResponseDTO>> object with status code of request
+	 * and data of IUpdateAnswerLikeValueResponseDTO
+	 */
 	updateAnswerLikeValue(
 		reqData: IUpdateAnswerLikeValueRequestDTO
 	): Observable<HttpResponse<IUpdateAnswerLikeValueResponseDTO>> {
@@ -82,6 +109,10 @@ export class AnswersApiService {
 		);
 	}
 
+	/**
+	 * Send request to delete answer
+	 * @returns Observable<HttpResponse<null>> object with status code of request
+	 */
 	deleteAnswer(idAnswer: number): Observable<HttpResponse<null>> {
 		return this._apiService.delete(`Answers/${idAnswer}`);
 	}
