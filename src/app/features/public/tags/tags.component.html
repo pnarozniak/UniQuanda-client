@@ -1,11 +1,11 @@
 <div class="d-flex flex-xl-row flex-column w-100 px-lg-5 px-3">
-	<div class="d-flex flex-column w-100 me-lg-5">
+	<div class="d-flex flex-column w-100 me-xl-5 mb-5">
 		<h1 class="mt-sm-5 mt-3 mb-1">{{ parentTag ? parentTag.name : 'Tagi' }}</h1>
 		<div *ngIf="parentTag" class="mb-3 d-flex flex-column">
 			<span class="tag-description">{{ parentTag.description }}</span>
 			<a
 				[routerLink]="['/public/home']"
-				[queryParams]="{ tagId: parentTag.id }"
+				[queryParams]="{ tags: parentTag.id }"
 				class="mt-3 link-text"
 				>Pokaż wszystkie pytania w tagu ></a
 			>
