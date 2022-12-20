@@ -4,7 +4,9 @@
 		<a
 			routerLink="/public/profile/{{ answer.author.id }}"
 			class="author-avatar me-2">
-			<img [src]="answer.author.avatarUrl ?? staticImageSrc.Avatar" class="" />
+			<img
+				[src]="answer.author.avatarUrl ?? staticImageSrc.Avatar"
+				class="author-avatar" />
 		</a>
 		<div class="d-flex flex-column gap-1">
 			<div class="d-flex flex-row align-items-center gap-2">
