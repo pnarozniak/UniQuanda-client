@@ -6,7 +6,7 @@
 	min-width: 500px;
 
 	app-button {
-		font-weight: 400 !important;
+		font-size: 13px;
 
 		&:hover {
 			opacity: .9;
@@ -36,13 +36,49 @@
 		height: 3px;
 	}
 
-	.answer {
+	.answer-wrapper {
 		background-color: colors.$very-light-gray;	
-		font-size: 14px;
-		border: 1px solid colors.$bordered-gray;
+
+		&.blur {
+			border: 1px solid colors.$bordered-gray;
+			background-color: transparent !important;
+		}
 
 		.blur {
-			filter: blur(3.5px);
+			filter: blur(4.5px);
+			user-select: none;
+		}
+	}
+
+	.display-comments-btn {
+		color: var(--link-default);
+		font-size: 13px;
+	}
+
+	.comment.odd {
+		background-color: colors.$very-light-gray;	
+	}
+
+	.add-answer-info {
+		background-color: colors.$tag-blue;
+		color: colors.$academic-blue;
+		font-size: 13px;
+	}
+
+	.open-question-page-btn {
+		color: colors.$academic-blue;
+		font-weight: 500;
+		font-size: 14px;
+	}
+
+	&.dark {
+		.answer-wrapper,
+		.comment.odd {
+			background-color: colors.$zebra-gray !important;
+		}
+
+		.open-question-page-btn {
+			color: colors.$dark-yellow;
 		}
 	}
 }
@@ -50,5 +86,11 @@
 @media screen and (max-width: bp.$lg) {
 	:host {
 		min-width: unset;
+	}
+}
+
+@media screen and (max-width: bp.$sm) {
+	.display-comments-btn {
+		font-size: 11px;
 	}
 }

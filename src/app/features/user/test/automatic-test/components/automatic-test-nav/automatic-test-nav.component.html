@@ -1,7 +1,19 @@
-<div class="header d-flex align-items-center justify-content-between px-3">
+<div
+	class="header d-flex align-items-center justify-content-between px-3"
+	(click)="expanded = !expanded">
 	<span>Lista pytań</span>
+	<app-button color="none">
+		<app-icon
+			icon="arrow"
+			class="collapse-expand-btn"
+			[class.expanded]="expanded">
+		</app-icon>
+	</app-button>
 </div>
-<div class="questions">
+<div
+	class="questions"
+	[@expandCollapse]="expanded ? 'expanded' : 'collapsed'"
+	appTheme>
 	<ng-container
 		*ngFor="
 			let question of test?.questions || [];

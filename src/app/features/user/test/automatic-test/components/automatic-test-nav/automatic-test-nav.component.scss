@@ -2,7 +2,7 @@
 @use 'breakpoints' as bp;
 
 :host {
-	max-width: 350px;
+	max-width: 325px;
 	flex: 1;
 }
 
@@ -10,6 +10,16 @@
 	height: 45px;
 	background-color: colors.$academic-blue;
 	color: colors.$crystal-white;
+	cursor: pointer;
+	border: 2px solid transparent;
+
+	.collapse-expand-btn {
+		transform: rotate(90deg);
+
+		&.expanded {
+			transform: rotate(-90deg);
+		}
+	}
 }
 
 .questions {
@@ -30,6 +40,10 @@
 		&:hover {
 			background-color: var(--bg-accent);
 		}
+	}
+
+	&.dark .question.active {
+		color: colors.$dark-yellow !important;
 	}
 }
 

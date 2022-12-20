@@ -1,3 +1,5 @@
+@use 'breakpoints' as bp;
+
 :host {
 	.info {
 		font-size: 14px;
@@ -15,6 +17,12 @@
 	}
 
 	app-button {
-		font-weight: 400 !important;
+		font-size: 13px;
+	}
+}
+
+@media screen and (max-width: bp.$md) {
+	.finish-test-btn {
+		width: 100%;
 	}
 }

@@ -1,7 +1,7 @@
 <div class="d-flex flex-xl-row flex-column w-100 px-lg-5 px-3">
 	<div class="d-flex flex-column w-100">
 		<h1 class="mt-sm-5 mt-3 mb-1">Test</h1>
-		<div class="d-flex flex-wrap mt-3">
+		<div class="d-flex flex-wrap mt-2 align-items-center">
 			<span class="me-2 info">
 				Test wygenerowany na podstawie pytań z tagów:
 			</span>
@@ -10,22 +10,45 @@
 				[name]="tag.name"
 				[class.me-2]="!last">
 			</app-tag>
+			<app-button
+				class="ms-auto py-2 px-3 finish-test-btn mt-2 mt-md-0"
+				color="purple">
+				Zakończ test
+			</app-button>
 		</div>
-		<div class="d-flex mt-3 w-100 flex-lg-row flex-column pb-5">
+		<hr class="d-block d-md-none mt-4 mb-3" />
+		<div class="d-flex mt-2 w-100 flex-lg-row flex-column pb-5">
 			<app-automatic-test-nav
 				[test]="test"
 				[(activeQuestion)]="activeQuestion"
-				class="me-lg-5 mb-4 mb-xl-0">
+				(activeQuestionChange)="scrollToQuestion()"
+				class="me-lg-5">
 			</app-automatic-test-nav>
-			<div class="question-wrapper">
-				<app-automatic-test-question [activeQuestion]="activeQuestion">
+			<div class="question-wrapper pt-4 pt-lg-0" #questionRef>
+				<app-automatic-test-question
+					[activeQuestion]="activeQuestion"
+					[activeQuestionNumber]="(getActiveQuestionIndex() || 0) + 1">
 				</app-automatic-test-question>
 				<div
 					class="d-flex align-items-center justify-content-between w-100 mt-2">
-					<app-button class="py-2 px-3" color="purple">
+					<app-button
+						class="py-2 px-3"
+						color="purple"
+						[disabled]="getActiveQuestionIndex() === 0"
+						(click)="changeQuestion('prev')">
 						<< Poprzednie pytanie
 					</app-button>
-					<app-button class="py-2 px-3">Następne pytanie >></app-button>
+					<app-button
+						class="py-2 px-3"
+						[disabled]="
+							!!!(
+								test?.questions &&
+								getActiveQuestionIndex() !== test!.questions.length - 1
+							)
+						"
+						(click)="changeQuestion('next')"
+						>Następne pytanie >></app-button
+					>
 				</div>
 			</div>
 		</div>

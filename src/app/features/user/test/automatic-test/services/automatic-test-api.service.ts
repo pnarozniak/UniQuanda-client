@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import ApiService from 'src/app/core/services/api.service';
 import { ITag } from 'src/app/shared/models/tag.model';
+import { IAutomaticTestAnswer } from '../models/automatic-test-answer.model';
+import { IGetAllCommentsResponseDTO } from '../models/get-all-comments.dto';
 import { IGetAutomaticTestResponseDTO } from '../models/get-automatic-test.dto';
 
 @Injectable({
@@ -27,6 +29,26 @@ export class AutomaticTestApiService {
 		return this._api
 			.get<IGetAutomaticTestResponseDTO>('test/automatic', params)
 			.pipe(map((res) => res.body as IGetAutomaticTestResponseDTO));
+	}
+
+	/**
+	 * Gets all comments for given answer
+	 * @param answerId id of answer which comments should be retrived
+	 * @returns List of comments
+	 */
+	getAllComments$(answerId: number): Observable<IAutomaticTestAnswer[]> {
+		return this._api
+			.get<IGetAllCommentsResponseDTO>(`answers/comments/${answerId}`)
+			.pipe(
+				map((res) =>
+					res.body!.comments.map((a) => ({
+						id: a.id,
+						html: a.content,
+						createdAt: a.publishDate.toString(),
+						commentsCount: 0,
+					}))
+				)
+			);
 	}
 
 	/**
