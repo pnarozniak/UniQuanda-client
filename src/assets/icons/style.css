@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'Uniquanda';
-  src:  url('fonts/Uniquanda.eot?a2n014');
-  src:  url('fonts/Uniquanda.eot?a2n014#iefix') format('embedded-opentype'),
-    url('fonts/Uniquanda.ttf?a2n014') format('truetype'),
-    url('fonts/Uniquanda.woff?a2n014') format('woff'),
-    url('fonts/Uniquanda.svg?a2n014#Uniquanda') format('svg');
+  src:  url('fonts/Uniquanda.eot?u4xlyf');
+  src:  url('fonts/Uniquanda.eot?u4xlyf#iefix') format('embedded-opentype'),
+    url('fonts/Uniquanda.ttf?u4xlyf') format('truetype'),
+    url('fonts/Uniquanda.woff?u4xlyf') format('woff'),
+    url('fonts/Uniquanda.svg?u4xlyf#Uniquanda') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-shrug:before {
+  content: "\e935";
+}
 .icon-admin:before {
   content: "\e934";
 }

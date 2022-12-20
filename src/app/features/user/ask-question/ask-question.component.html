@@ -1,5 +1,7 @@
 <div class="d-flex flex-xl-row flex-column w-100 px-lg-5 px-3">
-	<div class="d-flex flex-column w-100 me-lg-5">
+	<div
+		class="d-flex flex-column w-100 me-lg-5"
+		[appLoading]="!finishedInitialLoading && !editMode">
 		<h1 class="mt-sm-5 mt-3 mb-1">
 			{{ editMode ? 'Edytuj pytanie' : 'Dodaj pytanie' }}
 		</h1>
