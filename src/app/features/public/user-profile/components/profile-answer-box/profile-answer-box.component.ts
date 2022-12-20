@@ -1,4 +1,3 @@
-import { HttpParams } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import * as moment from 'moment';

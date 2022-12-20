@@ -44,6 +44,11 @@
 	font-size: 13px;
 }
 
+.paginator-container {
+	margin-left: auto !important;
+	margin-right: 12px;
+}
+
 @media screen and (max-width: breakpoints.$xl) {
 	.left-menu {
 		width: 100%;

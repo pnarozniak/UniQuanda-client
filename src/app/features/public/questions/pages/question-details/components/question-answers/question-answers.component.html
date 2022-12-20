@@ -10,9 +10,12 @@
 		[idLoggedUser]="idLoggedUser"
 		[isQuestionAuthor]="isQuestionAuthor"
 		[isEvenRow]="i % 2 === 1"
-		[itemToScroll]="itemToScroll"
-		[commentToScroll]="commentToScroll"
-		(loadCommentsEvent)="answerToLoadComments($event)">
+		[itemToScroll]="
+			commentToScroll === null || commentToScroll === undefined
+				? itemToScroll
+				: null
+		"
+		customId="i{{ i }}">
 	</app-answer-details>
 	<app-button
 		*ngIf="!answer.parentId && answer.commentsAmount > 0"
@@ -38,7 +41,8 @@
 				[isQuestionAuthor]="isQuestionAuthor"
 				[parentId]="answer.id"
 				[isEvenRow]="j % 2 === 1"
-				[commentToScroll]="commentToScroll"></app-answer-details>
+				[commentToScroll]="commentToScroll"
+				customId="i{{ i }}j{{ j }}"></app-answer-details>
 		</div>
 		<app-button
 			*ngIf="

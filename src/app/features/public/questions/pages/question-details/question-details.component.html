@@ -1,7 +1,8 @@
 <div
-	class="d-flex flex-xl-row flex-column justify-context-xl-center main-container ps-xl-5 ps-3 pe-xl-0 pe-3">
+	class="d-flex flex-xl-row flex-column justify-context-xl-center main-container ps-xl-5 ps-3 pe-xl-0 pe-3 mb-4">
 	<div class="d-flex flex-column left-menu">
 		<app-question-details-desktop-header
+			id="header"
 			*ngIf="question"
 			[question]="question"
 			[idLoggedUser]="user?.id ?? null"
@@ -30,6 +31,7 @@
 				[answerEditFormMode]="answerFormMode.CreateMode"
 				[idQuestion]="question.id"
 				[page]="page"
+				customId="question"
 				class="w-100 mb-2"></app-answer-form>
 		</div>
 		<app-question-answers
@@ -47,6 +49,7 @@
 				[appLoading]="!question || !answers"></div>
 		</div>
 		<app-paginator
+			class="paginator-container"
 			*ngIf="question && question.amountOfAnswers > pageSize"
 			[totalSize]="question.amountOfAnswers"
 			[pageSize]="pageSize"
