@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, of, finalize } from 'rxjs';
 import { LoaderService } from 'src/app/core/services/loader.service';
+import { DurationEnum } from 'src/app/shared/enums/duration.enum';
 import { ITag } from 'src/app/shared/models/tag.model';
 import AddQuestionRequestDTO from './models/add-question.dto';
 import { IUpdateQuestionRequestDTO } from './models/update-question.dto';
@@ -21,6 +22,7 @@ export class AskQuestionComponent implements OnInit {
 		confirmation: new FormControl(false, [Validators.requiredTrue]),
 	});
 	public maxTagsAmount = 5;
+	public finishedInitialLoading = false;
 	public editMode = false;
 	private idQuestion: number | null = null;
 
@@ -44,6 +46,28 @@ export class AskQuestionComponent implements OnInit {
 				this.idQuestion = data.question.id;
 				this.tags = data.question.tags;
 				this.initialTags = of(this.tags);
+			} else {
+				this._askQuestionApiService.checkLimits().subscribe({
+					next: (response) => {
+						if (!response.maxTimes || !response.usedTimes) {
+							this.finishedInitialLoading = true;
+							return;
+						}
+						if (response.maxTimes <= response.usedTimes) {
+							this.finishedInitialLoading = true;
+							this._router.navigate(['/user/ask-question/limit-exceeded'], {
+								queryParams: {
+									duration: this.translateDuration(
+										response.shortestRefreshPeriod as DurationEnum
+									),
+									limit: response.maxTimes,
+								},
+							});
+							return;
+						}
+						this.finishedInitialLoading = true;
+					},
+				});
 			}
 		});
 	}
@@ -77,7 +101,17 @@ export class AskQuestionComponent implements OnInit {
 					'Dodano pytanie'
 				);
 				this._loaderService.hide();
-				this._router.navigate(['public/questions', questionId]);
+				this._router.navigate(['public/questions', questionId.body]);
+			},
+			error: (error) => {
+				if ((error.status = 403)) {
+					this._toastrService.error(
+						'Nie możesz chwilowo zadawać kolejnych pytań',
+						'Wyczerpano limit pytań'
+					);
+				} else {
+					this._toastrService.error('Nie udało się dodać pytania', 'Błąd');
+				}
 			},
 		});
 	}
@@ -123,5 +157,10 @@ export class AskQuestionComponent implements OnInit {
 
 	public setTags(tags: ITag[]) {
 		this.tags = tags;
+	}
+
+	private translateDuration(duration: DurationEnum): string {
+		if (duration === DurationEnum.Day) return 'Day';
+		return 'Week';
 	}
 }

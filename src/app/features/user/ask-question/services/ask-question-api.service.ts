@@ -1,11 +1,10 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
-import { catchError, map, Observable, of } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import ApiService from 'src/app/core/services/api.service';
-import AddQuestionRequestDTO, {
-	IAddQuestionResponseDTO,
-} from '../models/add-question.dto';
+
+import { ILimitCheckResponseDTO } from 'src/app/shared/models/limit-check-response.dto';
+import AddQuestionRequestDTO from '../models/add-question.dto';
 import { IGetQuestionDetailsForUpdateResponseDTO } from '../models/get-question-details-for-update.dto';
 import { IUpdateQuestionRequestDTO } from '../models/update-question.dto';
 
@@ -13,27 +12,20 @@ import { IUpdateQuestionRequestDTO } from '../models/update-question.dto';
 	providedIn: 'root',
 })
 export default class AskQuestionApiService {
-	constructor(
-		private readonly _apiService: ApiService,
-		private readonly _toastrService: ToastrService
-	) {}
+	constructor(private readonly _apiService: ApiService) {}
+	addQuestion(
+		requestData: AddQuestionRequestDTO
+	): Observable<HttpResponse<number>> {
+		return this._apiService.post<number, AddQuestionRequestDTO>(
+			'Question',
+			requestData
+		);
+	}
 
-	addQuestion(requestData: AddQuestionRequestDTO): Observable<number> {
+	checkLimits(): Observable<ILimitCheckResponseDTO> {
 		return this._apiService
-			.post<IAddQuestionResponseDTO, AddQuestionRequestDTO>(
-				'Question',
-				requestData
-			)
-			.pipe(
-				map(
-					(response: HttpResponse<IAddQuestionResponseDTO>) =>
-						response.body?.questionId ?? 0
-				),
-				catchError(() => {
-					this._toastrService.error('Chwilowo nie można zadać pytania', 'Błąd');
-					return of(0);
-				})
-			);
+			.get<ILimitCheckResponseDTO>('Limit/question-add')
+			.pipe(map((response) => response.body as ILimitCheckResponseDTO));
 	}
 
 	getQuestionDetailsForUpdate(
