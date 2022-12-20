@@ -1,0 +1,6 @@
+@use 'colors' as colors;
+
+.vertical-line {
+	padding-right: 12px;
+	border-right: 1px solid colors.$bordered-gray;
+}

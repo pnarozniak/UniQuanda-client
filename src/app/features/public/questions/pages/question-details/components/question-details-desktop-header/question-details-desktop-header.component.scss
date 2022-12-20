@@ -1,0 +1,22 @@
+@use 'colors' as colors;
+@use 'breakpoints' as breakpoints;
+
+.title {
+	font-size: 35px;
+}
+
+.author-avatar {
+	height: 35px;
+	width: 35px;
+}
+
+.nickname {
+	color: colors.$bordered-gray;
+	font-size: 13px;
+}
+
+@media screen and (max-width: breakpoints.$sm) {
+	.title {
+		font-size: 18px;
+	}
+}

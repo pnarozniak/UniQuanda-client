@@ -1,0 +1,57 @@
+@use 'breakpoints' as breakpoints;
+@use 'colors' as colors;
+
+.header-container {
+	height: 47px;
+}
+
+.author-avatar {
+	width: 47px;
+}
+
+.author-nickname {
+	font-size: 15px;
+}
+
+.title-badge {
+	padding: 2px 6px 2px 6px;
+	font-size: 15px;
+	color: colors.$crystal-white;
+}
+
+.header-text {
+	font-size: 13px;
+}
+
+.mark-btn {
+	background-color: colors.$light-green;
+	color: colors.$blue-laguna;
+}
+
+.correct-answer {
+	background-color: colors.$blue-laguna !important;
+	color: colors.$crystal-white !important;
+}
+
+@media screen and (max-width: breakpoints.$sm) {
+	.header-container {
+		height: 37px;
+	}
+
+	.author-avatar {
+		width: 37px;
+	}
+
+	.author-nickname {
+		font-size: 11px;
+	}
+
+	.title-badge {
+		font-size: 11px;
+		color: colors.$crystal-white;
+	}
+
+	.header-text {
+		font-size: 10px;
+	}
+}

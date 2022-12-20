@@ -1,12 +1,14 @@
 <div class="d-flex flex-xl-row flex-column w-100 px-lg-5 px-3">
 	<div
 		class="d-flex flex-column w-100 me-lg-5"
-		[appLoading]="!finishedInitialLoading">
-		<h1 class="mt-sm-5 mt-3 mb-1">Dodaj pytanie</h1>
+		[appLoading]="!finishedInitialLoading && !editMode">
+		<h1 class="mt-sm-5 mt-3 mb-1">
+			{{ editMode ? 'Edytuj pytanie' : 'Dodaj pytanie' }}
+		</h1>
 		<form
 			[formGroup]="form"
 			class="d-flex flex-column"
-			(ngSubmit)="handleAsk()">
+			(ngSubmit)="editMode ? updateQuestion() : handleAsk()">
 			<app-input
 				label="Tytuł pytania"
 				class="mt-3"
@@ -25,6 +27,7 @@
 			<app-tag-chips
 				class="mb-3"
 				[tagCtrl]="tagInput"
+				[initialTags]="initialTags"
 				[maxTagsAmount]="maxTagsAmount"
 				(selectedTagsEmitter)="setTags($event)"></app-tag-chips>
 			<app-content-form
@@ -53,7 +56,13 @@
 							'Potwierdź że upewniłeś/łaś się, że pytanie nie zostało już zadane.'
 					}
 				]"></app-checkbox>
-			<app-button mode="submit" class="px-3 py-2 mt-3 ask-button"
+			<app-button
+				mode="submit"
+				*ngIf="editMode"
+				class="px-3 py-2 mt-3 ask-button"
+				>Zaktualizuj pytanie</app-button
+			>
+			<app-button mode="submit" *ngIf="!editMode" class="px-3 py-2 mt-3"
 				>Zadaj pytanie</app-button
 			>
 		</form>
