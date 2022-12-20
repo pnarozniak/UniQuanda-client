@@ -17,7 +17,11 @@ import AskQuestionApiService from './services/ask-question-api.service';
 })
 export class AskQuestionComponent implements OnInit {
 	public form = new FormGroup({
-		title: new FormControl('', [Validators.required]),
+		title: new FormControl('', [
+			Validators.required,
+			Validators.minLength(5),
+			Validators.maxLength(300),
+		]),
 		content: new FormControl('', [Validators.required]),
 		confirmation: new FormControl(false, [Validators.requiredTrue]),
 	});

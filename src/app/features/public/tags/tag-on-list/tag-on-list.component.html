@@ -2,7 +2,7 @@
 	<div
 		class="d-flex flex-column p-3 h-100 tag-box-child"
 		*ngIf="!parentTagId; else subtag">
-		<app-tag [name]="tag.name" class="mb-2"></app-tag>
+		<app-tag [name]="tag.name" class="mb-2 main-tag"></app-tag>
 		<span *ngIf="tag.description">{{ tag.description }}</span>
 		<a
 			[routerLink]="['/public/home']"
