@@ -1,6 +1,5 @@
-<div
-	class="d-flex flex-xl-row flex-column justify-context-xl-center main-container ps-xl-5 ps-3 pe-xl-0 pe-3 mb-4">
-	<div class="d-flex flex-column left-menu">
+<div class="d-flex flex-xl-row flex-column w-100 px-lg-5 px-3 mb-sm-4 mb-0">
+	<div class="d-flex flex-column w-100 me-lg-5 mt-sm-5 mt-3 left-menu">
 		<app-question-details-desktop-header
 			id="header"
 			*ngIf="question"
@@ -57,9 +56,8 @@
 			(pageChange)="handlePageChanged($event)">
 		</app-paginator>
 	</div>
-	<hr class="line w-100 d-flex d-xl-none mt-xl-0 mt-4" />
 	<app-right-menu
 		[options]="['create-an-account', 'buy-premium', 'top-users']"
-		class="right-menu px-xl-4 px-0">
+	>
 	</app-right-menu>
 </div>
