@@ -1,0 +1,11 @@
+<app-content-form
+	*ngIf="answerHTMLControl"
+	class="d-flex"
+	[control]="answerHTMLControl"
+	[showBlocks]="true"
+	[isEditMode]="false">
+</app-content-form>
+<hr class="mt-0 mb-2" />
+<span class="created-at">
+	{{ moment(answer.createdAt).locale('pl').format('ll') }}
+</span>

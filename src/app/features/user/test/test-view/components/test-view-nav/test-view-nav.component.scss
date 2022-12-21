@@ -1,0 +1,54 @@
+@use 'colors' as colors;
+@use 'breakpoints' as bp;
+
+:host {
+	max-width: 325px;
+	flex: 1;
+}
+
+.header {
+	height: 45px;
+	background-color: colors.$academic-blue;
+	color: colors.$crystal-white;
+	cursor: pointer;
+	border: 2px solid transparent;
+
+	.collapse-expand-btn {
+		transform: rotate(90deg);
+
+		&.expanded {
+			transform: rotate(-90deg);
+		}
+	}
+}
+
+.questions {
+	border: 1px solid colors.$bordered-gray;
+
+	.question {
+		font-weight: 400;
+		font-size: 14px;
+		cursor: pointer;
+
+		&.active {
+			color: colors.$academic-blue;
+			font-weight: 500;
+			background-color: inherit !important;
+			cursor: default;
+		}
+
+		&:hover {
+			background-color: var(--bg-accent);
+		}
+	}
+
+	&.dark .question.active {
+		color: colors.$dark-yellow !important;
+	}
+}
+
+@media screen and (max-width: bp.$lg) {
+	:host {
+		max-width: unset;
+	}
+}

@@ -1,0 +1,66 @@
+<div class="d-flex flex-xl-row flex-column w-100 px-lg-5 px-3">
+	<div class="d-flex flex-column w-100">
+		<h1 class="mt-sm-5 mt-3 mb-0">Test</h1>
+		<span class="created-at">
+			Utworzony: {{ moment(test?.createdAt).locale('pl').format('ll') }}
+		</span>
+		<div class="d-flex flex-wrap mt-2 align-items-center">
+			<span class="me-2 info py-2">
+				Test wygenerowany na podstawie pytań z tagów:
+			</span>
+			<app-tag
+				*ngFor="let tag of test?.tags; let last = last"
+				[name]="tag.name"
+				[class.me-2]="!last">
+			</app-tag>
+			<app-button
+				*ngIf="test?.isCreator && !test?.isFinished"
+				class="ms-auto py-2 px-3 finish-test-btn mt-2 mt-md-0"
+				color="purple"
+				(click)="finishTest()">
+				Zakończ test
+			</app-button>
+			<div
+				*ngIf="test?.isCreator && test?.isFinished"
+				class="ms-auto py-2 px-3 finished d-flex align-items-center">
+				<app-icon icon="check" class="me-1"></app-icon>
+				Rozwiązany
+			</div>
+		</div>
+		<hr class="d-block d-md-none mt-4 mb-3" />
+		<div class="d-flex mt-2 w-100 flex-lg-row flex-column pb-5">
+			<app-test-view-nav
+				[test]="test"
+				[(activeQuestion)]="activeQuestion"
+				(activeQuestionChange)="scrollToQuestion()"
+				class="me-lg-5">
+			</app-test-view-nav>
+			<div class="question-wrapper pt-4 pt-lg-0" #questionRef>
+				<app-test-view-question
+					[activeQuestion]="activeQuestion"
+					[activeQuestionNumber]="(getActiveQuestionIndex() || 0) + 1">
+				</app-test-view-question>
+				<div
+					class="d-flex align-items-center justify-content-between w-100 mt-2">
+					<app-button
+						class="py-2 px-3"
+						[disabled]="!getActiveQuestionIndex()"
+						(click)="changeQuestion('prev')">
+						<< Poprzednie pytanie
+					</app-button>
+					<app-button
+						class="py-2 px-3"
+						[disabled]="
+							!!!(
+								test?.questions &&
+								getActiveQuestionIndex() !== test!.questions.length - 1
+							)
+						"
+						(click)="changeQuestion('next')"
+						>Następne pytanie >></app-button
+					>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

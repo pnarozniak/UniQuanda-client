@@ -1,0 +1,16 @@
+<app-dialog-base class="d-flex flex-column">
+	<h4 class="text-center">Czy na pewno chesz zakończyć ten test?</h4>
+	<div class="text-center mt-2">
+		Jeśli zakończysz test, zostanie on oznaczony jako rozwiązany. Mimo to,
+		będziesz mógł do niego powrócić w dowolnym momencie.
+	</div>
+	<hr />
+	<div class="d-flex justify-content-between align-items-center">
+		<app-button color="none" class="px-4 py-2" (click)="cancel()">
+			Anuluj
+		</app-button>
+		<app-button class="px-4 py-2" (click)="finishTest()">
+			Zakończ test
+		</app-button>
+	</div>
+</app-dialog-base>

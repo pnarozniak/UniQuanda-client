@@ -9,7 +9,7 @@ import {
 	IGetRankingResponseDTO,
 	IGetRankingResponseDTOUser,
 } from '../../models/get-ranking.model';
-import { GetRankingApiService } from '../../services/get-ranking.api.service';
+import { RankingApiService } from '../../services/ranking-api.service';
 
 @Component({
 	selector: 'app-ranking-navigation',
@@ -41,7 +41,7 @@ export class RankingNavigationComponent implements OnInit, OnDestroy {
 	constructor(
 		private readonly _route: ActivatedRoute,
 		private readonly _location: Location,
-		private readonly _getRankingApiService: GetRankingApiService
+		private readonly _rankingApiService: RankingApiService
 	) {}
 
 	ngOnDestroy(): void {
@@ -131,7 +131,7 @@ export class RankingNavigationComponent implements OnInit, OnDestroy {
 			}
 		}
 
-		this.displayedUsers$ = this._getRankingApiService
+		this.displayedUsers$ = this._rankingApiService
 			.getRanking(requestObject)
 			.pipe(
 				map((response) => {
