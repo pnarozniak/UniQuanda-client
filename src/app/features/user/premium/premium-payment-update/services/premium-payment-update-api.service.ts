@@ -9,6 +9,11 @@ import { IHandlePremiumPaymentStatusResponseDTO } from '../models/handle-premium
 export class PremiumPaymentUpdateApiService {
 	constructor(private readonly _apiService: ApiService) {}
 
+	/**
+	 * Send request to handle premium payment status
+	 * @returns Observable<HttpResponse<IHandlePremiumPaymentStatusResponseDTO>> object with status code of request
+	 * and data of IHandlePremiumPaymentStatusResponseDTO
+	 */
 	public handlePremiumPayment(): Observable<
 		HttpResponse<IHandlePremiumPaymentStatusResponseDTO>
 		// eslint-disable-next-line indent

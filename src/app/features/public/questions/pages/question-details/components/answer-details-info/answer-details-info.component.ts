@@ -23,6 +23,7 @@ export class AnswerDetailsInfoComponent implements OnInit {
 	@Input() isQuestionAuthor = false;
 	@Input() question!: IQuestionDetailsEntity;
 	@Input() parentId: number | null = null;
+	@Input() customId = '';
 
 	public answerFormMode = AnswerFormMode;
 	public isVisibleEditAnswerForm = false;
@@ -34,7 +35,9 @@ export class AnswerDetailsInfoComponent implements OnInit {
 		private readonly _toastrService: ToastrService,
 		private readonly _router: Router,
 		private readonly _dialogService: DialogService
-	) {}
+	) {
+		this._router.routeReuseStrategy.shouldReuseRoute = () => false;
+	}
 
 	ngOnInit(): void {
 		if (this.isContentOwner) this.isLikeBtnClicked = true;
@@ -99,7 +102,9 @@ export class AnswerDetailsInfoComponent implements OnInit {
 						.navigateByUrl('/', { skipLocationChange: true })
 						.then(() =>
 							this._router.navigate([splittedUrl[0]], {
-								queryParams: { page: splittedUrl[1].split('=')[1] },
+								queryParams: {
+									page: splittedUrl[1].split('&')[0].split('=')[1],
+								},
 							})
 						);
 				},
@@ -112,7 +117,9 @@ export class AnswerDetailsInfoComponent implements OnInit {
 							.navigateByUrl('/', { skipLocationChange: true })
 							.then(() =>
 								this._router.navigate([splittedUrl[0]], {
-									queryParams: { page: splittedUrl[1].split('=')[1] },
+									queryParams: {
+										page: splittedUrl[1].split('&')[0].split('=')[1],
+									},
 								})
 							);
 					} else if (err.status === 409) {

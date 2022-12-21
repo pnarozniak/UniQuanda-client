@@ -22,6 +22,7 @@ export class AnswerFormComponent implements OnInit {
 	@Input() answerEditFormMode: AnswerFormMode = AnswerFormMode.DisplayMode;
 	@Input() isEditMode!: boolean;
 	@Input() page = 1;
+	@Input() customId = '';
 
 	@Output() isEditModeChange = new EventEmitter<boolean>();
 
@@ -33,9 +34,18 @@ export class AnswerFormComponent implements OnInit {
 		private readonly _toastr: ToastrService,
 		private readonly _loader: LoaderService,
 		private readonly _router: Router
-	) {}
+	) {
+		this._router.routeReuseStrategy.shouldReuseRoute = () => false;
+	}
 
 	ngOnInit(): void {
+		if (this.isEditMode) {
+			const el = document.getElementById(`form${this.customId}`);
+			el?.scrollIntoView({
+				behavior: 'smooth',
+				block: 'center',
+			});
+		}
 		this.contentControl.setValue(this.htmlContet);
 	}
 
@@ -64,32 +74,40 @@ export class AnswerFormComponent implements OnInit {
 					if (pageAnswer === this.page) {
 						const currentUrl = this._router.url;
 						const splittedUrl = currentUrl.split('?');
-						this._router
-							.navigateByUrl('/', { skipLocationChange: true })
-							.then(() =>
-								this._router.navigate([splittedUrl[0]], {
-									queryParams: {
-										page: splittedUrl[1].split('=')[1],
-										item: res.body?.idAnswer,
-										comment: res.body?.idComment,
-									},
-								})
-							);
+
+						this._router.navigate([splittedUrl[0]], {
+							queryParams: {
+								page: pageAnswer,
+								item: res.body?.idAnswer,
+								comment: res.body?.idComment,
+							},
+						});
+
+						// const currentUrl = this._router.url;
+						// const splittedUrl = currentUrl.split('?');
+						// this._router
+						// 	.navigateByUrl(splittedUrl[0], { skipLocationChange: true })
+						// 	.then(() =>
+						// 		this._router.navigate([splittedUrl[0]], {
+						// 			queryParams: {
+						// 				page: splittedUrl[1].split('&')[0].split('=')[1],
+						// 				item: res.body?.idAnswer,
+						// 				comment: res.body?.idComment,
+						// 			},
+						// 		})
+						// 	);
 					} else {
-						this._router
-							.navigateByUrl('/', { skipLocationChange: true })
-							.then(() => {
-								this._router.navigate(
-									[`/public/questions/${this.idQuestion}`],
-									{
-										queryParams: {
-											page: pageAnswer,
-											item: res.body?.idAnswer,
-											comment: res.body?.idComment,
-										},
-									}
-								);
-							});
+						// this._router
+						// 	.navigateByUrl('/', { skipLocationChange: true })
+						// 	.then(() => {
+						this._router.navigate([`/public/questions/${this.idQuestion}`], {
+							queryParams: {
+								page: pageAnswer,
+								item: res.body?.idAnswer,
+								comment: res.body?.idComment,
+							},
+						});
+						// });
 					}
 				},
 				error: (err) => {

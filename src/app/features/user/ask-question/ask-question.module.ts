@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { LimitExceededComponent } from './pages/limit-exceeded/limit-exceeded.component';
 
 @NgModule({
 	imports: [
@@ -19,6 +20,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 		MatAutocompleteModule,
 		MatFormFieldModule,
 	],
-	declarations: [AskQuestionComponent],
+	declarations: [AskQuestionComponent, LimitExceededComponent],
 })
 export class AskQuestionModule {}
