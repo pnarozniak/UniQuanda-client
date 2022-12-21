@@ -1,3 +1,5 @@
+import { finalize } from 'rxjs';
+import { LoaderService } from 'src/app/core/services/loader.service';
 import { Component, Input } from '@angular/core';
 import { IAnswerDetails } from '../../models/answer-details.dto';
 import { IQuestionDetailsEntity } from '../../models/question-details.dto';
@@ -15,10 +17,14 @@ export default class QuestionAnswersComponent {
 	@Input() question!: IQuestionDetailsEntity;
 	@Input() itemToScroll: number | null = null;
 	@Input() commentToScroll: number | null = null;
+	@Input() customId = '';
 
 	public isCommentsDisabled = true;
 
-	constructor(private readonly _answersApiService: AnswersApiService) {}
+	constructor(
+		private readonly _answersApiService: AnswersApiService,
+		private readonly _loader: LoaderService
+	) {}
 
 	updateCommentsVisibility(): void {
 		this.isCommentsDisabled = !this.isCommentsDisabled;
@@ -32,21 +38,14 @@ export default class QuestionAnswersComponent {
 	}
 
 	getAllComments(answer: IAnswerDetails): void {
-		this._answersApiService.getAllComments(answer.id).subscribe({
-			next: (res) => {
-				answer.comments = res.body!.comments;
-			},
-		});
-	}
-
-	answerToLoadComments(loadComments: boolean): void {
-		if (loadComments) {
-			const answerToLoadComments = this.answers.find(
-				(a) => a.id === Number(this.itemToScroll)
-			);
-			if (answerToLoadComments) {
-				this.getAllComments(answerToLoadComments);
-			}
-		}
+		this._loader.show();
+		this._answersApiService
+			.getAllComments(answer.id)
+			.pipe(finalize(() => this._loader.hide()))
+			.subscribe({
+				next: (res) => {
+					answer.comments = res.body!.comments;
+				},
+			});
 	}
 }

@@ -4,7 +4,8 @@
 		[htmlContet]="answer.content"
 		[(isEditMode)]="isVisibleEditAnswerForm"
 		[answerEditFormMode]="answerFormMode.EditMode"
-		[answerId]="answer.id"></app-answer-form>
+		[answerId]="answer.id"
+		[customId]="customId"></app-answer-form>
 	<hr class="m-0 w-100 mb-2" />
 	<div
 		class="d-flex flex-row justify-content-between"
@@ -67,6 +68,7 @@
 		[parentAnswerId]="parentId ?? answer.id"
 		[isEditMode]="true"
 		[answerEditFormMode]="answerFormMode.CreateMode"
+		[customId]="customId"
 		[ngClass]="{ 'ps-4': !answer.parentId }"
 		class="w-100 mb-2 mt-3"></app-answer-form>
 </div>

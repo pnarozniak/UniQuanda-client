@@ -40,7 +40,7 @@ export class AnswerDetailsHeaderComponent {
 	}
 
 	markAnswer(): void {
-		this._answersApiService.markAnswerAsCorrect(this.answer.id).subscribe({
+		this._answersApiService.updateAnswerCorrectness(this.answer.id).subscribe({
 			next: () => {
 				const answer = this.answers.find((a) => a.isCorrect);
 				if (answer) {

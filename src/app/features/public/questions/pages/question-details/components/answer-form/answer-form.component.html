@@ -1,4 +1,4 @@
-<div class="d-flex flex-column">
+<div class="d-flex flex-column" id="form{{ customId }}">
 	<app-content-form
 		[control]="contentControl"
 		[isEditMode]="isEditMode"
@@ -20,14 +20,6 @@
 				answerEditFormMode === enumAnswerFormMode.CreateMode
 					? 'Dodaj odpowiedź'
 					: 'Zaktualizuj odpowiedź'
-			}}</app-button
-		>
-		<app-button
-			color="purple"
-			class="btn px-3 py-1"
-			(click)="changeIsEditMode()"
-			>{{
-				isEditMode ? 'Wyświetl podgląd odpowiedzi' : 'Wróć do edycji odpowiedzi'
 			}}</app-button
 		>
 	</div>

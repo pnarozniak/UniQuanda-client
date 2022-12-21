@@ -11,7 +11,7 @@
 }
 
 .info-text {
-	color: colors.$crystal-white;
+	color: var(--text-default);
 }
 
 @media screen and (max-width: breakpoints.$sm) {

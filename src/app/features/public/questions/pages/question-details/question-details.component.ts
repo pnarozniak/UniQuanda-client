@@ -40,6 +40,12 @@ export class QuestionDetailsComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
+		const el = document.getElementById('header');
+		el?.scrollIntoView({
+			behavior: 'smooth',
+			block: 'start',
+		});
+
 		const queryParams = this._route.snapshot.queryParams;
 		this.page = queryParams['page'] ?? 1;
 		this.itemToScroll = queryParams['item'];
@@ -79,17 +85,19 @@ export class QuestionDetailsComponent implements OnInit {
 		if (this.itemToScroll) params = params.append('item', this.itemToScroll);
 		if (this.commentToScroll)
 			params = params.append('comment', this.commentToScroll);
-
 		this._location.replaceState(
 			`/public/questions/${idQuestion}`,
 			params.toString()
 		);
+
 		this.answers = null;
-		this._answersApiService.getAnswers(idQuestion, this.page).subscribe({
-			next: (res) => {
-				this.answers = res.body?.answers ?? [];
-			},
-		});
+		this._answersApiService
+			.getAnswers(idQuestion, this.page, this.commentToScroll)
+			.subscribe({
+				next: (res) => {
+					this.answers = res.body?.answers ?? [];
+				},
+			});
 	}
 
 	public handlePageChanged(page: number) {

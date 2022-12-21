@@ -65,31 +65,33 @@ export class QuestionDetailsHeaderSettingsComponent implements OnInit {
 	}
 
 	deleteQuestion(questionId: number) {
-		this._questionDetailsApiService.deleteQuestion(questionId).subscribe({
-			next: () => {
-				this._toastrService.success('Pomyślnie usunięto pytanie', 'Sukces');
-				this._router.navigate(['/public/home']);
-			},
-			error: (err) => {
-				if (err.status === 404) {
-					this._toastrService.error('Błąd', 'Zasób nie istnieje');
-					this._router.navigate(['/page-not-found']);
-				} else if (err.status === 409) {
-					if (
-						err.error.status === DeleteQuestionResultEnum.QuestionHasAnswers
-					) {
-						this._toastrService.success('Pytanie zawiera odpowiedzi', 'Błąd');
-						const currentUrl = this._router.url;
-						this._router
-							.navigateByUrl('/', { skipLocationChange: true })
-							.then(() => this._router.navigate([currentUrl]));
-					} else if (
-						err.error.status === DeleteQuestionResultEnum.UnSuccessful
-					) {
-						this._toastrService.error('Błąd', 'Błąd usuwania danych');
+		if (confirm('Czy napewno chcesz usunąć pytanie?')) {
+			this._questionDetailsApiService.deleteQuestion(questionId).subscribe({
+				next: () => {
+					this._toastrService.success('Pomyślnie usunięto pytanie', 'Sukces');
+					this._router.navigate(['/public/home']);
+				},
+				error: (err) => {
+					if (err.status === 404) {
+						this._toastrService.error('Błąd', 'Zasób nie istnieje');
+						this._router.navigate(['/page-not-found']);
+					} else if (err.status === 409) {
+						if (
+							err.error.status === DeleteQuestionResultEnum.QuestionHasAnswers
+						) {
+							this._toastrService.success('Pytanie zawiera odpowiedzi', 'Błąd');
+							const currentUrl = this._router.url;
+							this._router
+								.navigateByUrl('/', { skipLocationChange: true })
+								.then(() => this._router.navigate([currentUrl]));
+						} else if (
+							err.error.status === DeleteQuestionResultEnum.UnSuccessful
+						) {
+							this._toastrService.error('Błąd', 'Błąd usuwania danych');
+						}
 					}
-				}
-			},
-		});
+				},
+			});
+		}
 	}
 }
