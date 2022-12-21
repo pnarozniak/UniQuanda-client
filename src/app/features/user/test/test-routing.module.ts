@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TestComponent } from './test.component';
 
 const routes: Routes = [
 	{
 		path: '',
-		component: TestComponent,
+		loadChildren: () =>
+			import('./tests-dashboard/tests-dashboard.module').then(
+				(m) => m.TestsDashboardModule
+			),
+		pathMatch: 'full',
 	},
 	{
-		path: 'automatic',
+		path: ':idTest',
 		loadChildren: () =>
-			import('./automatic-test/automatic-test.module').then(
-				(m) => m.AutomaticTestModule
-			),
+			import('./test-view/test-view.module').then((m) => m.TestViewModule),
+		pathMatch: 'full',
 	},
 ];
 

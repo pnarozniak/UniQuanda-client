@@ -1,0 +1,64 @@
+<div class="question w-100 p-4" appTheme>
+	<h4>{{ activeQuestionNumber }}. {{ activeQuestion?.header }}</h4>
+	<div class="created-at ps-2">
+		{{ moment(activeQuestion?.createdAt).locale('pl').format('ll') }}
+	</div>
+	<app-content-form
+		*ngIf="questionHTMLControl"
+		class="d-flex"
+		[control]="questionHTMLControl"
+		[showBlocks]="true"
+		[isEditMode]="false">
+	</app-content-form>
+	<app-uniquanda-line></app-uniquanda-line>
+	<h6 class="mt-4 mb-2">Odpowiedź:</h6>
+	<div class="position-relative" *ngIf="activeQuestion">
+		<app-button
+			*ngIf="!isAnswerVisible()"
+			(click)="showAnswer(activeQuestion!.id)"
+			class="px-3 py-2 show-answer-btn">
+			Pokaż odpowiedź
+		</app-button>
+		<div class="answer-wrapper p-3 pt-0" [class.blur]="!isAnswerVisible()">
+			<app-test-view-answer
+				[class.blur]="!isAnswerVisible()"
+				*ngIf="activeQuestion"
+				[answer]="activeQuestion.answer">
+			</app-test-view-answer>
+		</div>
+		<app-button
+			*ngIf="isAnswerVisible() && activeQuestion?.answer?.commentsCount"
+			color="none"
+			class="display-comments-btn mb-2"
+			(click)="toggleComments()">
+			<span>
+				{{ areCommentsExpanded() ? '&#x25B2; Schowaj' : '&#x25BC; Wyświetl' }}
+				{{ parseCommentsCount(activeQuestion!.answer.commentsCount) }}
+			</span>
+		</app-button>
+		<ng-container *ngIf="areCommentsExpanded()">
+			<app-test-view-answer
+				class="ms-2 ms-sm-5 p-3 pt-0 comment"
+				*ngFor="let comment of getComments(); let index = index"
+				[class.odd]="index % 2 !== 0"
+				[answer]="comment">
+			</app-test-view-answer>
+		</ng-container>
+		<ng-container *ngIf="isAnswerVisible()">
+			<div class="add-answer-info py-2 text-center mt-2 px-2">
+				Jeśli nie zgadzasz się z odpowiedzią, możesz dodać swoją odpowiedź do
+				pytania!
+			</div>
+			<div class="d-flex">
+				<a
+					class="mx-auto mt-3"
+					target="_blank"
+					[routerLink]="['/public/questions', activeQuestion!.id]">
+					<app-button color="none" class="open-question-page-btn">
+						Przejdź do strony z pytaniem >
+					</app-button>
+				</a>
+			</div>
+		</ng-container>
+	</div>
+</div>

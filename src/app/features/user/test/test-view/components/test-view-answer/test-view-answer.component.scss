@@ -1,0 +1,11 @@
+@use 'colors' as colors;
+
+:host {
+	font-size: 14px;
+	display: block;
+
+	.created-at {
+		font-size: 13px;
+		font-weight: 400;
+	}
+}

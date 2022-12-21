@@ -1,0 +1,40 @@
+@use 'breakpoints' as bp;
+@use 'colors' as colors;
+
+:host {
+	.info {
+		font-size: 14px;
+		font-style: italic;
+	}
+
+	.created-at {
+		font-size: 12px;
+	}
+
+	::ng-deep app-tag {
+		span {
+			padding: 2px 10px !important;
+		}
+	}
+
+	.question-wrapper {
+		flex: 1;
+	}
+
+	app-button,
+	.finished {
+		font-size: 13px;
+	}
+
+	.finished {
+		background-color: colors.$blue-laguna;
+		border-radius: 5px;
+		color: colors.$crystal-white;
+	}
+}
+
+@media screen and (max-width: bp.$md) {
+	.finish-test-btn {
+		width: 100%;
+	}
+}

@@ -20,6 +20,10 @@ export class RightMenuGenerateTestComponent {
 		);
 		if (this.control.invalid) return;
 
-		this.router.navigate(['/user/test/automatic']);
+		this.router.navigate(['/user/test/automatic'], {
+			queryParams: {
+				tagIds: this.selectedTags.map((t) => t.id).join(','),
+			},
+		});
 	}
 }

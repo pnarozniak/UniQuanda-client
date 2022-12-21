@@ -1,0 +1,31 @@
+<div
+	class="header d-flex align-items-center justify-content-between px-3"
+	(click)="expanded = !expanded">
+	<span>Lista pytań</span>
+	<app-button color="none">
+		<app-icon
+			icon="arrow"
+			class="collapse-expand-btn"
+			[class.expanded]="expanded">
+		</app-icon>
+	</app-button>
+</div>
+<div
+	class="questions"
+	[@expandCollapse]="expanded ? 'expanded' : 'collapsed'"
+	appTheme>
+	<ng-container
+		*ngFor="
+			let question of test?.questions || [];
+			let index = index;
+			let last = last
+		">
+		<div
+			class="question my-2 py-1 mx-3 px-1"
+			[class.active]="question.id === activeQuestion?.id"
+			(click)="changeQuestion(question)">
+			<span> {{ index + 1 }}. {{ question.header }} </span>
+		</div>
+		<hr class="m-0 mx-3" *ngIf="!last" />
+	</ng-container>
+</div>
