@@ -6,13 +6,13 @@ import {
 	trigger,
 } from '@angular/animations';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IAutomaticTestQuestion } from '../../models/automatic-test-question.model';
-import { IGetAutomaticTestResponseDTO } from '../../models/get-automatic-test.dto';
+import { IGetTestResponseDTO } from '../../models/get-test.dto';
+import { ITestQuestion } from '../../models/test-question.model';
 
 @Component({
-	selector: 'app-automatic-test-nav',
-	templateUrl: './automatic-test-nav.component.html',
-	styleUrls: ['./automatic-test-nav.component.scss'],
+	selector: 'app-test-view-nav',
+	templateUrl: './test-view-nav.component.html',
+	styleUrls: ['./test-view-nav.component.scss'],
 	animations: [
 		trigger('expandCollapse', [
 			state(
@@ -34,15 +34,15 @@ import { IGetAutomaticTestResponseDTO } from '../../models/get-automatic-test.dt
 		]),
 	],
 })
-export class AutomaticTestNavComponent {
-	@Input() test: IGetAutomaticTestResponseDTO | null = null;
+export class TestViewNavComponent {
+	@Input() test: IGetTestResponseDTO | null = null;
 
-	@Input() activeQuestion: IAutomaticTestQuestion | null = null;
-	@Output() activeQuestionChange = new EventEmitter<IAutomaticTestQuestion>();
+	@Input() activeQuestion: ITestQuestion | null = null;
+	@Output() activeQuestionChange = new EventEmitter<ITestQuestion>();
 
 	expanded = true;
 
-	changeQuestion(question: IAutomaticTestQuestion) {
+	changeQuestion(question: ITestQuestion) {
 		this.activeQuestion = question;
 		this.activeQuestionChange.emit(this.activeQuestion);
 	}

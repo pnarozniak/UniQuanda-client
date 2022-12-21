@@ -7,29 +7,29 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import * as moment from 'moment';
-import { IAutomaticTestAnswer } from '../../models/automatic-test-answer.model';
-import { IAutomaticTestQuestion } from '../../models/automatic-test-question.model';
-import { AutomaticTestApiService } from '../../services/automatic-test-api.service';
+import { ITestAnswer } from '../../models/test-answer.model';
+import { ITestQuestion } from '../../models/test-question.model';
+import { TestViewApiService } from '../../services/test-view-api.service';
 
 @Component({
-	selector: 'app-automatic-test-question',
-	templateUrl: './automatic-test-question.component.html',
-	styleUrls: ['./automatic-test-question.component.scss'],
+	selector: 'app-test-view-question',
+	templateUrl: './test-view-question.component.html',
+	styleUrls: ['./test-view-question.component.scss'],
 })
-export class AutomaticTestQuestionComponent implements OnChanges {
-	@Input() activeQuestion: IAutomaticTestQuestion | null = null;
+export class TestViewQuestionComponent implements OnChanges {
+	@Input() activeQuestion: ITestQuestion | null = null;
 	@Input() activeQuestionNumber = 1;
 	questionHTMLControl: FormControl | null = null;
 	moment = moment;
 	questionsWithVisibleAnswers: number[] = [];
 	comments: {
 		questionId: number;
-		values: IAutomaticTestAnswer[];
+		values: ITestAnswer[];
 		expanded: boolean;
 	}[] = [];
 
 	constructor(
-		private automaticTestApi: AutomaticTestApiService,
+		private testViewApi: TestViewApiService,
 		private changeDetectorRef: ChangeDetectorRef
 	) {}
 
@@ -71,7 +71,7 @@ export class AutomaticTestQuestionComponent implements OnChanges {
 		);
 
 		if (!comment) {
-			this.automaticTestApi
+			this.testViewApi
 				.getAllComments$(this.activeQuestion!.id)
 				.subscribe((comments) => {
 					this.comments = [

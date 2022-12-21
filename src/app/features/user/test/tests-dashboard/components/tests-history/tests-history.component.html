@@ -1,0 +1,40 @@
+<span class="d-block mt-5 mb-3" *ngIf="tests?.length !== 0">
+	<span class="bold">Twoje ostatnie testy:</span>
+</span>
+<div
+	*ngFor="let test of tests"
+	class="test mb-3 d-flex flex-column"
+	[routerLink]="['/user/test', test.id]">
+	<div class="d-flex p-3">
+		<div class="d-flex flex-column">
+			<span class="d-block created-at mb-2 ms-auto px-2">
+				{{ moment(test.createdAt).locale('pl').format('ll') }}
+			</span>
+			<span
+				class="d-block status ms-auto px-2 py-1"
+				[class.finished]="test.isFinished">
+				{{ test.isFinished ? 'Rozwiązany' : 'Aktywny' }}
+			</span>
+		</div>
+		<div class="d-flex tags-wrapper ps-3 ms-3 align-items-center flex-wrap">
+			<app-tag *ngFor="let tag of test.tags" [name]="tag.name"></app-tag>
+		</div>
+	</div>
+	<app-uniquanda-line></app-uniquanda-line>
+</div>
+
+<ng-container *ngIf="!tests">
+	<div
+		*ngFor="let _ of loadingItems"
+		class="test mb-3 d-flex flex-column loading"
+		[appLoading]="true">
+		<div class="d-flex p-3">
+			<div class="d-flex flex-column">
+				<span class="d-block created-at mb-2 ms-auto px-2">
+					{{ moment().locale('pl').format('ll') }}
+				</span>
+				<span class="d-block status ms-auto px-2"> Aktywny </span>
+			</div>
+		</div>
+	</div>
+</ng-container>

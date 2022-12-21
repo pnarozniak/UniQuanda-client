@@ -12,19 +12,19 @@
 	</app-content-form>
 	<app-uniquanda-line></app-uniquanda-line>
 	<h6 class="mt-4 mb-2">Odpowiedź:</h6>
-	<div class="position-relative">
+	<div class="position-relative" *ngIf="activeQuestion">
 		<app-button
 			*ngIf="!isAnswerVisible()"
 			(click)="showAnswer(activeQuestion!.id)"
 			class="px-3 py-2 show-answer-btn">
-			Pokaz odpowiedź >
+			Pokaż odpowiedź
 		</app-button>
 		<div class="answer-wrapper p-3 pt-0" [class.blur]="!isAnswerVisible()">
-			<app-automatic-test-answer
+			<app-test-view-answer
 				[class.blur]="!isAnswerVisible()"
 				*ngIf="activeQuestion"
 				[answer]="activeQuestion.answer">
-			</app-automatic-test-answer>
+			</app-test-view-answer>
 		</div>
 		<app-button
 			*ngIf="isAnswerVisible() && activeQuestion?.answer?.commentsCount"
@@ -37,15 +37,15 @@
 			</span>
 		</app-button>
 		<ng-container *ngIf="areCommentsExpanded()">
-			<app-automatic-test-answer
+			<app-test-view-answer
 				class="ms-2 ms-sm-5 p-3 pt-0 comment"
 				*ngFor="let comment of getComments(); let index = index"
 				[class.odd]="index % 2 !== 0"
 				[answer]="comment">
-			</app-automatic-test-answer>
+			</app-test-view-answer>
 		</ng-container>
 		<ng-container *ngIf="isAnswerVisible()">
-			<div class="add-answer-info py-2 text-center mt-2">
+			<div class="add-answer-info py-2 text-center mt-2 px-2">
 				Jeśli nie zgadzasz się z odpowiedzią, możesz dodać swoją odpowiedź do
 				pytania!
 			</div>

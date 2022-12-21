@@ -1,9 +1,14 @@
 @use 'breakpoints' as bp;
+@use 'colors' as colors;
 
 :host {
 	.info {
 		font-size: 14px;
 		font-style: italic;
+	}
+
+	.created-at {
+		font-size: 12px;
 	}
 
 	::ng-deep app-tag {
@@ -16,8 +21,15 @@
 		flex: 1;
 	}
 
-	app-button {
+	app-button,
+	.finished {
 		font-size: 13px;
+	}
+
+	.finished {
+		background-color: colors.$blue-laguna;
+		border-radius: 5px;
+		color: colors.$crystal-white;
 	}
 }
 

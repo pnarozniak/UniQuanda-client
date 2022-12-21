@@ -7,15 +7,15 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import * as moment from 'moment';
-import { IAutomaticTestAnswer } from '../../models/automatic-test-answer.model';
+import { ITestAnswer } from '../../models/test-answer.model';
 
 @Component({
-	selector: 'app-automatic-test-answer',
-	templateUrl: './automatic-test-answer.component.html',
-	styleUrls: ['./automatic-test-answer.component.scss'],
+	selector: 'app-test-view-answer',
+	templateUrl: './test-view-answer.component.html',
+	styleUrls: ['./test-view-answer.component.scss'],
 })
-export class AutomaticTestAnswerComponent implements OnChanges {
-	@Input() answer!: IAutomaticTestAnswer;
+export class TestViewAnswerComponent implements OnChanges {
+	@Input() answer!: ITestAnswer;
 	answerHTMLControl: FormControl | null = new FormControl('');
 	moment = moment;
 
