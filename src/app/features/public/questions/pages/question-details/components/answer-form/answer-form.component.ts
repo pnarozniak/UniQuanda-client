@@ -94,7 +94,7 @@ export class AnswerFormComponent implements OnInit {
 				},
 				error: (err) => {
 					if (err.status === 409)
-						this._toastr.success('Spróbuj ponownie za chwilę', 'Błąd');
+						this._toastr.error('Spróbuj ponownie za chwilę', 'Błąd');
 				},
 			});
 	}
@@ -118,7 +118,7 @@ export class AnswerFormComponent implements OnInit {
 				},
 				error: (err) => {
 					if (err.status === 409)
-						this._toastr.success('Spróbuj ponownie za chwilę', 'Błąd');
+						this._toastr.error('Spróbuj ponownie za chwilę', 'Błąd');
 				},
 			});
 	}
