@@ -32,6 +32,7 @@
 	color: col.$crystal-white;
 	background-color: col.$blue-laguna;
 	border-radius: 5px;
+	max-width: fit-content;
 }
 @media screen and (max-width: bp.$md) {
 	.right-menu {
