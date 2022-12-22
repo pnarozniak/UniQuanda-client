@@ -72,7 +72,7 @@ export class TestViewQuestionComponent implements OnChanges {
 
 		if (!comment) {
 			this.testViewApi
-				.getAllComments$(this.activeQuestion!.id)
+				.getAllComments$(this.activeQuestion!.answer.id)
 				.subscribe((comments) => {
 					this.comments = [
 						...this.comments,
