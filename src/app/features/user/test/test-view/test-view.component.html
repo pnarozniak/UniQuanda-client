@@ -46,7 +46,7 @@
 						class="py-2 px-3"
 						[disabled]="!getActiveQuestionIndex()"
 						(click)="changeQuestion('prev')">
-						<< Poprzednie pytanie
+						<< Poprzednie <span class="d-none d-sm-inline mx-1">pytanie</span>
 					</app-button>
 					<app-button
 						class="py-2 px-3"
@@ -57,7 +57,8 @@
 							)
 						"
 						(click)="changeQuestion('next')"
-						>Następne pytanie >></app-button
+						>Następne
+						<span class="d-none d-sm-inline mx-1">pytanie</span> >></app-button
 					>
 				</div>
 			</div>
