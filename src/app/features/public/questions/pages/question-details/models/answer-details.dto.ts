@@ -2,6 +2,7 @@ import { IAuthorContent } from './author-content';
 
 export interface IAnswerDetailsResponseDTO {
 	answers: IAnswerDetails[];
+	page: number;
 }
 
 export interface IAnswerDetails {

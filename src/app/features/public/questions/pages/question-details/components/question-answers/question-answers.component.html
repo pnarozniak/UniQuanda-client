@@ -10,49 +10,12 @@
 		[idLoggedUser]="idLoggedUser"
 		[isQuestionAuthor]="isQuestionAuthor"
 		[isEvenRow]="i % 2 === 1"
-		[itemToScroll]="
+		[i]="i"
+		[answerToScroll]="
 			commentToScroll === null || commentToScroll === undefined
-				? itemToScroll
+				? answerToScroll
 				: null
 		"
 		customId="i{{ i }}">
 	</app-answer-details>
-	<app-button
-		*ngIf="!answer.parentId && answer.commentsAmount > 0"
-		color="none"
-		class="display-comments-btn mb-2"
-		(click)="updateCommentsVisibility()">
-		<span
-			>{{ isCommentsDisabled ? '&#x25B2; Schowaj' : '&#x25BC; Wyświetl' }}
-			{{ generateCommentsCountText(answer.commentsAmount) }}</span
-		>
-	</app-button>
-	<div *ngIf="isCommentsDisabled" class="ps-4">
-		<div
-			*ngFor="let comment of answer.comments; let j = index"
-			class="mb-3"
-			id="comment{{ comment.id }}">
-			<app-answer-details
-				[ngClass]="comment.parentId && comment.commentsAmount ? 'mb-3' : 'mb-4'"
-				[question]="question"
-				[answer]="comment"
-				[answers]="answer.comments"
-				[idLoggedUser]="idLoggedUser"
-				[isQuestionAuthor]="isQuestionAuthor"
-				[parentId]="answer.id"
-				[isEvenRow]="j % 2 === 1"
-				[commentToScroll]="commentToScroll"
-				customId="i{{ i }}j{{ j }}"></app-answer-details>
-		</div>
-		<app-button
-			*ngIf="
-				answer.commentsAmount > 3 &&
-				answer.commentsAmount !== answer.comments.length
-			"
-			(click)="getAllComments(answer)"
-			color="none"
-			class="display-comments-btn">
-			<app-icon icon="load_more" class="me-1"></app-icon> Załaduj więcej
-		</app-button>
-	</div>
 </div>

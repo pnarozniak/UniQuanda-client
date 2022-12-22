@@ -39,7 +39,7 @@
 			[question]="question"
 			[idLoggedUser]="user?.id ?? null"
 			[isQuestionAuthor]="question.author.id === user?.id"
-			[itemToScroll]="itemToScroll"
+			[answerToScroll]="answerToScroll"
 			[commentToScroll]="commentToScroll"></app-question-answers>
 		<div class="d-flex flex-column" *ngIf="!answers || !question">
 			<div

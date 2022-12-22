@@ -38,12 +38,12 @@ export class ProfileAnswerBoxComponent {
 	generateDetailsParams(answer: IGetAnswersResponseDtoAnswer) {
 		if (answer.parentId) {
 			return {
-				answerId: answer.id,
-				parentAnswerId: answer.parentId,
+				answer: answer.parentId,
+				comment: answer.id,
 			};
 		}
 		return {
-			answerId: answer.id,
+			answer: answer.id,
 		};
 	}
 }
