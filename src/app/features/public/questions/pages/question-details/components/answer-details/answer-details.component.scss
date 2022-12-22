@@ -1,3 +1,4 @@
+@use 'breakpoints' as breakpoints;
 @use 'colors' as colors;
 
 .single-row {
@@ -12,5 +13,16 @@
 .dark {
 	&.even-row {
 		background-color: colors.$zebra-gray !important;
+	}
+}
+
+.display-comments-btn {
+	color: var(--link-default);
+	font-size: 13px;
+}
+
+@media screen and (max-width: breakpoints.$sm) {
+	.display-comments-btn {
+		font-size: 11px;
 	}
 }
