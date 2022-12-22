@@ -26,7 +26,7 @@ export class QuestionDetailsComponent implements OnInit {
 	public page = 1;
 	public pageSize = 5;
 	public pageBehavior = new BehaviorSubject<number>(this.page);
-	public itemToScroll: number | null = null;
+	public answerToScroll: number | null = null;
 	public commentToScroll: number | null = null;
 
 	constructor(
@@ -48,8 +48,9 @@ export class QuestionDetailsComponent implements OnInit {
 
 		const queryParams = this._route.snapshot.queryParams;
 		this.page = queryParams['page'] ?? 1;
-		this.itemToScroll = queryParams['item'];
+		this.answerToScroll = queryParams['answer'];
 		this.commentToScroll = queryParams['comment'];
+
 		this.pageBehavior = new BehaviorSubject<number>(this.page);
 		this.user = this._userDataService.getUserData();
 		this._route.paramMap.subscribe((params) => {
@@ -81,23 +82,33 @@ export class QuestionDetailsComponent implements OnInit {
 	}
 
 	getAnswers(idQuestion: number): void {
+		this.answers = null;
+		this._answersApiService
+			.getAnswers(
+				idQuestion,
+				this.page,
+				this.answerToScroll,
+				this.commentToScroll
+			)
+			.subscribe({
+				next: (res) => {
+					this.page = res.body?.page ?? this.page;
+					this.setHttpParams(idQuestion);
+					this.answers = res.body?.answers ?? [];
+				},
+			});
+	}
+
+	private setHttpParams(idQuestion: number): void {
 		let params = new HttpParams().append('page', this.page);
-		if (this.itemToScroll) params = params.append('item', this.itemToScroll);
+		if (this.answerToScroll)
+			params = params.append('answer', this.answerToScroll);
 		if (this.commentToScroll)
 			params = params.append('comment', this.commentToScroll);
 		this._location.replaceState(
 			`/public/questions/${idQuestion}`,
 			params.toString()
 		);
-
-		this.answers = null;
-		this._answersApiService
-			.getAnswers(idQuestion, this.page, this.commentToScroll)
-			.subscribe({
-				next: (res) => {
-					this.answers = res.body?.answers ?? [];
-				},
-			});
 	}
 
 	public handlePageChanged(page: number) {

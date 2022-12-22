@@ -15,7 +15,7 @@ export class AnswerDetailsComponent implements OnInit {
 	@Input() isEvenRow = false;
 	@Input() question!: IQuestionDetailsEntity;
 	@Input() parentId: number | null = null;
-	@Input() itemToScroll: number | null = null;
+	@Input() answerToScroll: number | null = null;
 	@Input() commentToScroll: number | null = null;
 	@Input() customId = '';
 
@@ -29,8 +29,8 @@ export class AnswerDetailsComponent implements OnInit {
 				behavior: 'smooth',
 				block: 'start',
 			});
-		} else if (this.itemToScroll && !this.commentToScroll) {
-			const el = document.getElementById(`item${this.itemToScroll}`);
+		} else if (this.answerToScroll && !this.commentToScroll) {
+			const el = document.getElementById(`item${this.answerToScroll}`);
 			el?.scrollIntoView({
 				behavior: 'smooth',
 				block: 'start',

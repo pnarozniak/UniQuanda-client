@@ -15,7 +15,7 @@ export default class QuestionAnswersComponent {
 	@Input() answers: IAnswerDetails[] = [];
 	@Input() isQuestionAuthor = false;
 	@Input() question!: IQuestionDetailsEntity;
-	@Input() itemToScroll: number | null = null;
+	@Input() answerToScroll: number | null = null;
 	@Input() commentToScroll: number | null = null;
 	@Input() customId = '';
 

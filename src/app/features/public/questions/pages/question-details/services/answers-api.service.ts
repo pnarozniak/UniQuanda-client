@@ -57,10 +57,12 @@ export class AnswersApiService {
 	getAnswers(
 		idQuestion: number,
 		page: number,
+		idAnswer: number | null,
 		idComment: number | null
 	): Observable<HttpResponse<IAnswerDetailsResponseDTO>> {
 		let params = new HttpParams().append('page', page);
 		if (idComment) params = params.append('idComment', idComment);
+		if (idAnswer) params = params.append('idAnswer', idAnswer);
 		return this._apiService.get<IAnswerDetailsResponseDTO>(
 			`Answers/question/${idQuestion}`,
 			params
