@@ -1,18 +1,15 @@
 <div class="d-flex w-100 flex-column px-3 my-auto content-box">
 	<app-icon icon="shrug" class="shrug mx-auto"></app-icon>
 	<h1 class="mx-auto text-center header-text">Niestety osiągnąłeś limit!</h1>
-	<div class="mx-auto text-center text-box">
-		<p>
+	<div class="mx-auto text-box">
+		<p class="text-center">
 			Wygląda na to, że zadałeś już maksymalną ilość pytań ({{ limit }}) w
 			{{ generateDurationText() }}. By nie martwić się limitami - zakup konto
 			premium!
 		</p>
 		<div class="box p-4 mx-auto">
-			<h5>Kup premium</h5>
-			<span> Kupując premium otrzymasz: </span>
-			<span class="d-block bold mt-3">
-				Szykuj się na potężną dawkę wiedzy!
-			</span>
+			<h5 class="text-center">Kup premium</h5>
+			<span class="d-block text-center"> Kupując premium otrzymasz: </span>
 			<div class="benefit">
 				<app-icon icon="check"></app-icon>
 				<span><span class="bold">Nielimitowane</span> zadawnie pytań!</span>
@@ -32,7 +29,9 @@
 					wysyłania wiadomości prywatnych do innych użytkowników!
 				</span>
 			</div>
-			<span class="d-block bold mt-3">Szykuj się na potężną dawkę wiedzy!</span>
+			<span class="d-block bold mt-3 text-center">
+				Szykuj się na potężną dawkę wiedzy!
+			</span>
 			<app-button class="p-2 mt-3" routerLink="/user/settings/premium">
 				Aktywuj teraz
 			</app-button>
