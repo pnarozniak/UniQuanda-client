@@ -1,11 +1,11 @@
 <div class="mx-5 d-flex flex-column mt-3" appTheme>
 	<h2>Lista zgłosznień użytkowników o przyznanie tytułu:</h2>
 	<div class="header d-flex flex-row w-100 text-center py-2 mt-3">
-		<b class="col-2 my-auto">Użytkownik</b>
-		<b class="col-2 my-auto">Tytuł</b>
-		<b class="col-1 my-auto">Zdjęcie</b>
-		<b class="col-4 my-auto">Dodatkowe informacje</b>
-		<b class="col-3 my-auto">Akcja</b>
+		<strong class="col-2 my-auto">Użytkownik</strong>
+		<strong class="col-2 my-auto">Tytuł</strong>
+		<strong class="col-1 my-auto">Zdjęcie</strong>
+		<strong class="col-4 my-auto">Dodatkowe informacje</strong>
+		<strong class="col-3 my-auto">Akcja</strong>
 	</div>
 	<ng-container *appContext="let requests of requests$ | async">
 		<ng-container *ngFor="let request of requests">

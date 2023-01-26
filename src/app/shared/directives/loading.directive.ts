@@ -1,4 +1,5 @@
 import {
+	AfterViewInit,
 	Directive,
 	ElementRef,
 	HostBinding,
@@ -11,7 +12,7 @@ import {
 @Directive({
 	selector: '[appLoading]',
 })
-export class LoadingDirective implements OnChanges {
+export class LoadingDirective implements OnChanges, AfterViewInit {
 	private readonly _loadingClassName = 'loading';
 	@Input() appLoading = false;
 	@HostBinding('class')

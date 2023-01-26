@@ -5,12 +5,13 @@
 			routerLink="/public/profile/{{ answer.author.id }}"
 			class="author-avatar me-2">
 			<img
+				alt="Zdjęcie profilowe autora"
 				[src]="answer.author.avatarUrl ?? staticImageSrc.Avatar"
 				class="author-avatar" />
 		</a>
 		<div class="d-flex flex-column gap-1">
 			<div class="d-flex flex-row align-items-center gap-2">
-				<b
+				<strong
 					*ngFor="let title of answer.author.academicTitles"
 					class="title-badge text-nowrap"
 					[ngStyle]="{
@@ -18,7 +19,7 @@
 							title.academicTitleType
 						)
 					}">
-					{{ title.name }}</b
+					{{ title.name }}</strong
 				>
 				<span class="author-nickname">
 					{{ answer.author.nickname }}
@@ -28,9 +29,9 @@
 				<span class="header-text">
 					{{ answer.publishDate | date: 'dd LLL yyyy' }}
 				</span>
-				<i *ngIf="answer.isModified" class="header-text">
+				<em *ngIf="answer.isModified" class="header-text">
 					(odpowiedź edytowana)
-				</i>
+				</em>
 			</div>
 		</div>
 	</div>

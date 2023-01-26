@@ -28,10 +28,10 @@
 	class="d-flex flex-column item-container mb-3 pb-2"
 	appTheme
 	[ngClass]="{ 'odd-row': isOddRow }">
-	<b class="item-title py-2 mb-3">
+	<strong class="item-title py-2 mb-3">
 		Id płatności:
 		{{ payment?.idTransaction ? '#' + payment?.idTransaction : '-' }}
-	</b>
+	</strong>
 	<span class="mb-2 item"
 		>Data:
 		{{

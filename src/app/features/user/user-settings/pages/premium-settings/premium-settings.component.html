@@ -6,6 +6,7 @@
 			src="assets/images/public/premium/premium_{{
 				isDarkMode ? 'dark' : 'light'
 			}}_mode.svg"
+			alt="Logo premium"
 			class="logo" />
 		<div
 			*ngIf="isDarkMode === null || premiumInfo === null"
@@ -20,7 +21,7 @@
 			class="d-flex flex-row justify-content-end mt-sm-3 mt-2 more-btn"
 			(click)="getAllPayments()"
 			[appLoading]="!premiumInfo"
-			><i>pokaż więcej...</i></app-button
+			><em>pokaż więcej...</em></app-button
 		>
 	</div>
 </div>

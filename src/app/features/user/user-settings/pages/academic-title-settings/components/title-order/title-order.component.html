@@ -1,14 +1,14 @@
 <ng-container *ngIf="userTitles.length !== 0">
 	<hr class="line mt-4" />
 	<h3>Kolejność wyświetlania tytułów na profilu</h3>
-	<i
+	<em
 		>Możesz ustalić kolejność wyświetlania twoich tytułów na profilu.
-		Przeciągnij ramkę z tytułem na odpowiednie miejsce.</i
+		Przeciągnij ramkę z tytułem na odpowiednie miejsce.</em
 	>
 	<div class="d-flex flex-row mt-3">
 		<div class="left-box d-flex flex-column me-3">
 			<div class="place d-flex" *ngFor="let title of userTitles; let i = index">
-				<b class="my-auto">{{ i + 1 }}.</b>
+				<strong class="my-auto">{{ i + 1 }}.</strong>
 			</div>
 		</div>
 		<mat-chip-list

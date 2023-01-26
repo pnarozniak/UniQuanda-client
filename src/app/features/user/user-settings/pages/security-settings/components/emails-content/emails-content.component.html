@@ -1,7 +1,7 @@
 <div class="d-flex flex-column align-items-start">
 	<h5 class="title" [appLoading]="!userEmails">E-maile przypisane do konta</h5>
-	<i class="description" [appLoading]="!userEmails"
-		>Do swojego konta możesz przypisać 3 dodatkowe e-maile.</i
+	<em class="description" [appLoading]="!userEmails"
+		>Do swojego konta możesz przypisać 3 dodatkowe e-maile.</em
 	>
 	<div class="d-flex flex-column w-100" *ngIf="userEmails; else noData">
 		<app-email-text
@@ -42,13 +42,13 @@
 			isExtraEmailFormVisible ? 'Zamknij' : 'Przypisz kolejny e-mail do konta'
 		}}</app-button
 	>
-	<i
+	<em
 		*ngIf="!checkIfUserCanAddEmail()"
 		class="info-text"
 		[appLoading]="!userEmails">
 		Nie możesz już przypisać więcej adresów e-mail. By to zrobić, usuń jeden z
 		aktualnych adresów.
-	</i>
+	</em>
 	<app-add-extra-email-form
 		#componentRef
 		*ngIf="isExtraEmailFormVisible"
