@@ -1,14 +1,14 @@
-@use 'colors' as colors;
+@use "colors" as colors;
 
 .btn-container {
-	margin-top: 28px;
-	margin-bottom: 20px;
+  margin-top: 28px;
+  margin-bottom: 20px;
 }
 
 .cancel-btn {
-	background-color: colors.$light-red;
+  background-color: colors.$light-red;
 }
 
 .confirm-btn {
-	background-color: colors.$academic-blue;
+  background-color: colors.$academic-blue;
 }

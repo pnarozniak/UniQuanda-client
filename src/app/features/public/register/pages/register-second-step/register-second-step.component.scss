@@ -1,29 +1,29 @@
-@use 'colors' as colors;
-@use 'breakpoints' as breakpoints;
+@use "colors" as colors;
+@use "breakpoints" as breakpoints;
 
 .register-card {
-	width: 520px;
+  width: 520px;
 
-	.register-form {
-		border: 1px solid colors.$bordered-gray;
+  .register-form {
+    border: 1px solid colors.$bordered-gray;
 
-		.header {
-			white-space: nowrap;
-		}
+    .header {
+      white-space: nowrap;
+    }
 
-		.description {
-			font-size: 15px;
-			font-weight: 400;
-		}
-	}
+    .description {
+      font-size: 15px;
+      font-weight: 400;
+    }
+  }
 }
 
 @media all and (max-width: breakpoints.$sm) {
-	.register-card {
-		width: 100%;
+  .register-card {
+    width: 100%;
 
-		.register-form {
-			border: none !important;
-		}
-	}
+    .register-form {
+      border: none !important;
+    }
+  }
 }

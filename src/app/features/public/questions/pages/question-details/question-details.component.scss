@@ -1,67 +1,60 @@
-@use 'breakpoints' as breakpoints;
-@use 'dimensions' as dimensions;
-@use 'colors' as colors;
+@use "breakpoints" as breakpoints;
+@use "dimensions" as dimensions;
+@use "colors" as colors;
 
 .question-box {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .left-menu {
-	border: 1px solid colors.$bordered-gray;
-	padding-left: 32px;
-	padding-right: 32px;
-	padding-top: 32px;
-	padding-bottom: 32px;
+  border: 1px solid colors.$bordered-gray;
+  padding: 32px;
 }
 
 .question-details-loading {
-	height: 250px;
+  height: 250px;
 }
 
 .answer-details-loading {
-	height: 150px;
+  height: 150px;
 }
 
 .add-answer-btn {
-	color: colors.$bordered-gray;
+  color: colors.$bordered-gray;
 }
 
 .btn {
-	font-size: 13px;
+  font-size: 13px;
 }
 
 .paginator-container {
-	margin-left: auto !important;
-	margin-right: 12px;
+  margin-left: auto !important;
+  margin-right: 12px;
 }
 
 @media screen and (max-width: breakpoints.$xl) {
-	.left-menu {
-		width: 100%;
-	}
+  .left-menu {
+    width: 100%;
+  }
 
-	.right-menu {
-		width: 100%;
-		margin: 0;
-	}
+  .right-menu {
+    width: 100%;
+    margin: 0;
+  }
 }
 
 @media screen and (max-width: breakpoints.$sm) {
-	.main-container {
-		margin-top: 32px;
-	}
+  .main-container {
+    margin-top: 32px;
+  }
 
-	.left-menu {
-		padding-left: 8px;
-		padding-right: 0;
-		padding-top: 0;
-		padding-top: 0;
-		padding-bottom: 0;
-		border: 0;
-	}
+  .left-menu {
+    padding: 0;
+    padding-left: 8px;
+    border: 0;
+  }
 
-	.btn {
-		font-size: 10px;
-	}
+  .btn {
+    font-size: 10px;
+  }
 }
-

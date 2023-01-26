@@ -1,54 +1,65 @@
-@use 'colors' as colors;
-@use 'breakpoints' as breakpoints;
+@use "colors" as colors;
+@use "breakpoints" as breakpoints;
 
 .info-container {
-	width: 260px;
-	& .divider {
-		background-color: colors.$light-gray;
+  width: 260px;
+
+  & .divider {
+    background-color: colors.$light-gray;
     opacity: 1;
-	}
-	& .see-more-text {
-		color: colors.$light-gray;
-		width: fit-content;
-	}
-	& .small-text {
-		font-size: 13px;
-	}
-	& .paper {
-		color: colors.$light-gray;
-	}
-	& .tag {
-		max-width: 170px;
-	}
+  }
+
+  & .see-more-text {
+    color: colors.$light-gray;
+    width: fit-content;
+  }
+
+  & .small-text {
+    font-size: 13px;
+  }
+
+  & .paper {
+    color: colors.$light-gray;
+  }
+
+  & .tag {
+    max-width: 170px;
+  }
 }
+
 .dark {
-	& .paper {
-		color: colors.$dark-yellow;
-	}
-	& .see-more-text {
-		color: colors.$crystal-white;
-	}
+  & .paper {
+    color: colors.$dark-yellow;
+  }
+
+  & .see-more-text {
+    color: colors.$crystal-white;
+  }
 }
+
 .loading-box {
-	width: 100%;
-	height: 200px;
+  width: 100%;
+  height: 200px;
 }
+
 @media screen and (max-width: breakpoints.$lg) {
-	.info-container {
-		width: unset;
-	}
+  .info-container {
+    width: unset;
+  }
 }
+
 @media screen and (max-width: breakpoints.$md) {
-	.info-container {
-		& .tag {
-			max-width: 71vw;
-		}
-	}	
+  .info-container {
+    & .tag {
+      max-width: 71vw;
+    }
+  }
 }
+
 @media screen and (max-width: breakpoints.$sm) {
-	.info-container {
-		& .tag {
-			max-width: 70vw;
-		}
-	}	
+  .info-container {
+    & .tag {
+      max-width: 70vw;
+    }
+  }
 }

@@ -1,28 +1,28 @@
-@use 'breakpoints' as breakpoints;
-@use 'colors' as colors;
+@use "breakpoints" as breakpoints;
+@use "colors" as colors;
 
 .single-row {
-	position: relative; 
-	left: -0.5rem;
+  position: relative;
+  left: -0.5rem;
 }
 
 .even-row {
-	background-color: colors.$calm-gray !important;
+  background-color: colors.$calm-gray !important;
 }
 
 .dark {
-	&.even-row {
-		background-color: colors.$zebra-gray !important;
-	}
+  &.even-row {
+    background-color: colors.$zebra-gray !important;
+  }
 }
 
 .display-comments-btn {
-	color: var(--link-default);
-	font-size: 13px;
+  color: var(--link-default);
+  font-size: 13px;
 }
 
 @media screen and (max-width: breakpoints.$sm) {
-	.display-comments-btn {
-		font-size: 11px;
-	}
+  .display-comments-btn {
+    font-size: 11px;
+  }
 }

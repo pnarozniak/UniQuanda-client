@@ -1,46 +1,46 @@
-@use 'colors' as colors;
+@use "colors" as colors;
 
 span {
-	font-size: 14px;
+  font-size: 14px;
 
-	&.bold {
-		font-weight: 500;
-	}
+  &.bold {
+    font-weight: 500;
+  }
 }
 
 .test {
-	border: 1px solid colors.$bordered-gray;
-	border-bottom: none;
-	cursor: pointer;
+  border: 1px solid colors.$bordered-gray;
+  border-bottom: none;
+  cursor: pointer;
 
-	.app-uniquanda-line {
-		height: 3px;
-	}
+  .app-uniquanda-line {
+    height: 3px;
+  }
 
-	&.loading {
-		border-bottom: 1px solid colors.$bordered-gray;
-		min-height: 91px;
-	}
+  &.loading {
+    border-bottom: 1px solid colors.$bordered-gray;
+    min-height: 91px;
+  }
 
-	&:hover {
-		background-color: var(--bg-accent);
-	}
+  &:hover {
+    background-color: var(--bg-accent);
+  }
 
-	.created-at,
-	.status {
-		font-size: 13px;
-		font-weight: 400;
-		white-space: nowrap;
+  .created-at,
+  .status {
+    font-size: 13px;
+    font-weight: 400;
+    white-space: nowrap;
 
-		&.finished {
-			background-color: colors.$blue-laguna;
-			color: colors.$crystal-white;
-			border-radius: 5px;
-		}
-	}
+    &.finished {
+      background-color: colors.$blue-laguna;
+      color: colors.$crystal-white;
+      border-radius: 5px;
+    }
+  }
 
-	.tags-wrapper {
-		border-left: 1px solid colors.$bordered-gray;
-		gap: 8px;
-	}
+  .tags-wrapper {
+    border-left: 1px solid colors.$bordered-gray;
+    gap: 8px;
+  }
 }

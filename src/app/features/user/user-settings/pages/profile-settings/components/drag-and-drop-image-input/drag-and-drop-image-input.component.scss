@@ -1,37 +1,37 @@
-@use 'colors' as colors;
-@use 'breakpoints' as breakpoints;
+@use "colors" as colors;
+@use "breakpoints" as breakpoints;
 
 .custom-dropzone {
-	overflow: hidden;
-	border: none;
-	border-radius: 0;
-	background-size: cover;
-	background-position: center;
-	background-color: var(--bg-default);
+  overflow: hidden;
+  border: none;
+  border-radius: 0;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--bg-default);
 }
 
 .custom-dropzone.ngx-dz-hovered {
-	border: none;
+  border: none;
 }
 
 .icon-camera-container {
-	background: colors.$crystal-black;
-	height: min(60px, 5vw);
-	width: min(60px, 5vw);
+  background: colors.$crystal-black;
+  height: min(60px, 5vw);
+  width: min(60px, 5vw);
 }
 
 .icon-item {
-	font-size: min(30px, 2.5vw);
-	color: colors.$crystal-white;
+  font-size: min(30px, 2.5vw);
+  color: colors.$crystal-white;
 }
 
 @media all and (max-width: breakpoints.$sm) {
-	.icon-camera-container {
-		height: 30px;
-		width: 30px;
-	}
+  .icon-camera-container {
+    height: 30px;
+    width: 30px;
+  }
 
-	.icon-item {
-		font-size: 12px;
-	}
+  .icon-item {
+    font-size: 12px;
+  }
 }

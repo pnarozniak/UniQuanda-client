@@ -1,24 +1,30 @@
-@use 'colors' as col;
+@use "colors" as col;
+
 .header {
-	background-color: col.$academic-blue;
-	color: col.$crystal-white;
+  background-color: col.$academic-blue;
+  color: col.$crystal-white;
 }
+
 .record {
-	color: var(--text-default);
-	background-color: col.$crystal-white;
-	border-bottom: 1px solid col.$bordered-gray;
-	&:nth-of-type(even) {
-		background-color: col.$calm-gray;
-	}
-	&:last-of-type {
-		border-bottom: unset;
-	}
+  color: var(--text-default);
+  background-color: col.$crystal-white;
+  border-bottom: 1px solid col.$bordered-gray;
+
+  &:nth-of-type(even) {
+    background-color: col.$calm-gray;
+  }
+
+  &:last-of-type {
+    border-bottom: unset;
+  }
 }
+
 .dark {
-	& .record {
-		background-color: col.$zebra-dark;
-		&:nth-of-type(even) {
-			background-color: col.$zebra-gray;
-		}
-	}
+  & .record {
+    background-color: col.$zebra-dark;
+
+    &:nth-of-type(even) {
+      background-color: col.$zebra-gray;
+    }
+  }
 }

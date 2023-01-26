@@ -1,36 +1,48 @@
 .no-header {
-	::ng-deep {
-		.ck-toolbar {
-			display: none !important;
-		}
-		.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
-			border: none !important;
-		}
-		.ck-widget__selection-handle {
-			display: none !important;
-		}
-		.ck-widget {
-			border: none !important;
-			outline: none !important;
-		}
-		.ck.ck-editor__editable_inline {
-			padding: 0 !important;
-			background-color: transparent !important;
-		}
-		background-color: transparent !important;
-	}
+  ::ng-deep {
+    .ck-toolbar {
+      display: none !important;
+    }
+
+    .ck-editor__main > .ck-editor__editable:not(.ck-focused) {
+      border: none !important;
+    }
+
+    .ck-widget__selection-handle {
+      display: none !important;
+    }
+
+    .ck-widget {
+      border: none !important;
+      outline: none !important;
+    }
+
+    .ck.ck-editor__editable_inline {
+      padding: 0 !important;
+      background-color: transparent !important;
+    }
+
+    background-color: transparent !important;
+  }
 }
+
 .no-blocks {
-	::ng-deep {
-		h1, h2, h3, h4, h5, strong {
-			font-size: initial !important;
-			text-align: left !important;
-			font-weight: normal !important;
-		}
-		code {
-			background-color: var(--bg-default) !important;
-			color: var(--text-default) !important;
-			font-family: Ubuntu, sans-serif !important;
-		}
-	}
+  ::ng-deep {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    strong {
+      font-size: initial !important;
+      text-align: left !important;
+      font-weight: normal !important;
+    }
+
+    code {
+      background-color: var(--bg-default) !important;
+      color: var(--text-default) !important;
+      font-family: Ubuntu, sans-serif !important;
+    }
+  }
 }

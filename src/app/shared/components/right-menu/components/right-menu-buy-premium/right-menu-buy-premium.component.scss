@@ -1,34 +1,33 @@
-@use 'colors' as colors;
+@use "colors" as colors;
 
 .box {
-	background-color: colors.$light-yellow;
-	color: colors.$crystal-black;
+  background-color: colors.$light-yellow;
+  color: colors.$crystal-black;
 
-	span {
-		font-size: 14px;
+  span {
+    font-size: 14px;
 
-		&.bold {
-			font-weight: 500;
-		}
-	}
+    &.bold {
+      font-weight: 500;
+    }
+  }
 
-	.benefit {
-		display: flex;
-		align-items: center;
-		margin-top: 8px;
+  .benefit {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
 
-		app-icon {
-			font-size: 14px;
-			padding: 6px;
-			border-radius: 50%;
-			color: colors.$crystal-white;
-			background-color: colors.$strong-yellow;
-			margin-right: 8px;
-		}
-	}
-	
-	app-button {
-		background-color: colors.$strong-yellow !important;
-	}
+    app-icon {
+      font-size: 14px;
+      padding: 6px;
+      border-radius: 50%;
+      color: colors.$crystal-white;
+      background-color: colors.$strong-yellow;
+      margin-right: 8px;
+    }
+  }
+
+  app-button {
+    background-color: colors.$strong-yellow !important;
+  }
 }
-

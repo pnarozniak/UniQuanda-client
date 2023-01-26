@@ -1,10 +1,10 @@
-@use 'colors' as colors;
+@use "colors" as colors;
 
 .recaptcha-terms {
-	font-size: 12px;
-	text-align: center;
+  font-size: 12px;
+  text-align: center;
 
-	a {
-		color: colors.$academic-blue;
-	}
+  a {
+    color: colors.$academic-blue;
+  }
 }

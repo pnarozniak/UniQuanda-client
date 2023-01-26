@@ -1,21 +1,21 @@
-@use 'colors' as colors;
-@use 'breakpoints' as breakpoints;
+@use "colors" as colors;
+@use "breakpoints" as breakpoints;
 
 .info-container {
-	font-size: 13px;
+  font-size: 13px;
 }
 
 .correct-answer {
-	background-color: colors.$blue-laguna;
-	border-radius: 5px;
+  background-color: colors.$blue-laguna;
+  border-radius: 5px;
 }
 
 .info-text {
-	color: var(--text-default);
+  color: var(--text-default);
 }
 
 @media screen and (max-width: breakpoints.$sm) {
-	.info-container {
-		font-size: 10px;
-	}
+  .info-container {
+    font-size: 10px;
+  }
 }

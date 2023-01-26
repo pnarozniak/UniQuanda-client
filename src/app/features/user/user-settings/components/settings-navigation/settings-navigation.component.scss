@@ -1,51 +1,51 @@
-@use 'colors' as colors;
-@use 'breakpoints' as breakpoints;
+@use "colors" as colors;
+@use "breakpoints" as breakpoints;
 
 .nav-container {
-	row-gap: 6px;
-	column-gap: 10px;
-	font-weight: 500;
+  row-gap: 6px;
+  column-gap: 10px;
+  font-weight: 500;
 }
 
 .icon-item {
-	font-size: 16px;
-	margin-right: 6px;
+  font-size: 16px;
+  margin-right: 6px;
 }
 
 .item {
-	padding: 10px 13px 10px 13px;
-	background-color: var(--bg-accent);
-	color: var(--text-default);
-	font-size: 16px;
+  padding: 10px 13px;
+  background-color: var(--bg-accent);
+  color: var(--text-default);
+  font-size: 16px;
 }
 
 .item:hover {
-	opacity: .8;
+  opacity: 0.8;
 }
 
 .item-text {
-	white-space: nowrap;
-	font-size: 16px;
+  white-space: nowrap;
+  font-size: 16px;
 }
 
 .active {
-	background-color: colors.$academic-blue;
-	color: colors.$crystal-white;
+  background-color: colors.$academic-blue;
+  color: colors.$crystal-white;
 }
 
 .active-premium {
-	background-color: colors.$dark-yellow;
-	color: colors.$crystal-white;
+  background-color: colors.$dark-yellow;
+  color: colors.$crystal-white;
 }
 
 @media all and (max-width: breakpoints.$sm) {
-	.item {
-		padding: 6px 13px 6px 13px;
-		font-size: 13px;
-	}
+  .item {
+    padding: 6px 13px;
+    font-size: 13px;
+  }
 
-	.icon-item {
-		font-size: 13px;
-		margin-right: 9px;
-	}
+  .icon-item {
+    font-size: 13px;
+    margin-right: 9px;
+  }
 }

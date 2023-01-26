@@ -1,58 +1,71 @@
-@use 'colors' as col;
-.ranking-box {
-	border: 1px solid col.$bordered-gray;
-	color: var(--text-default);
-	cursor: pointer;
-	max-width: calc(100vw - 32px);
-	.nickname {
-		word-break: break-all;
-	}
-	&:hover {
-		& .nickname {
-			text-decoration: underline;
-		}
-	}
-}
-.loading-image {
-	width: 35px;
-	height: 35px;
-}
-.first-place {
-	background-color: col.$banana-life;
-	color: black;
-}
-.second-place {
-	background-color: col.$only-second-gray;
-	color: black;
-}
-.third-place {
-	background-color: col.$light-pink;
-	color: black;
-}
-.points {
-	border-left: 1px solid col.$bordered-gray;
-}
-.title-badge {
-	color: col.$crystal-white;
-	white-space: nowrap;
-	font-size: 13px;
-}
-.mail-icon {
-	background-color: var(--bg-accent);
-	color: var(--text-default);
-	cursor: pointer;
+@use "colors" as col;
 
-	transition: all 0.3s;
-	&:hover {
-		opacity: 0.8;
-	}
+.ranking-box {
+  border: 1px solid col.$bordered-gray;
+  color: var(--text-default);
+  cursor: pointer;
+  max-width: calc(100vw - 32px);
+
+  .nickname {
+    word-break: break-all;
+  }
+
+  &:hover {
+    & .nickname {
+      text-decoration: underline;
+    }
+  }
 }
+
+.loading-image {
+  width: 35px;
+  height: 35px;
+}
+
+.first-place {
+  background-color: col.$banana-life;
+  color: black;
+}
+
+.second-place {
+  background-color: col.$only-second-gray;
+  color: black;
+}
+
+.third-place {
+  background-color: col.$light-pink;
+  color: black;
+}
+
+.points {
+  border-left: 1px solid col.$bordered-gray;
+}
+
+.title-badge {
+  color: col.$crystal-white;
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+.mail-icon {
+  background-color: var(--bg-accent);
+  color: var(--text-default);
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
 ::ng-deep .mat-tooltip {
-	white-space: pre-line !important;
+  white-space: pre-line !important;
 }
+
 .text-val {
-	font-size: 15px;
+  font-size: 15px;
 }
+
 .user-row {
-	row-gap: 5px;
+  row-gap: 5px;
 }

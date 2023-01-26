@@ -1,15 +1,15 @@
-@use 'breakpoints' as breakpoints;
+@use "breakpoints" as breakpoints;
 
 .btn {
-	font-size: 13px;
+  font-size: 13px;
 }
 
 .error-text {
-	font-size: 12px;
+  font-size: 12px;
 }
 
 @media screen and (max-width: breakpoints.$sm) {
-	.btn {
-		font-size: 10px;
-	}
+  .btn {
+    font-size: 10px;
+  }
 }
