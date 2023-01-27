@@ -1,9 +1,10 @@
-@use 'dimensions' as dim;
-@use 'breakpoints' as bp;
+@use "dimensions" as dim;
+@use "breakpoints" as bp;
 
 .ask-button {
-	width: fit-content;
+  width: fit-content;
 }
+
 .error-text {
-	font-size: 12px;
+  font-size: 12px;
 }

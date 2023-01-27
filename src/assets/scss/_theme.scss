@@ -1,23 +1,19 @@
-@use 'colors' as colors;
+@use "colors" as colors;
 
 /* LIGHT MODE */
 :root {
-	--bg-default: #{colors.$crystal-white};
-	--bg-accent: #{colors.$elegant-gray};
-
-	--text-default: #{colors.$crystal-black};
-	--text-accent: #{colors.$light-gray};
-
-	--link-default : #{colors.$academic-blue};
+  --bg-default: #{colors.$crystal-white};
+  --bg-accent: #{colors.$elegant-gray};
+  --text-default: #{colors.$crystal-black};
+  --text-accent: #{colors.$light-gray};
+  --link-default: #{colors.$academic-blue};
 }
 
 /* DARK MODE */
 :root .dark {
-	--bg-default: #{colors.$dark-gray};
-	--bg-accent: #{colors.$light-gray};
-
-	--text-default: #{colors.$crystal-white};
-	--text-accent: #{colors.$crystal-white};
-
-	--link-default : #{colors.$dark-yellow};
+  --bg-default: #{colors.$dark-gray};
+  --bg-accent: #{colors.$light-gray};
+  --text-default: #{colors.$crystal-white};
+  --text-accent: #{colors.$crystal-white};
+  --link-default: #{colors.$dark-yellow};
 }

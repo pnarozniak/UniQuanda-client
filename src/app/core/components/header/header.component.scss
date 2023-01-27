@@ -1,108 +1,110 @@
-@use 'dimensions' as dim;
-@use 'colors' as colors;
-@use 'breakpoints' as breakpoints;
+@use "dimensions" as dim;
+@use "colors" as colors;
+@use "breakpoints" as breakpoints;
 
 header {
-	position: fixed;
-	top: 0;
-	width: 100%;
-	background-color: var(--bg-default);
-	z-index: 100;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: var(--bg-default);
+  z-index: 100;
 }
 
 .header-height {
-	height: calc(dim.$header-height-sm - dim.$header-footer-height);
+  height: calc(dim.$header-height-sm - dim.$header-footer-height);
 }
 
 .img-logo {
-	content: url('./../../../../assets/images/core/header/logo_blue.svg');
-	height: 40px;
-	cursor: pointer;
+  content: url("./../../../../assets/images/core/header/logo_blue.svg");
+  height: 40px;
+  cursor: pointer;
 }
 
 .a-btn {
-	font-size: 15px;
-	font-weight: 500;
-	padding: 6px 31px 6px 31px;
-	color: colors.$crystal-white;
-	border-radius: 7px;
-	white-space: nowrap;
-	box-shadow: none;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 6px 31px;
+  color: colors.$crystal-white;
+  border-radius: 7px;
+  white-space: nowrap;
+  box-shadow: none;
 
-	&:hover {
-		opacity: .8;
-	}
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 .btn-avatar {
-	cursor: pointer;
-	border: 1px solid var(--bg-accent);
+  cursor: pointer;
+  border: 1px solid var(--bg-accent);
 }
 
 .a-register {
-	background-color: colors.$light-purple;
+  background-color: colors.$light-purple;
 }
 
 .a-login {
-	background-color: colors.$academic-blue;
+  background-color: colors.$academic-blue;
 }
 
 .app-uniquanda-line {
-	height: dim.$header-footer-height;
+  height: dim.$header-footer-height;
 }
 
 @media all and (max-width: breakpoints.$md) {
-	.a-btn{
-		padding-left: 27px;
-		padding-right: 27px;
-	}
+  .a-btn {
+    padding-left: 27px;
+    padding-right: 27px;
+  }
 }
 
 @media all and (max-width: breakpoints.$sm) {
-	.header-height {
-		height: calc(dim.$header-height - dim.$header-footer-height);
-	}
+  .header-height {
+    height: calc(dim.$header-height - dim.$header-footer-height);
+  }
 
-	.img-logo {
-		height: 25px;
-	}
+  .img-logo {
+    height: 25px;
+  }
 
-	.a-btn {
-		font-size: 11px !important;
-		padding-left: 9px;
-		padding-right: 9px;
-	}
+  .a-btn {
+    font-size: 11px !important;
+    padding-left: 9px;
+    padding-right: 9px;
+  }
 
-	.btn-search {
-		font-size: 15px;
-	}
+  .btn-search {
+    font-size: 15px;
+  }
 
-	.btn-avatar {
-		width: 25px;
-		height: 25px;
-	}
+  .btn-avatar {
+    width: 25px;
+    height: 25px;
+  }
 
-	.icon-header {
-		min-width: 25px !important;
-		max-width: 25px !important;
-		height: 25px !important;
-		font-size: 16px !important;
-	}
+  .icon-header {
+    min-width: 25px !important;
+    max-width: 25px !important;
+    height: 25px !important;
+    font-size: 16px !important;
+  }
 }
 
 .dark {
-	.img-logo {
-		content: url('./../../../../assets/images/core/header/logo_white.svg');
-	}
+  .img-logo {
+    content: url("./../../../../assets/images/core/header/logo_white.svg");
+  }
 }
+
 .ask-question-button {
-	height: 35px;
+  height: 35px;
 }
+
 .icon-header {
-	color: var(--text-accent);
-	background-color: var(--bg-accent);
-	min-width: 35px;
-	max-width: 35px;
-	height: 35px;
-	font-size: 18px;
+  color: var(--text-accent);
+  background-color: var(--bg-accent);
+  min-width: 35px;
+  max-width: 35px;
+  height: 35px;
+  font-size: 18px;
 }

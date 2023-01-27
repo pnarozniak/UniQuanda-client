@@ -1,5 +1,6 @@
-@use 'colors' as col;
+@use "colors" as col;
+
 .divider {
-	border-bottom: 2px solid col.$bordered-gray;
-	opacity: 1;
+  border-bottom: 2px solid col.$bordered-gray;
+  opacity: 1;
 }

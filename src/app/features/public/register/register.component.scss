@@ -1,28 +1,28 @@
-@use 'colors' as colors;
-@use 'breakpoints' as breakpoints;
+@use "colors" as colors;
+@use "breakpoints" as breakpoints;
 
 .register-card {
-	width: 520px;
+  width: 520px;
 
-	.register-form {
-		border: 1px solid colors.$bordered-gray;
-	}
+  .register-form {
+    border: 1px solid colors.$bordered-gray;
+  }
 
-	.login-box {
-		font-size: 15px;
+  .login-box {
+    font-size: 15px;
 
-		.login-text {
-			color: colors.$light-red;
-		}
-	}
+    .login-text {
+      color: colors.$light-red;
+    }
+  }
 }
 
 @media all and (max-width: breakpoints.$sm) {
-	.register-card {
-		width: 100%;
+  .register-card {
+    width: 100%;
 
-		.register-form {
-			border: none !important;
-		}
-	}
+    .register-form {
+      border: none !important;
+    }
+  }
 }

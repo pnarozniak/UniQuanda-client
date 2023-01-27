@@ -1,117 +1,122 @@
-@use 'colors' as colors;
+@use "colors" as colors;
 
 :host {
-	width: 100%;
-	::ng-deep {
-		.mat-focused .mat-form-field-required-marker {
-			color: colors.$academic-blue;
-		}
-		.dark  {
-			&.mat-focused .mat-form-field-required-marker {
-				color: colors.$dark-yellow;
-			}
-			&.mat-form-field-invalid {
-				&.mat-focused .mat-form-field-required-marker {
-					color: colors.$validation-red;
-				}
-			}
-		}
-	}
-	::ng-deep mat-form-field {
-		width: 100%;
-		font-family: Ubuntu, sans-serif !important;
+  width: 100%;
 
-		.mat-input-element {
-			color: var(--text-default);
-		}
+  ::ng-deep {
+    .mat-focused .mat-form-field-required-marker {
+      color: colors.$academic-blue;
+    }
 
-		.mat-form-field-flex {
-			background-color: transparent !important;
-			padding-left: 0;
-			padding-top: 0;
-		}
+    .dark {
+      &.mat-focused .mat-form-field-required-marker {
+        color: colors.$dark-yellow;
+      }
 
-		.mat-form-field-subscript-wrapper {
-			padding-left: 0;
-			padding-right: 0;
-			margin-top: 4px;
-		}
+      &.mat-form-field-invalid {
+        &.mat-focused .mat-form-field-required-marker {
+          color: colors.$validation-red;
+        }
+      }
+    }
+  }
 
-		.mat-form-field-underline::before {
-			background-color: colors.$bordered-gray;
+  ::ng-deep mat-form-field {
+    width: 100%;
+    font-family: Ubuntu, sans-serif !important;
 
-			&:hover {
-				background-color: green !important;
-			}
-		}
+    .mat-input-element {
+      color: var(--text-default);
+    }
 
-		.mat-form-field-infix {
-			padding-top: 12px;
-			padding-bottom: 5px;
-		}
+    .mat-form-field-flex {
+      background-color: transparent !important;
+      padding-left: 0;
+      padding-top: 0;
+    }
 
-		.mat-form-field-label-wrapper {
-			top: 0;
-		}
+    .mat-form-field-subscript-wrapper {
+      padding-left: 0;
+      padding-right: 0;
+      margin-top: 4px;
+    }
 
-		&.mat-form-field-should-float {
-			.mat-form-field-label-wrapper {
-				transform: translateY(-4px);
-			}
-		}
-	}
+    .mat-form-field-underline::before {
+      background-color: colors.$bordered-gray;
 
-	.mat-form-field:not(.mat-form-field-invalid) {
-		::ng-deep .mat-form-field-underline {
-			.mat-form-field-ripple {
-				background-color: colors.$academic-blue;
-			}
-		}
-	}
+      &:hover {
+        background-color: green !important;
+      }
+    }
 
-	.dark {
-		.mat-input-element {
-			caret-color: colors.$dark-yellow;
-		}
+    .mat-form-field-infix {
+      padding-top: 12px;
+      padding-bottom: 5px;
+    }
 
-		&.mat-form-field.mat-focused:not(.mat-form-field-invalid) {
-			::ng-deep .mat-form-field-label {
-				color: colors.$dark-yellow;
-			}
-		}
+    .mat-form-field-label-wrapper {
+      top: 0;
+    }
 
-		&.mat-form-field:not(.mat-form-field-invalid) {
-			::ng-deep .mat-form-field-underline {
-				.mat-form-field-ripple {
-					background-color: colors.$dark-yellow;
-				}
-			}
-		}
+    &.mat-form-field-should-float {
+      .mat-form-field-label-wrapper {
+        transform: translateY(-4px);
+      }
+    }
+  }
 
-		&.mat-form-field:not(.mat-focused) {
-			::ng-deep .mat-form-field-label {
-				color: colors.$bordered-gray !important;
-			}
-		}
+  .mat-form-field:not(.mat-form-field-invalid) {
+    ::ng-deep .mat-form-field-underline {
+      .mat-form-field-ripple {
+        background-color: colors.$academic-blue;
+      }
+    }
+  }
 
-		&.mat-form-field {
-			::ng-deep .mat-hint {
-				color: colors.$light-gray;
-			}
+  .dark {
+    .mat-input-element {
+      caret-color: colors.$dark-yellow;
+    }
 
-			::ng-deep .mat-icon-button {
-				color: colors.$bordered-gray;
-			}
-		}
-	}
+    &.mat-form-field.mat-focused:not(.mat-form-field-invalid) {
+      ::ng-deep .mat-form-field-label {
+        color: colors.$dark-yellow;
+      }
+    }
+
+    &.mat-form-field:not(.mat-form-field-invalid) {
+      ::ng-deep .mat-form-field-underline {
+        .mat-form-field-ripple {
+          background-color: colors.$dark-yellow;
+        }
+      }
+    }
+
+    &.mat-form-field:not(.mat-focused) {
+      ::ng-deep .mat-form-field-label {
+        color: colors.$bordered-gray !important;
+      }
+    }
+
+    &.mat-form-field {
+      ::ng-deep .mat-hint {
+        color: colors.$light-gray;
+      }
+
+      ::ng-deep .mat-icon-button {
+        color: colors.$bordered-gray;
+      }
+    }
+  }
 }
 
 ::ng-deep .mat-autocomplete-panel {
-	.dark {
-		background-color: var(--bg-accent) !important;
-		color: var(--text-default) !important;
-	}
-	.dark:hover {
-		opacity: 0.8;
-	}
+  .dark {
+    background-color: var(--bg-accent) !important;
+    color: var(--text-default) !important;
+  }
+
+  .dark:hover {
+    opacity: 0.8;
+  }
 }

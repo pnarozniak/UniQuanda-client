@@ -1,43 +1,43 @@
-@use 'colors' as colors;
-@use 'breakpoints' as breakpoints;
+@use "colors" as colors;
+@use "breakpoints" as breakpoints;
 
 .header {
-	max-width: 1430px;
+  max-width: 1430px;
 }
 
 .header-title {
-	font-size: 35px;
+  font-size: 35px;
 }
 
-.data-container{
-	max-width: 1400px;
+.data-container {
+  max-width: 1400px;
 }
 
 .bordered {
-	border: 1px solid colors.$bordered-gray;
-}	
+  border: 1px solid colors.$bordered-gray;
+}
 
 .hr-line {
-	display: none;
+  display: none;
 }
 
 @media all and (max-width: breakpoints.$sm) {
-	.header {
-		padding-left: 16px;
-	}
+  .header {
+    padding-left: 16px;
+  }
 
-	.header-title {
-		font-size: 24px;
-	}
+  .header-title {
+    font-size: 24px;
+  }
 
-	.bordered {
-		border: none;
-	}
+  .bordered {
+    border: none;
+  }
 
-	.hr-line {
-		display: block;
-		color: colors.$bordered-gray;
-		border: 1px;
-		opacity: 1;
-	}
+  .hr-line {
+    display: block;
+    color: colors.$bordered-gray;
+    border: 1px;
+    opacity: 1;
+  }
 }

@@ -1,46 +1,46 @@
-@use 'breakpoints' as breakpoints;
-@use 'colors' as colors;
+@use "breakpoints" as breakpoints;
+@use "colors" as colors;
 
 .item-container {
-	column-gap: 12px;
-	font-size: 13px;
+  column-gap: 12px;
+  font-size: 13px;
 }
 
 .odd-row {
-	background-color: colors.$calm-gray;
+  background-color: colors.$calm-gray;
 }
 
 .link {
-	color: var(--link-default);
+  color: var(--link-default);
 }
 
 .link:hover {
-	opacity: 0.8;
+  opacity: 0.8;
 }
 
 .canceled {
-	color: colors.$light-red;
+  color: colors.$light-red;
 }
 
 .dark {
-	&.odd-row {
-		background-color: colors.$light-gray;
-	}
+  &.odd-row {
+    background-color: colors.$light-gray;
+  }
 }
 
 @media all and (max-width: breakpoints.$sm) {
-	.item-title {
-		font-size: 13px;
-		color: colors.$crystal-white;
-		background-color: colors.$academic-blue;
-		padding-left: 12px;
-	}
+  .item-title {
+    font-size: 13px;
+    color: colors.$crystal-white;
+    background-color: colors.$academic-blue;
+    padding-left: 12px;
+  }
 
-	.item-container {
-		font-size: 11px;
-	}
+  .item-container {
+    font-size: 11px;
+  }
 
-	.item {
-		padding-left: 12px;
-	}
+  .item {
+    padding-left: 12px;
+  }
 }

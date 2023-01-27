@@ -1,8 +1,6 @@
-import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import ApiService from 'src/app/core/services/api.service';
-import { ITag } from 'src/app/shared/models/tag.model';
 import { IGetAllCommentsResponseDTO } from '../models/get-all-comments.dto';
 import { IGetTestResponseDTO } from '../models/get-test.dto';
 import { ITestAnswer } from '../models/test-answer.model';

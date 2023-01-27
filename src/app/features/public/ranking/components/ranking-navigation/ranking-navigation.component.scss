@@ -1,35 +1,38 @@
-@use 'colors' as colors;
-@use 'breakpoints' as breakpoints;
-@use 'dimensions' as dim;
+@use "colors" as colors;
+@use "breakpoints" as breakpoints;
+@use "dimensions" as dim;
 
 .ranking-group ::ng-deep {
-	.mat-tab-label {
-		color: var(--text-default);
-		opacity: 1 !important;
-		background-color: var(--bg-accent);
-		font-family: Ubuntu, sans-serif !important;
-		margin-right: 1rem;
-		min-width: unset !important;
-		display: flex;
-	}
-	.mat-ink-bar {
-		display: none;
-	}
-	.mat-tab-body {
-		font-family: Ubuntu, sans-serif !important;
-	}
-	.mat-tab-label:first-of-type {
-		display: flex !important;
-	}
+  .mat-tab-label {
+    color: var(--text-default);
+    opacity: 1 !important;
+    background-color: var(--bg-accent);
+    font-family: Ubuntu, sans-serif !important;
+    margin-right: 1rem;
+    min-width: unset !important;
+    display: flex;
+  }
 
-	.mat-tab-label.mat-tab-label-active {
-		background-color: colors.$academic-blue;
-		color: colors.$crystal-white;
-	}
-	.mat-tab-nav-bar, .mat-tab-header {
-		border-bottom: 0px;
-	}
-	.mat-tab-body {
-		margin-bottom: 50px;
-	}
+  .mat-ink-bar {
+    display: none;
+  }
+
+  .mat-tab-body {
+    font-family: Ubuntu, sans-serif !important;
+    margin-bottom: 50px;
+  }
+
+  .mat-tab-label:first-of-type {
+    display: flex !important;
+  }
+
+  .mat-tab-label.mat-tab-label-active {
+    background-color: colors.$academic-blue;
+    color: colors.$crystal-white;
+  }
+
+  .mat-tab-nav-bar,
+  .mat-tab-header {
+    border-bottom: 0;
+  }
 }

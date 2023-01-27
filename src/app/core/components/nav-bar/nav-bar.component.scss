@@ -1,110 +1,111 @@
-@use 'colors' as colors;
-@use 'dimensions' as dim;
-@use 'breakpoints' as breakpoints;
+@use "colors" as colors;
+@use "dimensions" as dim;
+@use "breakpoints" as breakpoints;
 
 .nav-container {
-	padding-top: dim.$header-height-sm;
-	background-color: colors.$academic-blue;
-	height: 100%;
-	width: dim.$nav-bar-width-sm;
-	position: fixed;
-	z-index: 10;
+  padding-top: dim.$header-height-sm;
+  background-color: colors.$academic-blue;
+  height: 100%;
+  width: dim.$nav-bar-width-sm;
+  position: fixed;
+  z-index: 10;
 }
 
 .item {
-	height: 70px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 app-icon {
-	font-size: 30px;
-	color: colors.$crystal-white;
+  font-size: 30px;
+  color: colors.$crystal-white;
 }
 
 .home:hover,
 .home.active {
-	background-color: colors.$blue-laguna;
+  background-color: colors.$blue-laguna;
 }
 
 .tag:hover,
 .tag.active {
-	background-color: colors.$dark-yellow;
+  background-color: colors.$dark-yellow;
 }
 
 .test:hover,
 .test.active {
-	background-color: colors.$pink;
+  background-color: colors.$pink;
 }
 
 .ranking:hover,
 .ranking.active {
-	background-color: colors.$light-red;
+  background-color: colors.$light-red;
 }
 
 .admin:hover,
 .admin.active {
-	background-color: colors.$bordered-gray;
+  background-color: colors.$bordered-gray;
 }
 
 .logout:hover {
-	background-color: colors.$light-purple;
+  background-color: colors.$light-purple;
 }
 
-.plus{
-	visibility: hidden;
+.plus {
+  visibility: hidden;
 }
 
 @media all and (max-width: breakpoints.$sm) {
-	.nav-container {
-		height: dim.$nav-bar-height;
-		width: 100%;
-		bottom: 0;
-		padding-top: 0;
-	}
+  .nav-container {
+    height: dim.$nav-bar-height;
+    width: 100%;
+    bottom: 0;
+    padding-top: 0;
+  }
 
-	.item {
-		height: dim.$nav-bar-height;
-		width: 25%;
-	}
+  .item {
+    height: dim.$nav-bar-height;
+    width: 25%;
+  }
 
-	app-icon {
-		font-size: 20px;
-	}
+  app-icon {
+    font-size: 20px;
+  }
 
-	.home {
-		background-color: colors.$blue-laguna;
-	}
+  .home {
+    background-color: colors.$blue-laguna;
+  }
 
-	.tag {
-		background-color: colors.$dark-yellow;
-	}
+  .tag {
+    background-color: colors.$dark-yellow;
+  }
 
-	.test {
-		background-color: colors.$pink;
-	}
+  .test {
+    background-color: colors.$pink;
+  }
 
-	.ranking {
-		background-color: colors.$light-red;
-	}
+  .ranking {
+    background-color: colors.$light-red;
+  }
 
-	.logout {
-		display: none;
-	}
+  .logout {
+    display: none;
+  }
 
-	.plus {
-		background-color: colors.$academic-blue;
-		color: colors.$crystal-white;
-		visibility: visible;
-		position: absolute;
-		left: 0;
-		right: 0;
-		height: 40px;
-		width: 40px;
-		bottom: calc(dim.$nav-bar-height/2);
-	}
-	.admin {
-		display: none;
-	}
+  .plus {
+    background-color: colors.$academic-blue;
+    color: colors.$crystal-white;
+    visibility: visible;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 40px;
+    width: 40px;
+    bottom: calc(dim.$nav-bar-height / 2);
+  }
+
+  .admin {
+    display: none;
+  }
 }

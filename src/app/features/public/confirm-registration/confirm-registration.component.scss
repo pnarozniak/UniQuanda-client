@@ -1,51 +1,51 @@
-@use 'colors' as colors;
-@use 'breakpoints' as breakpoints;
+@use "colors" as colors;
+@use "breakpoints" as breakpoints;
 
 .confirm-registration-card {
-	width: 520px;
+  width: 520px;
 
-	.confirm-registration-form {
-		border: 1px solid colors.$bordered-gray;
+  .confirm-registration-form {
+    border: 1px solid colors.$bordered-gray;
 
-		.code-input {
-			outline: none !important;
-			font-size: 20px;
-			border-radius: 7px;
-			background-color: colors.$elegant-gray;
-			width: 64px;
-			height: 64px;
-			border: 1px solid transparent !important;
+    .code-input {
+      outline: none !important;
+      font-size: 20px;
+      border-radius: 7px;
+      background-color: colors.$elegant-gray;
+      width: 64px;
+      height: 64px;
+      border: 1px solid transparent !important;
 
-			&:focus-within {
-				background-color: colors.$crystal-white;
-				border-color: colors.$academic-blue !important;
-			}
-		}
+      &:focus-within {
+        background-color: colors.$crystal-white;
+        border-color: colors.$academic-blue !important;
+      }
+    }
 
-		input::-webkit-outer-spin-button,
-		input::-webkit-inner-spin-button {
-			-webkit-appearance: none !important;
-			margin: 0;
-		}
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      appearance: none !important;
+      margin: 0;
+    }
 
-		.resend-mail {
-			color: colors.$academic-blue;
-			font-size: 15px;
-		}
-	}
+    .resend-mail {
+      color: colors.$academic-blue;
+      font-size: 15px;
+    }
+  }
 }
 
 @media all and (max-width: breakpoints.$sm) {
-	.confirm-registration-card {
-		width: 100%;
+  .confirm-registration-card {
+    width: 100%;
 
-		.confirm-registration-form {
-			border: none !important;
+    .confirm-registration-form {
+      border: none !important;
 
-			.code-input {
-				width: 48px;
-				height: 48px;
-			}
-		}
-	}
+      .code-input {
+        width: 48px;
+        height: 48px;
+      }
+    }
+  }
 }

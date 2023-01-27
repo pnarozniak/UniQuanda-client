@@ -1,49 +1,50 @@
-@use 'colors' as colors;
+@use "colors" as colors;
 
 .follow-btn {
-	font-size: 13px;
+  font-size: 13px;
 }
 
 .drop-icon {
-	height: 35px;
-	width: 35px;
+  height: 35px;
+  width: 35px;
 }
 
 .dropdown-content {
-	right: -38px !important;
-	border-radius: 0;
-	top: 11px;
-	position: absolute;
-	border: 1px solid colors.$bordered-gray;
-	background-color: var(--bg-default);
-	width: 180px;
-	font-size: 14px;
+  right: -38px !important;
+  border-radius: 0;
+  top: 11px;
+  position: absolute;
+  border: 1px solid colors.$bordered-gray;
+  background-color: var(--bg-default);
+  width: 180px;
+  font-size: 14px;
 
-	&:before {
-		content: '';
-		display: block;
-		position: absolute;
-		border-style: solid;
-		border-color: colors.$bordered-gray;
-		border-width: 1px 1px 0 0;
-		width: 15px;
-		height: 15px;
-		top: -8.3px;
-		right: 15px;
-		background: inherit;
-		transform: rotate(-45deg);
-	}
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    border-style: solid;
+    border-color: colors.$bordered-gray;
+    border-width: 1px 1px 0 0;
+    width: 15px;
+    height: 15px;
+    top: -8.3px;
+    right: 15px;
+    background: inherit;
+    transform: rotate(-45deg);
+  }
 
-	a {
-		color: var(--text-default);
-		cursor: pointer;
-		&:hover {
-			background-color: var(--bg-accent);
-		}
-	}
+  a {
+    color: var(--text-default);
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--bg-accent);
+    }
+  }
 }
 
 .hrline {
-	border: 0.5px solid colors.$bordered-gray;
-	opacity: 1;
+  border: 0.5px solid colors.$bordered-gray;
+  opacity: 1;
 }

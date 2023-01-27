@@ -1,81 +1,81 @@
-@use 'colors' as colors;
-@use 'breakpoints' as breakpoints;
+@use "colors" as colors;
+@use "breakpoints" as breakpoints;
 
 .login-card {
-	width: 520px;
+  width: 520px;
 
-	.login-form {
-		border: 1px solid colors.$bordered-gray;
-	}
+  .login-form {
+    border: 1px solid colors.$bordered-gray;
+  }
 
-	.forgot-password {
-		color: colors.$academic-blue;
-		font-size: 15px;
-	}
+  .forgot-password {
+    color: colors.$academic-blue;
+    font-size: 15px;
+  }
 
-	.register-box {
-		font-size: 15px;
+  .register-box {
+    font-size: 15px;
 
-		.register-text {
-			color: colors.$light-red;
-		}
-	}
+    .register-text {
+      color: colors.$light-red;
+    }
+  }
 
-	.google-btn {
-		outline: none;
-		display: flex;
-		width: 100%;
-		height: 50px;
-		background-color: #4285f4;
-		border: 1px solid transparent;
-		cursor: pointer;
+  .google-btn {
+    outline: none;
+    display: flex;
+    width: 100%;
+    height: 50px;
+    background-color: #4285f4;
+    border: 1px solid transparent;
+    cursor: pointer;
 
-		.google-icon-wrapper {
-			background-color: #fff;
-			width: 48px;
-			height: 48px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
+    .google-icon-wrapper {
+      background-color: #fff;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-			.google-icon {
-				width: 20px;
-				height: 20px;
-				background-position: center;
-				background-image: url("/assets/images/public/login/google_logo.svg");
-			}
-		}
+      .google-icon {
+        width: 20px;
+        height: 20px;
+        background-position: center;
+        background-image: url("/assets/images/public/login/google_logo.svg");
+      }
+    }
 
-		.google-text {
-			font-size: 14px;
-			letter-spacing: .21px;
-			margin-left: 6px;
-			margin-right: 6px;
-			color: #fff;
-			line-height: 48px;
-			font-weight: 400;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			flex: 1;
-		}
-	}
+    .google-text {
+      font-size: 14px;
+      letter-spacing: 0.21px;
+      margin-left: 6px;
+      margin-right: 6px;
+      color: #fff;
+      line-height: 48px;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+    }
+  }
 }
 
 @media all and (max-width: breakpoints.$sm) {
-	.login-card {
-		width: 100%;
-	}
+  .login-card {
+    width: 100%;
+  }
 
-	.google-box {
-		height: 55px;
+  .google-box {
+    height: 55px;
 
-		.google-logo {
-			height: 50px
-		}
-	}
+    .google-logo {
+      height: 50px;
+    }
+  }
 
-	.login-form {
-		border: none !important;
-	}
+  .login-form {
+    border: none !important;
+  }
 }

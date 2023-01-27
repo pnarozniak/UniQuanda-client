@@ -1,18 +1,17 @@
-@use 'colors' as colors;
+@use "colors" as colors;
 
 .box {
-	border: 1px solid colors.$bordered-gray;
+  border: 1px solid colors.$bordered-gray;
 
-	span {
-		font-size: 14px;
-		
-		strong {
-			color: colors.$academic-blue;
-		}
-	}
+  span {
+    font-size: 14px;
 
-	&.dark span strong {
-		color: colors.$dark-yellow;
-	}
+    strong {
+      color: colors.$academic-blue;
+    }
+  }
+
+  &.dark span strong {
+    color: colors.$dark-yellow;
+  }
 }
-

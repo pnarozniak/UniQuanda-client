@@ -1,30 +1,30 @@
-@use 'colors' as colors;
-@use 'breakpoints' as breakpoints;
+@use "colors" as colors;
+@use "breakpoints" as breakpoints;
 
-:host(app-custom-dropzone-preview){
-	min-width: unset !important;
-	max-width: unset !important;
-	padding: 0 !important;
-	margin: 0 !important;
-	min-height: unset !important;
-	height: 100% !important;
-	width: 100% !important;
-	border-radius: 0 !important;
-	border: none !important;
-	display: block !important;;
+:host(app-custom-dropzone-preview) {
+  min-width: unset !important;
+  max-width: unset !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  min-height: unset !important;
+  height: 100% !important;
+  width: 100% !important;
+  border-radius: 0 !important;
+  border: none !important;
+  display: block !important;
 
-	ngx-dropzone-remove-badge {
-		opacity: 1;
-		background-color: colors.$crystal-black;
-	}
+  ngx-dropzone-remove-badge {
+    opacity: 1;
+    background-color: colors.$crystal-black;
+  }
 }
 
 .avatar-img {
-	height: 100% !important;
+  height: 100% !important;
 }
 
 @media all and (max-width: breakpoints.$sm) {
-	.banner-img {
-		min-width: 574px;
-	}
+  .banner-img {
+    min-width: 574px;
+  }
 }
