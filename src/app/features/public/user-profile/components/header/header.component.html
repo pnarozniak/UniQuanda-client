@@ -14,11 +14,11 @@
 	<div class="w-100 d-flex flex-column">
 		<div class="profile-picture" [appLoading]="profilePictureLoading">
 			<img
-				[src]="
+				src="{{
 					user?.userData?.avatar
-						? user?.userData?.avatar
+						? user.userData?.avatar
 						: 'assets/images/common/default_avatar.svg'
-				"
+				}}"
 				(load)="profilePictureLoading = false"
 				alt="Zdjęcie profilowe użytkownika" />
 		</div>
