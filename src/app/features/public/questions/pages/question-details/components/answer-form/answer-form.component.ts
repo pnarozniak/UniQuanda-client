@@ -8,6 +8,9 @@ import { LoaderService } from 'src/app/core/services/loader.service';
 import { finalize } from 'rxjs';
 import { AnswerFormMode } from '../../enums/answer-form-mode.enum';
 import { IUpdateAnswerRequestDTO } from '../../models/update-answer.dto';
+import { DialogService } from 'src/app/core/services/dialog.service';
+import { CreateAnAccountDialogComponent } from 'src/app/shared/components/dialogs/create-an-account-dialog/create-an-account-dialog.component';
+import { UserDataService } from 'src/app/core/services/user-data.service';
 
 @Component({
 	selector: 'app-answer-form',
@@ -33,7 +36,9 @@ export class AnswerFormComponent implements OnInit {
 		private readonly _answersApiService: AnswersApiService,
 		private readonly _toastr: ToastrService,
 		private readonly _loader: LoaderService,
-		private readonly _router: Router
+		private readonly _router: Router,
+		private readonly _dialogService: DialogService,
+		private readonly _userDataService: UserDataService
 	) {
 		this._router.routeReuseStrategy.shouldReuseRoute = () => false;
 	}
@@ -41,9 +46,11 @@ export class AnswerFormComponent implements OnInit {
 	ngOnInit(): void {
 		if (this.isEditMode) {
 			const el = document.getElementById(`form${this.customId}`);
-			el?.scrollIntoView({
-				behavior: 'smooth',
-				block: 'center',
+			setTimeout(() => {
+				el?.scrollIntoView({
+					behavior: 'smooth',
+					block: 'center',
+				});
 			});
 		}
 		this.contentControl.setValue(this.htmlContet);
@@ -55,6 +62,11 @@ export class AnswerFormComponent implements OnInit {
 	}
 
 	addAnswer(): void {
+		if (!this._userDataService.getUserData()) {
+			this._dialogService.open(CreateAnAccountDialogComponent);
+			return;
+		}
+
 		this.contentControl.markAllAsTouched();
 		if (this.contentControl.invalid) return;
 
