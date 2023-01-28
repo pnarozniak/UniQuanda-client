@@ -4,6 +4,14 @@
   ],
 	"extends": "stylelint-config-standard-scss",
 	"rules": {
-		"no-empty-source": null
+		"no-empty-source": null,
+		"selector-pseudo-element-no-unknown": [true, { "ignorePseudoElements": ["ng-deep"] }],
+		"number-max-precision": 25,
+		"no-descending-specificity": null,
+		"selector-class-pattern": ".*",
+		"selector-no-vendor-prefix": null,
+		"font-family-no-missing-generic-family-keyword": null,
+		"keyframes-name-pattern": ".*",
+		"scss/no-global-function-names": null
 	}
 }

@@ -1,192 +1,212 @@
-@use 'colors' as col;
-@import url(https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.css);
+@use "colors" as col;
+@import url("https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.css");
 
 :root {
-	--ck-color-text: #{col.$crystal-black} !important;
-	--ck-color-base-background: #{col.$crystal-white} !important;
-	--ck-color-list-button-hover-background: #{col.$elegant-gray} !important;
-	--ck-color-button-on-color: #{col.$crystal-black} !important;
-	--ck-border-radius: 0 !important;
-	--ck-color-focus-outer-shadow: #{col.$academic-blue} !important;
-	--ck-color-button-on-hover-background: #{col.$elegant-gray} !important;
-	--ck-color-button-default-hover-background: #{col.$elegant-gray} !important;
-	--ck-font-face: Ubuntu, sans-serif !important;
-	--ck-color-button-default-background: #{col.$crystal-white} !important;
-	--ck-color-button-default-active-background: #{col.$bordered-gray} !important;
-	--ck-color-toolbar-background: #{col.$crystal-white} !important;
-	--ck-color-dropdown-panel-background: #{col.$crystal-white} !important;
-	--ck-color-tooltip-text: #{col.$crystal-black} !important;
-	--ck-color-panel-background: #{col.$crystal-white} !important;
-	--ck-color-base-foreground: #{col.$elegant-gray} !important;
-	--ck-color-labeled-field-label-background: #{col.$crystal-white} !important;
-	--ck-color-input-background: #{col.$crystal-white} !important;
-	--ck-color-button-save: #{col.$blue-laguna} !important;
-	--ck-color-button-cancel: #{col.$validation-red} !important;
-	--ck-focus-ring: 1px solid #{col.$light-purple} !important;
-	--ck-color-button-on-background: #{col.$elegant-gray} !important;
-	--ck-color-list-button-on-background: #{col.$academic-blue} !important;
-	--ck-color-focus-border: #{col.$blue-laguna} !important;
-	--ck-focus-outer-shadow: 0 !important;
-	--ck-color-list-button-on-background-focus: #{col.$hovered-academic-light} !important;
-	--ck-color-widget-hover-border: #{col.$academic-blue} !important;
-	--ck-color-tooltip-background: #{col.$elegant-gray} !important;
-	--ck-color-split-button-hover-background: #{col.$bordered-gray} !important;
-	--ck-color-button-on-active-background: #{col.$academic-blue} !important;
-	--ck-color-button-default-disabled-background: #{col.$elegant-gray} !important;
-	--ck-color-widget-type-around-button-active: #{col.$light-purple} !important;
-	--ck-color-focus-border-coordinates: 238, 50%, 71% !important; //light-purple hsl
-	--ck-color-widget-hover-border: #{col.$academic-blue} !important;
-	--ck-color-link-default: #{col.$academic-blue} !important;
-	--ck-color-image-caption-background: #{col.$elegant-gray} !important;
-	--ck-color-image-caption-text: #{col.$crystal-black} !important;
-	--ck-color-widget-editable-focus-background: rgba(
-		158,
-		201,
-		250,
-		0.3
-	) !important;
-	& .katex {
-		color: var(--text-default) !important;
-	}
-}
-:root .dark {
-	--ck-color-text: #{col.$crystal-white} !important;
-	--ck-color-base-background: #{col.$dark-gray} !important;
-	--ck-color-list-button-hover-background: #{col.$light-gray} !important;
-	--ck-color-button-on-color: #{col.$crystal-white} !important;
-	--ck-border-radius: 0 !important;
-	--ck-color-focus-outer-shadow: #{col.$dark-yellow} !important;
-	--ck-color-button-on-hover-background: #{col.$light-gray} !important;
-	--ck-color-button-default-hover-background: #{col.$light-gray} !important;
-	--ck-font-face: Ubuntu, sans-serif !important;
-	--ck-color-button-default-background: #{col.$dark-gray} !important;
-	--ck-color-button-default-active-background: #{col.$zebra-gray} !important;
-	--ck-color-toolbar-background: #{col.$dark-gray} !important;
-	--ck-color-dropdown-panel-background: #{col.$dark-gray} !important;
-	--ck-color-tooltip-text: #{col.$crystal-white} !important;
-	--ck-color-panel-background: #{col.$dark-gray} !important;
-	--ck-color-base-foreground: #{col.$light-gray} !important;
-	--ck-color-labeled-field-label-background: #{col.$dark-gray} !important;
-	--ck-color-input-background: #{col.$dark-gray} !important;
-	--ck-color-button-save: #{col.$blue-laguna} !important;
-	--ck-color-button-cancel: #{col.$validation-red} !important;
-	--ck-focus-ring: 1px solid #{col.$light-purple} !important;
-	--ck-color-button-on-background: #{col.$light-gray} !important;
-	--ck-color-list-button-on-background: #{col.$academic-blue} !important;
-	--ck-color-focus-border: #{col.$banana-life} !important;
-	--ck-focus-outer-shadow: 0 !important;
-	--ck-color-list-button-on-background-focus: #{col.$hovered-academic-dark} !important;
-	--ck-color-widget-hover-border: #{col.$dark-yellow} !important;
-	--ck-color-tooltip-background: #{col.$light-gray} !important;
-	--ck-color-tooltip-text: #{col.$crystal-white} !important;
-	--ck-color-split-button-hover-background: #{col.$zebra-gray} !important;
-	--ck-color-button-on-active-background: #{col.$academic-blue} !important;
-	--ck-color-button-default-disabled-background: #{col.$zebra-gray} !important;
-	--ck-color-widget-blurred-border: #{col.$banana-life} !important;
-	--ck-color-widget-type-around-button-active: #{col.$banana-life} !important;
-	--ck-color-widget-type-around-button: #{col.$banana-life} !important;
-	--ck-color-focus-border-coordinates: 48, 91%, 83% !important; //banana-life hsl
-	--ck-color-link-default: #{col.$dark-yellow} !important;
-	--ck-color-widget-type-around-button-hover: #{col.$dark-yellow} !important;
-	--ck-color-image-caption-background: #{col.$light-gray} !important;
-	--ck-color-image-caption-text: #{col.$crystal-white} !important;
-	--ck-color-widget-editable-focus-background: rgba(
-		158,
-		201,
-		250,
-		0.3
-	) !important;
-	& .katex {
-		color: var(--text-default) !important;
-	}
-}
-.ck {
-	table {
-		color: var(--text-default);
-		& th {
-			background: col.$elegant-gray !important;
-		}
-	}
-	a {
-		color: var(--link-default);
-		text-decoration: underline;
-		&:hover {
-			color: col.$hovered-academic-dark;
-			text-decoration: underline;
-		}
-	}
-	& .ck-balloon-panel,
-	& .ck-balloon-panel .ck-toolbar,
-	& .ck-balloon-panel-visible {
-		border-radius: 7px !important;
-		& .ck-toolbar__items {
-			margin-right: 0 !important;
-		}
-	}
-	& .ck-dropdown__panel {
-		& .ck-toolbar__items {
-			margin-right: 0 !important;
-		}
-	}
-	& .ck-switchbutton {
-		background: col.$crystal-white !important;
-	}
-	& .ck-toolbar__items {
-		margin-right: 35px !important;
-	}
-	code,
-	pre {
-		color: col.$light-red;
-		background-color: col.$elegant-gray;
-	}
-	& .ck-math-form {
-		padding: var(--ck-spacing-standard) !important;
-		& .ck-math-view {
-			margin-right: 10px !important;
-			& .ck.ck-math-preview {
-				margin: var(--ck-spacing-standard) var(--ck-spacing-standard) 0 !important;
-			}
+  --ck-color-text: #{col.$crystal-black} !important;
+  --ck-color-base-background: #{col.$crystal-white} !important;
+  --ck-color-list-button-hover-background: #{col.$elegant-gray} !important;
+  --ck-color-button-on-color: #{col.$crystal-black} !important;
+  --ck-border-radius: 0 !important;
+  --ck-color-focus-outer-shadow: #{col.$academic-blue} !important;
+  --ck-color-button-on-hover-background: #{col.$elegant-gray} !important;
+  --ck-color-button-default-hover-background: #{col.$elegant-gray} !important;
+  --ck-font-face: ubuntu, sans-serif !important;
+  --ck-color-button-default-background: #{col.$crystal-white} !important;
+  --ck-color-button-default-active-background: #{col.$bordered-gray} !important;
+  --ck-color-toolbar-background: #{col.$crystal-white} !important;
+  --ck-color-dropdown-panel-background: #{col.$crystal-white} !important;
+  --ck-color-tooltip-text: #{col.$crystal-black} !important;
+  --ck-color-panel-background: #{col.$crystal-white} !important;
+  --ck-color-base-foreground: #{col.$elegant-gray} !important;
+  --ck-color-labeled-field-label-background: #{col.$crystal-white} !important;
+  --ck-color-input-background: #{col.$crystal-white} !important;
+  --ck-color-button-save: #{col.$blue-laguna} !important;
+  --ck-color-button-cancel: #{col.$validation-red} !important;
+  --ck-focus-ring: 1px solid #{col.$light-purple} !important;
+  --ck-color-button-on-background: #{col.$elegant-gray} !important;
+  --ck-color-list-button-on-background: #{col.$academic-blue} !important;
+  --ck-color-focus-border: #{col.$blue-laguna} !important;
+  --ck-focus-outer-shadow: 0 !important;
+  --ck-color-list-button-on-background-focus: #{col.$hovered-academic-light} !important;
+  --ck-color-widget-hover-border: #{col.$academic-blue} !important;
+  --ck-color-tooltip-background: #{col.$elegant-gray} !important;
+  --ck-color-split-button-hover-background: #{col.$bordered-gray} !important;
+  --ck-color-button-on-active-background: #{col.$academic-blue} !important;
+  --ck-color-button-default-disabled-background: #{col.$elegant-gray} !important;
+  --ck-color-widget-type-around-button-active: #{col.$light-purple} !important;
+  --ck-color-focus-border-coordinates: 238, 50%, 71% !important; // light-purple hsl
+  --ck-color-link-default: #{col.$academic-blue} !important;
+  --ck-color-image-caption-background: #{col.$elegant-gray} !important;
+  --ck-color-image-caption-text: #{col.$crystal-black} !important;
+  --ck-color-widget-editable-focus-background:
+    rgb(
+      158 201 250 / 30%
+    ) !important;
 
-			& .ck-button__toggle {
-				display: none !important;
-			}
-			& .ck-button_with-text {
-				cursor: pointer;
-				background-color: var(--bg-accent) !important;
-				display: flex !important;
-				& .ck-button__label {
-					margin: auto !important;
-				}
-				&:hover {
-					opacity: 0.8 !important;
-				}
-			}
-			& .ck-on {
-				background-color: col.$academic-blue !important;
-			}
-		}
-	}
+  & .katex {
+    color: var(--text-default) !important;
+  }
 }
+
+:root .dark {
+  --ck-color-text: #{col.$crystal-white} !important;
+  --ck-color-base-background: #{col.$dark-gray} !important;
+  --ck-color-list-button-hover-background: #{col.$light-gray} !important;
+  --ck-color-button-on-color: #{col.$crystal-white} !important;
+  --ck-border-radius: 0 !important;
+  --ck-color-focus-outer-shadow: #{col.$dark-yellow} !important;
+  --ck-color-button-on-hover-background: #{col.$light-gray} !important;
+  --ck-color-button-default-hover-background: #{col.$light-gray} !important;
+  --ck-font-face: ubuntu, sans-serif !important;
+  --ck-color-button-default-background: #{col.$dark-gray} !important;
+  --ck-color-button-default-active-background: #{col.$zebra-gray} !important;
+  --ck-color-toolbar-background: #{col.$dark-gray} !important;
+  --ck-color-dropdown-panel-background: #{col.$dark-gray} !important;
+  --ck-color-tooltip-text: #{col.$crystal-white} !important;
+  --ck-color-panel-background: #{col.$dark-gray} !important;
+  --ck-color-base-foreground: #{col.$light-gray} !important;
+  --ck-color-labeled-field-label-background: #{col.$dark-gray} !important;
+  --ck-color-input-background: #{col.$dark-gray} !important;
+  --ck-color-button-save: #{col.$blue-laguna} !important;
+  --ck-color-button-cancel: #{col.$validation-red} !important;
+  --ck-focus-ring: 1px solid #{col.$light-purple} !important;
+  --ck-color-button-on-background: #{col.$light-gray} !important;
+  --ck-color-list-button-on-background: #{col.$academic-blue} !important;
+  --ck-color-focus-border: #{col.$banana-life} !important;
+  --ck-focus-outer-shadow: 0 !important;
+  --ck-color-list-button-on-background-focus: #{col.$hovered-academic-dark} !important;
+  --ck-color-widget-hover-border: #{col.$dark-yellow} !important;
+  --ck-color-tooltip-background: #{col.$light-gray} !important;
+  --ck-color-split-button-hover-background: #{col.$zebra-gray} !important;
+  --ck-color-button-on-active-background: #{col.$academic-blue} !important;
+  --ck-color-button-default-disabled-background: #{col.$zebra-gray} !important;
+  --ck-color-widget-blurred-border: #{col.$banana-life} !important;
+  --ck-color-widget-type-around-button-active: #{col.$banana-life} !important;
+  --ck-color-widget-type-around-button: #{col.$banana-life} !important;
+  --ck-color-focus-border-coordinates: 48, 91%, 83% !important; // banana-life hsl
+  --ck-color-link-default: #{col.$dark-yellow} !important;
+  --ck-color-widget-type-around-button-hover: #{col.$dark-yellow} !important;
+  --ck-color-image-caption-background: #{col.$light-gray} !important;
+  --ck-color-image-caption-text: #{col.$crystal-white} !important;
+  --ck-color-widget-editable-focus-background:
+    rgb(
+      158 201 250 / 30%
+    ) !important;
+
+  & .katex {
+    color: var(--text-default) !important;
+  }
+}
+
+.ck {
+  table {
+    color: var(--text-default);
+
+    & th {
+      background: col.$elegant-gray !important;
+    }
+  }
+
+  a {
+    color: var(--link-default);
+    text-decoration: underline;
+
+    &:hover {
+      color: col.$hovered-academic-dark;
+      text-decoration: underline;
+    }
+  }
+
+  & .ck-balloon-panel,
+  & .ck-balloon-panel .ck-toolbar,
+  & .ck-balloon-panel-visible {
+    border-radius: 7px !important;
+
+    & .ck-toolbar__items {
+      margin-right: 0 !important;
+    }
+  }
+
+  & .ck-dropdown__panel {
+    & .ck-toolbar__items {
+      margin-right: 0 !important;
+    }
+  }
+
+  & .ck-switchbutton {
+    background: col.$crystal-white !important;
+  }
+
+  & .ck-toolbar__items {
+    margin-right: 35px !important;
+  }
+
+  code,
+  pre {
+    color: col.$light-red;
+    background-color: col.$elegant-gray;
+  }
+
+  & .ck-math-form {
+    padding: var(--ck-spacing-standard) !important;
+
+    & .ck-math-view {
+      margin-right: 10px !important;
+
+      & .ck.ck-math-preview {
+        margin: var(--ck-spacing-standard) var(--ck-spacing-standard) 0 !important;
+      }
+
+      & .ck-button__toggle {
+        display: none !important;
+      }
+
+      & .ck-button_with-text {
+        cursor: pointer;
+        background-color: var(--bg-accent) !important;
+        display: flex !important;
+
+        & .ck-button__label {
+          margin: auto !important;
+        }
+
+        &:hover {
+          opacity: 0.8 !important;
+        }
+      }
+
+      & .ck-on {
+        background-color: col.$academic-blue !important;
+      }
+    }
+  }
+}
+
 .dark .ck {
-	& a:hover {
-		color: col.$hovered-dark-yellow;
-	}
-	& .ck-widget__type-around__button_before,
-	& .ck-widget__type-around__button_after,
-	& .ck-widget__selection-handle {
-		& path {
-			filter: invert(1) invert(8%) sepia(8%) saturate(339%) hue-rotate(227deg)
-				brightness(100%) contrast(97%);
-		}
-	}
-	& .ck-switchbutton {
-		background: col.$dark-gray !important;
-	}
-	& th {
-		background: col.$light-gray !important;
-	}
-	code,
-	pre {
-		background-color: col.$light-gray !important;
-	}
+  & a:hover {
+    color: col.$hovered-dark-yellow;
+  }
+
+  & .ck-widget__type-around__button_before,
+  & .ck-widget__type-around__button_after,
+  & .ck-widget__selection-handle {
+    & path {
+      filter:
+        invert(1) invert(8%) sepia(8%) saturate(339%) hue-rotate(227deg)
+        brightness(100%) contrast(97%);
+    }
+  }
+
+  & .ck-switchbutton {
+    background: col.$dark-gray !important;
+  }
+
+  & th {
+    background: col.$light-gray !important;
+  }
+
+  code,
+  pre {
+    background-color: col.$light-gray !important;
+  }
 }

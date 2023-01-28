@@ -1,17 +1,17 @@
-@use 'breakpoints' as breakpoints;
+@use "breakpoints" as breakpoints;
 
 .main-container {
-	width: 89%;
+  width: 89%;
 }
 
 .line-break {
-	opacity: 1 !important;
+  opacity: 1 !important;
 }
 
 @media all and (max-width: breakpoints.$sm) {
-	.main-container {
-		width: 100%;
-		padding-left: 16px;
-		padding-right: 16px;
-	}
+  .main-container {
+    width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }

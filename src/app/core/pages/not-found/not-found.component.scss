@@ -1,47 +1,47 @@
-@use 'colors' as colors;
-@use 'breakpoints' as breakpoints;
+@use "colors" as colors;
+@use "breakpoints" as breakpoints;
 
 .not-found-wrapper {
-	width: 520px;
+  width: 520px;
 
-	.heading {
-		color: colors.$pink;
-		font-size: 100px;
-		font-weight: 500;
-		line-height: 118px;
-	}
+  .heading {
+    color: colors.$pink;
+    font-size: 100px;
+    font-weight: 500;
+    line-height: 118px;
+  }
 
-	.title {
-		font-size: 35px;
-		font-weight: 400;
-	}
+  .title {
+    font-size: 35px;
+    font-weight: 400;
+  }
 
-	.description {
-		font-size: 18px;
-		font-weight: 400;
-	}
+  .description {
+    font-size: 18px;
+    font-weight: 400;
+  }
 
-	app-button {
-		font-size: 18px;
-	}
+  app-button {
+    font-size: 18px;
+  }
 }
 
 @media all and (max-width: breakpoints.$sm) {
-	.not-found-wrapper {
-		width: 100%;
+  .not-found-wrapper {
+    width: 100%;
 
-		.heading {
-			font-size: 60px;
-			line-height: 75px;
-		}
+    .heading {
+      font-size: 60px;
+      line-height: 75px;
+    }
 
-		.title {
-			font-size: 28px;
-		}
+    .title {
+      font-size: 28px;
+    }
 
-		.description,
-		app-button {
-			font-size: 16px;
-		}
-	}
+    .description,
+    app-button {
+      font-size: 16px;
+    }
+  }
 }

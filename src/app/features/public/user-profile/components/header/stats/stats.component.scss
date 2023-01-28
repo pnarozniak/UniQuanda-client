@@ -1,28 +1,33 @@
-@use 'colors' as colors;
-@use 'breakpoints' as breakpoints;
+@use "colors" as colors;
+@use "breakpoints" as breakpoints;
 
 .stats {
-	b {
-		font-size: 25px;
-		line-height: 20px;
-	}
-	.stats-divider {
-		width: 1px;
-		background-color: colors.$light-gray;
-	}
-	.loading .stats-divider {
-		height: 30px;
-		opacity: 0;
-	}
+  strong {
+    font-size: 25px;
+    line-height: 20px;
+  }
+
+  .stats-divider {
+    width: 1px;
+    background-color: colors.$light-gray;
+  }
+
+  .loading .stats-divider {
+    height: 30px;
+    opacity: 0;
+  }
 }
+
 .dark .stats-divider {
-	background-color: colors.$bordered-gray;
+  background-color: colors.$bordered-gray;
 }
+
 @media all and (max-width: breakpoints.$lg) {
-	.dark {
-		background-color: var(--bg-accent) !important;
-	}
-	.stats {
-		background-color: colors.$elegant-gray;
-	}
+  .dark {
+    background-color: var(--bg-accent) !important;
+  }
+
+  .stats {
+    background-color: colors.$elegant-gray;
+  }
 }

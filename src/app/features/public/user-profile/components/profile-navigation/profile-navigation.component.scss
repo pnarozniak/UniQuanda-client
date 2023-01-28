@@ -1,86 +1,98 @@
-@use 'colors' as colors;
-@use 'breakpoints' as breakpoints;
-@use 'dimensions' as dim;
+@use "colors" as colors;
+@use "breakpoints" as breakpoints;
+@use "dimensions" as dim;
 
 @media all and (max-width: breakpoints.$xxl) {
-	*::ng-deep {
-		.mat-tab-list {
-			width: calc(100vw - dim.$nav-bar-width-sm - 309px);
-		}
-	}
+  *::ng-deep {
+    .mat-tab-list {
+      width: calc(100vw - dim.$nav-bar-width-sm - 309px);
+    }
+  }
 }
 
 @media all and (max-width: breakpoints.$lg) {
-	.item {
-		padding: 2px 7px 2px 7px;
-		font-size: 13px;
-	}
+  .item {
+    padding: 2px 7px;
+    font-size: 13px;
+  }
 
-	.mat-tab-link {
-		height: 40px;
-	}
+  .mat-tab-link {
+    height: 40px;
+  }
 
-	*::ng-deep {
-		.mat-tab-label:first-of-type {
-			display: flex;
-		}
-		.mat-tab-list {
-			margin-right: 0;
-			width: 100vw;
-		}
-		.mat-tab-labels {
-			margin-left: auto;
-			margin-right: auto;
-		}
-	}
+  *::ng-deep {
+    .mat-tab-label:first-of-type {
+      display: flex;
+    }
+
+    .mat-tab-list {
+      margin-right: 0;
+      width: 100vw;
+    }
+
+    .mat-tab-labels {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
 }
+
 .profile-group ::ng-deep {
-	.mat-tab-label {
-		color: var(--text-default);
-		opacity: 1 !important;
-		background-color: var(--bg-accent);
-		font-family: Ubuntu, sans-serif !important;
-		margin-right: 1rem;
-		min-width: unset !important;
-		display: flex;
-		&:first-of-type {
-			display: none;
-		}
-	}
-	.mat-tab-body {
-		font-family: Ubuntu, sans-serif !important;
-	}
+  .mat-tab-label {
+    color: var(--text-default);
+    opacity: 1 !important;
+    background-color: var(--bg-accent);
+    font-family: Ubuntu, sans-serif !important;
+    margin-right: 1rem;
+    min-width: unset !important;
+    display: flex;
 
-	/* Styles for the active tab label */
-	.mat-tab-label.mat-tab-label-active {
-		background-color: colors.$academic-blue;
-		color: colors.$crystal-white;
-	}
-	.mat-ink-bar {
-		display: none;
-	}
-	.mat-tab-nav-bar,
-	.mat-tab-header {
-		border-bottom: 0px;
-	}
-	.mat-tab-header-pagination-chevron {
-		border-color: var(--text-default) !important;
-	}
-	.mat-tab-list {
-		align-content: flex-start;
-		display: flex;
-		width: 960px;
-	}
-	.mat-tab-header-pagination-controls-enabled {
-		& .mat-tab-labels {
-			margin-left: 0 !important;
-		}
-		& .mat-tab-list {
-			margin-left: 0 !important;
-		}
-	}
+    &:first-of-type {
+      display: none;
+    }
+  }
+
+  .mat-tab-body {
+    font-family: Ubuntu, sans-serif !important;
+  }
+
+  /* Styles for the active tab label */
+  .mat-tab-label.mat-tab-label-active {
+    background-color: colors.$academic-blue;
+    color: colors.$crystal-white;
+  }
+
+  .mat-ink-bar {
+    display: none;
+  }
+
+  .mat-tab-nav-bar,
+  .mat-tab-header {
+    border-bottom: 0;
+  }
+
+  .mat-tab-header-pagination-chevron {
+    border-color: var(--text-default) !important;
+  }
+
+  .mat-tab-list {
+    align-content: flex-start;
+    display: flex;
+    width: 960px;
+  }
+
+  .mat-tab-header-pagination-controls-enabled {
+    & .mat-tab-labels {
+      margin-left: 0 !important;
+    }
+
+    & .mat-tab-list {
+      margin-left: 0 !important;
+    }
+  }
 }
+
 .divider {
-	border-bottom: 2px solid colors.$bordered-gray;
-	opacity: 1;
+  border-bottom: 2px solid colors.$bordered-gray;
+  opacity: 1;
 }

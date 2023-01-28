@@ -1,9 +1,11 @@
-@use 'colors' as col;
+@use "colors" as col;
+
 .line {
-	height: 1px;
-	background-color: col.$bordered-gray;
+  height: 1px;
+  background-color: col.$bordered-gray;
 }
+
 .active {
-	background-color: col.$academic-blue;
-	color: col.$crystal-white;
+  background-color: col.$academic-blue;
+  color: col.$crystal-white;
 }

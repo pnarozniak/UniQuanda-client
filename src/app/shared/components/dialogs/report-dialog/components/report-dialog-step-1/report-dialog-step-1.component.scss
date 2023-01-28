@@ -1,16 +1,16 @@
-@use 'colors' as colors;
+@use "colors" as colors;
 
 hr {
-	margin-top: 4px;
-	margin-bottom: 12px;
+  margin-top: 4px;
+  margin-bottom: 12px;
 }
 
 .report-type {
-	cursor: pointer;
-	padding: 2px 4px;
-	transition: background-color 100ms ease-in-out;
-	
-	&:hover {
-		background-color: var(--bg-accent);
-	}
+  cursor: pointer;
+  padding: 2px 4px;
+  transition: background-color 100ms ease-in-out;
+
+  &:hover {
+    background-color: var(--bg-accent);
+  }
 }

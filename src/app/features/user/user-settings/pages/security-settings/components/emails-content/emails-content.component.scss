@@ -1,10 +1,10 @@
-@use 'colors' as colors;
+@use "colors" as colors;
 
 .email-row-loading {
-	height: 20px;
+  height: 20px;
 }
 
 .info-text {
-	color: colors.$light-red;
-	font-size: 12px;
+  color: colors.$light-red;
+  font-size: 12px;
 }

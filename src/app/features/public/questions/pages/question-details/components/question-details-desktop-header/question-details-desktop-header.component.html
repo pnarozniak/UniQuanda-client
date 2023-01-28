@@ -4,6 +4,7 @@
 			routerLink="/public/profile/{{ question.author.id }}"
 			class="d-flex flex-row align-items-center">
 			<img
+				alt="Zdjęcie profilowe autora"
 				[src]="question.author.avatarUrl ?? staticImageSrc.Avatar"
 				class="author-avatar me-3" />
 			<span class="nickname">{{ question.author.nickname }}</span>

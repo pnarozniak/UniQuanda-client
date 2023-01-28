@@ -1,32 +1,31 @@
-@use 'dimensions' as dim;
-@use 'breakpoints' as bp;
-@use 'colors' as colors;
+@use "dimensions" as dim;
+@use "breakpoints" as bp;
+@use "colors" as colors;
 
 :host {
-	width: dim.$right-menu-width;
-	min-width: dim.$right-menu-width;
-	max-width: dim.$right-menu-width;
-	padding-bottom: 50px;
-	height: 100%;
-	display: block;
-	margin-top: 120px;
+  width: dim.$right-menu-width;
+  min-width: dim.$right-menu-width;
+  max-width: dim.$right-menu-width;
+  padding-bottom: 50px;
+  height: 100%;
+  display: block;
+  margin-top: 120px;
 
-	hr {
-		background-color: colors.$bordered-gray;
-		opacity: 1;
-	}
+  hr {
+    background-color: colors.$bordered-gray;
+    opacity: 1;
+  }
 
-	.content {
-		gap: 13px;
-	}
+  .content {
+    gap: 13px;
+  }
 }
 
-
 @media screen and (max-width: bp.$xl) {
-	:host {
-		margin-top: 0;
-		width: 100%;
-		min-width: unset;
-		max-width: unset;
-	}
+  :host {
+    margin-top: 0;
+    width: 100%;
+    min-width: unset;
+    max-width: unset;
+  }
 }

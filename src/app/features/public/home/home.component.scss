@@ -1,24 +1,30 @@
-@use 'breakpoints' as bp;
-@use 'dimensions' as dim;
-@use 'colors' as col;
+@use "breakpoints" as bp;
+@use "dimensions" as dim;
+@use "colors" as col;
+
 .question-box {
-	cursor: pointer;
+  cursor: pointer;
 }
+
 .loading-box {
-	height: 180px;
+  height: 180px;
 }
+
 .search-text {
-	font-size: 14px;
+  font-size: 14px;
 }
+
 .line {
-	background-color: col.$bordered-gray;
-	opacity: 1;
+  background-color: col.$bordered-gray;
+  opacity: 1;
 }
+
 .sort-label {
-	font-size: 15px;
+  font-size: 15px;
 }
+
 @media screen and (max-width: bp.$xl) {
-	.loading-box {
-		width: 100%;
-	}
+  .loading-box {
+    width: 100%;
+  }
 }

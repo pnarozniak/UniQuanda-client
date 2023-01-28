@@ -1,69 +1,69 @@
-@use 'colors' as colors;
+@use "colors" as colors;
 
 :host {
-	width: 100%;
-	
-	::ng-deep mat-form-field {
-		width: 100%;
-		font-family: Ubuntu, sans-serif !important;
+  width: 100%;
 
-		.mat-form-field-infix {
-			padding: 0;
-			padding-right: 10px;
-		}
+  ::ng-deep mat-form-field {
+    width: 100%;
+    font-family: Ubuntu, sans-serif !important;
 
-		.mat-form-field-flex {
-			padding: 0;
-		}
+    .mat-form-field-infix {
+      padding: 0;
+      padding-right: 10px;
+    }
 
-		.mat-form-field-label-wrapper {
-			top: -1.1em !important;
-			left: .5em;
-		}
+    .mat-form-field-flex {
+      padding: 0;
+    }
 
-		.mat-form-field-outline {
-		color: colors.$bordered-gray !important;
-		}
+    .mat-form-field-label-wrapper {
+      top: -1.1em !important;
+      left: 0.5em;
+    }
 
-		.mat-form-field-outline-thick {
-			color: colors.$academic-blue !important;
-		}
+    .mat-form-field-outline {
+      color: colors.$bordered-gray !important;
+    }
 
-		.mat-form-field-outline-start,
-		.mat-form-field-outline-end {
-			border-radius: 0;
-		}
-	}
+    .mat-form-field-outline-thick {
+      color: colors.$academic-blue !important;
+    }
 
-	.dark {
-		.mat-input-element {
-			caret-color: colors.$dark-yellow;
-		}
+    .mat-form-field-outline-start,
+    .mat-form-field-outline-end {
+      border-radius: 0;
+    }
+  }
 
-		&.mat-form-field.mat-focused:not(.mat-form-field-invalid) {
-			::ng-deep .mat-form-field-label {
-				color: colors.$dark-yellow;
-			}
-		}
+  .dark {
+    .mat-input-element {
+      caret-color: colors.$dark-yellow;
+    }
 
-		::ng-deep .mat-form-field-outline-thick {
-				color: colors.$dark-yellow !important;
-		}
+    &.mat-form-field.mat-focused:not(.mat-form-field-invalid) {
+      ::ng-deep .mat-form-field-label {
+        color: colors.$dark-yellow;
+      }
+    }
 
-		&.mat-form-field:not(.mat-focused) {
-			::ng-deep .mat-form-field-label {
-				color: colors.$bordered-gray !important;
-			}
-		}
+    ::ng-deep .mat-form-field-outline-thick {
+      color: colors.$dark-yellow !important;
+    }
 
-		&.mat-form-field {
-			::ng-deep .mat-hint {
-				color: colors.$light-gray;
-			}
+    &.mat-form-field:not(.mat-focused) {
+      ::ng-deep .mat-form-field-label {
+        color: colors.$bordered-gray !important;
+      }
+    }
 
-			::ng-deep .mat-textarea::placeholder {
-				color: colors.$light-gray !important;
-			}
-		}
-	}
+    &.mat-form-field {
+      ::ng-deep .mat-hint {
+        color: colors.$light-gray;
+      }
+
+      ::ng-deep .mat-textarea::placeholder {
+        color: colors.$light-gray !important;
+      }
+    }
+  }
 }

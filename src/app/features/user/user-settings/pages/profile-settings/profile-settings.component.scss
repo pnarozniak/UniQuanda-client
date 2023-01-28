@@ -1,86 +1,86 @@
-@use 'colors' as colors;
-@use 'breakpoints' as breakpoints;
+@use "colors" as colors;
+@use "breakpoints" as breakpoints;
 
 .banner-container {
-	position: relative;
-	height: 200px;
+  position: relative;
+  height: 200px;
 }
 
 .avatar-container {
-	position: absolute;
-	margin-left: 38px;
-	transform: translateY(-100px);
-	height: 200px;
-	width: 200px;
+  position: absolute;
+  margin-left: 38px;
+  transform: translateY(-100px);
+  height: 200px;
+  width: 200px;
 }
 
 .form-container {
-	margin-top: min(150px, 13vw);
+  margin-top: min(150px, 13vw);
 }
 
 .row-content {
-	width: 85%;
-	column-gap: 64px;
+  width: 85%;
+  column-gap: 64px;
 }
 
 .submit-row {
-	width: 85%;
+  width: 85%;
 }
 
 .loading-input {
-	height: 50px;
+  height: 50px;
 }
 
 .loading-textarea {
-	height: 100px;
+  height: 100px;
 }
 
 .loading-btn {
-	height: 50px;
-	width: 120px;
-	border-radius: 7px;
+  height: 50px;
+  width: 120px;
+  border-radius: 7px;
 }
 
 .loading-textarea-container {
-	width: calc((100% - 64px)/2);
+  width: calc((100% - 64px) / 2);
 }
 
 @media all and (max-width: breakpoints.$xxl) {
-	.banner-container {
-		height: 14.285714285714285vw;
-	}
+  .banner-container {
+    height: 14.285714285714285vw;
+  }
 
-	.avatar-container {
-		width: 14.285714285714285vw;
-		height: 14.285714285714285vw;
-		margin-left: 2.7142857142857144vw;
-		transform: translateY(-7.1428571428571425vw);
-	}
+  .avatar-container {
+    width: 14.285714285714285vw;
+    height: 14.285714285714285vw;
+    margin-left: 2.7142857142857144vw;
+    transform: translateY(-7.1428571428571425vw);
+  }
 }
 
 @media all and (max-width: breakpoints.$lg) {
-	.loading-textarea-container {
-		width: 100%;
-	}
+  .loading-textarea-container {
+    width: 100%;
+  }
 }
 
 @media all and (max-width: breakpoints.$sm) {
-	.banner-container {
-		height: 82px !important;
-		max-width: 100vw;
-	}
+  .banner-container {
+    height: 82px !important;
+    max-width: 100vw;
+  }
 
-	.avatar-container {
-		width: 85px;
-		height: 85px;
-		transform: translateY(-21px);
-	}
+  .avatar-container {
+    width: 85px;
+    height: 85px;
+    transform: translateY(-21px);
+  }
 
-	.form-container{
-		margin-top: 90px;
-	}
+  .form-container {
+    margin-top: 90px;
+  }
 
-	.submit-btn {
-		width: 100%;
-	}
+  .submit-btn {
+    width: 100%;
+  }
 }

@@ -1,68 +1,68 @@
-@use 'colors' as colors;
+@use "colors" as colors;
 
 :host {
-	transition: opacity 300ms ease-in-out;
-	cursor: pointer;
-	outline: none;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	white-space: nowrap;
+  transition: opacity 300ms ease-in-out;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
 
-	&:not(.app-button-none) {
-		font-weight: 500;
-		font-size: 15px;
-	}
+  &:not(.app-button-none) {
+    font-weight: 500;
+    font-size: 15px;
+  }
 
-	&.app-button-round {
-		border-radius: 7px;
-	}
+  &.app-button-round {
+    border-radius: 7px;
+  }
 
-	&.app-button-blue {
-		background-color: colors.$academic-blue;
-		color: colors.$crystal-white;
+  &.app-button-blue {
+    background-color: colors.$academic-blue;
+    color: colors.$crystal-white;
 
-		&:hover {
-			opacity: .8;
-		}
-	}
+    &:hover {
+      opacity: 0.8;
+    }
+  }
 
-	&.app-button-purple {
-		background-color: colors.$light-purple;
-		color: colors.$crystal-white;
+  &.app-button-purple {
+    background-color: colors.$light-purple;
+    color: colors.$crystal-white;
 
-		&:hover {
-			opacity: .8;
-		}
-	}
+    &:hover {
+      opacity: 0.8;
+    }
+  }
 
-	&.app-button-gray {
-		background-color: var(--bg-accent);
-		color: var(--text-default);
+  &.app-button-gray {
+    background-color: var(--bg-accent);
+    color: var(--text-default);
 
-		&:hover {
-			opacity: .6;
-		}
-	}
+    &:hover {
+      opacity: 0.6;
+    }
+  }
 
-	&.app-button-none {
-		display: inline-flex;
+  &.app-button-none {
+    display: inline-flex;
 
-		&:hover {
-			opacity: .6;
-		}
-	}
+    &:hover {
+      opacity: 0.6;
+    }
+  }
 
-	.submit-btn {
-		width: 0;
-		padding: 0;
-		border: none;
-		white-space: nowrap;
-		overflow: hidden;
-	}
+  .submit-btn {
+    width: 0;
+    padding: 0;
+    border: none;
+    white-space: nowrap;
+    overflow: hidden;
+  }
 
-	&.app-button-disabled {
-		background-color: colors.$bordered-gray;
-		pointer-events: none;
-	}
+  &.app-button-disabled {
+    background-color: colors.$bordered-gray;
+    pointer-events: none;
+  }
 }

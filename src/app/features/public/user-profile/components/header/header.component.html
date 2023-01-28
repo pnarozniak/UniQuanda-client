@@ -8,19 +8,19 @@
 						: 'assets/images/common/default_users_background.svg'
 				"
 				(load)="bannerPictureLoading = false"
-				alt="banner" />
+				alt="Baner" />
 		</div>
 	</div>
 	<div class="w-100 d-flex flex-column">
 		<div class="profile-picture" [appLoading]="profilePictureLoading">
 			<img
-				[src]="
+				src="{{
 					user?.userData?.avatar
-						? user?.userData?.avatar
+						? user.userData?.avatar
 						: 'assets/images/common/default_avatar.svg'
-				"
+				}}"
 				(load)="profilePictureLoading = false"
-				alt="profile-picture" />
+				alt="Zdjęcie profilowe użytkownika" />
 		</div>
 		<div class="header-content d-flex mt-sm-3 mt-2">
 			<div class="d-flex flex-column w-100">
@@ -34,14 +34,14 @@
 						[appLoading]="user === null"
 						*ngIf="user === null"></div>
 					<div *ngFor="let title of user?.academicTitles" class="me-1">
-						<b
+						<strong
 							class="p-2 title-badge"
 							[ngStyle]="{
 								'background-color': getAcademicTitleTypeColor(
 									title.academicTitleType
 								)
 							}">
-							{{ title.name }}</b
+							{{ title.name }}</strong
 						>
 					</div>
 					<div
@@ -65,15 +65,18 @@
 							user?.userData?.firstName && user?.userData?.lastName;
 							else onlyNick
 						">
-						<b class="nickname mt-2 mt-sm-0"
-							>{{ user?.userData?.firstName }} {{ user?.userData?.lastName }}</b
+						<strong class="nickname mt-2 mt-sm-0"
+							>{{ user?.userData?.firstName }}
+							{{ user?.userData?.lastName }}</strong
 						>
 						<span class="mt-auto mb-2 ms-2"
 							>({{ user?.userData?.nickname }})</span
 						>
 					</div>
 					<ng-template #onlyNick>
-						<b class="nickname mt-2 mt-sm-0">{{ user?.userData?.nickname }}</b>
+						<strong class="nickname mt-2 mt-sm-0">{{
+							user?.userData?.nickname
+						}}</strong>
 					</ng-template>
 					<app-button
 						*ngIf="
@@ -107,8 +110,8 @@
 									*ngIf="'hasPremium' === 'hasPremium'"
 									class="mx-4 mt-1 d-flex justify-content-center py-1">
 									<app-icon icon="mail" class="me-2 my-auto"></app-icon>
-									Wyślij wiadomość </a
-								><!--TODO: dodać poprawny warunek sprawdzania premium-->
+									Wyślij wiadomość
+								</a>
 								<hr class="mx-4 hrline my-2" />
 								<a
 									(click)="reportUser(user.userData.id)"
@@ -187,7 +190,6 @@
 					<app-icon icon="mail" class="me-1"></app-icon>
 					Wyślij wiadomość
 				</app-button>
-				<!--TODO: dodać poprawny warunek sprawdzania premium-->
 			</div>
 			<div
 				class="action-button-loading d-lg-flex d-none mx-auto me-5 mt-lg-0 mt-3"

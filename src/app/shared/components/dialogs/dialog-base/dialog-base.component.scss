@@ -1,43 +1,42 @@
-@use 'colors' as colors;
-@use 'breakpoints' as breakpoints;
+@use "colors" as colors;
+@use "breakpoints" as breakpoints;
 
 .content {
-	position: relative;
-	color: var(--text-default);
-	padding: 20px 30px;
+  position: relative;
+  color: var(--text-default);
+  padding: 20px 30px;
 
-	.close-btn {
-		position: absolute;
-		top: 20px;
-		right: 30px;
-		-webkit-appearance: unset;
-	}
+  .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    appearance: unset;
+  }
 }
 
 ::ng-deep {
-	.dialog-base-backdrop {
-		background-color: rgba(5, 15, 42, 0.6);
-		backdrop-filter: blur(4px);
-		-webkit-backdrop-filter: blur(4px);
-	}
+  .dialog-base-backdrop {
+    background-color: rgb(5 15 42 / 60%);
+    backdrop-filter: blur(4px);
+  }
 
-	.dialog-base-panel {
-		.mat-dialog-container {
-			background-color: var(--bg-default);
-			padding: 0;
+  .dialog-base-panel {
+    .mat-dialog-container {
+      background-color: var(--bg-default);
+      padding: 0;
 
-			.mat-ripple {
-				padding: 5px;
-			}
-		}
-	}
+      .mat-ripple {
+        padding: 5px;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: breakpoints.$sm) {
-	::ng-deep {
-		.dialog-base-panel {
-			max-width: unset !important;
-			width: 100%;
-		}
-	}
+  ::ng-deep {
+    .dialog-base-panel {
+      max-width: unset !important;
+      width: 100%;
+    }
+  }
 }

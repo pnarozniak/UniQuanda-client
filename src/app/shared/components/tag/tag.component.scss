@@ -1,12 +1,13 @@
-@use 'colors' as colors;
-@use 'breakpoints' as breakpoints;
+@use "colors" as colors;
+@use "breakpoints" as breakpoints;
 
-span, a {
-	background-color: colors.$tag-blue;
-	color: colors.$academic-blue;
-	border-radius: 5px;
-	font-size: 13px;
-	max-width: 100%;
+span,
+a {
+  background-color: colors.$tag-blue;
+  color: colors.$academic-blue;
+  border-radius: 5px;
+  font-size: 13px;
+  max-width: 100%;
   overflow: hidden;
   display: block;
   text-overflow: ellipsis;
@@ -14,16 +15,16 @@ span, a {
 }
 
 .dark {
-	background-color: colors.$light-red;
-	color: colors.$crystal-white;
+  background-color: colors.$light-red;
+  color: colors.$crystal-white;
 }
 
 a:hover {
-	opacity: 0.8;
+  opacity: 0.8;
 }
 
 @media screen and (max-width: breakpoints.$sm) {
-	a {
-		font-size: 10px;
-	}
+  a {
+    font-size: 10px;
+  }
 }

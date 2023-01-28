@@ -1,32 +1,32 @@
-@use 'breakpoints' as breakpoints;
-@use 'colors' as colors;
+@use "breakpoints" as breakpoints;
+@use "colors" as colors;
 
 .title {
-	font-size: 16px;
+  font-size: 16px;
 }
 
 .header-list {
-	background-color: colors.$academic-blue;
-	color: colors.$crystal-white;
-	font-size: 16px;
-	font-weight: 500;
-	column-gap: 12px;
+  background-color: colors.$academic-blue;
+  color: colors.$crystal-white;
+  font-size: 16px;
+  font-weight: 500;
+  column-gap: 12px;
 }
 
 .mock-item {
-	height: 40px;
+  height: 40px;
 }
 
 @media all and (max-width: breakpoints.$sm) {
-	.title {
-		font-size: 13px;
-	}
-	
-	.margin-text {
-		margin-bottom: 16px;
-	}
+  .title {
+    font-size: 13px;
+  }
 
-	.mock-item {
-		height: 80px;
-	}
+  .margin-text {
+    margin-bottom: 16px;
+  }
+
+  .mock-item {
+    height: 80px;
+  }
 }

@@ -1,30 +1,30 @@
-@use 'colors' as colors;
-@use 'dimensions' as dim;
-@use 'breakpoints' as breakpoints;
+@use "colors" as colors;
+@use "dimensions" as dim;
+@use "breakpoints" as breakpoints;
 
 ::ng-deep {
-  .app-header-dropdown-overlay +* {
+  .app-header-dropdown-overlay + * {
     margin-top: 15px;
-  
+
     .mat-menu-content {
       padding: 0 !important;
     }
-  
+
     .mat-menu-panel {
       max-width: none !important;
       border-radius: 0 !important;
       overflow: visible !important;
     }
   }
-  
+
   @media screen and (max-width: breakpoints.$sm) {
-    .app-header-dropdown-overlay +* {
+    .app-header-dropdown-overlay + * {
       margin-top: 12px;
     }
-  
-    .app-header-dropdown-overlay +* .cdk-overlay-pane {
+
+    .app-header-dropdown-overlay + * .cdk-overlay-pane {
       width: 100%;
-  
+
       .mat-menu-panel {
         width: 100%;
       }
@@ -49,7 +49,7 @@
     }
   }
 
-  &:after {
+  &::after {
     content: "";
     display: block;
     position: absolute;
@@ -64,6 +64,7 @@
     transform: rotate(-45deg);
   }
 }
+
 .dropdown-item {
   color: var(--text-default);
   display: flex;
@@ -87,14 +88,12 @@
   width: 50px;
   height: 25px;
   user-select: none;
-  -webkit-user-select: none;
-  
+
   .slider,
-  .slider:before {
+  .slider::before {
     position: absolute;
     cursor: pointer;
-    -webkit-transition: .2s;
-    transition: .2s;
+    transition: 0.2s;
   }
 
   .slider {
@@ -104,7 +103,7 @@
     right: 0;
     border-radius: 34px;
 
-    &:before {
+    &::before {
       content: "";
       top: 2px;
       bottom: 3px;
@@ -121,21 +120,21 @@
   input {
     visibility: hidden;
 
-    &:not(:checked)+.slider {
+    &:not(:checked) + .slider {
       background-color: colors.$elegant-gray;
     }
 
-    &:checked+.slider {
+    &:checked + .slider {
       background-color: colors.$bordered-gray;
     }
 
-    &:not(:checked)+.slider:before {
-      background: colors.$crystal-white url('/assets/images/core/header-dropdown/light-theme.svg');
+    &:not(:checked) + .slider::before {
+      background: colors.$crystal-white url("/assets/images/core/header-dropdown/light-theme.svg");
     }
 
-    &:checked+.slider:before {
+    &:checked + .slider::before {
       transform: translateX(22px);
-      background: colors.$crystal-black url('/assets/images/core/header-dropdown/dark-theme.svg');
+      background: colors.$crystal-black url("/assets/images/core/header-dropdown/dark-theme.svg");
     }
   }
 }
@@ -148,7 +147,7 @@
       width: 100%;
     }
 
-    &:after {
+    &::after {
       width: 12px;
       height: 12px;
       top: -5.5px;

@@ -1,41 +1,50 @@
-@use 'colors' as col;
-@use 'breakpoints' as bp;
+@use "colors" as col;
+@use "breakpoints" as bp;
+
 .line {
-	height: 2px;
+  height: 2px;
 }
+
 .box {
-	border: 1px solid col.$bordered-gray;
-	border-bottom: 0;
-	cursor: pointer;
+  border: 1px solid col.$bordered-gray;
+  border-bottom: 0;
+  cursor: pointer;
 }
+
 .left-menu {
-	font-size: 14px;
-	white-space: nowrap;
+  font-size: 14px;
+  white-space: nowrap;
 }
+
 .right-menu {
-	border-left: 1px solid col.$bordered-gray;
+  border-left: 1px solid col.$bordered-gray;
 }
+
 .right-text {
-	text-align: end;
+  text-align: end;
 }
+
 .likes-box {
-	background-color: col.$pink;
-	color: col.$crystal-white;
-	padding: 5px 10px;
-	border-radius: 5px;
+  background-color: col.$pink;
+  color: col.$crystal-white;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
+
 .disliked-answer {
-	background-color: var(--bg-accent);
-	color: var(--text-default);
+  background-color: var(--bg-accent);
+  color: var(--text-default);
 }
+
 .correct-answer {
-	color: col.$crystal-white;
-	background-color: col.$blue-laguna;
-	border-radius: 5px;
-	max-width: fit-content;
+  color: col.$crystal-white;
+  background-color: col.$blue-laguna;
+  border-radius: 5px;
+  max-width: fit-content;
 }
+
 @media screen and (max-width: bp.$md) {
-	.right-menu {
-		border-left: none;
-	}
+  .right-menu {
+    border-left: none;
+  }
 }

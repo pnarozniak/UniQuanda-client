@@ -1,8 +1,8 @@
-@use 'breakpoints' as breakpoints;
+@use "breakpoints" as breakpoints;
 
 .email-title {
-	font-weight: 500;
-	white-space: nowrap;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
 .email-text {
@@ -14,19 +14,19 @@
 }
 
 @media all and (max-width: breakpoints.$xxl) {
-	.email-text {
-		max-width: 400px;
-	}
+  .email-text {
+    max-width: 400px;
+  }
 }
 
 @media all and (max-width: breakpoints.$md) {
-	.email-text {
-		max-width: 300px;
-	}
+  .email-text {
+    max-width: 300px;
+  }
 }
 
 @media all and (max-width: breakpoints.$sm) {
-	.email-text {
-		max-width: 300px;
-	}
+  .email-text {
+    max-width: 300px;
+  }
 }
